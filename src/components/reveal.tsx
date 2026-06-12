@@ -1,7 +1,10 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import type { ElementType, ReactNode } from "react";
+
+type Tag = "div" | "section" | "li" | "article";
 
 export function Reveal({
   children,
@@ -12,25 +15,53 @@ export function Reveal({
   children: ReactNode;
   delay?: number;
   className?: string;
-  as?: "div" | "section" | "li" | "article";
+  as?: Tag;
 }) {
-  const reduce = useReducedMotion();
-  const MotionTag = motion[as];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ref = useRef<any>(null);
+  const [shown, setShown] = useState(false);
+  const Component: ElementType = as;
 
-  if (reduce) {
-    const Tag = as;
-    return <Tag className={className}>{children}</Tag>;
-  }
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+
+    // IntersectionObserver fires an initial callback for elements already in
+    // view, so above-the-fold content reveals immediately on load.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setShown(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -60px 0px", threshold: 0.01 }
+    );
+    observer.observe(el);
+
+    // Safety net: never leave content permanently hidden if the observer
+    // somehow fails to fire.
+    const fallback = window.setTimeout(() => setShown(true), 1200);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
+  }, []);
 
   return (
-    <MotionTag
-      className={className}
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.35, ease: "easeOut", delay }}
+    <Component
+      ref={ref}
+      className={cn("reveal", shown && "reveal-in", className)}
+      style={{ transitionDelay: `${delay}s` }}
     >
       {children}
-    </MotionTag>
+    </Component>
   );
 }
