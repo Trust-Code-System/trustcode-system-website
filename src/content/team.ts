@@ -4,6 +4,7 @@ export type Founder = {
   role: string;
   location: string;
   flag: string;
+  image?: string;
   oneLiner: string;
   bio: string[];
   highlights: string[];
@@ -66,6 +67,7 @@ export const team: Founder[] = [
     role: "Co-Founder · Cloud & Backend Engineering Lead",
     location: "Lagos, NG",
     flag: "🇳🇬",
+    image: "/team/abdulhaleem-sanuth.png",
     oneLiner: "Cloud architecture, payments, and AI pipelines that scale without drama.",
     bio: [
       "Full-Stack and Cloud Engineer with 3+ years of production experience. B.Sc. Statistics (in view), University of Lagos.",
@@ -111,6 +113,7 @@ export const team: Founder[] = [
     role: "Co-Founder · Security & SOC Lead",
     location: "Lagos, NG",
     flag: "🇳🇬",
+    image: "/team/olamilekan-oyedele.png",
     oneLiner: "Every product we ship is watched, hardened, and audit-ready.",
     bio: [
       "Cybersecurity and SOC Analyst. ISC2 Certified in Cybersecurity (CC). BSc Statistics, University of Ilorin (2024).",
@@ -151,6 +154,7 @@ export const team: Founder[] = [
     role: "Co-Founder · Full-Stack Delivery & Design Lead",
     location: "Lagos, NG",
     flag: "🇳🇬",
+    image: "/team/abass-ibrahim.jpg",
     oneLiner:
       "Seven live products and counting — design in Figma, ship to production.",
     bio: [

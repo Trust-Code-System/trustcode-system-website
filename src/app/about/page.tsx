@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
 import { CtaBand } from "@/components/cta-band";
@@ -58,14 +59,24 @@ export default function AboutPage() {
                 className="card grid scroll-mt-24 gap-8 p-7 md:grid-cols-12 md:p-9"
               >
                 <div className="md:col-span-4">
-                  <div className="flex aspect-[4/5] w-full items-center justify-center rounded-card border border-grid bg-paper">
-                    <span className="font-display text-6xl font-semibold text-blueprint">
-                      {f.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .slice(0, 2)
-                        .join("")}
-                    </span>
+                  <div className="relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-card border border-grid bg-paper">
+                    {f.image ? (
+                      <Image
+                        src={f.image}
+                        alt={`${f.name}, ${f.role}`}
+                        fill
+                        sizes="(min-width: 768px) 30vw, 100vw"
+                        className="object-cover object-top"
+                      />
+                    ) : (
+                      <span className="font-display text-6xl font-semibold text-blueprint">
+                        {f.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .slice(0, 2)
+                          .join("")}
+                      </span>
+                    )}
                   </div>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {f.links.map((l) => (

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { DeployLog } from "@/components/deploy-log";
 import { Reveal } from "@/components/reveal";
 import { Section, SectionHeading, Eyebrow } from "@/components/section";
@@ -177,14 +178,24 @@ export default function HomePage() {
                 href={`/about#${f.slug}`}
                 className="card card-hover group block h-full p-6"
               >
-                <div className="flex aspect-square w-full items-center justify-center rounded-[10px] border border-grid bg-paper">
-                  <span className="font-display text-4xl font-semibold text-blueprint">
-                    {f.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .slice(0, 2)
-                      .join("")}
-                  </span>
+                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[10px] border border-grid bg-paper">
+                  {f.image ? (
+                    <Image
+                      src={f.image}
+                      alt={`${f.name}, ${f.role}`}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                  ) : (
+                    <span className="font-display text-4xl font-semibold text-blueprint">
+                      {f.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .slice(0, 2)
+                        .join("")}
+                    </span>
+                  )}
                 </div>
                 <p className="mt-4 flex items-center gap-2 font-medium text-ink">
                   {f.name.split(" ").slice(0, 2).join(" ")}
