@@ -21,6 +21,7 @@ export const team: Founder[] = [
     role: "Co-Founder · Frontend & Product Engineering Lead",
     location: "London, UK",
     flag: "🇬🇧",
+    image: "/team/bashir-abdulah.png",
     oneLiner:
       "Interfaces people trust at first click — UK-based, fintech and edtech proven.",
     bio: [
