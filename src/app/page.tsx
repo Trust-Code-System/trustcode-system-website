@@ -22,7 +22,7 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-grid">
-        <div aria-hidden className="grid-bg absolute inset-0" />
+        <div aria-hidden className="grid-bg absolute -inset-8" />
         <div className="container-x relative grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16">
           <div>
             <Reveal>

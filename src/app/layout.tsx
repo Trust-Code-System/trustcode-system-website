@@ -65,6 +65,32 @@ export default function RootLayout({
           Skip to content
         </a>
         <JsonLd />
+        {/* Wave-distortion filter for the background grid (.grid-bg) */}
+        <svg aria-hidden width="0" height="0" className="absolute">
+          <filter
+            id="grid-wave"
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+            colorInterpolationFilters="sRGB"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.009 0.013"
+              numOctaves={2}
+              seed={4}
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              xChannelSelector="R"
+              yChannelSelector="G"
+              scale={16}
+            />
+          </filter>
+        </svg>
         <Header />
         <main id="main">{children}</main>
         <Footer />

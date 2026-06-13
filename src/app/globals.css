@@ -264,7 +264,8 @@ html {
       linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
     background-size: 48px 48px;
     opacity: 0.4;
-    /* Gentle, seamless diagonal drift (48px loop = one grid cell) */
+    /* Wavy distortion (lines ripple) + gentle drift so the waves travel */
+    filter: url(#grid-wave);
     animation: grid-drift 24s linear infinite;
   }
 }
