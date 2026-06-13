@@ -182,16 +182,15 @@ html {
 
   .dark .hero-title {
     background-image: linear-gradient(
-      150deg,
-      var(--ink) 0%,
-      var(--ink) 30%,
-      var(--blueprint) 105%
+      155deg,
+      #ffffff 0%,
+      #e6ecff 42%,
+      var(--blueprint) 115%
     );
     text-shadow:
-      0 1px 0 rgba(0, 0, 0, 0.35),
-      1px 2px 0 rgba(0, 0, 0, 0.28),
-      2px 4px 10px rgba(111, 142, 255, 0.3),
-      0 14px 38px rgba(111, 142, 255, 0.18);
+      0 1px 1px rgba(0, 0, 0, 0.25),
+      0 3px 16px rgba(111, 142, 255, 0.35),
+      0 10px 44px rgba(111, 142, 255, 0.2);
   }
 
   .display-h2 {
