@@ -21,7 +21,7 @@ export const site = {
 // Add a URL as each profile goes live; empty strings are filtered out.
 export const social = {
   github: "https://github.com/Trust-Code-System",
-  linkedin: "https://www.linkedin.com/company/trustcode-systems-limited/",
+  linkedin: "https://www.linkedin.com/company/trustcode-system-limited/",
   x: "https://x.com/trustcodesys",
   crunchbase: "",
 } as const;
