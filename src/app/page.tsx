@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { DeployLog } from "@/components/deploy-log";
 import { Reveal } from "@/components/reveal";
-import { Section, SectionHeading, Eyebrow } from "@/components/section";
+import { Section, SectionHeading } from "@/components/section";
 import { ServiceCard } from "@/components/service-card";
 import { ProjectCard } from "@/components/project-card";
 import { CtaBand } from "@/components/cta-band";

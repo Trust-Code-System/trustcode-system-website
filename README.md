@@ -1,13 +1,13 @@
 # TrustCode System — marketing website
 
-Production-grade marketing site for TrustCode System Limited. Next.js 14 (App
+Production-grade marketing site for TrustCode System Limited. Next.js 15 (App
 Router), TypeScript, Tailwind CSS, Framer Motion.
 
 > Software you can stake your business on.
 
 ## Stack
 
-- **Next.js 14** App Router, **TypeScript**, **Tailwind CSS**
+- **Next.js 15** App Router, **TypeScript**, **Tailwind CSS**
 - **Framer Motion** — restrained scroll-reveals only
 - **Zod** — shared client/server form validation
 - **Resend** — contact email delivery (optional; gated by env)
@@ -24,6 +24,19 @@ pnpm dev                     # http://localhost:3000
 ```bash
 pnpm build && pnpm start     # production build
 pnpm typecheck               # tsc --noEmit
+pnpm lint                    # ESLint CLI
+pnpm test                    # Vitest API tests
+```
+
+## Verification
+
+Before shipping changes, run:
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
 ```
 
 ## Editing content
@@ -59,9 +72,12 @@ real screenshots, drop `public/work/<slug>.png` and swap
 
 ## Contact form
 
-`POST /api/contact` — Zod validation, honeypot, in-memory rate limiting, and
-Resend delivery (set `RESEND_API_KEY`). Without a key it logs submissions to the
-server console so local dev works out of the box.
+`POST /api/contact` — Zod validation, honeypot, rate limiting, and Resend
+delivery (set `RESEND_API_KEY`). In production, set
+`UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` so rate limits are
+shared across serverless instances. Without those keys it falls back to an
+in-memory limiter; without `RESEND_API_KEY` it logs submissions to the server
+console so local dev works out of the box.
 
 ## SEO
 

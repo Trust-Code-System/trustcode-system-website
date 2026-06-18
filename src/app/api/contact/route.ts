@@ -2,13 +2,12 @@ import { NextResponse } from "next/server";
 import { contactSchema, serviceOptions } from "@/lib/contact-schema";
 import { site } from "@/content/site";
 
-// Lightweight in-memory rate limiter (per warm instance). Good enough as a
-// first line of defense; pair with platform-level limits in production.
-const WINDOW_MS = 60_000;
+const WINDOW_SECONDS = 60;
+const WINDOW_MS = WINDOW_SECONDS * 1000;
 const MAX_PER_WINDOW = 5;
 const hits = new Map<string, { count: number; reset: number }>();
 
-function rateLimited(ip: string): boolean {
+function localRateLimited(ip: string): boolean {
   const now = Date.now();
   const entry = hits.get(ip);
   if (!entry || now > entry.reset) {
@@ -17,6 +16,52 @@ function rateLimited(ip: string): boolean {
   }
   entry.count += 1;
   return entry.count > MAX_PER_WINDOW;
+}
+
+async function redisRateLimited(ip: string): Promise<boolean | null> {
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return null;
+
+  const key = `contact:${ip}`;
+  const res = await fetch(`${url.replace(/\/$/, "")}/pipeline`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify([
+      ["INCR", key],
+      ["EXPIRE", key, WINDOW_SECONDS, "NX"],
+    ]),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Rate-limit backend failed with ${res.status}`);
+  }
+
+  const result = (await res.json()) as Array<{ result?: unknown; error?: string }>;
+  if (result[0]?.error) {
+    throw new Error(result[0].error);
+  }
+
+  const count = Number(result[0]?.result);
+  if (!Number.isFinite(count)) {
+    throw new Error("Rate-limit backend returned an invalid count");
+  }
+
+  return count > MAX_PER_WINDOW;
+}
+
+async function rateLimited(ip: string): Promise<boolean> {
+  try {
+    const redisLimited = await redisRateLimited(ip);
+    if (redisLimited !== null) return redisLimited;
+  } catch (err) {
+    console.error("Contact rate-limit backend failed:", err);
+  }
+
+  return localRateLimited(ip);
 }
 
 function serviceLabel(value: string): string {
@@ -29,7 +74,7 @@ export async function POST(req: Request) {
     req.headers.get("x-real-ip") ||
     "unknown";
 
-  if (rateLimited(ip)) {
+  if (await rateLimited(ip)) {
     return NextResponse.json(
       { ok: false, error: "Too many requests. Please try again in a minute." },
       { status: 429 }

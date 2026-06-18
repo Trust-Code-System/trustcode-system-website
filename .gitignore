@@ -16,9 +16,14 @@ next-env.d.ts.bak
 *.log
 /.qodo
 /output
+/tmp
 /social-content
 /logo-verification*.png
 /trustcode-systems-logo-redesign.png
 
 # Prepared separately as the Trust-Code-System/.github repository.
 /github-organization-profile
+
+
+# Ignore local IDE/AI instruction files.
+/.github/instructions/

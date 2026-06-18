@@ -9,6 +9,11 @@ Requirements:
 - Node.js 20 or later
 - pnpm 9
 
+Copy `.env.example` to `.env.local` for contact-email delivery. Production
+deployments should also set the optional Upstash Redis REST variables listed in
+`.env.example` so contact-form rate limits are shared across serverless
+instances.
+
 ```bash
 pnpm install
 pnpm dev
@@ -18,6 +23,8 @@ Before opening a pull request:
 
 ```bash
 pnpm typecheck
+pnpm lint
+pnpm test
 pnpm build
 ```
 

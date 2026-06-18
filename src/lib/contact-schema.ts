@@ -95,8 +95,9 @@ export const contactSchema = z.object({
     .trim()
     .min(10, "Tell us a little more — at least 10 characters.")
     .max(4000),
-  // Honeypot: must stay empty.
-  website: z.string().max(0).optional().or(z.literal("")),
+  // Honeypot: real users never see this field; bot-filled values are accepted
+  // by validation so the API can silently drop them.
+  website: z.string().trim().max(500).optional().or(z.literal("")),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;
