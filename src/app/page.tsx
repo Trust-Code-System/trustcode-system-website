@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { CountUp } from "@/components/count-up";
 import { DeployLog } from "@/components/deploy-log";
 import { Reveal } from "@/components/reveal";
 import { Section, SectionHeading } from "@/components/section";
@@ -65,7 +66,7 @@ export default function HomePage() {
           {stats.map((s) => (
             <div key={s.label} className="px-2 py-8 text-center lg:py-10">
               <p className="font-mono text-3xl font-semibold text-blueprint sm:text-4xl">
-                {s.value}
+                <CountUp value={s.value} />
               </p>
               <p className="mt-2 text-[0.8rem] uppercase tracking-wider text-slate">
                 {s.label}

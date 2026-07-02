@@ -144,6 +144,49 @@ html {
   }
 }
 
+/* Process timeline: step dot sits on the Timeline rail and lights up when
+   the step's Reveal fires (.reveal-in). */
+.timeline-step::before {
+  content: "";
+  position: absolute;
+  left: -28.5px;
+  top: 2.25rem;
+  height: 12px;
+  width: 12px;
+  border-radius: 9999px;
+  border: 2px solid var(--grid);
+  background: var(--paper);
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+@media (min-width: 640px) {
+  .timeline-step::before {
+    left: -40.5px;
+  }
+}
+.timeline-step.reveal-in::before {
+  border-color: var(--blueprint);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--blueprint) 20%, transparent);
+}
+
+/* Work grid: cards fade/rise back in when the filter changes */
+@keyframes work-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.work-item {
+  animation: work-item-in 0.35s ease-out both;
+}
+
 @layer components {
   .container-x {
     @apply mx-auto w-full max-w-container px-5 sm:px-8;

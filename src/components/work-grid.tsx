@@ -41,9 +41,18 @@ export function WorkGrid() {
         })}
       </div>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((p) => (
-          <ProjectCard key={p.slug} project={p} />
+      <div
+        key={active}
+        className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {filtered.map((p, i) => (
+          <div
+            key={p.slug}
+            className="work-item"
+            style={{ animationDelay: `${Math.min(i, 8) * 0.04}s` }}
+          >
+            <ProjectCard project={p} />
+          </div>
         ))}
       </div>
     </div>

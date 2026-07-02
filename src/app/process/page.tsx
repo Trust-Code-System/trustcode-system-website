@@ -3,6 +3,7 @@ import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
 import { CtaBand } from "@/components/cta-band";
 import { Reveal } from "@/components/reveal";
+import { Timeline } from "@/components/timeline";
 import { ArrowRight } from "@/components/icons";
 import { steps, communication } from "@/content/process";
 import { pageMeta } from "@/lib/seo";
@@ -24,10 +25,16 @@ export default function ProcessPage() {
       />
 
       <Section>
-        <ol className="grid gap-6">
-          {steps.map((step, i) => (
-            <Reveal key={step.n} delay={(i % 3) * 0.04} as="li">
-              <div className="card grid gap-6 p-7 md:grid-cols-12 md:p-9">
+        <Timeline>
+          <ol className="grid gap-6 pl-7 sm:pl-10">
+            {steps.map((step, i) => (
+              <Reveal
+                key={step.n}
+                delay={(i % 3) * 0.04}
+                as="li"
+                className="timeline-step relative"
+              >
+                <div className="card grid gap-6 p-7 md:grid-cols-12 md:p-9">
                 <div className="md:col-span-3">
                   <span className="font-mono text-[0.8rem] text-verified">
                     step {step.n}
@@ -53,10 +60,11 @@ export default function ProcessPage() {
                     {step.duration}
                   </p>
                 </div>
-              </div>
-            </Reveal>
-          ))}
-        </ol>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </Timeline>
       </Section>
 
       {/* How we communicate */}
