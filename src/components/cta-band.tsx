@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { Aurora } from "./aurora";
 import { ArrowRight } from "./icons";
 
 export function CtaBand() {
   return (
     <section className="relative overflow-hidden border-y border-grid bg-surface">
       <div aria-hidden className="grid-bg absolute inset-0" />
+      <Aurora />
       <div className="container-x relative py-16 sm:py-20">
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
           <p className="eyebrow">/ start here</p>

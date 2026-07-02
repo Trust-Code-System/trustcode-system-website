@@ -1,7 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Aurora } from "@/components/aurora";
 import { CountUp } from "@/components/count-up";
 import { DeployLog } from "@/components/deploy-log";
+import { Marquee } from "@/components/marquee";
+import { Tilt } from "@/components/tilt";
 import { Reveal } from "@/components/reveal";
 import { Section, SectionHeading } from "@/components/section";
 import { ServiceCard } from "@/components/service-card";
@@ -24,6 +27,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-grid">
         <div aria-hidden className="grid-bg absolute -inset-8" />
+        <Aurora />
         <div className="container-x relative grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16">
           <div>
             <Reveal>
@@ -55,7 +59,36 @@ export default function HomePage() {
           </div>
 
           <Reveal delay={0.2}>
-            <DeployLog />
+            <Tilt>
+              <DeployLog />
+              <span
+                className="absolute -left-3 -top-4 hidden sm:block"
+                style={{ transform: "translateZ(55px)" }}
+              >
+                <span className="hero-chip">
+                  <span className="h-1.5 w-1.5 rounded-full bg-verified animate-pulse-dot" />
+                  Build passed
+                </span>
+              </span>
+              <span
+                className="absolute -right-4 top-[44%] hidden lg:block"
+                style={{ transform: "translateZ(75px)" }}
+              >
+                <span className="hero-chip" style={{ animationDelay: "-2s" }}>
+                  <span className="h-1.5 w-1.5 rounded-full bg-verified animate-pulse-dot" />
+                  Security scan clean
+                </span>
+              </span>
+              <span
+                className="absolute -bottom-4 left-10 hidden sm:block"
+                style={{ transform: "translateZ(40px)" }}
+              >
+                <span className="hero-chip" style={{ animationDelay: "-4s" }}>
+                  <span className="h-1.5 w-1.5 rounded-full bg-verified animate-pulse-dot" />
+                  Uptime monitored
+                </span>
+              </span>
+            </Tilt>
           </Reveal>
         </div>
       </section>
@@ -65,8 +98,8 @@ export default function HomePage() {
         <div className="container-x grid grid-cols-2 divide-grid lg:grid-cols-4 lg:divide-x">
           {stats.map((s) => (
             <div key={s.label} className="px-2 py-8 text-center lg:py-10">
-              <p className="font-mono text-3xl font-semibold text-blueprint sm:text-4xl">
-                <CountUp value={s.value} />
+              <p className="font-mono text-3xl font-semibold sm:text-4xl">
+                <CountUp value={s.value} className="text-gradient" />
               </p>
               <p className="mt-2 text-[0.8rem] uppercase tracking-wider text-slate">
                 {s.label}
@@ -74,6 +107,27 @@ export default function HomePage() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Industries marquee */}
+      <section
+        aria-label="Industries and disciplines we ship for"
+        className="border-b border-grid py-4"
+      >
+        <Marquee
+          items={[
+            "Fintech",
+            "EdTech",
+            "E-commerce",
+            "HR Tech",
+            "Web3",
+            "Cloud & DevOps",
+            "AI Integration",
+            "Cybersecurity",
+            "SOC",
+            "Training",
+          ]}
+        />
       </section>
 
       {/* Services */}

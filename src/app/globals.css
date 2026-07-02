@@ -12,6 +12,7 @@
   --paper: #f7f8f6;
   --surface: #ffffff;
   --blueprint: #1b3fae;
+  --accent-2: #0e7490;
   --verified: #0e9f6e;
   --slate: #5b6472;
   --grid: #e3e7e2;
@@ -30,6 +31,7 @@
   --paper: #0b0f17;
   --surface: #121826;
   --blueprint: #6f8eff;
+  --accent-2: #45c4e0;
   --verified: #25c08a;
   --slate: #97a1b0;
   --grid: #232b3a;
@@ -103,11 +105,15 @@ html {
   background: var(--paper);
 }
 
-/* Scroll-reveal (JS toggles .reveal-in via IntersectionObserver) */
+/* Scroll-reveal (JS toggles .reveal-in via IntersectionObserver).
+   Content rises off a shallow 3D plane — a hint of depth, not a flip. */
 .reveal {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+  transform: perspective(900px) translateY(18px) rotateX(5deg) scale(0.995);
+  transform-origin: 50% 100%;
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .reveal-in {
   opacity: 1;
@@ -172,6 +178,172 @@ html {
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--blueprint) 20%, transparent);
 }
 
+/* ---- 3D + gradient design layer -------------------------------------- */
+
+/* Brand gradient text: blueprint (plan) → cyan → verified green (live) */
+.text-gradient {
+  background-image: linear-gradient(
+    120deg,
+    var(--blueprint),
+    var(--accent-2) 55%,
+    var(--verified)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@keyframes hero-gradient {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+/* Aurora: three blurred orbs drifting very slowly behind hero sections */
+.aurora {
+  position: absolute;
+  inset: -10%;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora i {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.35;
+  will-change: transform;
+  animation: aurora-drift 24s ease-in-out infinite alternate;
+}
+.dark .aurora i {
+  opacity: 0.45;
+}
+.aurora i:nth-child(1) {
+  width: 34rem;
+  height: 34rem;
+  left: -6rem;
+  top: -6rem;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--blueprint) 55%, transparent),
+    transparent 70%
+  );
+}
+.aurora i:nth-child(2) {
+  width: 28rem;
+  height: 28rem;
+  right: -5rem;
+  top: 15%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent-2) 45%, transparent),
+    transparent 70%
+  );
+  animation-duration: 28s;
+  animation-delay: -9s;
+}
+.aurora i:nth-child(3) {
+  width: 24rem;
+  height: 24rem;
+  left: 38%;
+  bottom: -10rem;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--verified) 40%, transparent),
+    transparent 70%
+  );
+  animation-duration: 32s;
+  animation-delay: -16s;
+}
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3.5rem, 2.5rem, 0) scale(1.12);
+  }
+}
+@media (max-width: 640px) {
+  .aurora i {
+    filter: blur(50px);
+    opacity: 0.3;
+  }
+  .aurora i:nth-child(3) {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora i {
+    animation: none;
+  }
+}
+
+/* 3D tilt stage (Tilt component) */
+.tilt-scene {
+  perspective: 1100px;
+}
+.tilt-body {
+  transform-style: preserve-3d;
+  transition: transform 0.35s ease-out;
+  will-change: transform;
+}
+
+/* Floating status chips around the hero terminal */
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--grid);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(6px);
+  padding: 0.4rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--slate);
+  box-shadow: 0 8px 24px -12px color-mix(in srgb, var(--blueprint) 40%, transparent);
+  animation: chip-float 5.5s ease-in-out infinite alternate;
+}
+@keyframes chip-float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-7px);
+  }
+}
+
+/* Industries marquee */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Work grid: cards fade/rise back in when the filter changes */
 @keyframes work-item-in {
   from {
@@ -204,7 +376,8 @@ html {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
   }
 
-  /* Hero headline: gradient fill + subtle 3D extrude/depth */
+  /* Hero headline: gradient fill + subtle 3D extrude/depth.
+     The gradient breathes very slowly (background-position drift). */
   .hero-title {
     background-image: linear-gradient(
       150deg,
@@ -212,6 +385,8 @@ html {
       var(--ink) 35%,
       var(--blueprint) 100%
     );
+    background-size: 200% 200%;
+    animation: hero-gradient 9s ease-in-out infinite alternate;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -256,11 +431,35 @@ html {
   }
 
   .card {
-    @apply rounded-card border border-grid bg-surface transition-all duration-300;
+    @apply relative rounded-card border border-grid bg-surface transition-all duration-300;
+  }
+
+  /* Cursor spotlight: --mx/--my are fed by the Spotlight component */
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    background: radial-gradient(
+      240px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--blueprint) 9%, transparent),
+      transparent 70%
+    );
+  }
+  .card:hover::after {
+    opacity: 1;
   }
 
   .card-hover {
     @apply hover:-translate-y-0.5 hover:border-blueprint;
+  }
+  .card-hover:hover {
+    box-shadow:
+      0 18px 46px -18px color-mix(in srgb, var(--blueprint) 35%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--blueprint) 25%, transparent);
   }
 
   .btn {
@@ -268,7 +467,34 @@ html {
   }
 
   .btn-primary {
-    @apply btn bg-blueprint text-white hover:opacity-90;
+    @apply btn relative overflow-hidden bg-blueprint text-white hover:opacity-95;
+    background-image: linear-gradient(
+      135deg,
+      var(--blueprint) 0%,
+      color-mix(in srgb, var(--blueprint) 45%, var(--accent-2)) 100%
+    );
+  }
+
+  /* Light sweep across the primary button on hover */
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -45%;
+    width: 45%;
+    transform: skewX(-20deg) translateX(-130%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent
+    );
+    pointer-events: none;
+  }
+  .btn-primary:hover::after {
+    transform: skewX(-20deg) translateX(400%);
+    transition: transform 0.65s ease;
   }
 
   .btn-secondary {

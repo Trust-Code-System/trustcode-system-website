@@ -6,6 +6,8 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { WhatsAppFab } from "@/components/whatsapp-fab";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { Spotlight } from "@/components/spotlight";
 import { JsonLd } from "@/components/json-ld";
 import { site } from "@/content/site";
 
@@ -92,6 +94,8 @@ export default function RootLayout({
             />
           </filter>
         </svg>
+        <ScrollProgress />
+        <Spotlight />
         <Header />
         <main id="main">{children}</main>
         <Footer />
