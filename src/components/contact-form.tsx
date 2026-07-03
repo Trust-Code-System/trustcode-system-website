@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   contactSchema,
@@ -46,6 +46,47 @@ export function ContactForm() {
   const [siteTypeOther, setSiteTypeOther] = useState("");
   const [goalOther, setGoalOther] = useState("");
   const [featureOther, setFeatureOther] = useState("");
+
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  // Prefill from the /estimate wizard, if the visitor arrived from there.
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem("tcs-estimate");
+      if (!raw) return;
+      sessionStorage.removeItem("tcs-estimate");
+      const est = JSON.parse(raw) as {
+        siteType?: string;
+        features?: string[];
+        timeline?: string;
+        summary?: string;
+      };
+      if (
+        est.siteType &&
+        (siteTypeOptions as readonly string[]).includes(est.siteType)
+      ) {
+        setSiteType(est.siteType);
+      }
+      if (Array.isArray(est.features)) {
+        setFeatures(
+          est.features.filter((f) =>
+            (featureOptions as readonly string[]).includes(f)
+          )
+        );
+      }
+      if (
+        est.timeline &&
+        (timelineOptions as readonly string[]).includes(est.timeline)
+      ) {
+        setTimeline(est.timeline);
+      }
+      if (est.summary && messageRef.current && !messageRef.current.value) {
+        messageRef.current.value = est.summary;
+      }
+    } catch {
+      // malformed storage — start with a blank form
+    }
+  }, []);
 
   function resolve(selected: string, other: string) {
     return selected === OTHER ? other.trim() : selected;
@@ -275,6 +316,7 @@ export function ContactForm() {
 
         <Field label="Anything else / details" name="message" error={fieldErrors.message} required>
           <textarea
+            ref={messageRef}
             id="message"
             name="message"
             rows={5}

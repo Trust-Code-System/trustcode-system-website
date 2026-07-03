@@ -2,6 +2,7 @@ import Link from "next/link";
 import { nav, site, social, stats } from "@/content/site";
 import { team } from "@/content/team";
 import { services } from "@/content/services";
+import { industries } from "@/content/industries";
 import { Logo } from "./logo";
 import { socialIcons, ArrowUp, ArrowRight, Mail, GitHub, LinkedIn, X } from "./icons";
 
@@ -100,7 +101,23 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="md:col-span-4">
+          <nav aria-label="Industries" className="md:col-span-2">
+            <p className="eyebrow mb-5">/ industries</p>
+            <ul className="space-y-3">
+              {industries.map((i) => (
+                <li key={i.slug}>
+                  <FooterLink href={`/industries/${i.slug}`}>
+                    {i.name}
+                  </FooterLink>
+                </li>
+              ))}
+              <li>
+                <FooterLink href="/estimate">Project estimator</FooterLink>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="md:col-span-3">
             <p className="eyebrow mb-5">/ team</p>
             <ul className="space-y-4">
               {team.map((f) => (
@@ -141,7 +158,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-3">
+          <div className="md:col-span-2">
             <p className="eyebrow mb-5">/ locations</p>
             <ul className="space-y-3">
               {site.locations.map((l) => (

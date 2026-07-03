@@ -7,8 +7,11 @@ export function ServiceCard({ service }: { service: Service }) {
   const Icon = serviceIcons[service.icon as keyof typeof serviceIcons];
   return (
     <div className="card card-hover group flex h-full flex-col p-6">
-      <div className="flex h-11 w-11 items-center justify-center rounded-[10px] border border-grid bg-paper text-blueprint">
-        {Icon && <Icon className="h-5 w-5" />}
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex h-11 w-11 items-center justify-center rounded-[10px] border border-grid bg-paper text-blueprint">
+          {Icon && <Icon className="h-5 w-5" />}
+        </div>
+        <span className="badge">{service.priceFrom}</span>
       </div>
       <h3 className="display-h3 mt-5 text-[1.2rem]">{service.title}</h3>
       <p className="mt-2 text-[0.95rem] leading-relaxed text-slate">

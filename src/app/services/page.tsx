@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
 import { CtaBand } from "@/components/cta-band";
+import { FaqSection } from "@/components/faq";
 import { Reveal } from "@/components/reveal";
 import { serviceIcons, ArrowRight, ArrowUpRight, Check } from "@/components/icons";
 import { services, engagementModels } from "@/content/services";
@@ -20,7 +21,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="services"
         title="One team, full coverage — pixel to server to security layer."
-        intro="Seven services, four engineers, one standard. Every service links to a live product you can inspect. No prices on the page — every engagement gets a written quote within 72 hours."
+        intro="Seven services, four engineers, one standard. Every service links to a live product you can inspect, with a transparent starting price — and every engagement gets a written, fixed-price quote within 72 hours."
       />
 
       <Section>
@@ -62,11 +63,19 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="flex flex-col gap-4 md:col-span-4">
-                    <div>
-                      <p className="eyebrow mb-2">/ typical timeline</p>
-                      <p className="font-mono text-[0.95rem] text-ink">
-                        {service.timeline}
-                      </p>
+                    <div className="flex gap-8">
+                      <div>
+                        <p className="eyebrow mb-2">/ typical timeline</p>
+                        <p className="font-mono text-[0.95rem] text-ink">
+                          {service.timeline}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="eyebrow mb-2">/ pricing</p>
+                        <p className="font-mono text-[0.95rem] text-ink">
+                          {service.priceFrom}
+                        </p>
+                      </div>
                     </div>
                     <div>
                       <p className="eyebrow mb-2">/ proof</p>
@@ -97,8 +106,8 @@ export default function ServicesPage() {
       <Section className="border-y border-grid bg-surface">
         <p className="eyebrow">/ engagement models</p>
         <h2 className="display-h2 mt-4 max-w-2xl">
-          Three ways to work with us. No prices on the page — every quote is
-          written for your scope.
+          Three ways to work with us. Starting prices are a guide — every
+          quote is written for your scope.
         </h2>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {engagementModels.map((m) => (
@@ -110,13 +119,18 @@ export default function ServicesPage() {
             </div>
           ))}
         </div>
-        <div className="mt-8">
+        <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link href="/contact" className="btn-primary">
             Request a quote
             <ArrowRight className="h-4 w-4" />
           </Link>
+          <Link href="/estimate" className="btn-secondary">
+            Get a 60-second ballpark
+          </Link>
         </div>
       </Section>
+
+      <FaqSection />
 
       <CtaBand />
     </>

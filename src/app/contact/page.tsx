@@ -1,8 +1,10 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
 import { ContactForm } from "@/components/contact-form";
-import { ArrowUpRight, WhatsApp } from "@/components/icons";
+import { FaqSection } from "@/components/faq";
+import { ArrowRight, ArrowUpRight, WhatsApp } from "@/components/icons";
 import { site } from "@/content/site";
 import { pageMeta } from "@/lib/seo";
 
@@ -74,6 +76,21 @@ export default function ContactPage() {
                 </ul>
               </div>
 
+              <div className="card p-7">
+                <p className="eyebrow mb-3">/ not ready to write a brief?</p>
+                <p className="text-[0.95rem] leading-relaxed text-slate">
+                  Get an instant ballpark price and timeline first — 60
+                  seconds, no email required.
+                </p>
+                <Link
+                  href="/estimate"
+                  className="mt-4 inline-flex items-center gap-1.5 text-[0.95rem] font-medium text-blueprint hover:underline"
+                >
+                  Try the project estimator
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+
               <div className="card bg-surface p-7">
                 <p className="eyebrow mb-3">/ response time</p>
                 <p className="font-display text-[1.3rem] font-semibold leading-snug tracking-tight">
@@ -88,6 +105,8 @@ export default function ContactPage() {
           </aside>
         </div>
       </Section>
+
+      <FaqSection withSchema className="border-t border-grid bg-surface" />
     </>
   );
 }

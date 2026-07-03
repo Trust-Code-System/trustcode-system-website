@@ -27,6 +27,13 @@ export function CtaBand() {
               See live work
             </Link>
           </div>
+          <Link
+            href="/estimate"
+            className="inline-flex items-center gap-1.5 text-[0.9rem] font-medium text-blueprint hover:underline"
+          >
+            Or scope it yourself — 60-second estimator
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
         </div>
       </div>
     </section>

@@ -6,6 +6,8 @@ export type Service = {
   description: string;
   includes: string[];
   timeline: string;
+  /** Indicative starting price — every engagement still gets a written quote. */
+  priceFrom: string;
   proof: { label: string; href: string };
 };
 
@@ -25,6 +27,7 @@ export const services: Service[] = [
       "Component systems & design-to-code",
     ],
     timeline: "2–10 weeks",
+    priceFrom: "from $1,200",
     proof: { label: "Helping Tribe Academy", href: "/work/helping-tribe-academy" },
   },
   {
@@ -42,6 +45,7 @@ export const services: Service[] = [
       "Inventory & order management",
     ],
     timeline: "3–8 weeks",
+    priceFrom: "from $2,500",
     proof: { label: "Wearables Atelier", href: "/work/wearables-atelier" },
   },
   {
@@ -59,6 +63,7 @@ export const services: Service[] = [
       "Cost & performance optimization",
     ],
     timeline: "2–8 weeks",
+    priceFrom: "from $2,000",
     proof: { label: "Serverless YouTube Sync Pipeline", href: "/work/serverless-youtube-pipeline" },
   },
   {
@@ -76,6 +81,7 @@ export const services: Service[] = [
       "Automation & DOM agents",
     ],
     timeline: "2–6 weeks",
+    priceFrom: "from $2,500",
     proof: { label: "StudyCoach", href: "/work/studycoach" },
   },
   {
@@ -93,6 +99,7 @@ export const services: Service[] = [
       "Incident response playbooks",
     ],
     timeline: "1–4 weeks",
+    priceFrom: "from $1,500",
     proof: { label: "SOC Detection Lab & KQL Playbook", href: "/work/soc-detection-lab" },
   },
   {
@@ -110,6 +117,7 @@ export const services: Service[] = [
       "Retainer support",
     ],
     timeline: "Ongoing retainer",
+    priceFrom: "from $500/mo",
     proof: { label: "SLN Engineering Ltd", href: "/work/sln-engineering" },
   },
   {
@@ -127,6 +135,7 @@ export const services: Service[] = [
       "Team & individual mentorship",
     ],
     timeline: "Per cohort",
+    priceFrom: "custom per cohort",
     proof: { label: "The Thesis Desk community", href: "/work/the-thesis-desk" },
   },
 ];
