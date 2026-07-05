@@ -1,9 +1,17 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
+import {
+  PREFILL_OPEN,
+  PREFILL_CLOSE,
+  PREFILL_STORAGE_KEY,
+  PREFILL_EVENT,
+  prefillSchema,
+} from "@/lib/contact-prefill";
 import { MarkdownLite } from "./markdown-lite";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -32,6 +40,26 @@ function humanize(text: string): string {
   return text
     .replace(/(\d)\s*[–—]\s*(\d)/g, "$1-$2")
     .replace(/\s*[—–]\s*/g, ", ");
+}
+
+/** Everything the visitor sees: the reply minus the hidden prefill block. */
+function visibleText(text: string): string {
+  const i = text.indexOf(PREFILL_OPEN);
+  return (i === -1 ? text : text.slice(0, i)).trimEnd();
+}
+
+/** Pull and parse the hidden prefill JSON, if the reply carried one. */
+function extractPrefill(text: string): unknown | null {
+  const start = text.indexOf(PREFILL_OPEN);
+  if (start === -1) return null;
+  const rest = text.slice(start + PREFILL_OPEN.length);
+  const end = rest.indexOf(PREFILL_CLOSE);
+  const json = (end === -1 ? rest : rest.slice(0, end)).trim();
+  try {
+    return JSON.parse(json);
+  } catch {
+    return null;
+  }
 }
 
 function loadMessages(): ChatMessage[] {
@@ -86,10 +114,45 @@ export function ChatWidget() {
   const [streaming, setStreaming] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const typewriterRef = useRef<number | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     setMessages(loadMessages());
   }, []);
+
+  // Hand a validated prefill to the contact form, then take the visitor there.
+  // We only ever fill — the visitor reviews and submits themselves.
+  const handlePrefill = useCallback(
+    (raw: unknown) => {
+      const parsed = prefillSchema.safeParse(raw);
+      if (!parsed.success) return;
+      try {
+        sessionStorage.setItem(
+          PREFILL_STORAGE_KEY,
+          JSON.stringify(parsed.data)
+        );
+      } catch {
+        // storage unavailable — the form just opens empty; not fatal
+      }
+      // Covers the "already on /contact" case where the form is mounted.
+      window.dispatchEvent(new CustomEvent(PREFILL_EVENT));
+      router.push("/contact");
+      // On phones the panel covers the page, so step aside to reveal the form.
+      if (window.matchMedia("(max-width: 639px)").matches) {
+        setOpen(false);
+      }
+    },
+    [router]
+  );
+
+  // Stop any in-flight typewriter loop when the widget unmounts.
+  useEffect(
+    () => () => {
+      if (typewriterRef.current) window.clearInterval(typewriterRef.current);
+    },
+    []
+  );
 
   // Friendly nudge bubble a few seconds after landing, once per session.
   useEffect(() => {
@@ -157,6 +220,49 @@ export function ChatWidget() {
       const setReply = (content: string) =>
         setMessages([...history, { role: "assistant", content }]);
 
+      // Typewriter: the network delivers text in bursts, but we reveal it at a
+      // steady pace so it reads like the assistant is typing. A subtle haptic
+      // pulse rides along on phones that support the Vibration API.
+      let target = "";
+      let shown = 0;
+      let finished = false;
+      let lastHaptic = 0;
+      let pendingPrefill: unknown | null = null;
+      const canVibrate =
+        typeof navigator !== "undefined" &&
+        typeof navigator.vibrate === "function";
+
+      const stopTypewriter = () => {
+        if (typewriterRef.current) {
+          window.clearInterval(typewriterRef.current);
+          typewriterRef.current = null;
+        }
+      };
+
+      typewriterRef.current = window.setInterval(() => {
+        if (shown < target.length) {
+          // Ease out: reveal faster when far behind, gentler near the end.
+          const step = Math.max(1, Math.ceil((target.length - shown) / 12));
+          shown = Math.min(target.length, shown + step);
+          setReply(humanize(target.slice(0, shown)));
+          const now = Date.now();
+          if (canVibrate && now - lastHaptic > 110) {
+            lastHaptic = now;
+            navigator.vibrate(3);
+          }
+        }
+        if (finished && shown >= target.length) {
+          stopTypewriter();
+          setStreaming(false);
+          // Once the visible confirmation has finished typing, open the form.
+          if (pendingPrefill) {
+            const p = pendingPrefill;
+            pendingPrefill = null;
+            handlePrefill(p);
+          }
+        }
+      }, 18);
+
       try {
         const res = await fetch("/api/chat", {
           method: "POST",
@@ -165,14 +271,16 @@ export function ChatWidget() {
         });
 
         if (!res.ok || !res.body) {
+          stopTypewriter();
           let msg = FALLBACK_ERROR;
           try {
             const data = (await res.json()) as { error?: string };
             if (data?.error) msg = data.error;
           } catch {
-            // non-JSON error body — keep the generic fallback
+            // non-JSON error body: keep the generic fallback
           }
           setReply(msg);
+          setStreaming(false);
           return;
         }
 
@@ -183,17 +291,19 @@ export function ChatWidget() {
           const { done, value } = await reader.read();
           if (done) break;
           acc += decoder.decode(value, { stream: true });
-          setReply(humanize(acc));
+          // Reveal only the visible part; the hidden prefill block never types.
+          target = visibleText(acc);
         }
         acc += decoder.decode();
-        setReply(acc ? humanize(acc) : FALLBACK_ERROR);
+        target = visibleText(acc) || FALLBACK_ERROR;
+        pendingPrefill = extractPrefill(acc);
+        finished = true;
       } catch {
-        setReply(FALLBACK_ERROR);
-      } finally {
-        setStreaming(false);
+        target = target || FALLBACK_ERROR;
+        finished = true;
       }
     },
-    [messages, streaming]
+    [messages, streaming, handlePrefill]
   );
 
   const hasConversation = messages.length > 0;
@@ -366,7 +476,7 @@ export function ChatWidget() {
                 <Bubble key={i} role={m.role}>
                   {m.role === "assistant" ? (
                     m.content ? (
-                      <MarkdownLite text={m.content} />
+                      <MarkdownLite text={visibleText(m.content)} />
                     ) : (
                       <TypingDots />
                     )
@@ -417,7 +527,7 @@ export function ChatWidget() {
                   maxLength={4000}
                   placeholder="Ask about services, pricing, or anything technical…"
                   aria-label="Message the TrustCode Assistant"
-                  className="max-h-28 min-h-[2.5rem] flex-1 resize-none rounded-xl border border-grid bg-paper px-3 py-2 text-[0.875rem] text-ink placeholder:text-slate focus:border-blueprint focus:outline-none"
+                  className="no-scrollbar max-h-28 min-h-[2.5rem] flex-1 resize-none rounded-xl border border-grid bg-paper px-3 py-2 text-[0.875rem] text-ink placeholder:text-slate focus:border-blueprint focus:outline-none"
                   onInput={(e) => {
                     const el = e.currentTarget;
                     el.style.height = "auto";

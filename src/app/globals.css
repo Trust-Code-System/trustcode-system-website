@@ -105,6 +105,16 @@ html {
   background: var(--paper);
 }
 
+/* Assistant composer: hide the native scrollbar (and its up/down arrow
+   buttons) while keeping the textarea scrollable. */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
 /* Scroll-reveal (JS toggles .reveal-in via IntersectionObserver).
    Content rises off a shallow 3D plane — a hint of depth, not a flip. */
 .reveal {

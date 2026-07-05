@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   contactSchema,
@@ -13,6 +13,12 @@ import {
   featureOptions,
   timelineOptions,
 } from "@/lib/contact-schema";
+import {
+  PREFILL_STORAGE_KEY,
+  PREFILL_EVENT,
+  prefillSchema,
+  normalizePrefill,
+} from "@/lib/contact-prefill";
 import { ArrowRight, Check } from "./icons";
 import { Select } from "./select";
 import { cn } from "@/lib/utils";
@@ -34,6 +40,13 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [formError, setFormError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [prefilled, setPrefilled] = useState(false);
+
+  // Select defaults (keyed remount lets a post-mount prefill take effect).
+  const [serviceDefault, setServiceDefault] = useState(
+    presetValid ? preset : ""
+  );
+  const [budgetDefault, setBudgetDefault] = useState("");
 
   // Project-brief state
   const [siteType, setSiteType] = useState("");
@@ -47,6 +60,7 @@ export function ContactForm() {
   const [goalOther, setGoalOther] = useState("");
   const [featureOther, setFeatureOther] = useState("");
 
+  const formRef = useRef<HTMLFormElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
   // Prefill from the /estimate wizard, if the visitor arrived from there.
@@ -87,6 +101,73 @@ export function ContactForm() {
       // malformed storage — start with a blank form
     }
   }, []);
+
+  // Prefill from the AI assistant. It fills what the visitor told it and
+  // leaves the rest blank; the visitor reviews and submits themselves.
+  const applyPrefill = useCallback(() => {
+    let raw: string | null = null;
+    try {
+      raw = sessionStorage.getItem(PREFILL_STORAGE_KEY);
+      if (!raw) return;
+      sessionStorage.removeItem(PREFILL_STORAGE_KEY);
+    } catch {
+      return;
+    }
+    let data: unknown;
+    try {
+      data = JSON.parse(raw);
+    } catch {
+      return;
+    }
+    const parsed = prefillSchema.safeParse(data);
+    if (!parsed.success) return;
+    const n = normalizePrefill(parsed.data);
+
+    const form = formRef.current;
+    if (form) {
+      const setValue = (name: string, value: string) => {
+        if (!value) return;
+        const el = form.elements.namedItem(name);
+        if (
+          el instanceof HTMLInputElement ||
+          el instanceof HTMLTextAreaElement
+        ) {
+          el.value = value;
+        }
+      };
+      setValue("name", n.text.name);
+      setValue("email", n.text.email);
+      setValue("company", n.text.company);
+      setValue("inspiration", n.text.inspiration);
+    }
+    if (n.text.message && messageRef.current) {
+      messageRef.current.value = n.text.message;
+    }
+    if (n.service) setServiceDefault(n.service);
+    if (n.budget) setBudgetDefault(n.budget);
+    if (n.siteType) setSiteType(n.siteType);
+    if (n.siteTypeOther) setSiteTypeOther(n.siteTypeOther);
+    if (n.goal) setGoal(n.goal);
+    if (n.goalOther) setGoalOther(n.goalOther);
+    if (n.startingPoint) setStartingPoint(n.startingPoint);
+    if (n.designVibe) setDesignVibe(n.designVibe);
+    if (n.timeline) setTimeline(n.timeline);
+    if (n.features.length) setFeatures(n.features);
+    if (n.featureOther) setFeatureOther(n.featureOther);
+
+    setPrefilled(true);
+    // Bring the form into view under the sticky header.
+    setTimeout(
+      () => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      50
+    );
+  }, []);
+
+  useEffect(() => {
+    applyPrefill();
+    window.addEventListener(PREFILL_EVENT, applyPrefill);
+    return () => window.removeEventListener(PREFILL_EVENT, applyPrefill);
+  }, [applyPrefill]);
 
   function resolve(selected: string, other: string) {
     return selected === OTHER ? other.trim() : selected;
@@ -161,6 +242,9 @@ export function ContactForm() {
       }
       setStatus("success");
       form.reset();
+      setPrefilled(false);
+      setServiceDefault("");
+      setBudgetDefault("");
       setSiteType("");
       setGoal("");
       setStartingPoint("");
@@ -199,12 +283,30 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="card p-7 sm:p-8">
+    <form ref={formRef} onSubmit={onSubmit} noValidate className="card p-7 sm:p-8">
       {/* Honeypot — hidden from users, visible to bots */}
       <div aria-hidden className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
         <label htmlFor="website">Leave this empty</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
+
+      {prefilled && (
+        <div className="mb-6 flex items-start gap-3 rounded-[10px] border border-blueprint/40 bg-blueprint/5 p-4">
+          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blueprint/10 text-blueprint">
+            <Check className="h-3.5 w-3.5" />
+          </span>
+          <div>
+            <p className="text-[0.9rem] font-semibold text-ink">
+              TrustCode AI filled this in from your chat.
+            </p>
+            <p className="mt-1 text-[0.85rem] leading-relaxed text-slate">
+              Please read through each field, complete anything left blank, and
+              edit anything you&apos;d like to change. Nothing is sent until you
+              press <span className="font-medium text-ink">Send brief</span>.
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="grid gap-5">
         <Field label="Name" name="name" error={fieldErrors.name} required>
@@ -223,20 +325,22 @@ export function ContactForm() {
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Service" name="service" error={fieldErrors.service} required>
             <Select
+              key={`service-${serviceDefault}`}
               id="service"
               name="service"
               options={serviceOptions}
-              defaultValue={presetValid ? preset : ""}
+              defaultValue={serviceDefault}
               placeholder="Choose a service"
               aria-invalid={Boolean(fieldErrors.service)}
             />
           </Field>
           <Field label="Budget" name="budget" error={fieldErrors.budget}>
             <Select
+              key={`budget-${budgetDefault}`}
               id="budget"
               name="budget"
               options={budgetSelectOptions}
-              defaultValue=""
+              defaultValue={budgetDefault}
               placeholder="Optional"
               aria-invalid={Boolean(fieldErrors.budget)}
             />

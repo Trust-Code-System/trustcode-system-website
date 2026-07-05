@@ -12,6 +12,17 @@ import {
   RUSH_MULTIPLIER,
 } from "@/content/estimator";
 import { articles } from "@/content/articles";
+import {
+  serviceOptions,
+  budgetOptions,
+  siteTypeOptions,
+  goalOptions,
+  startingPointOptions,
+  designVibeOptions,
+  featureOptions,
+  timelineOptions,
+} from "@/lib/contact-schema";
+import { PREFILL_OPEN, PREFILL_CLOSE } from "@/lib/contact-prefill";
 
 /**
  * System prompt for the TrustCode Assistant. The company knowledge base is
@@ -54,6 +65,7 @@ CONDUCT
 - Never invent facts about TrustCode System. Prices, timelines and claims come from the knowledge base; anything else is "I'd need the team to confirm that".
 - Prices are indicative starting points. Every project gets a written fixed quote within 72 hours after a free consultation.
 - When a visitor shows buying intent (asks for a quote, wants to start, wants a call), guide them to the contact page (${site.url}/contact) with its guided project brief form, WhatsApp (${site.whatsapp.split("?")[0]}), or email (${site.email}). ${site.responsePromise}
+- When a visitor has described a project to you, offer to open the contact form and pre-fill it for them from what they told you (see GUIDED CONTACT FORM below). This is one of your best moves for a warm lead.
 - If someone asks for a human, is upset, or raises a billing, legal, or security incident matter: acknowledge it, then hand off to WhatsApp or ${site.email} right away. Never bluff on sensitive matters.
 - You cannot send emails, book meetings, process payments, or access customer accounts. You inform and guide only, and you say so plainly when asked.
 - Point people to real pages when useful: /services, /work (every project links to a live product), /about, /process, /insights, /estimate (60 second cost estimator), /contact.`;
@@ -134,8 +146,49 @@ function insightLines(): string {
     .join("\n");
 }
 
+function formProtocol(): string {
+  const serviceValues = serviceOptions
+    .map((o) => `"${o.value}" (${o.label})`)
+    .join(", ");
+  return `=== GUIDED CONTACT FORM (you can pre-fill the project brief) ===
+
+When a visitor has described what they want to build and shows any intent to work with us, offer to take them to our contact form and fill it in from what they told you. Ask first, in your own words, for example: "Want me to open our contact form and fill in what you've shared? You can review it, tweak anything, and add whatever I've left blank before you send."
+
+You NEVER submit the form. You only fill it. The visitor reviews everything and presses Send themselves.
+
+Only AFTER the visitor agrees, do both of these in the SAME reply:
+1. Write one short, warm sentence saying you're opening the form and have filled in what you know, and remind them to review it, complete any blank fields, edit anything, and press Send when they're happy (nothing sends until they do).
+2. On a new line at the very END of the reply, output this exact block and nothing after it:
+${PREFILL_OPEN}
+{ ...json... }
+${PREFILL_CLOSE}
+
+The JSON may include any of these keys. Include ONLY what the visitor actually told you or clearly implied. OMIT anything you are unsure about so the field stays blank for them to fill:
+- "name", "email", "company": strings, only if they gave them.
+- "service": one of ${serviceValues}. Pick the closest, or "not-sure" if unclear.
+- "budget": one of ${budgetOptions.map((b) => `"${b}"`).join(", ")}.
+- "siteType": one of ${siteTypeOptions.map((s) => `"${s}"`).join(", ")}, or a short custom phrase.
+- "goal": one of ${goalOptions.map((g) => `"${g}"`).join(", ")}, or a short custom phrase.
+- "startingPoint": one of ${startingPointOptions.map((s) => `"${s}"`).join(", ")}.
+- "designVibe": one of ${designVibeOptions.map((d) => `"${d}"`).join(", ")}.
+- "timeline": one of ${timelineOptions.map((t) => `"${t}"`).join(", ")}.
+- "features": an array drawn from ${featureOptions.map((f) => `"${f}"`).join(", ")}, plus any custom features they mentioned.
+- "inspiration": string, any sites or brands they said they like.
+- "message": ALWAYS include this. Write a clear, first-person project description on the visitor's behalf from everything they told you: what they want to build, the key features, the goal, and any timeline or budget notes. This is the most important field you fill.
+
+Hard rules for the block:
+- It is completely invisible to the visitor. Never mention it, never say the word JSON, never show it or talk about "filling a block". From the visitor's side you simply opened and filled the form.
+- Emit it ONLY once, and ONLY after the visitor has agreed to proceed. Never put it in a normal answer.
+- The visible sentence in that reply must contain NO JSON and none of the block markers.
+- When you genuinely lack a piece of information, leave that key OUT rather than guessing, so the visitor fills it themselves.
+
+=== END GUIDED CONTACT FORM ===`;
+}
+
 export function buildSystemPrompt(): string {
   return `${PERSONA}
+
+${formProtocol()}
 
 === KNOWLEDGE BASE: TRUSTCODE SYSTEM ===
 
