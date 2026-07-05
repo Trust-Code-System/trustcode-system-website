@@ -7,7 +7,8 @@ import { cn } from "@/lib/utils";
 
 /**
  * Sticky WhatsApp chat button. Stays out of the way until the visitor has
- * scrolled past the hero, then slides in bottom-right.
+ * scrolled past the hero, then slides in bottom-left (bottom-right belongs
+ * to the AI assistant launcher).
  */
 export function WhatsAppFab() {
   const [visible, setVisible] = useState(false);
@@ -38,7 +39,7 @@ export function WhatsAppFab() {
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
       className={cn(
-        "fixed bottom-5 right-5 z-40 inline-flex items-center justify-center rounded-full bg-[#25d366] p-3.5 text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus-visible:outline-2 print:hidden",
+        "fixed bottom-5 left-5 z-40 inline-flex items-center justify-center rounded-full bg-[#25d366] p-3.5 text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus-visible:outline-2 print:hidden",
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0"

@@ -6,6 +6,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { WhatsAppFab } from "@/components/whatsapp-fab";
+import { ChatWidget } from "@/components/assistant/chat-widget";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Spotlight } from "@/components/spotlight";
 import { JsonLd } from "@/components/json-ld";
@@ -42,13 +43,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f8f6" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0f17" },
-  ],
+  themeColor: "#f7f8f6",
 };
 
-const themeInit = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
+// Light is the default; dark only applies when the visitor chose it.
+const themeInit = `(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -100,6 +99,7 @@ export default function RootLayout({
         <main id="main">{children}</main>
         <Footer />
         <WhatsAppFab />
+        <ChatWidget />
         <Analytics />
         <SpeedInsights />
       </body>

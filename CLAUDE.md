@@ -83,3 +83,10 @@ is context for any AI/dev session so the basics never need re-asking.
 - Contact form posts to `/api/contact`, which sends mail via **Resend** (env:
   `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL`). Without
   `CONTACT_TO_EMAIL` it falls back to `site.email` (hello@trustcodesystem.tech).
+- AI support widget (bottom-right on every page) streams from `/api/chat`,
+  which calls the Anthropic API (env: `ANTHROPIC_API_KEY`; optional
+  `ANTHROPIC_MODEL`, default `claude-opus-4-8`). Its knowledge base is built
+  in `src/lib/assistant-knowledge.ts` from the `src/content/` files, so it
+  stays in sync with site copy automatically. Without the key it returns a
+  friendly offline message. Optional Upstash env vars rate-limit it (same
+  pattern as `/api/contact`).
