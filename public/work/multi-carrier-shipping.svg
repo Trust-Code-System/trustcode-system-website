@@ -1,0 +1,33 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="Multi-carrier shipping architecture">
+  <rect width="1280" height="800" fill="#f4f6fb"/>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#d8deea" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="800" fill="url(#grid)"/>
+  <text x="64" y="64" font-family="ui-monospace,monospace" font-size="16" fill="#5b6475" letter-spacing="3">STRATEGY PATTERN · TYPESCRIPT</text>
+  <text x="64" y="108" font-family="Georgia,serif" font-size="36" font-weight="700" fill="#0f172a">Multi-Carrier Shipping</text>
+  <rect x="80" y="220" width="220" height="100" rx="12" fill="#1b3fae"/>
+  <text x="190" y="278" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="600" fill="#fff">Shipping Service</text>
+  <path d="M300 270 H380" stroke="#1b3fae" stroke-width="2"/>
+  <rect x="380" y="220" width="220" height="100" rx="12" fill="#fff" stroke="#1b3fae" stroke-width="2"/>
+  <text x="490" y="268" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="600" fill="#0f172a">ICarrier Interface</text>
+  <text x="490" y="296" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#5b6475">+ Mapper layer</text>
+  <path d="M490 320 V380" stroke="#1b3fae" stroke-width="2"/>
+  <path d="M200 380 H780" stroke="#1b3fae" stroke-width="2"/>
+  <path d="M200 380 V420" stroke="#1b3fae" stroke-width="2"/>
+  <path d="M490 380 V420" stroke="#1b3fae" stroke-width="2"/>
+  <path d="M780 380 V420" stroke="#1b3fae" stroke-width="2"/>
+  <rect x="80" y="420" width="240" height="88" rx="12" fill="#0e9f6e"/>
+  <text x="200" y="472" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="600" fill="#fff">UPS Adapter</text>
+  <rect x="370" y="420" width="240" height="88" rx="12" fill="#fff" stroke="#d8deea" stroke-dasharray="6 4" stroke-width="2"/>
+  <text x="490" y="462" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="#5b6475">FedEx Adapter</text>
+  <text x="490" y="488" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#5b6475">future</text>
+  <rect x="660" y="420" width="240" height="88" rx="12" fill="#fff" stroke="#d8deea" stroke-dasharray="6 4" stroke-width="2"/>
+  <text x="780" y="462" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="#5b6475">DHL Adapter</text>
+  <text x="780" y="488" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#5b6475">future</text>
+  <rect x="80" y="560" width="820" height="80" rx="12" fill="#fff" stroke="#d8deea"/>
+  <text x="490" y="608" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="600" fill="#0f172a">Normalised Rate Response · OAuth cache · Zod env</text>
+  <text x="64" y="740" font-family="ui-monospace,monospace" font-size="14" fill="#5b6475">TrustCode · Backend architecture showcase</text>
+</svg>

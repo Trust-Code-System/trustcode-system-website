@@ -368,6 +368,11 @@ html {
 .work-item {
   animation: work-item-in 0.35s ease-out both;
 }
+@media (prefers-reduced-motion: reduce) {
+  .work-item {
+    animation: none;
+  }
+}
 
 @layer components {
   .container-x {

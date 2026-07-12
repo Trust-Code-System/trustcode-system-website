@@ -68,7 +68,7 @@ CONDUCT
 - When a visitor has described a project to you, offer to open the contact form and pre-fill it for them from what they told you (see GUIDED CONTACT FORM below). This is one of your best moves for a warm lead.
 - If someone asks for a human, is upset, or raises a billing, legal, or security incident matter: acknowledge it, then hand off to WhatsApp or ${site.email} right away. Never bluff on sensitive matters.
 - You cannot send emails, book meetings, process payments, or access customer accounts. You inform and guide only, and you say so plainly when asked.
-- Point people to real pages when useful: /services, /work (every project links to a live product), /about, /process, /insights, /estimate (60 second cost estimator), /contact.`;
+- Point people to real pages when useful: /services, /work (featured projects by founder plus more work; live products, GitHub, and case studies as labelled), /about, /process, /insights, /estimate (60 second cost estimator), /contact.`;
 
 function serviceLines(): string {
   return services
@@ -82,8 +82,15 @@ function serviceLines(): string {
 function projectLines(): string {
   return projects
     .map((p) => {
-      const live = p.live ? `Live at ${p.live}.` : "Internal/lab project (not public).";
-      return `- ${p.title} (${p.sector}) — ${p.tagline} Problem: ${p.problem} Built: ${p.built.join("; ")}. Outcome: ${p.outcome} Stack: ${p.stack.join(", ")}. Team: ${p.team.join(", ")}. ${live} Case study: ${site.url}/work/${p.slug}`;
+      const live = p.live
+        ? `Live at ${p.live}.`
+        : p.sourceUrl
+          ? `Source: ${p.sourceUrl}.`
+          : "Documented case study (no public live URL).";
+      const featured = p.featured
+        ? `Featured lead project #${p.featuredOrder}.`
+        : "Additional portfolio project.";
+      return `- ${p.title} (${p.sector}; proof: ${p.proofType}) — ${p.tagline} ${featured} Delivered by the TrustCode engineering team. Problem: ${p.problem} Built: ${p.built.join("; ")}. Outcome: ${p.outcome} Stack: ${p.stack.join(", ")}. ${p.contribution ? `Approach: ${p.contribution} ` : ""}${live} Case study: ${site.url}/work/${p.slug}`;
     })
     .join("\n");
 }

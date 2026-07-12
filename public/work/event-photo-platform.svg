@@ -1,0 +1,28 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="Event photo platform flow">
+  <rect width="1280" height="800" fill="#f4f6fb"/>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#d8deea" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="800" fill="url(#grid)"/>
+  <text x="64" y="64" font-family="ui-monospace,monospace" font-size="16" fill="#5b6475" letter-spacing="3">NEXT.JS · PRISMA · SUPABASE</text>
+  <text x="64" y="108" font-family="Georgia,serif" font-size="36" font-weight="700" fill="#0f172a">Event Photo Platform</text>
+  <g font-family="system-ui,sans-serif" font-size="16" font-weight="600">
+    <rect x="80" y="220" width="220" height="120" rx="12" fill="#fff" stroke="#1b3fae" stroke-width="2"/>
+    <text x="190" y="275" text-anchor="middle" fill="#0f172a">Create event</text>
+    <text x="190" y="305" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#5b6475" font-weight="400">Auth + dashboard</text>
+    <rect x="360" y="220" width="220" height="120" rx="12" fill="#fff" stroke="#1b3fae" stroke-width="2"/>
+    <text x="470" y="275" text-anchor="middle" fill="#0f172a">Share QR</text>
+    <text x="470" y="305" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#5b6475" font-weight="400">Guest access code</text>
+    <rect x="640" y="220" width="220" height="120" rx="12" fill="#fff" stroke="#1b3fae" stroke-width="2"/>
+    <text x="750" y="275" text-anchor="middle" fill="#0f172a">Guest upload</text>
+    <text x="750" y="305" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#5b6475" font-weight="400">Supabase storage</text>
+    <rect x="920" y="220" width="220" height="120" rx="12" fill="#0e9f6e"/>
+    <text x="1030" y="290" text-anchor="middle" fill="#fff">Gallery</text>
+  </g>
+  <path d="M300 280 H360 M580 280 H640 M860 280 H920" stroke="#1b3fae" stroke-width="2"/>
+  <rect x="80" y="420" width="1060" height="100" rx="12" fill="#fff" stroke="#d8deea"/>
+  <text x="120" y="480" font-family="system-ui,sans-serif" font-size="18" fill="#0f172a">Organisers create · guests upload · shared galleries</text>
+  <text x="64" y="740" font-family="ui-monospace,monospace" font-size="14" fill="#5b6475">TrustCode · Product showcase</text>
+</svg>

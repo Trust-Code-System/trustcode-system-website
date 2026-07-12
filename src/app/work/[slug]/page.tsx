@@ -5,7 +5,7 @@ import { Section } from "@/components/section";
 import { ProjectThumb } from "@/components/project-thumb";
 import { Reveal } from "@/components/reveal";
 import { ArrowRight, ArrowUpRight, Check } from "@/components/icons";
-import { projects } from "@/content/portfolio";
+import { PROOF_LABELS, projects, proofCtaLabel } from "@/content/portfolio";
 import { pageMeta } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -38,6 +38,14 @@ export default async function CaseStudyPage({
   if (!project) notFound();
 
   const next = projects[(index + 1) % projects.length];
+  const externalHref = project.live ?? project.sourceUrl ?? null;
+  const externalLabel = project.live
+    ? proofCtaLabel(project.proofType)
+    : project.sourceUrl
+      ? proofCtaLabel(
+          project.proofType === "architecture" ? "architecture" : "github"
+        )
+      : null;
 
   return (
     <>
@@ -53,6 +61,9 @@ export default async function CaseStudyPage({
           <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <div className="flex flex-wrap items-center gap-2">
+                <span className="badge">
+                  {PROOF_LABELS[project.proofType]}
+                </span>
                 <span className="badge">{project.sector}</span>
                 {project.categories.map((c) => (
                   <span key={c} className="badge">
@@ -65,19 +76,24 @@ export default async function CaseStudyPage({
               </h1>
               <p className="lead mt-4 max-w-xl">{project.tagline}</p>
               <div className="mt-7 flex flex-wrap gap-3">
-                {project.live ? (
+                {externalHref && externalLabel ? (
                   <a
-                    href={project.live}
+                    href={externalHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary"
+                    aria-label={`${externalLabel} (opens in new tab)`}
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                    Visit live site
+                    {project.live && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                    )}
+                    {externalLabel}
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
                 ) : (
-                  <span className="badge">Internal showcase</span>
+                  <span className="badge">
+                    {PROOF_LABELS[project.proofType]}
+                  </span>
                 )}
                 <Link href="/contact" className="btn-secondary">
                   Start something like this
@@ -102,12 +118,25 @@ export default async function CaseStudyPage({
                 </p>
               </div>
             </Reveal>
+            {project.contribution && (
+              <Reveal>
+                <div className="mb-10">
+                  <p className="eyebrow">/ approach</p>
+                  <p className="mt-4 text-[1.05rem] leading-relaxed text-ink">
+                    {project.contribution}
+                  </p>
+                </div>
+              </Reveal>
+            )}
             <Reveal>
               <div className="mb-10">
                 <p className="eyebrow">/ what we built</p>
                 <ul className="mt-4 space-y-3">
                   {project.built.map((b) => (
-                    <li key={b} className="flex items-start gap-3 text-[1rem] text-ink">
+                    <li
+                      key={b}
+                      className="flex items-start gap-3 text-[1rem] text-ink"
+                    >
                       <Check className="mt-0.5 h-5 w-5 shrink-0 text-verified" />
                       {b}
                     </li>
@@ -123,6 +152,29 @@ export default async function CaseStudyPage({
                 </p>
               </div>
             </Reveal>
+            {project.additionalInvestigations &&
+              project.additionalInvestigations.length > 0 && (
+                <Reveal>
+                  <div className="mt-10">
+                    <p className="eyebrow">/ additional investigations</p>
+                    <ul className="mt-4 space-y-3">
+                      {project.additionalInvestigations.map((item) => (
+                        <li
+                          key={item.label}
+                          className="rounded-card border border-grid bg-surface px-5 py-4"
+                        >
+                          <p className="font-medium text-ink">{item.label}</p>
+                          {item.note && (
+                            <p className="mt-1 text-[0.9rem] text-slate">
+                              {item.note}
+                            </p>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
+              )}
           </div>
 
           <aside className="lg:col-span-5">
@@ -136,14 +188,16 @@ export default async function CaseStudyPage({
                 ))}
               </div>
 
-              <p className="eyebrow mb-3 mt-7">/ team</p>
-              <ul className="space-y-2">
-                {project.team.map((member) => (
-                  <li key={member} className="text-[0.92rem] text-ink">
-                    {member}
-                  </li>
-                ))}
-              </ul>
+              <p className="eyebrow mb-3 mt-7">/ delivered by</p>
+              <p className="text-[0.92rem] text-ink">
+                TrustCode System engineering team
+              </p>
+              <Link
+                href="/about"
+                className="mt-1 inline-block text-[0.85rem] text-blueprint hover:underline"
+              >
+                Meet the team
+              </Link>
 
               {project.live && (
                 <>
@@ -156,6 +210,21 @@ export default async function CaseStudyPage({
                   >
                     <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-verified" />
                     {project.live.replace(/^https?:\/\//, "")}
+                  </a>
+                </>
+              )}
+
+              {project.sourceUrl && (
+                <>
+                  <p className="eyebrow mb-3 mt-7">/ source</p>
+                  <a
+                    href={project.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 break-all font-mono text-[0.82rem] text-blueprint hover:underline"
+                  >
+                    {project.sourceUrl.replace(/^https?:\/\//, "")}
+                    <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />
                   </a>
                 </>
               )}

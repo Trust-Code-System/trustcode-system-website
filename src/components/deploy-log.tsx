@@ -55,10 +55,15 @@ function Line({ entry, typed }: { entry: Entry; typed: boolean }) {
 
 export function DeployLog() {
   const reduce = useReducedMotion();
-  const [count, setCount] = useState(reduce ? entries.length : 0);
+  // Always start at 0 so server HTML matches the first client paint.
+  // useReducedMotion() can differ between SSR and the browser.
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce) {
+      setCount(entries.length);
+      return;
+    }
     if (count >= entries.length) return;
     const t = setTimeout(() => setCount((c) => c + 1), count === 0 ? 350 : 520);
     return () => clearTimeout(t);

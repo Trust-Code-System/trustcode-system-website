@@ -1,10 +1,9 @@
 import Image from "next/image";
 import type { Project } from "@/content/portfolio";
+import { PROOF_LABELS } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
 
-// Slugs that have a real screenshot at /public/work/<slug>.png.
-// Anything not listed falls back to the branded placeholder below.
-const SHOTS = new Set([
+const SCREENSHOT_SLUGS = new Set([
   "the-thesis-desk",
   "helping-tribe-academy",
   "atlas-hr",
@@ -16,6 +15,12 @@ const SHOTS = new Set([
   "sln-engineering",
 ]);
 
+function resolveCover(project: Project): string | null {
+  if (project.coverImage) return project.coverImage;
+  if (SCREENSHOT_SLUGS.has(project.slug)) return `/work/${project.slug}.png`;
+  return null;
+}
+
 export function ProjectThumb({
   project,
   className,
@@ -25,8 +30,14 @@ export function ProjectThumb({
 }) {
   const host = project.live
     ? project.live.replace(/^https?:\/\//, "").replace(/\/$/, "")
-    : "internal · showcase";
-  const shot = SHOTS.has(project.slug) ? `/work/${project.slug}.png` : null;
+    : project.sourceUrl
+      ? "github · source"
+      : "case study";
+  const shot = resolveCover(project);
+  const isSvg = shot?.endsWith(".svg");
+  const proof = PROOF_LABELS[project.proofType];
+  const isLive =
+    project.proofType === "live" || project.proofType === "live-client";
 
   return (
     <div
@@ -34,16 +45,25 @@ export function ProjectThumb({
         "relative aspect-[16/10] w-full overflow-hidden rounded-t-card border-b border-grid bg-paper",
         className
       )}
-      aria-hidden
     >
       {shot ? (
-        <Image
-          src={shot}
-          alt=""
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover object-top"
-        />
+        isSvg ? (
+          // SVGs are intentional covers; skip next/image optimizer.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={shot}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-top"
+          />
+        ) : (
+          <Image
+            src={shot}
+            alt=""
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover object-top"
+          />
+        )
       ) : (
         <>
           <div className="grid-bg absolute inset-0" />
@@ -58,7 +78,7 @@ export function ProjectThumb({
         </>
       )}
 
-      <div className="absolute left-4 top-4 flex items-center gap-2">
+      <div className="absolute left-4 top-4 flex max-w-[70%] flex-wrap items-center gap-2">
         <span className="flex gap-1" aria-hidden>
           <span className="h-2 w-2 rounded-full bg-grid" />
           <span className="h-2 w-2 rounded-full bg-grid" />
@@ -66,7 +86,7 @@ export function ProjectThumb({
         </span>
         <span
           className={cn(
-            "font-mono text-[0.65rem]",
+            "truncate font-mono text-[0.65rem]",
             shot
               ? "rounded bg-paper/85 px-1.5 py-0.5 text-slate backdrop-blur-sm"
               : "text-slate"
@@ -75,17 +95,18 @@ export function ProjectThumb({
           {host}
         </span>
       </div>
-      {project.live && (
-        <span
-          className={cn(
-            "absolute bottom-3 right-4 inline-flex items-center gap-1.5 font-mono text-[0.65rem] text-verified",
-            shot && "rounded bg-paper/85 px-1.5 py-0.5 backdrop-blur-sm"
-          )}
-        >
+
+      <span
+        className={cn(
+          "absolute bottom-3 right-4 inline-flex items-center gap-1.5 rounded bg-paper/90 px-1.5 py-0.5 font-mono text-[0.65rem] uppercase tracking-wide backdrop-blur-sm",
+          isLive ? "text-verified" : "text-slate"
+        )}
+      >
+        {isLive && (
           <span className="h-1.5 w-1.5 rounded-full bg-verified animate-pulse-dot" />
-          LIVE
-        </span>
-      )}
+        )}
+        {proof}
+      </span>
     </div>
   );
 }

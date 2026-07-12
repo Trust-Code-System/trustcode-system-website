@@ -1,0 +1,32 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="Serverless YouTube File Sync architecture">
+  <rect width="1280" height="800" fill="#f4f6fb"/>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#d8deea" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="800" fill="url(#grid)"/>
+  <text x="64" y="64" font-family="ui-monospace,monospace" font-size="16" fill="#5b6475" letter-spacing="3">AWS CDK · EVENT-DRIVEN</text>
+  <text x="64" y="108" font-family="Georgia,serif" font-size="36" font-weight="700" fill="#0f172a">Serverless YouTube File Sync</text>
+  <g font-family="system-ui,sans-serif" font-size="15" font-weight="600">
+    <rect x="40" y="200" width="160" height="72" rx="10" fill="#1b3fae"/><text x="120" y="242" text-anchor="middle" fill="#fff">EventBridge</text>
+    <path d="M200 236 H230" stroke="#1b3fae" stroke-width="2"/>
+    <rect x="230" y="200" width="160" height="72" rx="10" fill="#fff" stroke="#1b3fae" stroke-width="2"/><text x="310" y="242" text-anchor="middle" fill="#0f172a">Search Lambda</text>
+    <path d="M390 236 H420" stroke="#1b3fae" stroke-width="2"/>
+    <rect x="420" y="200" width="140" height="72" rx="10" fill="#fff" stroke="#1b3fae" stroke-width="2"/><text x="490" y="242" text-anchor="middle" fill="#0f172a">SQS + DLQ</text>
+    <path d="M560 236 H590" stroke="#1b3fae" stroke-width="2"/>
+    <rect x="590" y="200" width="180" height="72" rx="10" fill="#fff" stroke="#1b3fae" stroke-width="2"/><text x="680" y="242" text-anchor="middle" fill="#0f172a">Download Lambda</text>
+    <path d="M770 236 H800" stroke="#1b3fae" stroke-width="2"/>
+    <rect x="800" y="200" width="120" height="72" rx="10" fill="#0e9f6e"/><text x="860" y="242" text-anchor="middle" fill="#fff">S3</text>
+  </g>
+  <path d="M680 272 V340" stroke="#5b6475" stroke-width="2"/>
+  <rect x="560" y="340" width="240" height="64" rx="10" fill="#fff" stroke="#d8deea" stroke-width="2"/>
+  <text x="680" y="378" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="#0f172a">DynamoDB · Idempotency</text>
+  <path d="M860 272 V340" stroke="#5b6475" stroke-width="2"/>
+  <rect x="800" y="340" width="200" height="64" rx="10" fill="#fff" stroke="#d8deea" stroke-width="2"/>
+  <text x="900" y="378" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="#0f172a">CloudWatch</text>
+  <rect x="40" y="480" width="1000" height="120" rx="12" fill="#fff" stroke="#d8deea"/>
+  <text x="72" y="530" font-family="ui-monospace,monospace" font-size="14" fill="#5b6475">arm64 Docker · yt-dlp · ffmpeg · retries · lifecycle expiry</text>
+  <text x="72" y="565" font-family="system-ui,sans-serif" font-size="18" fill="#0f172a">Scheduled discovery → queued downloads → durable state</text>
+  <text x="64" y="740" font-family="ui-monospace,monospace" font-size="14" fill="#5b6475">TrustCode · Cloud architecture showcase</text>
+</svg>

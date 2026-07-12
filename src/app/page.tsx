@@ -12,12 +12,12 @@ import { ProjectCard } from "@/components/project-card";
 import { CtaBand } from "@/components/cta-band";
 import { ArrowRight } from "@/components/icons";
 import { services } from "@/content/services";
-import { projects, featuredSlugs } from "@/content/portfolio";
+import { projects, homepagePreviewSlugs } from "@/content/portfolio";
 import { team } from "@/content/team";
 import { steps } from "@/content/process";
 import { stats } from "@/content/site";
 
-const featured = featuredSlugs
+const featured = homepagePreviewSlugs
   .map((s) => projects.find((p) => p.slug === s))
   .filter(Boolean) as typeof projects;
 
@@ -146,19 +146,26 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Featured work */}
+      {/* Featured work — team portfolio preview */}
       <Section className="border-y border-grid bg-surface">
         <SectionHeading
-          eyebrow="live work"
-          title="Don't take our word for it. Click anything below — it's live."
-          link={{ href: "/work", label: "All work" }}
+          eyebrow="featured work"
+          title="Selected work from the TrustCode portfolio."
+          intro="Live products, cloud systems, and security projects delivered by one engineering team."
+          link={{ href: "/work", label: "Explore all work" }}
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featured.map((p, i) => (
             <Reveal key={p.slug} delay={i * 0.05} as="div">
               <ProjectCard project={p} />
             </Reveal>
           ))}
+        </div>
+        <div className="mt-10 flex justify-center">
+          <Link href="/work" className="btn-secondary">
+            View all projects
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </Section>
 

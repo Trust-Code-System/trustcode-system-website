@@ -1,0 +1,20 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="SOC detection lab cover">
+  <rect width="1280" height="800" fill="#0b1220"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#1e2a44" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="800" fill="url(#grid)"/>
+  <text x="64" y="64" font-family="ui-monospace,monospace" font-size="16" fill="#6f8eff" letter-spacing="3">KQL PLAYBOOK</text>
+  <text x="64" y="108" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#f8fafc">SOC Detection Lab</text>
+  <rect x="64" y="180" width="520" height="360" rx="12" fill="#111827" stroke="#1e2a44"/>
+  <text x="100" y="240" font-family="ui-monospace,monospace" font-size="18" fill="#25c08a">25+ hunting queries</text>
+  <text x="100" y="290" font-family="ui-monospace,monospace" font-size="15" fill="#94a3b8">Sentinel + Defender</text>
+  <text x="100" y="340" font-family="ui-monospace,monospace" font-size="15" fill="#94a3b8">MITRE ATT&amp;CK mapped</text>
+  <text x="100" y="390" font-family="ui-monospace,monospace" font-size="15" fill="#94a3b8">Phishing simulations</text>
+  <rect x="640" y="180" width="520" height="360" rx="12" fill="#152238" stroke="#1b3fae"/>
+  <text x="900" y="320" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="600" fill="#f8fafc">Documented detections</text>
+  <text x="900" y="360" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14" fill="#6f8eff">case study · sanitised</text>
+  <text x="64" y="740" font-family="ui-monospace,monospace" font-size="14" fill="#64748b">TrustCode · Security showcase</text>
+</svg>

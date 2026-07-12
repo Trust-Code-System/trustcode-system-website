@@ -5,9 +5,9 @@ import { CtaBand } from "@/components/cta-band";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
-  title: "Work",
+  title: "Engineering Projects",
   description:
-    "15+ live products across fintech, edtech, e-commerce, SaaS, AI and marketplaces. Every case study links to a live, inspectable product.",
+    "Explore selected software, cloud, cybersecurity, fintech, education, and commerce projects created and delivered by TrustCode System.",
   path: "/work",
 });
 
@@ -15,9 +15,9 @@ export default function WorkPage() {
   return (
     <>
       <PageHero
-        eyebrow="live work"
-        title="Don't take our word for it. Click anything below — it's live."
-        intro="Real products, real clients, real outcomes. Filter by sector, open a case study, or visit the live site yourself."
+        eyebrow="featured work"
+        title="Software, cloud systems and security work delivered by one team."
+        intro="Explore selected products, technical platforms, cloud architectures and cybersecurity projects created and delivered by TrustCode System."
       />
       <Section>
         <WorkGrid />

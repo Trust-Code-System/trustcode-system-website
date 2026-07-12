@@ -1,0 +1,25 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="Clabed Autos marketplace cover">
+  <rect width="1280" height="800" fill="#f4f6fb"/>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#d8deea" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="800" fill="url(#grid)"/>
+  <text x="64" y="64" font-family="ui-monospace,monospace" font-size="16" fill="#5b6475" letter-spacing="3">LIVE CLIENT · AUTOMOTIVE</text>
+  <text x="64" y="108" font-family="Georgia,serif" font-size="40" font-weight="700" fill="#0f172a">Clabed Autos</text>
+  <rect x="80" y="180" width="1120" height="420" rx="16" fill="#fff" stroke="#d8deea" stroke-width="2"/>
+  <rect x="80" y="180" width="1120" height="64" rx="16" fill="#0f172a"/>
+  <rect x="80" y="220" width="1120" height="24" fill="#0f172a"/>
+  <circle cx="120" cy="212" r="6" fill="#ef4444"/><circle cx="144" cy="212" r="6" fill="#eab308"/><circle cx="168" cy="212" r="6" fill="#22c55e"/>
+  <text x="220" y="218" font-family="ui-monospace,monospace" font-size="14" fill="#94a3b8">clabedautos.com</text>
+  <rect x="120" y="280" width="320" height="260" rx="12" fill="#f4f6fb" stroke="#d8deea"/>
+  <rect x="150" y="310" width="260" height="120" rx="8" fill="#d8deea"/>
+  <text x="280" y="470" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="#0f172a">Vehicle listing</text>
+  <rect x="480" y="280" width="320" height="260" rx="12" fill="#f4f6fb" stroke="#d8deea"/>
+  <rect x="510" y="310" width="260" height="120" rx="8" fill="#d8deea"/>
+  <text x="640" y="470" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="#0f172a">Filters · brands</text>
+  <rect x="840" y="280" width="320" height="260" rx="12" fill="#f4f6fb" stroke="#1b3fae"/>
+  <text x="1000" y="400" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="600" fill="#1b3fae">Enquire</text>
+  <text x="64" y="740" font-family="ui-monospace,monospace" font-size="14" fill="#5b6475">TrustCode · Live client product</text>
+</svg>
