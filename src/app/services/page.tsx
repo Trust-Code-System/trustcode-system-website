@@ -11,7 +11,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Services",
   description:
-    "Product & web engineering, e-commerce, cloud & DevOps, AI integration, cybersecurity, IT support, and training. One team, full coverage.",
+    "Product & web engineering, e-commerce, cloud & DevOps, AI integration, cybersecurity, IT support, and training. Software, cloud and security expertise working as one team.",
   path: "/services",
 });
 
@@ -20,8 +20,8 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="services"
-        title="One team, full coverage: pixel to server to security layer."
-        intro="Seven services, four engineers, one standard. Every service links to a live product you can inspect, with a transparent starting price, and every engagement gets a written, fixed-price quote within 72 hours."
+        title="One engineering team, built for complex digital products."
+        intro="Software, cloud and security expertise working as one team. Every service links to live work you can inspect, and every engagement starts with a consultation and a tailored proposal."
       />
 
       <Section>
@@ -63,19 +63,11 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="flex flex-col gap-4 md:col-span-4">
-                    <div className="flex gap-8">
-                      <div>
-                        <p className="eyebrow mb-2">/ typical timeline</p>
-                        <p className="font-mono text-[0.95rem] text-ink">
-                          {service.timeline}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="eyebrow mb-2">/ pricing</p>
-                        <p className="font-mono text-[0.95rem] text-ink">
-                          {service.priceFrom}
-                        </p>
-                      </div>
+                    <div>
+                      <p className="eyebrow mb-2">/ typical timeline</p>
+                      <p className="font-mono text-[0.95rem] text-ink">
+                        {service.timeline}
+                      </p>
                     </div>
                     <div>
                       <p className="eyebrow mb-2">/ proof</p>
@@ -91,7 +83,7 @@ export default function ServicesPage() {
                       href={`/contact?service=${service.slug}`}
                       className="btn-primary mt-auto w-full sm:w-auto"
                     >
-                      Discuss this
+                      {service.ctaLabel}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
@@ -102,12 +94,10 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* Engagement models */}
       <Section className="border-y border-grid bg-surface">
         <p className="eyebrow">/ engagement models</p>
         <h2 className="display-h2 mt-4 max-w-2xl">
-          Three ways to work with us. Starting prices are a guide, every
-          quote is written for your scope.
+          Three ways to work with us. We shape the engagement around your goals.
         </h2>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {engagementModels.map((m) => (
@@ -121,11 +111,11 @@ export default function ServicesPage() {
         </div>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link href="/contact" className="btn-primary">
-            Request a quote
+            Start a Project
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link href="/estimate" className="btn-secondary">
-            Get a 60-second ballpark
+            Request a Consultation
           </Link>
         </div>
       </Section>

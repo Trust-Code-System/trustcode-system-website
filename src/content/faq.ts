@@ -2,8 +2,8 @@ export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [
   {
-    q: "How much does a website or platform cost?",
-    a: "As a guide: business sites typically start around $1,200, e-commerce stores around $2,500, and web apps or SaaS platforms around $5,000. Every project gets a written, fixed-price quote within 72 hours, use the 60-second estimator on this site for an instant ballpark first.",
+    q: "How do you price a website or platform?",
+    a: "Every project is different. Share your objectives, required features and timeline, and we will review the brief and provide a tailored proposal. There are no public package prices; you get scope, delivery approach and next steps shaped around what you are building.",
   },
   {
     q: "How long will my project take?",
@@ -11,7 +11,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "How do payments work?",
-    a: "Payments are split across agreed milestones set out in your written proposal, typically a deposit to start, then payments tied to visible progress. No surprise invoices: the price is fixed in writing before work begins.",
+    a: "Payments are split across agreed milestones set out in your written proposal, typically a deposit to start, then payments tied to visible progress. Terms are agreed in writing before work begins.",
   },
   {
     q: "Who owns the code and the accounts?",
@@ -23,7 +23,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do you work with clients outside Nigeria and the UK?",
-    a: "Yes. We're based in Lagos and London and work remotely worldwide. Payments can be made in USD, GBP, or NGN, and we schedule calls across time zones.",
+    a: "Yes. We're based in Lagos and London and work remotely worldwide. We schedule calls across time zones and can work with the payment arrangements that suit your organisation.",
   },
   {
     q: "What happens after launch?",

@@ -13,7 +13,7 @@ export const steps: Step[] = [
     title: "Discover",
     summary: "We learn your business, users, and constraints before writing a line of code.",
     what: "A free 30-minute consultation followed by a short discovery: goals, users, scope, risks, and success metrics. We map what 'done' looks like.",
-    deliverable: "Written proposal with scope, timeline, and engagement model, within 72 hours.",
+    deliverable: "Written proposal with scope, timeline, and engagement model after reviewing your brief.",
     duration: "2–5 days",
   },
   {

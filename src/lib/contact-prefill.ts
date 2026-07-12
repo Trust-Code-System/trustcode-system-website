@@ -30,7 +30,7 @@ export const prefillSchema = z
     email: z.string().max(200).optional(),
     company: z.string().max(160).optional(),
     service: z.string().max(80).optional(),
-    budget: z.string().max(40).optional(),
+    budget: z.string().max(60).optional(),
     siteType: z.string().max(160).optional(),
     goal: z.string().max(160).optional(),
     startingPoint: z.string().max(160).optional(),

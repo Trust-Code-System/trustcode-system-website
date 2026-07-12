@@ -9,7 +9,7 @@ export const values = [
   },
   {
     title: "Security is not optional",
-    body: "A SOC analyst sits on the founding team. Every product is reviewed, hardened, and audit-ready before it goes live.",
+    body: "Security expertise sits on the founding team. Every product is reviewed, hardened, and audit-ready before it goes live.",
   },
   {
     title: "Plain communication",
@@ -18,7 +18,7 @@ export const values = [
 ];
 
 export const originStory = [
-  "TrustCode System started with four engineers who met through Nigeria's tech ecosystem (one now in London, three in Lagos) and shared one belief: trust is earned in production, not in pitch decks.",
+  "TrustCode System started when product, cloud, security and full-stack specialists who met through Nigeria's tech ecosystem (with hubs in Lagos and London) shared one belief: trust is earned in production, not in pitch decks.",
   "Between us we've shipped 15+ live products across fintech, edtech, e-commerce, HR tech, Web3, and oil & gas IT. We've built the dashboards, the cloud stacks, the payment pipelines, and the detection labs, and then kept them running.",
   "We started TrustCode to do that work under one roof: a team a client can stake their business on, where the person who designs your interface, the one who architects your cloud, and the one who hardens your security all answer to the same standard: production-ready.",
 ];

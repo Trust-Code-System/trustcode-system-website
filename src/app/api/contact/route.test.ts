@@ -5,7 +5,7 @@ const basePayload = {
   email: "ada@example.com",
   company: "Analytical Engines Ltd",
   service: "ai-integration",
-  budget: "$5k-$15k",
+  budget: "Mid-range",
   siteType: "AI-powered tool",
   goal: "Get leads & inquiries",
   startingPoint: "Brand new - starting fresh",

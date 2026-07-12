@@ -55,11 +55,11 @@ export default async function IndustryPage({
       >
         <div className="flex flex-wrap items-center gap-3">
           <Link href="/contact" className="btn-primary">
-            Start a project
+            Start a Project
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link href="/estimate" className="btn-secondary">
-            Get a 60-second ballpark
+            Request a Consultation
           </Link>
         </div>
       </PageHero>
@@ -113,7 +113,6 @@ export default async function IndustryPage({
               >
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="display-h3 text-[1.15rem]">{s.title}</h3>
-                  <span className="badge">{s.priceFrom}</span>
                 </div>
                 <p className="mt-2 text-[0.9rem] leading-relaxed text-slate">
                   {s.short}

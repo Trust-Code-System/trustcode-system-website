@@ -12,10 +12,11 @@ export const serviceOptions = [
 ] as const;
 
 export const budgetOptions = [
-  "Under $2k",
-  "$2k–$5k",
-  "$5k–$15k",
-  "$15k+",
+  "Prefer not to say",
+  "Exploring / not set yet",
+  "Modest",
+  "Mid-range",
+  "Significant",
   "Retainer / ongoing",
 ] as const;
 
@@ -81,7 +82,7 @@ export const contactSchema = z.object({
   email: z.string().trim().email("Please enter a valid email address."),
   company: z.string().trim().max(160).optional().or(z.literal("")),
   service: z.string().trim().min(1, "Please choose a service.").max(80),
-  budget: z.string().trim().max(40).optional().or(z.literal("")),
+  budget: z.string().trim().max(60).optional().or(z.literal("")),
   // Project brief, all optional, free strings so "Other" entries pass through.
   siteType: briefText,
   goal: briefText,

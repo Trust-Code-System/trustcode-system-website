@@ -40,15 +40,15 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="lead mt-6 max-w-xl">
-                TrustCode System is a four-engineer team shipping web platforms,
-                cloud systems, AI features, and security with 15+ live products
-                across fintech, edtech, e-commerce and beyond.
+                A product engineering team building dependable software, cloud
+                systems and digital experiences, with 15+ live products across
+                fintech, edtech, e-commerce and beyond.
               </p>
             </Reveal>
             <Reveal delay={0.15}>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link href="/contact" className="btn-primary">
-                  Start a project
+                  Start a Project
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/work" className="btn-secondary">
@@ -173,8 +173,8 @@ export default function HomePage() {
       <Section>
         <SectionHeading
           eyebrow="why trustcode"
-          title="Four engineers. Four standards. One bar: production-ready."
-          intro="Each founder owns a discipline and brings shipped proof, not a résumé line."
+          title="An engineering team combining product, cloud, security and full-stack expertise."
+          intro="Each discipline brings shipped proof, not a résumé line."
         />
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
           {team.map((f, i) => (
@@ -230,7 +230,7 @@ export default function HomePage() {
       <Section>
         <SectionHeading
           eyebrow="the team"
-          title="Four engineers. Two countries. One standard: production-ready."
+          title="A focused team delivering reliable digital systems."
           link={{ href: "/about", label: "About us" }}
         />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

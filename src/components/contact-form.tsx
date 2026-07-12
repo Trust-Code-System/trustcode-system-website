@@ -269,7 +269,7 @@ export function ContactForm() {
         <h2 className="display-h3 text-[1.4rem]">Brief received</h2>
         <p className="lead">
           Thanks, that gives us a clear picture. Expect a reply within 24 hours,
-          and if it&apos;s a build, a written proposal within 72 hours.
+          and if it&apos;s a build, a tailored proposal once we have reviewed the brief.
         </p>
         <button
           type="button"
@@ -334,14 +334,14 @@ export function ContactForm() {
               aria-invalid={Boolean(fieldErrors.service)}
             />
           </Field>
-          <Field label="Budget" name="budget" error={fieldErrors.budget}>
+          <Field label="Your budget range (optional)" name="budget" error={fieldErrors.budget}>
             <Select
               key={`budget-${budgetDefault}`}
               id="budget"
               name="budget"
               options={budgetSelectOptions}
               defaultValue={budgetDefault}
-              placeholder="Optional"
+              placeholder="Prefer not to say"
               aria-invalid={Boolean(fieldErrors.budget)}
             />
           </Field>

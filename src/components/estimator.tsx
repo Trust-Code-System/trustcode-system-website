@@ -7,14 +7,12 @@ import {
   estimatorFeatures,
   timelines,
   RUSH_TIMELINE,
-  RUSH_MULTIPLIER,
-  formatUsd,
 } from "@/content/estimator";
 import { site } from "@/content/site";
 import { ArrowRight, Check, WhatsApp } from "./icons";
 import { cn } from "@/lib/utils";
 
-const STEPS = ["Project", "Features", "Timeline", "Ballpark"] as const;
+const STEPS = ["Project", "Features", "Timeline", "Next steps"] as const;
 
 function chipClass(active: boolean) {
   return cn(
@@ -35,38 +33,18 @@ export function Estimator() {
   const type = projectTypes.find((t) => t.label === typeLabel);
   const rush = timeline === RUSH_TIMELINE;
 
-  const estimate = useMemo(() => {
-    if (!type) return null;
-    let [min, max] = type.price;
-    for (const f of estimatorFeatures) {
-      if (features.includes(f.label)) {
-        min += f.price[0];
-        max += f.price[1];
-      }
-    }
-    if (rush) {
-      min *= RUSH_MULTIPLIER;
-      max *= RUSH_MULTIPLIER;
-    }
+  const weeksText = useMemo(() => {
+    if (!type) return "-";
     const extraWeeks = Math.ceil(features.length / 3);
-    const weeks: [number, number] = [
-      type.weeks[0] + extraWeeks,
-      type.weeks[1] + extraWeeks,
-    ];
-    return { min, max, weeks };
-  }, [type, features, rush]);
-
-  const rangeText = estimate
-    ? `${formatUsd(estimate.min)} – ${formatUsd(estimate.max)}`
-    : "-";
-  const weeksText = estimate
-    ? `${estimate.weeks[0]}–${estimate.weeks[1]} weeks`
-    : "-";
+    const min = type.weeks[0] + extraWeeks;
+    const max = type.weeks[1] + extraWeeks;
+    return `${min}–${max} weeks`;
+  }, [type, features]);
 
   const summary = type
-    ? `Estimator brief: ${type.label}${
+    ? `Project brief: ${type.label}${
         features.length ? ` with ${features.join(", ")}` : ""
-      }.${timeline ? ` Timeline: ${timeline}.` : ""} Ballpark shown on the site: ${rangeText} (${weeksText}). Please confirm with a written quote.`
+      }.${timeline ? ` Preferred timeline: ${timeline}.` : ""} Typical delivery window shown on the site: ${weeksText}. Please recommend the right scope and next steps.`
     : "";
 
   const canNext =
@@ -85,16 +63,14 @@ export function Estimator() {
   }
 
   const whatsappHref = `https://wa.me/${site.phone.replace("+", "")}?text=${encodeURIComponent(
-    `Hi TrustCode System, I used your estimator. ${summary}`
+    `Hi TrustCode System, I used your project scoper. ${summary}`
   )}`;
 
   return (
     <div className="grid gap-6 lg:grid-cols-12">
-      {/* Wizard */}
       <div className="card p-7 sm:p-8 lg:col-span-8">
-        {/* Progress */}
         <ol
-          aria-label="Estimator progress"
+          aria-label="Project scoping progress"
           className="flex flex-wrap items-center gap-2"
         >
           {STEPS.map((label, i) => (
@@ -216,22 +192,21 @@ export function Estimator() {
               </div>
               {rush && (
                 <p className="mt-4 text-[0.85rem] text-slate">
-                  Rush delivery compresses the schedule, expect roughly{" "}
-                  {Math.round((RUSH_MULTIPLIER - 1) * 100)}% on top of the
-                  standard range.
+                  An accelerated timeline is possible. We will confirm what is
+                  realistic once we understand the full scope.
                 </p>
               )}
             </fieldset>
           )}
 
-          {step === 3 && type && estimate && (
+          {step === 3 && type && (
             <div>
-              <h2 className="display-h3 text-[1.3rem]">Your ballpark</h2>
-              <p className="mt-6 font-mono text-3xl font-semibold sm:text-4xl">
-                <span className="text-gradient">{rangeText}</span>
-              </p>
-              <p className="mt-2 font-mono text-[0.95rem] text-slate">
-                typical delivery: {weeksText}
+              <h2 className="display-h3 text-[1.3rem]">
+                Let&apos;s scope your project properly.
+              </h2>
+              <p className="mt-4 max-w-lg text-[0.95rem] leading-relaxed text-slate">
+                Every project is different. Tell us what you are building, and we
+                will recommend the right scope, delivery approach and next steps.
               </p>
               <ul className="mt-6 space-y-2 text-[0.92rem] text-ink">
                 <li className="flex items-start gap-2.5">
@@ -242,18 +217,21 @@ export function Estimator() {
                 {timeline && (
                   <li className="flex items-start gap-2.5">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-verified" />
-                    Timeline: {timeline}
+                    Preferred timeline: {timeline}
                   </li>
                 )}
+                <li className="flex items-start gap-2.5">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-verified" />
+                  Typical delivery window: {weeksText}
+                </li>
               </ul>
               <p className="mt-6 max-w-lg text-[0.85rem] leading-relaxed text-slate">
-                This is a ballpark, not a quote. Send it to us and you&apos;ll
-                get a written proposal with a fixed price within 72 hours
-                free, no obligation.
+                Share this brief with the team and we will review your objectives
+                and provide a tailored proposal. Free consultation, no obligation.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <button type="button" onClick={sendAsBrief} className="btn-primary">
-                  Send as project brief
+                  Get a Tailored Proposal
                   <ArrowRight className="h-4 w-4" />
                 </button>
                 <a
@@ -263,14 +241,13 @@ export function Estimator() {
                   className="btn-secondary"
                 >
                   <WhatsApp className="h-4 w-4" />
-                  Discuss on WhatsApp
+                  Discuss Your Project
                 </a>
               </div>
             </div>
           )}
         </div>
 
-        {/* Nav */}
         {step < 3 && (
           <div className="mt-8 flex items-center justify-between border-t border-grid pt-6">
             <button
@@ -287,7 +264,7 @@ export function Estimator() {
               disabled={!canNext}
               className="btn-primary disabled:opacity-40"
             >
-              {step === 2 ? "See my ballpark" : step === 1 ? "Next" : "Next"}
+              {step === 2 ? "Review & continue" : "Next"}
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>
@@ -305,17 +282,14 @@ export function Estimator() {
         )}
       </div>
 
-      {/* Live panel */}
       <aside className="lg:col-span-4">
         <div className="card sticky top-24 p-7" aria-live="polite">
-          <p className="eyebrow mb-3">/ running estimate</p>
-          <p className="font-mono text-2xl font-semibold">
-            <span className={type ? "text-gradient" : "text-slate"}>
-              {rangeText}
-            </span>
+          <p className="eyebrow mb-3">/ your brief so far</p>
+          <p className="font-display text-[1.15rem] font-semibold leading-snug text-ink">
+            {type ? type.label : "Pick a project type to start"}
           </p>
           <p className="mt-1.5 font-mono text-[0.85rem] text-slate">
-            {type ? weeksText : "pick a project type to start"}
+            {type ? `Typical window: ${weeksText}` : "No prices shown. We scope with you."}
           </p>
           <dl className="mt-6 space-y-3 border-t border-grid pt-5 text-[0.88rem]">
             <div className="flex justify-between gap-3">
@@ -334,8 +308,8 @@ export function Estimator() {
             </div>
           </dl>
           <p className="mt-6 text-[0.78rem] leading-relaxed text-slate">
-            Indicative range in USD. Your written quote may land below or above
-            it depending on scope, we fix the price before any work starts.
+            Every project is different. Send your brief and we will recommend the
+            right scope, delivery approach and next steps.
           </p>
         </div>
       </aside>

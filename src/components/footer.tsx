@@ -112,7 +112,7 @@ export function Footer() {
                 </li>
               ))}
               <li>
-                <FooterLink href="/estimate">Project estimator</FooterLink>
+                <FooterLink href="/estimate">Start a Project</FooterLink>
               </li>
             </ul>
           </nav>

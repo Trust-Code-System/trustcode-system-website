@@ -7,7 +7,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Engineering Projects",
   description:
-    "Explore selected software, cloud, cybersecurity, fintech, education, and commerce projects created and delivered by TrustCode System.",
+    "Explore selected products, cloud systems, cybersecurity projects and digital platforms designed and delivered by TrustCode.",
   path: "/work",
 });
 
@@ -16,8 +16,8 @@ export default function WorkPage() {
     <>
       <PageHero
         eyebrow="featured work"
-        title="Software, cloud systems and security work delivered by one team."
-        intro="Explore selected products, technical platforms, cloud architectures and cybersecurity projects created and delivered by TrustCode System."
+        title="Engineering work delivered by one multidisciplinary team."
+        intro="Explore selected products, cloud systems, cybersecurity projects and digital platforms designed and delivered by TrustCode."
       />
       <Section>
         <WorkGrid />

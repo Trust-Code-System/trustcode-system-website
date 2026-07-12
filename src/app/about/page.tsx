@@ -12,7 +12,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "About & Team",
   description:
-    "Four engineers, two countries, one standard: production-ready. Meet the founders of TrustCode System and the values we build on.",
+    "Meet the TrustCode System team: product, cloud, security and full-stack expertise delivering production-ready software from Lagos and London.",
   path: "/about",
 });
 
@@ -21,7 +21,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="about"
-        title="Four engineers. Two countries. One standard: production-ready."
+        title="One engineering team, built for complex digital products."
       >
         <div className="grid max-w-3xl gap-4">
           {originStory.map((p) => (

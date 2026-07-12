@@ -11,7 +11,6 @@ export function ServiceCard({ service }: { service: Service }) {
         <div className="flex h-11 w-11 items-center justify-center rounded-[10px] border border-grid bg-paper text-blueprint">
           {Icon && <Icon className="h-5 w-5" />}
         </div>
-        <span className="badge">{service.priceFrom}</span>
       </div>
       <h3 className="display-h3 mt-5 text-[1.2rem]">{service.title}</h3>
       <p className="mt-2 text-[0.95rem] leading-relaxed text-slate">
@@ -32,7 +31,7 @@ export function ServiceCard({ service }: { service: Service }) {
           href={`/contact?service=${service.slug}`}
           className="inline-flex items-center gap-1.5 text-[0.85rem] font-medium text-blueprint"
         >
-          Discuss this
+          {service.ctaLabel}
           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
         </Link>
       </div>

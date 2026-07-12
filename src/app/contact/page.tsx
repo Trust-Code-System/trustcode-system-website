@@ -11,7 +11,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Contact",
   description:
-    "Tell us what you're building. Free 30-minute consultation, written proposal within 72 hours, and a reply within 24 hours.",
+    "Tell us what you're building. Share your objectives and timeline, and TrustCode will provide a tailored proposal.",
   path: "/contact",
 });
 
@@ -20,8 +20,8 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="contact"
-        title="Tell us what you're building."
-        intro="Free 30-minute consultation, a written proposal within 72 hours, and a reply within 24 hours. No jargon, no obligation."
+        title="Let's scope your project properly."
+        intro="Share your objectives, required features and timeline. Our team will review the project and provide a tailored proposal. No jargon, no obligation."
       />
 
       <Section>
@@ -43,7 +43,7 @@ export default function ContactPage() {
                   className="inline-flex w-full items-center justify-center gap-2 rounded-[10px] bg-[#25D366] px-4 py-3 text-[0.95rem] font-semibold text-white transition-colors hover:bg-[#1da851]"
                 >
                   <WhatsApp className="h-5 w-5" />
-                  Chat on WhatsApp
+                  Talk to Our Team
                 </a>
                 <p className="mt-3 text-[0.82rem] text-slate">
                   Fastest way to reach us, we usually reply in minutes during
@@ -77,16 +77,16 @@ export default function ContactPage() {
               </div>
 
               <div className="card p-7">
-                <p className="eyebrow mb-3">/ not ready to write a brief?</p>
+                <p className="eyebrow mb-3">/ prefer a guided brief?</p>
                 <p className="text-[0.95rem] leading-relaxed text-slate">
-                  Get an instant ballpark price and timeline first, 60
-                  seconds, no email required.
+                  Use the project scoper to outline what you are building, then
+                  send it to us for a tailored proposal.
                 </p>
                 <Link
                   href="/estimate"
                   className="mt-4 inline-flex items-center gap-1.5 text-[0.95rem] font-medium text-blueprint hover:underline"
                 >
-                  Try the project estimator
+                  Request a Consultation
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

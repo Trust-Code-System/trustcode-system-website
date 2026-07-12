@@ -20,7 +20,7 @@ const STORAGE_KEY = "tc-assistant-chat";
 const NUDGE_KEY = "tc-assistant-nudge";
 
 const WELCOME =
-  "Hi, I'm the **TrustCode Assistant** 👋: part engineer, part front desk.\n\nAsk me anything about our services, pricing, or live products, or bring your toughest technical question. Web, cloud, AI, security: all of it.";
+  "Hi, I'm the **TrustCode Assistant** 👋: part engineer, part front desk.\n\nAsk me anything about our services, portfolio, or process, or bring your toughest technical question. Web, cloud, AI, security: all of it.";
 
 const QUICK_PROMPTS = [
   "What services do you offer?",
@@ -526,7 +526,7 @@ export function ChatWidget() {
                   }}
                   rows={1}
                   maxLength={4000}
-                  placeholder="Ask about services, pricing, or anything technical…"
+                  placeholder="Ask about services, portfolio, or anything technical…"
                   aria-label="Message the TrustCode Assistant"
                   className="no-scrollbar max-h-28 min-h-[2.5rem] flex-1 resize-none rounded-xl border border-grid bg-paper px-3 py-2 text-[0.875rem] text-ink placeholder:text-slate focus:border-blueprint focus:outline-none"
                   onInput={(e) => {
