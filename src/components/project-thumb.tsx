@@ -13,6 +13,7 @@ const SCREENSHOT_SLUGS = new Set([
   "aureo",
   "studycoach",
   "sln-engineering",
+  "9th-luxe",
 ]);
 
 function resolveCover(project: Project): string | null {

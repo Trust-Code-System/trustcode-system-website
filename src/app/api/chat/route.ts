@@ -93,7 +93,7 @@ export async function POST(req: Request) {
 
   if (await rateLimited(ip)) {
     return NextResponse.json(
-      { ok: false, error: "You're sending messages a little fast — give it a minute and try again." },
+      { ok: false, error: "You're sending messages a little fast, give it a minute and try again." },
       { status: 429 }
     );
   }
@@ -149,7 +149,7 @@ export async function POST(req: Request) {
             {
               type: "text",
               text: buildSystemPrompt(),
-              // The knowledge base is large and identical on every request —
+              // The knowledge base is large and identical on every request
               // cache it so repeat questions cost a fraction of the first.
               cache_control: { type: "ephemeral" },
             },

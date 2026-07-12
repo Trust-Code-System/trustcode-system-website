@@ -14,7 +14,7 @@ import {
  * Bridge between the AI assistant and the contact form. The assistant emits a
  * prefill object (validated by `prefillSchema`); the widget stores it under
  * `PREFILL_STORAGE_KEY` and dispatches `PREFILL_EVENT`; the contact form reads
- * it and fills its fields. The assistant only ever fills — it never submits.
+ * it and fills its fields. The assistant only ever fills, it never submits.
  */
 
 export const PREFILL_STORAGE_KEY = "tc-contact-prefill";

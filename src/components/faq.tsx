@@ -4,7 +4,7 @@ import { ChevronDown } from "./icons";
 
 /**
  * FAQ accordion (native <details>, no JS). `withSchema` adds FAQPage
- * JSON-LD — enable it on exactly one page (/contact) so search engines
+ * JSON-LD, enable it on exactly one page (/contact) so search engines
  * see a single canonical FAQ.
  */
 export function FaqSection({

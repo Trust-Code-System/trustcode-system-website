@@ -46,7 +46,7 @@ export default function ContactPage() {
                   Chat on WhatsApp
                 </a>
                 <p className="mt-3 text-[0.82rem] text-slate">
-                  Fastest way to reach us — we usually reply in minutes during
+                  Fastest way to reach us, we usually reply in minutes during
                   business hours.
                 </p>
 
@@ -79,7 +79,7 @@ export default function ContactPage() {
               <div className="card p-7">
                 <p className="eyebrow mb-3">/ not ready to write a brief?</p>
                 <p className="text-[0.95rem] leading-relaxed text-slate">
-                  Get an instant ballpark price and timeline first — 60
+                  Get an instant ballpark price and timeline first, 60
                   seconds, no email required.
                 </p>
                 <Link

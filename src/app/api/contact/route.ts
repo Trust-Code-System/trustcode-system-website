@@ -105,12 +105,12 @@ export async function POST(req: Request) {
 
   const data = parsed.data;
 
-  // Honeypot tripped — pretend success, drop silently.
+  // Honeypot tripped, pretend success, drop silently.
   if (data.website) {
     return NextResponse.json({ ok: true });
   }
 
-  const subject = `New project inquiry — ${serviceLabel(data.service)}`;
+  const subject = `New project inquiry: ${serviceLabel(data.service)}`;
 
   const brief = [
     data.siteType ? `Type of site: ${data.siteType}` : null,
@@ -130,9 +130,9 @@ export async function POST(req: Request) {
     data.company ? `Company: ${data.company}` : null,
     `Service: ${serviceLabel(data.service)}`,
     data.budget ? `Budget: ${data.budget}` : null,
-    ...(brief.length ? ["", "— Project brief —", ...brief] : []),
+    ...(brief.length ? ["", "Project brief", ...brief] : []),
     "",
-    "— Details —",
+    "Details",
     data.message,
   ]
     .filter(Boolean)

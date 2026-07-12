@@ -11,7 +11,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Services",
   description:
-    "Product & web engineering, e-commerce, cloud & DevOps, AI integration, cybersecurity, IT support, and training — one team, full coverage.",
+    "Product & web engineering, e-commerce, cloud & DevOps, AI integration, cybersecurity, IT support, and training. One team, full coverage.",
   path: "/services",
 });
 
@@ -20,8 +20,8 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="services"
-        title="One team, full coverage — pixel to server to security layer."
-        intro="Seven services, four engineers, one standard. Every service links to a live product you can inspect, with a transparent starting price — and every engagement gets a written, fixed-price quote within 72 hours."
+        title="One team, full coverage: pixel to server to security layer."
+        intro="Seven services, four engineers, one standard. Every service links to a live product you can inspect, with a transparent starting price, and every engagement gets a written, fixed-price quote within 72 hours."
       />
 
       <Section>
@@ -106,7 +106,7 @@ export default function ServicesPage() {
       <Section className="border-y border-grid bg-surface">
         <p className="eyebrow">/ engagement models</p>
         <h2 className="display-h2 mt-4 max-w-2xl">
-          Three ways to work with us. Starting prices are a guide — every
+          Three ways to work with us. Starting prices are a guide, every
           quote is written for your scope.
         </h2>
         <div className="mt-10 grid gap-5 md:grid-cols-3">

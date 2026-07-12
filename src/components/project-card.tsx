@@ -4,15 +4,29 @@ import { PROOF_LABELS, proofCtaLabel } from "@/content/portfolio";
 import { ProjectThumb } from "./project-thumb";
 import { ArrowUpRight } from "./icons";
 
+function liveLabel(project: Project) {
+  return project.liveCtaLabel ?? proofCtaLabel(project.proofType);
+}
+
+function sourceLabel(project: Project) {
+  return (
+    project.sourceCtaLabel ??
+    proofCtaLabel(
+      project.proofType === "architecture" ? "architecture" : "github"
+    )
+  );
+}
+
 export function ProjectCard({ project }: { project: Project }) {
-  const externalHref = project.live ?? project.sourceUrl ?? null;
-  const externalLabel = project.live
-    ? proofCtaLabel(project.proofType)
-    : project.sourceUrl
-      ? proofCtaLabel(
-          project.proofType === "architecture" ? "architecture" : "github"
-        )
-      : null;
+  const showLive = Boolean(project.live);
+  const showSource = Boolean(project.sourceUrl);
+  // When both destinations exist, expose separate actions (e.g. 9th Luxe).
+  const singleExternal =
+    showLive && !showSource
+      ? { href: project.live!, label: liveLabel(project) }
+      : !showLive && showSource
+        ? { href: project.sourceUrl!, label: sourceLabel(project) }
+        : null;
 
   return (
     <article className="card card-hover group flex h-full flex-col overflow-hidden">
@@ -50,21 +64,49 @@ export function ProjectCard({ project }: { project: Project }) {
           >
             Case study
           </Link>
-          {externalHref && externalLabel && (
-            <a
-              href={externalHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-mono text-[0.72rem] text-slate hover:text-ink"
-              aria-label={`${externalLabel} for ${project.title} (opens in new tab)`}
-            >
-              {project.live && (
-                <span className="h-1.5 w-1.5 rounded-full bg-verified" />
-              )}
-              {externalLabel}
-              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
-            </a>
-          )}
+          <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1">
+            {showLive && showSource ? (
+              <>
+                <a
+                  href={project.live!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-mono text-[0.72rem] text-slate hover:text-ink"
+                  aria-label={`${liveLabel(project)} for ${project.title} (opens in new tab)`}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-verified" />
+                  {liveLabel(project)}
+                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+                </a>
+                <a
+                  href={project.sourceUrl!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-mono text-[0.72rem] text-slate hover:text-ink"
+                  aria-label={`${sourceLabel(project)} for ${project.title} (opens in new tab)`}
+                >
+                  {sourceLabel(project)}
+                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+                </a>
+              </>
+            ) : (
+              singleExternal && (
+                <a
+                  href={singleExternal.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-mono text-[0.72rem] text-slate hover:text-ink"
+                  aria-label={`${singleExternal.label} for ${project.title} (opens in new tab)`}
+                >
+                  {project.live && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-verified" />
+                  )}
+                  {singleExternal.label}
+                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+                </a>
+              )
+            )}
+          </div>
         </div>
       </div>
     </article>

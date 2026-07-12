@@ -8,7 +8,7 @@ export const serviceOptions = [
   { value: "cybersecurity-soc", label: "Cybersecurity & SOC Services" },
   { value: "it-support-managed", label: "IT Support & Managed Services" },
   { value: "training-mentorship", label: "Training & Technical Mentorship" },
-  { value: "not-sure", label: "Not sure yet — help me scope it" },
+  { value: "not-sure", label: "Not sure yet, help me scope it" },
 ] as const;
 
 export const budgetOptions = [
@@ -41,7 +41,7 @@ export const goalOptions = [
 ] as const;
 
 export const startingPointOptions = [
-  "Brand new — starting fresh",
+  "Brand new, starting fresh",
   "Redesign an existing site",
   "Have branding, need a site",
 ] as const;
@@ -82,7 +82,7 @@ export const contactSchema = z.object({
   company: z.string().trim().max(160).optional().or(z.literal("")),
   service: z.string().trim().min(1, "Please choose a service.").max(80),
   budget: z.string().trim().max(40).optional().or(z.literal("")),
-  // Project brief — all optional, free strings so "Other" entries pass through.
+  // Project brief, all optional, free strings so "Other" entries pass through.
   siteType: briefText,
   goal: briefText,
   startingPoint: briefText,
@@ -93,7 +93,7 @@ export const contactSchema = z.object({
   message: z
     .string()
     .trim()
-    .min(10, "Tell us a little more — at least 10 characters.")
+    .min(10, "Tell us a little more, at least 10 characters.")
     .max(4000),
   // Honeypot: real users never see this field; bot-filled values are accepted
   // by validation so the API can silently drop them.

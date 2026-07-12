@@ -6,7 +6,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Project Estimator",
   description:
-    "Scope your project in 60 seconds — pick what you're building and the features you need, and get an instant ballpark price range and timeline.",
+    "Scope your project in 60 seconds, pick what you're building and the features you need, and get an instant ballpark price range and timeline.",
   path: "/estimate",
 });
 
@@ -16,7 +16,7 @@ export default function EstimatePage() {
       <PageHero
         eyebrow="estimator"
         title="Scope your project in 60 seconds."
-        intro="Pick what you're building and the features you need — you'll get an instant ballpark range and typical timeline. No email required to see the number."
+        intro="Pick what you're building and the features you need, you'll get an instant ballpark range and typical timeline. No email required to see the number."
       />
       <Section>
         <Estimator />

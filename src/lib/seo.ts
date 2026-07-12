@@ -12,7 +12,7 @@ export function pageMeta({
 }): Metadata {
   const url = `${site.url}${path}`;
   const fullTitle =
-    path === "/" ? `${title}` : `${title} — ${site.shortName}`;
+    path === "/" ? `${title}` : `${title} - ${site.shortName}`;
   return {
     title: fullTitle,
     description,

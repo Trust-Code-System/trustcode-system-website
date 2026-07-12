@@ -20,7 +20,7 @@ const STORAGE_KEY = "tc-assistant-chat";
 const NUDGE_KEY = "tc-assistant-nudge";
 
 const WELCOME =
-  "Hi, I'm the **TrustCode Assistant** 👋 part engineer, part front desk.\n\nAsk me anything about our services, pricing, or live products, or bring your toughest technical question. Web, cloud, AI, security, all of it.";
+  "Hi, I'm the **TrustCode Assistant** 👋: part engineer, part front desk.\n\nAsk me anything about our services, pricing, or live products, or bring your toughest technical question. Web, cloud, AI, security: all of it.";
 
 const QUICK_PROMPTS = [
   "What services do you offer?",
@@ -37,9 +37,10 @@ const FALLBACK_ERROR = `Sorry, I couldn't reach the assistant just now. Please t
  * here on the accumulated text (so chunk boundaries can't split a range).
  */
 function humanize(text: string): string {
+  // Strip em (U+2014) and en (U+2013) dashes only. Never touch ASCII hyphens.
   return text
-    .replace(/(\d)\s*[–—]\s*(\d)/g, "$1-$2")
-    .replace(/\s*[—–]\s*/g, ", ");
+    .replace(/(\d)\s*[\u2013\u2014]\s*(\d)/g, "$1-$2")
+    .replace(/\s*[\u2013\u2014]\s*/g, ", ");
 }
 
 /** Everything the visitor sees: the reply minus the hidden prefill block. */
@@ -122,7 +123,7 @@ export function ChatWidget() {
   }, []);
 
   // Hand a validated prefill to the contact form, then take the visitor there.
-  // We only ever fill — the visitor reviews and submits themselves.
+  // We only ever fill, the visitor reviews and submits themselves.
   const handlePrefill = useCallback(
     (raw: unknown) => {
       const parsed = prefillSchema.safeParse(raw);
@@ -133,7 +134,7 @@ export function ChatWidget() {
           JSON.stringify(parsed.data)
         );
       } catch {
-        // storage unavailable — the form just opens empty; not fatal
+        // storage unavailable, the form just opens empty; not fatal
       }
       // Covers the "already on /contact" case where the form is mounted.
       window.dispatchEvent(new CustomEvent(PREFILL_EVENT));
@@ -170,7 +171,7 @@ export function ChatWidget() {
     try {
       sessionStorage.setItem(NUDGE_KEY, "1");
     } catch {
-      // fine — the nudge just reappears next page load
+      // fine, the nudge just reappears next page load
     }
   }, []);
 
@@ -178,7 +179,7 @@ export function ChatWidget() {
     try {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages.slice(-40)));
     } catch {
-      // storage full/unavailable — chat still works, just won't persist
+      // storage full/unavailable, chat still works, just won't persist
     }
   }, [messages]);
 
@@ -353,7 +354,7 @@ export function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Launcher — gradient squircle with the TrustCode assistant mark */}
+      {/* Launcher, gradient squircle with the TrustCode assistant mark */}
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

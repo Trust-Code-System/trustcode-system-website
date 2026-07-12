@@ -11,7 +11,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Insights",
   description:
-    "Notes on shipping software in Lagos and London — fintech, edtech, AWS, AI, and security. Writing from the TrustCode team.",
+    "Notes on shipping software in Lagos and London, fintech, edtech, AWS, AI, and security. Writing from the TrustCode team.",
   path: "/insights",
 });
 
@@ -21,7 +21,7 @@ export default function InsightsPage() {
       <PageHero
         eyebrow="insights"
         title="Notes from shipping real software."
-        intro="Plain-spoken writing on web development, cloud, AI, and security — from a team that builds in production. New posts land here as we publish them."
+        intro="Plain-spoken writing on web development, cloud, AI, and security, from a team that builds in production. New posts land here as we publish them."
       />
 
       {/* Articles published here */}

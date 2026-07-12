@@ -19,20 +19,20 @@ export const industries: Industry[] = [
   {
     slug: "fintech",
     name: "Fintech",
-    seoTitle: "Fintech Software Development — Lagos, London & Remote",
+    seoTitle: "Fintech Software Development - Lagos, London & Remote",
     seoDescription:
-      "TrustCode System builds fintech products — wallets, payments, KYC flows, and trading platforms — with security and compliance thinking built in from day one. Based in Lagos and London.",
+      "TrustCode System builds fintech products, wallets, payments, KYC flows, and trading platforms, with security and compliance thinking built in from day one. Based in Lagos and London.",
     headline: "Fintech products people trust with their money.",
     intro:
-      "Wallets, payment flows, KYC, fraud monitoring, and trading dashboards — we've shipped them, live, in the Nigerian market. Fintech is where our security discipline and product engineering meet.",
+      "Wallets, payment flows, KYC, fraud monitoring, and trading dashboards. We've shipped them, live, in the Nigerian market. Fintech is where our security discipline and product engineering meet.",
     painPoints: [
       {
         title: "Trust is the product",
-        body: "A fintech product that looks unfinished loses users before the first transaction. We build interfaces and flows that signal reliability — because in payments, design is trust.",
+        body: "A fintech product that looks unfinished loses users before the first transaction. We build interfaces and flows that signal reliability because in payments, design is trust.",
       },
       {
         title: "Security can't be an afterthought",
-        body: "KYC data, payment credentials, and webhooks all need protecting from the first commit. Our SOC lead reviews what we ship — threat models, not checklists after launch.",
+        body: "KYC data, payment credentials, and webhooks all need protecting from the first commit. Our SOC lead reviews what we ship: threat models, not checklists after launch.",
       },
       {
         title: "Payments are unforgiving",
@@ -51,12 +51,12 @@ export const industries: Industry[] = [
   {
     slug: "edtech",
     name: "EdTech",
-    seoTitle: "EdTech Platform Development — Lagos, London & Remote",
+    seoTitle: "EdTech Platform Development - Lagos, London & Remote",
     seoDescription:
-      "TrustCode System builds education platforms — school management systems, role-based portals, AI study tools — that work on real-world connections. Based in Lagos and London.",
+      "TrustCode System builds education platforms, school management systems, role-based portals, AI study tools, that work on real-world connections. Based in Lagos and London.",
     headline: "Education platforms that work in the real world.",
     intro:
-      "School management systems, role-based portals for students and staff, AI study tools — built to run on everyday devices and everyday connections, not just office wifi.",
+      "School management systems, role-based portals for students and staff, AI study tools: built to run on everyday devices and everyday connections, not just office wifi.",
     painPoints: [
       {
         title: "Spreadsheet admissions don't scale",
@@ -64,7 +64,7 @@ export const industries: Industry[] = [
       },
       {
         title: "Many roles, one platform",
-        body: "Students, facilitators, and admins need different views of the same data — with real access control between them. Role-based portals are a core pattern we've shipped to production.",
+        body: "Students, facilitators, and admins need different views of the same data, with real access control between them. Role-based portals are a core pattern we've shipped to production.",
       },
       {
         title: "Low bandwidth is the default",
@@ -83,10 +83,10 @@ export const industries: Industry[] = [
   {
     slug: "ecommerce",
     name: "E-commerce",
-    seoTitle: "E-commerce Development — Lagos, London & Remote",
+    seoTitle: "E-commerce Development - Lagos, London & Remote",
     seoDescription:
-      "TrustCode System builds e-commerce storefronts with carts, checkout, custom orders, wholesale flows, and Paystack/Stripe payments — editorial design that converts. Lagos & London.",
-    headline: "Storefronts that carry the brand — and close the sale.",
+      "TrustCode System builds e-commerce storefronts with carts, checkout, custom orders, wholesale flows, and Paystack/Stripe payments, editorial design that converts. Lagos & London.",
+    headline: "Storefronts that carry the brand, and close the sale.",
     intro:
       "Editorial product pages, carts that persist, checkouts that don't leak sales, and payment integration that reconciles. We've built retail, custom-order, and wholesale flows for real merchants.",
     painPoints: [
@@ -100,7 +100,7 @@ export const industries: Industry[] = [
       },
       {
         title: "WhatsApp-only sales don't scale",
-        body: "Answering the same product questions in chat all day caps your growth. A real platform lets customers self-serve — we've measured the difference for clients.",
+        body: "Answering the same product questions in chat all day caps your growth. A real platform lets customers self-serve, we've measured the difference for clients.",
       },
     ],
     deliver: [
@@ -115,12 +115,12 @@ export const industries: Industry[] = [
   {
     slug: "ai",
     name: "AI & Automation",
-    seoTitle: "AI Integration & Automation Development — Lagos, London & Remote",
+    seoTitle: "AI Integration & Automation Development - Lagos, London & Remote",
     seoDescription:
-      "TrustCode System integrates AI where it creates measurable value — copilots, LLM features, compliance sandboxes, and automation. Production AI, not demos. Lagos & London.",
+      "TrustCode System integrates AI where it creates measurable value, copilots, LLM features, compliance sandboxes, and automation. Production AI, not demos. Lagos & London.",
     headline: "AI that ships to production, not to a demo day.",
     intro:
-      "LLM features, copilots, and automation — integrated where they create measurable value. We've shipped AI compliance sandboxes, study tools, and domain copilots that cite their sources.",
+      "LLM features, copilots, and automation, integrated where they create measurable value. We've shipped AI compliance sandboxes, study tools, and domain copilots that cite their sources.",
     painPoints: [
       {
         title: "Demos are easy; production is not",
@@ -147,12 +147,12 @@ export const industries: Industry[] = [
   {
     slug: "security",
     name: "Security",
-    seoTitle: "Cybersecurity & SOC Services — Lagos, London & Remote",
+    seoTitle: "Cybersecurity & SOC Services - Lagos, London & Remote",
     seoDescription:
-      "TrustCode System provides security monitoring, threat hunting, phishing-readiness, and MITRE-mapped detection — led by an ISC2-certified SOC analyst. Lagos & London.",
+      "TrustCode System provides security monitoring, threat hunting, phishing-readiness, and MITRE-mapped detection, led by an ISC2-certified SOC analyst. Lagos & London.",
     headline: "Security rigor for businesses that can't afford surprises.",
     intro:
-      "SIEM monitoring, threat hunting, phishing-readiness, and incident response playbooks — led by an ISC2-certified SOC analyst and mapped to MITRE ATT&CK. The same rigor protects everything we build.",
+      "SIEM monitoring, threat hunting, phishing-readiness, and incident response playbooks, led by an ISC2-certified SOC analyst and mapped to MITRE ATT&CK. The same rigor protects everything we build.",
     painPoints: [
       {
         title: "You can't defend what you can't see",

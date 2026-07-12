@@ -4,7 +4,7 @@
 
 /* ---- Body sans: Switzer (Fontshare) ---- */
 @import url("https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap");
-/* ---- Headings: Source Serif 4 (Google) — Claude-like editorial serif ---- */
+/* ---- Headings: Source Serif 4 (Google), Claude-like editorial serif ---- */
 @import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap");
 
 :root {
@@ -116,7 +116,7 @@ html {
 }
 
 /* Scroll-reveal (JS toggles .reveal-in via IntersectionObserver).
-   Content rises off a shallow 3D plane — a hint of depth, not a flip. */
+   Content rises off a shallow 3D plane, a hint of depth, not a flip. */
 .reveal {
   opacity: 0;
   transform: perspective(900px) translateY(18px) rotateX(5deg) scale(0.995);
@@ -520,7 +520,7 @@ html {
     @apply inline-flex items-center rounded-md border border-grid bg-paper px-2 py-1 font-mono text-[0.7rem] text-slate;
   }
 
-  /* Custom-styled <select> — removes the OS chevron and draws our own so the
+  /* Custom-styled <select>, removes the OS chevron and draws our own so the
      control matches the rest of the design system in both themes. */
   .field-select {
     -webkit-appearance: none;

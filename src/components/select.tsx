@@ -22,7 +22,7 @@ type SelectProps = {
 };
 
 /**
- * Fully themed dropdown — replaces the native <select> so the open list
+ * Fully themed dropdown, replaces the native <select> so the open list
  * matches the design system instead of the OS-rendered chrome. A hidden
  * <input> carries the value so FormData submission is unchanged.
  */

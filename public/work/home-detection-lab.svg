@@ -21,6 +21,6 @@
   </g>
   <rect x="120" y="460" width="980" height="120" rx="12" fill="#152238" stroke="#1e2a44"/>
   <text x="160" y="515" font-family="ui-monospace,monospace" font-size="16" fill="#25c08a">MITRE ATT&amp;CK · traffic control · log monitoring · incident notes</text>
-  <text x="160" y="550" font-family="system-ui,sans-serif" font-size="16" fill="#94a3b8">Sanitised topology — no real IPs, credentials, or private hostnames</text>
+  <text x="160" y="550" font-family="system-ui,sans-serif" font-size="16" fill="#94a3b8">Sanitised topology, no real IPs, credentials, or private hostnames</text>
   <text x="64" y="740" font-family="ui-monospace,monospace" font-size="14" fill="#64748b">TrustCode · Security lab showcase</text>
 </svg>

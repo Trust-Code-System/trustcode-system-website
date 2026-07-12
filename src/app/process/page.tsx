@@ -11,7 +11,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Process",
   description:
-    "Discover → Design → Build → Harden → Support. No vanishing acts — weekly demos, a shared channel, and a real staging link from week one.",
+    "Discover → Design → Build → Harden → Support. No vanishing acts, weekly demos, a shared channel, and a real staging link from week one.",
   path: "/process",
 });
 

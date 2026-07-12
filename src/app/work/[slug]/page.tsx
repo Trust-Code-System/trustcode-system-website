@@ -38,14 +38,12 @@ export default async function CaseStudyPage({
   if (!project) notFound();
 
   const next = projects[(index + 1) % projects.length];
-  const externalHref = project.live ?? project.sourceUrl ?? null;
-  const externalLabel = project.live
-    ? proofCtaLabel(project.proofType)
-    : project.sourceUrl
-      ? proofCtaLabel(
-          project.proofType === "architecture" ? "architecture" : "github"
-        )
-      : null;
+  const liveLabel = project.liveCtaLabel ?? proofCtaLabel(project.proofType);
+  const sourceLabel =
+    project.sourceCtaLabel ??
+    proofCtaLabel(
+      project.proofType === "architecture" ? "architecture" : "github"
+    );
 
   return (
     <>
@@ -76,21 +74,32 @@ export default async function CaseStudyPage({
               </h1>
               <p className="lead mt-4 max-w-xl">{project.tagline}</p>
               <div className="mt-7 flex flex-wrap gap-3">
-                {externalHref && externalLabel ? (
+                {project.live && (
                   <a
-                    href={externalHref}
+                    href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary"
-                    aria-label={`${externalLabel} (opens in new tab)`}
+                    aria-label={`${liveLabel} (opens in new tab)`}
                   >
-                    {project.live && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                    )}
-                    {externalLabel}
+                    <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                    {liveLabel}
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
-                ) : (
+                )}
+                {project.sourceUrl && (
+                  <a
+                    href={project.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={project.live ? "btn-secondary" : "btn-primary"}
+                    aria-label={`${sourceLabel} (opens in new tab)`}
+                  >
+                    {sourceLabel}
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                )}
+                {!project.live && !project.sourceUrl && (
                   <span className="badge">
                     {PROOF_LABELS[project.proofType]}
                   </span>

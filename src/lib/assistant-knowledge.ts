@@ -29,7 +29,7 @@ import { PREFILL_OPEN, PREFILL_CLOSE } from "@/lib/contact-prefill";
  * serialized from the same typed content files that render the site, so the
  * assistant can never drift out of sync with what the pages say.
  *
- * Keep this string stable across requests — it is prompt-cached, and any
+ * Keep this string stable across requests, it is prompt-cached, and any
  * byte change invalidates the cache (never embed timestamps or request ids).
  */
 
@@ -50,7 +50,7 @@ You have three jobs, and you are excellent at all of them:
 
 VOICE AND STYLE (strict)
 - Write like a thoughtful human, not a press release. Warm, confident, direct.
-- NEVER use em dashes or en dashes anywhere in your replies. Not "—", not "–". Use a comma, a period, parentheses, or the word "to" instead. For ranges write "2 to 4 weeks", never "2–4 weeks". This rule has no exceptions. The knowledge base below contains dashes in places; when you use that information, rewrite it without them.
+- NEVER use em dashes or en dashes anywhere in your replies. Prefer a comma, a period, parentheses, or the word "to". For ranges write "2 to 4 weeks", never a dash range. This rule has no exceptions. If the knowledge base uses dash-like punctuation, rewrite it without those characters.
 - Keep answers tight. Default to 2 to 5 short paragraphs or one tight list. Go longer only when a technical question truly needs depth.
 - Match the visitor's language if they write in something other than English.
 
@@ -74,7 +74,7 @@ function serviceLines(): string {
   return services
     .map(
       (s) =>
-        `- ${s.title} — ${s.short} Includes: ${s.includes.join("; ")}. Typical timeline: ${s.timeline}. Indicative price: ${s.priceFrom}. Proof: ${s.proof.label} (${site.url}${s.proof.href}).`
+        `- ${s.title}, ${s.short} Includes: ${s.includes.join("; ")}. Typical timeline: ${s.timeline}. Indicative price: ${s.priceFrom}. Proof: ${s.proof.label} (${site.url}${s.proof.href}).`
     )
     .join("\n");
 }
@@ -90,7 +90,7 @@ function projectLines(): string {
       const featured = p.featured
         ? `Featured lead project #${p.featuredOrder}.`
         : "Additional portfolio project.";
-      return `- ${p.title} (${p.sector}; proof: ${p.proofType}) — ${p.tagline} ${featured} Delivered by the TrustCode engineering team. Problem: ${p.problem} Built: ${p.built.join("; ")}. Outcome: ${p.outcome} Stack: ${p.stack.join(", ")}. ${p.contribution ? `Approach: ${p.contribution} ` : ""}${live} Case study: ${site.url}/work/${p.slug}`;
+      return `- ${p.title} (${p.sector}; proof: ${p.proofType}), ${p.tagline} ${featured} Delivered by the TrustCode engineering team. Problem: ${p.problem} Built: ${p.built.join("; ")}. Outcome: ${p.outcome} Stack: ${p.stack.join(", ")}. ${p.contribution ? `Approach: ${p.contribution} ` : ""}${live} Case study: ${site.url}/work/${p.slug}`;
     })
     .join("\n");
 }
@@ -99,7 +99,7 @@ function teamLines(): string {
   return team
     .map(
       (f) =>
-        `- ${f.name} — ${f.role} (${f.location}). ${f.oneLiner} ${f.bio.join(" ")} Highlights: ${f.highlights.join("; ")}. Credentials: ${f.credentials.join("; ")}. Stack: ${f.stack.join(", ")}. Profiles: ${f.links.map((l) => `${l.label} ${l.href}`).join(" · ")}.`
+        `- ${f.name}, ${f.role} (${f.location}). ${f.oneLiner} ${f.bio.join(" ")} Highlights: ${f.highlights.join("; ")}. Credentials: ${f.credentials.join("; ")}. Stack: ${f.stack.join(", ")}. Profiles: ${f.links.map((l) => `${l.label} ${l.href}`).join(" · ")}.`
     )
     .join("\n");
 }
@@ -108,7 +108,7 @@ function processLines(): string {
   const stepText = steps
     .map(
       (s) =>
-        `${s.n} ${s.title} (${s.duration}) — ${s.what} Deliverable: ${s.deliverable}`
+        `${s.n} ${s.title} (${s.duration}), ${s.what} Deliverable: ${s.deliverable}`
     )
     .join("\n");
   const commText = communication.map((c) => `- ${c.title}: ${c.body}`).join("\n");
@@ -148,7 +148,7 @@ function insightLines(): string {
   return articles
     .map(
       (a) =>
-        `- "${a.title}" (${a.tag}, ${a.readingTime}) — ${a.dek} Read at ${site.url}/insights/${a.slug}`
+        `- "${a.title}" (${a.tag}, ${a.readingTime}), ${a.dek} Read at ${site.url}/insights/${a.slug}`
     )
     .join("\n");
 }
@@ -202,7 +202,7 @@ ${formProtocol()}
 COMPANY
 ${site.thesis}
 Tagline: "Software you can stake your business on."
-Locations: ${site.locations.join(" · ")} — remote worldwide. Clients can pay in USD, GBP, or NGN.
+Locations: ${site.locations.join(" · ")}, remote worldwide. Clients can pay in USD, GBP, or NGN.
 Key numbers: ${stats.map((s) => `${s.value} ${s.label}`).join(" · ")}.
 Contact: email ${site.email} · WhatsApp ${site.phone} (${site.whatsapp.split("?")[0]}) · contact form ${site.url}/contact. ${site.responsePromise}
 Profiles: GitHub ${social.github} · LinkedIn ${social.linkedin} · X ${social.x}
@@ -212,19 +212,19 @@ ${values.map((v) => `- ${v.title}: ${v.body}`).join("\n")}
 
 Origin story: ${originStory.join(" ")}
 
-SERVICES (with indicative starting prices — final quotes are always written and fixed)
+SERVICES (with indicative starting prices, final quotes are always written and fixed)
 ${serviceLines()}
 
 ENGAGEMENT MODELS
 ${engagementModels.map((m) => `- ${m.title}: ${m.description}`).join("\n")}
 
-BALLPARK PRICING TABLES (from the site's estimator — use these to estimate a visitor's project)
+BALLPARK PRICING TABLES (from the site's estimator, use these to estimate a visitor's project)
 ${estimatorLines()}
 
 INDUSTRIES WE SPECIALIZE IN
 ${industryLines()}
 
-PORTFOLIO (15+ products shipped; the highlights below are on the site — most are live and clickable)
+PORTFOLIO (15+ products shipped; the highlights below are on the site, most are live and clickable)
 ${projectLines()}
 
 THE TEAM (4 co-founders)

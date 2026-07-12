@@ -1,5 +1,5 @@
 // Ballpark pricing data for the /estimate wizard. These are indicative
-// ranges only — every real engagement gets a written quote within 72 hours.
+// ranges only, every real engagement gets a written quote within 72 hours.
 // Labels must match the option lists in src/lib/contact-schema.ts exactly,
 // because the estimator hands its selections to the contact form.
 
@@ -16,7 +16,7 @@ export const projectTypes: ProjectType[] = [
   {
     label: "Business / landing site",
     service: "product-web-engineering",
-    blurb: "Marketing site, services, contact — built to convert.",
+    blurb: "Marketing site, services, contact. Built to convert.",
     price: [1200, 2500],
     weeks: [2, 4],
   },

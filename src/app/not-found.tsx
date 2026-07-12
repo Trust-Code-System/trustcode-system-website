@@ -14,7 +14,7 @@ export default function NotFound() {
           This route isn&apos;t deployed. Everything else is.
         </p>
         <p className="lead mt-3 max-w-md">
-          The page you were looking for doesn&apos;t exist — but our live work
+          The page you were looking for doesn&apos;t exist, but our live work
           does. Take a look.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

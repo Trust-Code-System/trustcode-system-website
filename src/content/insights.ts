@@ -12,7 +12,7 @@ export const insights: Insight[] = [
   {
     title: "Shipping a fintech dashboard that cut manual work by 30%",
     excerpt:
-      "What it actually takes to replace a manual loan-handling process with software people trust — and the metrics that proved it worked.",
+      "What it actually takes to replace a manual loan-handling process with software people trust, and the metrics that proved it worked.",
     href: "https://hashnode.com/@ghost69",
     source: "Hashnode",
     tag: "Fintech",
@@ -36,7 +36,7 @@ export const insights: Insight[] = [
   {
     title: "Adding AI to a product without breaking it",
     excerpt:
-      "Where LLM features create real value versus where they just make a demo — and how we decide which is which.",
+      "Where LLM features create real value versus where they just make a demo, and how we decide which is which.",
     href: "https://medium.com/@Ghost69",
     source: "Medium",
     tag: "AI",

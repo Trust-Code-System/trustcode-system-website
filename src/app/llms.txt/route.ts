@@ -2,7 +2,7 @@ import { site, socialLinks, nav } from "@/content/site";
 import { team } from "@/content/team";
 import { services } from "@/content/services";
 
-// llms.txt — a plain-text/markdown summary of the company for AI crawlers and
+// llms.txt, a plain-text/markdown summary of the company for AI crawlers and
 // assistants (an emerging convention; see https://llmstxt.org). Generated from
 // site content so it never drifts. Served at /llms.txt.
 export const dynamic = "force-static";
@@ -25,11 +25,11 @@ export function GET() {
     "",
     "## Services",
     "",
-    ...services.map((s) => `- **${s.title}** — ${s.short}`),
+    ...services.map((s) => `- **${s.title}**, ${s.short}`),
     "",
     "## Team",
     "",
-    ...team.map((f) => `- **${f.name}** — ${f.role} (${f.location})`),
+    ...team.map((f) => `- **${f.name}**, ${f.role} (${f.location})`),
     "",
     "## Key pages",
     "",

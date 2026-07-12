@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 
 /**
  * Tiny, safe markdown renderer for assistant replies. Supports the subset
- * the assistant is prompted to use — paragraphs, bullet/numbered lists,
- * **bold**, `inline code`, fenced code blocks, and links — and renders
+ * the assistant is prompted to use, paragraphs, bullet/numbered lists,
+ * **bold**, `inline code`, fenced code blocks, and links, and renders
  * everything as React nodes (no HTML injection).
  */
 

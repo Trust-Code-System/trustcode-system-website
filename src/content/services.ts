@@ -6,7 +6,7 @@ export type Service = {
   description: string;
   includes: string[];
   timeline: string;
-  /** Indicative starting price — every engagement still gets a written quote. */
+  /** Indicative starting price, every engagement still gets a written quote. */
   priceFrom: string;
   proof: { label: string; href: string };
 };
@@ -17,9 +17,9 @@ export const services: Service[] = [
     icon: "layout",
     title: "Product & Web Engineering",
     short:
-      "Custom websites, web apps, and SaaS platforms in Next.js/TypeScript — from landing page to multi-role platform.",
+      "Custom websites, web apps, and SaaS platforms in Next.js/TypeScript: from landing page to multi-role platform.",
     description:
-      "We build custom websites, web apps, and SaaS platforms in Next.js and TypeScript. From a single landing page to a multi-role platform with auth, dashboards, and admin panels — designed, built, and shipped to production.",
+      "We build custom websites, web apps, and SaaS platforms in Next.js and TypeScript. From a single landing page to a multi-role platform with auth, dashboards, and admin panels: designed, built, and shipped to production.",
     includes: [
       "Next.js / TypeScript architecture",
       "Authentication & role-based access",
@@ -37,7 +37,7 @@ export const services: Service[] = [
     short:
       "Storefronts with carts, wishlists, custom-order flows, wholesale support, and Paystack/Stripe payments.",
     description:
-      "Storefronts that sell — carts, wishlists, custom-order flows, wholesale support, and payment integration with Paystack or Stripe. Editorial, fast, and built to convert.",
+      "Storefronts that sell: carts, wishlists, custom-order flows, wholesale support, and payment integration with Paystack or Stripe. Editorial, fast, and built to convert.",
     includes: [
       "Cart, wishlist & checkout",
       "Custom-order & wholesale flows",
@@ -55,7 +55,7 @@ export const services: Service[] = [
     short:
       "AWS-native architecture (CDK, Lambda, Fargate, EventBridge), CI/CD, IaC, caching, and cost optimization.",
     description:
-      "AWS-native architecture built with CDK, Lambda, Fargate, and EventBridge — plus CI/CD, infrastructure-as-code, caching layers, payment pipelines, and cost optimization. Infrastructure you can reason about and trust.",
+      "AWS-native architecture built with CDK, Lambda, Fargate, and EventBridge, plus CI/CD, infrastructure-as-code, caching layers, payment pipelines, and cost optimization. Infrastructure you can reason about and trust.",
     includes: [
       "AWS CDK infrastructure-as-code",
       "CI/CD pipelines (GitHub Actions)",
@@ -73,7 +73,7 @@ export const services: Service[] = [
     short:
       "LLM-powered features, AI agents (MCP), study/HR/compliance copilots, chatbots, and automation bots.",
     description:
-      "LLM-powered features, AI agents built on MCP, study/HR/compliance copilots, chatbots, and automation bots. We integrate AI where it creates measurable value — not where it makes a demo.",
+      "LLM-powered features, AI agents built on MCP, study/HR/compliance copilots, chatbots, and automation bots. We integrate AI where it creates measurable value, not where it makes a demo.",
     includes: [
       "LLM features (OpenAI, LangChain)",
       "AI agents & MCP tooling",
@@ -91,7 +91,7 @@ export const services: Service[] = [
     short:
       "Security monitoring (Sentinel/Splunk), threat hunting, phishing-readiness, IR playbooks, MITRE-mapped reporting.",
     description:
-      "Security monitoring setup with Sentinel or Splunk, threat hunting, phishing-readiness assessments, incident response playbooks, firewall configuration, and MITRE ATT&CK-mapped reporting — led by an ISC2-certified SOC analyst.",
+      "Security monitoring setup with Sentinel or Splunk, threat hunting, phishing-readiness assessments, incident response playbooks, firewall configuration, and MITRE ATT&CK-mapped reporting, led by an ISC2-certified SOC analyst.",
     includes: [
       "SIEM setup (Sentinel / Splunk)",
       "Threat hunting & detections",
@@ -109,7 +109,7 @@ export const services: Service[] = [
     short:
       "Ongoing maintenance, uptime monitoring, user/access management, and retainer support.",
     description:
-      "Ongoing maintenance, uptime monitoring, user and access management, hardware-network troubleshooting, and retainer support — backed by daily enterprise IT operations experience in oil & gas.",
+      "Ongoing maintenance, uptime monitoring, user and access management, hardware-network troubleshooting, and retainer support, backed by daily enterprise IT operations experience in oil & gas.",
     includes: [
       "Uptime & monitoring",
       "User & access management",

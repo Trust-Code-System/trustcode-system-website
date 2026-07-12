@@ -22,7 +22,7 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "TrustCode System — Software you can stake your business on",
+    default: "TrustCode System, Software you can stake your business on",
     template: "%s",
   },
   description: site.description,

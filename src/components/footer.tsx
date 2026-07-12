@@ -26,7 +26,7 @@ export function Footer() {
             <Logo />
             <p className="mt-5 text-[0.98rem] leading-relaxed text-slate">
               Software you can stake your business on. Web platforms, cloud
-              systems, AI features, and security — shipped and kept live.
+              systems, AI features, and security. Shipped and kept live.
             </p>
             <div className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-grid bg-paper px-3.5 py-1.5">
               <span className="relative flex h-2 w-2">

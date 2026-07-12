@@ -58,10 +58,10 @@ export function Estimator() {
 
   const rangeText = estimate
     ? `${formatUsd(estimate.min)} – ${formatUsd(estimate.max)}`
-    : "—";
+    : "-";
   const weeksText = estimate
     ? `${estimate.weeks[0]}–${estimate.weeks[1]} weeks`
-    : "—";
+    : "-";
 
   const summary = type
     ? `Estimator brief: ${type.label}${
@@ -79,13 +79,13 @@ export function Estimator() {
         JSON.stringify({ siteType: typeLabel, features, timeline, summary })
       );
     } catch {
-      // storage unavailable — the service preselect below still works
+      // storage unavailable, the service preselect below still works
     }
     router.push(`/contact?service=${type?.service ?? ""}`);
   }
 
   const whatsappHref = `https://wa.me/${site.phone.replace("+", "")}?text=${encodeURIComponent(
-    `Hi TrustCode System — I used your estimator. ${summary}`
+    `Hi TrustCode System, I used your estimator. ${summary}`
   )}`;
 
   return (
@@ -166,7 +166,7 @@ export function Estimator() {
                 What features will you likely need?
               </legend>
               <p className="mt-2 text-[0.9rem] text-slate">
-                Pick any that apply — you can skip this step.
+                Pick any that apply, you can skip this step.
               </p>
               <div className="mt-5 flex flex-wrap gap-2.5">
                 {estimatorFeatures.map((f) => {
@@ -216,7 +216,7 @@ export function Estimator() {
               </div>
               {rush && (
                 <p className="mt-4 text-[0.85rem] text-slate">
-                  Rush delivery compresses the schedule — expect roughly{" "}
+                  Rush delivery compresses the schedule, expect roughly{" "}
                   {Math.round((RUSH_MULTIPLIER - 1) * 100)}% on top of the
                   standard range.
                 </p>
@@ -248,7 +248,7 @@ export function Estimator() {
               </ul>
               <p className="mt-6 max-w-lg text-[0.85rem] leading-relaxed text-slate">
                 This is a ballpark, not a quote. Send it to us and you&apos;ll
-                get a written proposal with a fixed price within 72 hours —
+                get a written proposal with a fixed price within 72 hours
                 free, no obligation.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -320,22 +320,22 @@ export function Estimator() {
           <dl className="mt-6 space-y-3 border-t border-grid pt-5 text-[0.88rem]">
             <div className="flex justify-between gap-3">
               <dt className="text-slate">Project</dt>
-              <dd className="text-right text-ink">{typeLabel || "—"}</dd>
+              <dd className="text-right text-ink">{typeLabel || "-"}</dd>
             </div>
             <div className="flex justify-between gap-3">
               <dt className="text-slate">Features</dt>
               <dd className="text-right text-ink">
-                {features.length ? features.length : "—"}
+                {features.length ? features.length : "-"}
               </dd>
             </div>
             <div className="flex justify-between gap-3">
               <dt className="text-slate">Timeline</dt>
-              <dd className="text-right text-ink">{timeline || "—"}</dd>
+              <dd className="text-right text-ink">{timeline || "-"}</dd>
             </div>
           </dl>
           <p className="mt-6 text-[0.78rem] leading-relaxed text-slate">
             Indicative range in USD. Your written quote may land below or above
-            it depending on scope — we fix the price before any work starts.
+            it depending on scope, we fix the price before any work starts.
           </p>
         </div>
       </aside>

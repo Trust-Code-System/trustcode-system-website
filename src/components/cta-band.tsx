@@ -15,7 +15,7 @@ export function CtaBand() {
             written proposal within 72 hours.
           </h2>
           <p className="lead max-w-xl">
-            Tell us what you&apos;re building. No obligation, no jargon — just a
+            Tell us what you&apos;re building. No obligation, no jargon, just a
             clear plan and a price.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -31,7 +31,7 @@ export function CtaBand() {
             href="/estimate"
             className="inline-flex items-center gap-1.5 text-[0.9rem] font-medium text-blueprint hover:underline"
           >
-            Or scope it yourself — 60-second estimator
+            Or scope it yourself, 60-second estimator
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>

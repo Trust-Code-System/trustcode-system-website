@@ -23,7 +23,7 @@ export const team: Founder[] = [
     flag: "🇬🇧",
     image: "/team/bashir-abdulah.png",
     oneLiner:
-      "Interfaces people trust at first click — UK-based, fintech and edtech proven.",
+      "Interfaces people trust at first click. UK-based, fintech and edtech proven.",
     bio: [
       "Software Engineer and Frontend Developer based in London. BSc Information Technology & Business Information Systems, Middlesex University, London (2025). Advanced Diploma in Software Engineering, Aptech Lagos (2023).",
       "Currently a Software Developer at Unify Giving Ltd, building a mental health web platform that improves digital access to emotional wellness tools.",
@@ -32,11 +32,11 @@ export const team: Founder[] = [
     highlights: [
       "Loan dashboard that cut manual handling ~30% (Greatsome Innovations)",
       "Modular school management system that cut manual input ~25%",
-      "Clabed automotive platform — 55% reduction in manual WhatsApp inquiries",
+      "Clabed automotive platform: 55% reduction in manual WhatsApp inquiries",
     ],
     credentials: [
-      "BSc IT & Business Information Systems — Middlesex University (2025)",
-      "Advanced Diploma in Software Engineering — Aptech Lagos (2023)",
+      "BSc IT & Business Information Systems, Middlesex University (2025)",
+      "Advanced Diploma in Software Engineering, Aptech Lagos (2023)",
     ],
     stack: [
       "JavaScript",
@@ -59,7 +59,7 @@ export const team: Founder[] = [
     pillar: {
       title: "Product craft",
       proof:
-        "Interfaces shipped for UK and Nigerian fintech and edtech — measured in reduced manual work, not just pixels.",
+        "Interfaces shipped for UK and Nigerian fintech and edtech: measured in reduced manual work, not just pixels.",
     },
   },
   {
@@ -80,7 +80,7 @@ export const team: Founder[] = [
       "KMS envelope-encrypted credential pipelines + Cognito RBAC",
       "Paystack pipelines with Bull queues, 10 webhook events, multi-vendor routing",
     ],
-    credentials: ["B.Sc. Statistics (in view) — University of Lagos"],
+    credentials: ["B.Sc. Statistics (in view), University of Lagos"],
     stack: [
       "TypeScript",
       "Node.js",
@@ -105,7 +105,7 @@ export const team: Founder[] = [
     pillar: {
       title: "Cloud scale",
       proof:
-        "AWS-native systems handling 49 third-party integrations across a 7-service CDK stack — built to scale without 3am surprises.",
+        "AWS-native systems handling 49 third-party integrations across a 7-service CDK stack: built to scale without 3am surprises.",
     },
   },
   {
@@ -128,7 +128,7 @@ export const team: Founder[] = [
     ],
     credentials: [
       "ISC2 Certified in Cybersecurity (CC)",
-      "BSc Statistics — University of Ilorin (2024)",
+      "BSc Statistics, University of Ilorin (2024)",
     ],
     stack: [
       "KQL",
@@ -146,7 +146,7 @@ export const team: Founder[] = [
     pillar: {
       title: "Security by default",
       proof:
-        "A SOC analyst on the founding team means every product is monitored, hardened, and audit-ready — not patched after a breach.",
+        "A SOC analyst on the founding team means every product is monitored, hardened, and audit-ready - not patched after a breach.",
     },
   },
   {
@@ -157,18 +157,18 @@ export const team: Founder[] = [
     flag: "🇳🇬",
     image: "/team/abass-ibrahim.jpg",
     oneLiner:
-      "Seven live products and counting — design in Figma, ship to production.",
+      "20+ live products and counting. Design in Figma, ship to production.",
     bio: [
-      "Self-taught full-stack developer with 3+ years and 7 live production products. Concurrent IT Officer/Assistant across two oil & gas companies (Metropole Petroleum, Bono Energy Group) — wired for uptime and calm execution.",
+      "Self-taught full-stack developer with 3+ years and 20+ live production products. Concurrent IT Officer/Assistant across two oil & gas companies (Metropole Petroleum, Bono Energy Group), wired for uptime and calm execution.",
       "Founder of a 500+ member crypto trading and Web3 education community. B.Sc. Educational Management, University of Ilorin.",
       "Live products include The Thesis Desk, Helping Tribe Academy, Wearables Atelier, PetroBrain, Aureo, Atlas HR, and AirtimeVault. Writes on Hashnode (@ghost69) and Medium (@Ghost69).",
     ],
     highlights: [
-      "7 live production products shipped solo",
+      "20+ live production products shipped",
       "Enterprise IT operations across two oil & gas companies",
       "Founder of a 500+ member Web3 education community",
     ],
-    credentials: ["B.Sc. Educational Management — University of Ilorin"],
+    credentials: ["B.Sc. Educational Management, University of Ilorin"],
     stack: [
       "React",
       "Next.js",
@@ -191,7 +191,7 @@ export const team: Founder[] = [
     pillar: {
       title: "Delivery discipline",
       proof:
-        "Seven live products shipped while keeping enterprise IT running — the habit of finishing and keeping things up is built in.",
+        "20+ live products shipped while keeping enterprise IT running. The habit of finishing and keeping things up is built in.",
     },
   },
 ];

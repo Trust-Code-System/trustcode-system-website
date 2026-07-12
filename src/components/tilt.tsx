@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 /**
  * 3D perspective tilt that follows the cursor. Children with inline
  * `translateZ` transforms float at different depths (`.tilt-body` is
- * `preserve-3d`). Mouse-only — touch pointers and reduced motion get a
+ * `preserve-3d`). Mouse-only, touch pointers and reduced motion get a
  * static card.
  */
 export function Tilt({

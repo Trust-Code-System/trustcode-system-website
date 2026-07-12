@@ -60,6 +60,8 @@ export type Project = {
   contribution?: string;
   coverImage?: string;
   additionalInvestigations?: { label: string; note?: string }[];
+  liveCtaLabel?: string;
+  sourceCtaLabel?: string;
 };
 
 export type PortfolioOwner = {
@@ -165,7 +167,7 @@ export const CATEGORY_FILTERS: (Category | "All")[] = [
   "Marketplace",
 ];
 
-/** @deprecated use CATEGORY_FILTERS — kept for any residual imports */
+/** @deprecated use CATEGORY_FILTERS, kept for any residual imports */
 export const categories = CATEGORY_FILTERS;
 
 export const projects: Project[] = [
@@ -186,7 +188,7 @@ export const projects: Project[] = [
       "Payroll and compliance dashboards",
     ],
     outcome:
-      "A single SaaS surface that turns four-country compliance and payroll into modeled, comparable decisions — with an AI sandbox to test scenarios first.",
+      "A single SaaS surface that turns four-country compliance and payroll into modeled, comparable decisions, with an AI sandbox to test scenarios first.",
     stack: ["Next.js", "TypeScript", "OpenAI", "PostgreSQL", "Tailwind"],
     team: ["Abass Ibrahim", "Abdulhaleem Sanuth"],
     live: "https://atlas-hr-fq24.vercel.app",
@@ -195,7 +197,7 @@ export const projects: Project[] = [
     visualType: "product-screenshot",
     featured: true,
     featuredOrder: 1,
-    contribution: "TrustCode designed and implemented the product end to end — from interface to delivery.",
+    contribution: "TrustCode designed and implemented the product end to end, from interface to delivery.",
   },
   {
     slug: "helping-tribe-academy",
@@ -213,7 +215,7 @@ export const projects: Project[] = [
       "Course and cohort management",
     ],
     outcome:
-      "Manual admissions and coursework replaced by three secure portals and a public application pipeline — live and in daily use.",
+      "Manual admissions and coursework replaced by three secure portals and a public application pipeline, live and in daily use.",
     stack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind"],
     team: ["Bashir Abdulah", "Abass Ibrahim"],
     live: "https://helpingtribeacademy.com",
@@ -226,31 +228,49 @@ export const projects: Project[] = [
       "The engineering team designed and shipped the portal architecture, authentication flows, and learning management surfaces.",
   },
   {
-    slug: "the-thesis-desk",
-    title: "The Thesis Desk",
-    sector: "Crypto / Community",
-    categories: ["Fintech", "SaaS"],
+    slug: "9th-luxe",
+    title: "9th Luxe",
+    sector: "Luxury E-Commerce",
+    categories: ["E-Commerce", "SaaS"],
     tagline:
-      "Real-time crypto trading and education command centre built for a growing trading community.",
+      "A full-stack luxury fragrance e-commerce platform with product discovery, secure checkout, customer accounts, order tracking, inventory management, and a comprehensive administration dashboard.",
     problem:
-      "A crypto trading community had no shared source of truth — prices, calls, and performance lived in scattered chats. They needed a command center the whole group could trust.",
+      "A luxury fragrance retailer needed more than a brochure site: customers expect discovery, accounts, secure payments, and order tracking, while operators need inventory, fulfilment, and campaign tools in one place.",
     built: [
-      "Live price feeds for BTC, ETH, SOL, BNB and XRP",
-      "P&L tracking and a personal trade journal",
-      "Role-based admin for managing calls and members",
-      "Real-time dashboards built for fast, repeated use",
+      "Luxury perfume catalogue with search, filtering, brands, and collections",
+      "Product galleries, reviews, wishlist, and persistent shopping cart",
+      "Multi-step checkout with coupon codes and Paystack payment processing",
+      "Customer accounts with saved delivery addresses, order history, and tracking",
+      "Admin dashboard for products, inventory and low-stock alerts, orders, newsletter campaigns, notifications, and analytics",
+      "Dynamic SEO metadata, sitemap, and responsive light and dark modes",
     ],
     outcome:
-      "One inspectable home for the community — live feeds, tracked performance, and admin control in a single trusted surface.",
-    stack: ["Next.js", "TypeScript", "Tailwind", "WebSockets", "PostgreSQL"],
-    team: ["Abass Ibrahim"],
-    live: "https://thethesisdesk.xyz",
+      "A production-ready luxury fragrance storefront and operations console: discoverable catalogue, secure checkout, and admin tooling on one platform.",
+    stack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Prisma",
+      "PostgreSQL",
+      "NextAuth",
+      "Zustand",
+      "Zod",
+      "Paystack",
+      "Resend",
+      "Vercel",
+    ],
+    team: ["TrustCode System"],
+    live: "https://9thluxe-store-two.vercel.app/",
     ownerId: "abass",
     proofType: "live",
     visualType: "product-screenshot",
     featured: true,
     featuredOrder: 3,
-    contribution: "TrustCode designed and implemented the product end to end.",
+    contribution:
+      "TrustCode delivered the full-stack commerce platform: storefront, checkout, accounts, and administration.",
+    coverImage: "/work/9th-luxe.png",
+    liveCtaLabel: "Visit Live Store",
   },
 
   // ── Featured (continued) ─────────────────────────────────────────
@@ -262,7 +282,7 @@ export const projects: Project[] = [
     tagline:
       "NestJS and Prisma API service supporting a debt-tracking product, with database migrations and automated testing foundations.",
     problem:
-      "A debt-tracking product needed a structured API layer — authenticated endpoints, a migrated data model, and a testable service boundary rather than ad-hoc handlers.",
+      "A debt-tracking product needed a structured API layer, authenticated endpoints, a migrated data model, and a testable service boundary rather than ad-hoc handlers.",
     built: [
       "NestJS API service structure for debt-tracker domain operations",
       "Prisma schema, generate step, and migration workflow",
@@ -300,7 +320,7 @@ export const projects: Project[] = [
       "DynamoDB idempotency, S3 storage with lifecycle expiry, CloudWatch metrics, and DLQ retries",
     ],
     outcome:
-      "A documented serverless pipeline architecture — scheduled discovery, queued downloads, idempotent state, and cost-aware storage controls.",
+      "A documented serverless pipeline architecture, scheduled discovery, queued downloads, idempotent state, and cost-aware storage controls.",
     stack: [
       "AWS CDK",
       "TypeScript",
@@ -320,7 +340,7 @@ export const projects: Project[] = [
     featured: true,
     featuredOrder: 5,
     sourceUrl: "https://github.com/Abdulhaleem-6/youtube-file-sync",
-    contribution: "TrustCode designed the serverless AWS pipeline — scheduling, queuing, idempotent state, and cost-aware storage.",
+    contribution: "TrustCode designed the serverless AWS pipeline, scheduling, queuing, idempotent state, and cost-aware storage.",
     coverImage: "/work/serverless-youtube-pipeline.svg",
   },
   {
@@ -331,7 +351,7 @@ export const projects: Project[] = [
     tagline:
       "Extensible TypeScript shipping-rate service designed to integrate UPS, FedEx, DHL, and future carriers without coupling third-party APIs to core business logic.",
     problem:
-      "Shipping rate APIs differ wildly by carrier. Embedding UPS-specific payloads in business logic makes every new carrier a rewrite — and OAuth token handling becomes fragile under load.",
+      "Shipping rate APIs differ wildly by carrier. Embedding UPS-specific payloads in business logic makes every new carrier a rewrite, and OAuth token handling becomes fragile under load.",
     built: [
       "Strategy-pattern ICarrier interface isolating ShippingService from carrier quirks",
       "Mapper buffer zone so domain models stay free of carrier field names",
@@ -339,7 +359,7 @@ export const projects: Project[] = [
       "Zod environment validation, Axios client, Jest + Nock integration tests, structured errors",
     ],
     outcome:
-      "A carrier-agnostic shipping-rate module with a working UPS path and a clear extension point for future FedEx and DHL adapters — without implying those adapters are already complete.",
+      "A carrier-agnostic shipping-rate module with a working UPS path and a clear extension point for future FedEx and DHL adapters, without implying those adapters are already complete.",
     stack: [
       "TypeScript",
       "Zod",
@@ -413,13 +433,13 @@ export const projects: Project[] = [
   },
   {
     slug: "jojos-hospital-kql",
-    title: "Jojo's Hospital — KQL Threat Investigation",
+    title: "Jojo's Hospital, KQL Threat Investigation",
     sector: "Threat Hunting",
     categories: ["Security"],
     tagline:
       "Documented Microsoft Sentinel investigation using KQL to correlate endpoint and user events, reconstruct attack timelines, and identify suspicious behaviour.",
     problem:
-      "Endpoint and identity telemetry only become useful when an analyst can join events, rebuild a timeline, and map findings to a known framework — not when logs stay siloed.",
+      "Endpoint and identity telemetry only become useful when an analyst can join events, rebuild a timeline, and map findings to a known framework - not when logs stay siloed.",
     built: [
       "Kusto Query Language investigations in Microsoft Sentinel",
       "Correlation of Microsoft Defender for Endpoint and user events",
@@ -462,7 +482,7 @@ export const projects: Project[] = [
       "OSPF for dynamic routing between sites in Cisco Packet Tracer",
     ],
     outcome:
-      "A demonstration lab that shows network segmentation and routing fundamentals — topology-first, without exposing real enterprise addressing.",
+      "A demonstration lab that shows network segmentation and routing fundamentals, topology-first, without exposing real enterprise addressing.",
     stack: [
       "Cisco Packet Tracer",
       "VLANs",
@@ -490,7 +510,7 @@ export const projects: Project[] = [
     tagline:
       "Responsive automotive marketplace with vehicle discovery, advanced filters, live listings, promotional content, and direct customer enquiry workflows.",
     problem:
-      "An automotive dealer ran sales almost entirely through WhatsApp inquiries — slow, repetitive, and impossible to scale. They needed a real platform.",
+      "An automotive dealer ran sales almost entirely through WhatsApp inquiries, slow, repetitive, and impossible to scale. They needed a real platform.",
     built: [
       "Vehicle catalogue with brand, model, and price-range filtering",
       "Latest arrivals and promotional offer surfaces",
@@ -499,7 +519,7 @@ export const projects: Project[] = [
       "Admin management for listings",
     ],
     outcome:
-      "Sales moved onto a self-serve automotive platform with structured discovery and enquiry workflows — reducing reliance on repetitive WhatsApp back-and-forth.",
+      "Sales moved onto a self-serve automotive platform with structured discovery and enquiry workflows, reducing reliance on repetitive WhatsApp back-and-forth.",
     stack: ["React", "Next.js", "TypeScript", "Node.js", "Tailwind", "Express", "MongoDB"],
     team: ["Bashir Abdulah"],
     live: "https://www.clabedautos.com",
@@ -509,7 +529,7 @@ export const projects: Project[] = [
     featured: true,
     featuredOrder: 10,
     contribution:
-      "TrustCode delivered the automotive marketplace — discovery, filtering, listings, and enquiry workflows.",
+      "TrustCode delivered the automotive marketplace, discovery, filtering, listings, and enquiry workflows.",
     coverImage: "/work/clabed-autos.svg",
   },
   {
@@ -529,7 +549,7 @@ export const projects: Project[] = [
       "Search-engine metadata for discoverability",
     ],
     outcome:
-      "A clear professional web presence for SLN Engineering — services, partners, and contact in one inspectable production site.",
+      "A clear professional web presence for SLN Engineering: services, partners, and contact in one inspectable production site.",
     stack: ["React", "Vite", "Tailwind CSS"],
     team: ["Bashir Abdulah"],
     live: "https://www.slneng.com",
@@ -558,7 +578,7 @@ export const projects: Project[] = [
       "Shared event galleries with Prisma-backed records",
     ],
     outcome:
-      "A documented product showcase for event media collection — auth, events, QR sharing, uploads, and galleries in one Next.js codebase.",
+      "A documented product showcase for event media collection: auth, events, QR sharing, uploads, and galleries in one Next.js codebase.",
     stack: [
       "Next.js",
       "React",
@@ -595,7 +615,7 @@ export const projects: Project[] = [
       "Wallet with transaction history",
     ],
     outcome:
-      "A fintech wallet that converts airtime across all four major networks to cash in under 30 minutes — with KYC and fraud monitoring built in.",
+      "A fintech wallet that converts airtime across all four major networks to cash in under 30 minutes, with KYC and fraud monitoring built in.",
     stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Paystack"],
     team: ["Abass Ibrahim", "Abdulhaleem Sanuth"],
     live: "https://airtime-vault-plhc.vercel.app",
@@ -607,13 +627,40 @@ export const projects: Project[] = [
     contribution: "TrustCode designed and delivered the fintech wallet experience.",
   },
   {
+    slug: "the-thesis-desk",
+    title: "The Thesis Desk",
+    sector: "Crypto / Community",
+    categories: ["Fintech", "SaaS"],
+    tagline:
+      "Real-time crypto trading and education command centre built for a growing trading community.",
+    problem:
+      "A crypto trading community had no shared source of truth, prices, calls, and performance lived in scattered chats. They needed a command center the whole group could trust.",
+    built: [
+      "Live price feeds for BTC, ETH, SOL, BNB and XRP",
+      "P&L tracking and a personal trade journal",
+      "Role-based admin for managing calls and members",
+      "Real-time dashboards built for fast, repeated use",
+    ],
+    outcome:
+      "One inspectable home for the community, live feeds, tracked performance, and admin control in a single trusted surface.",
+    stack: ["Next.js", "TypeScript", "Tailwind", "WebSockets", "PostgreSQL"],
+    team: ["TrustCode System"],
+    live: "https://thethesisdesk.xyz",
+    ownerId: "abass",
+    proofType: "live",
+    visualType: "product-screenshot",
+    featured: false,
+    secondaryOrder: 2,
+    contribution: "TrustCode designed and implemented the product end to end.",
+  },
+  {
     slug: "wearables-atelier",
     title: "Wearables Atelier",
     sector: "Fashion / Retail",
     categories: ["E-Commerce"],
     tagline: "Editorial e-commerce for premium Nigerian womenswear.",
     problem:
-      "A premium womenswear label needed a storefront that felt editorial, not generic — while still supporting custom orders and wholesale buyers.",
+      "A premium womenswear label needed a storefront that felt editorial, not generic, while still supporting custom orders and wholesale buyers.",
     built: [
       "Editorial product and collection pages",
       "Custom-order flow",
@@ -629,7 +676,7 @@ export const projects: Project[] = [
     proofType: "live",
     visualType: "product-screenshot",
     featured: false,
-    secondaryOrder: 2,
+    secondaryOrder: 3,
     contribution: "TrustCode designed and implemented the product end to end.",
   },
   {
@@ -639,15 +686,15 @@ export const projects: Project[] = [
     categories: ["AI", "SaaS"],
     tagline: "AI-native intelligence platform built exclusively for oil & gas.",
     problem:
-      "Oil & gas teams sit on huge volumes of permits, procedures, and engineering standards — but answers are buried, and a wrong number on a safety-critical decision is unacceptable. They needed AI that cites its sources and never guesses.",
+      "Oil & gas teams sit on huge volumes of permits, procedures, and engineering standards, but answers are buried, and a wrong number on a safety-critical decision is unacceptable. They needed AI that cites its sources and never guesses.",
     built: [
-      "Field Copilot — plain-English answers on permits and SOPs from company documents",
+      "Field Copilot, plain-English answers on permits and SOPs from company documents",
       "Engineering decision-support with worked calculations, formulas, and cited sources",
-      "Compliance Guardian — audit-grade emissions reporting and methane quantification (NUPRC Tier-3 MRV)",
+      "Compliance Guardian, audit-grade emissions reporting and methane quantification (NUPRC Tier-3 MRV)",
       "Safety-first protocols that defer critical calls to qualified personnel, with data sovereignty",
     ],
     outcome:
-      "An AI platform for drilling, production, midstream and downstream that cites every source and shows its working — currently in pilot with selected operators.",
+      "An AI platform for drilling, production, midstream and downstream that cites every source and shows its working, currently in pilot with selected operators.",
     stack: ["Next.js", "TypeScript", "OpenAI", "LangChain", "Tailwind"],
     team: ["Abass Ibrahim", "Abdulhaleem Sanuth"],
     live: "https://petro-brain-web.vercel.app",
@@ -655,7 +702,7 @@ export const projects: Project[] = [
     proofType: "live",
     visualType: "product-screenshot",
     featured: false,
-    secondaryOrder: 3,
+    secondaryOrder: 4,
     contribution: "TrustCode designed and delivered the AI platform for oil and gas workflows.",
   },
   {
@@ -673,7 +720,7 @@ export const projects: Project[] = [
       "Marketplace matching flows",
     ],
     outcome:
-      "A hiring marketplace where verification and trust scores are the product — letting employers filter on credibility, not claims.",
+      "A hiring marketplace where verification and trust scores are the product: letting employers filter on credibility, not claims.",
     stack: ["React", "Next.js", "TypeScript", "Tailwind"],
     team: ["Abass Ibrahim"],
     live: "https://aureeo.netlify.app",
@@ -681,7 +728,7 @@ export const projects: Project[] = [
     proofType: "live",
     visualType: "product-screenshot",
     featured: false,
-    secondaryOrder: 4,
+    secondaryOrder: 5,
     contribution: "TrustCode designed and implemented the product end to end.",
   },
   {
@@ -707,7 +754,7 @@ export const projects: Project[] = [
     proofType: "live",
     visualType: "product-screenshot",
     featured: false,
-    secondaryOrder: 5,
+    secondaryOrder: 6,
     contribution: "The engineering team implemented the AI summarisation and quiz generation pipeline.",
   },
   {
@@ -725,7 +772,7 @@ export const projects: Project[] = [
       "Simulated phishing-campaign investigations",
     ],
     outcome:
-      "A documented, MITRE-mapped detection capability with 25+ threat-hunting queries — the security rigor we apply to every product we ship.",
+      "A documented, MITRE-mapped detection capability with 25+ threat-hunting queries, the security rigor we apply to every product we ship.",
     stack: ["KQL", "Microsoft Sentinel", "Defender for Endpoint", "MITRE ATT&CK"],
     team: ["Olamilekan Emmanuel Oyedele"],
     live: null,
@@ -733,7 +780,7 @@ export const projects: Project[] = [
     proofType: "case-study",
     visualType: "investigation",
     featured: false,
-    secondaryOrder: 6,
+    secondaryOrder: 7,
     contribution: "TrustCode documented a MITRE-mapped detection capability with a KQL threat-hunting playbook.",
     coverImage: "/work/soc-detection-lab.svg",
     additionalInvestigations: [

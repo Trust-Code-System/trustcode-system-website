@@ -98,7 +98,7 @@ export function ContactForm() {
         messageRef.current.value = est.summary;
       }
     } catch {
-      // malformed storage — start with a blank form
+      // malformed storage, start with a blank form
     }
   }, []);
 
@@ -268,7 +268,7 @@ export function ContactForm() {
         </span>
         <h2 className="display-h3 text-[1.4rem]">Brief received</h2>
         <p className="lead">
-          Thanks — that gives us a clear picture. Expect a reply within 24 hours,
+          Thanks, that gives us a clear picture. Expect a reply within 24 hours,
           and if it&apos;s a build, a written proposal within 72 hours.
         </p>
         <button
@@ -284,7 +284,7 @@ export function ContactForm() {
 
   return (
     <form ref={formRef} onSubmit={onSubmit} noValidate className="card p-7 sm:p-8">
-      {/* Honeypot — hidden from users, visible to bots */}
+      {/* Honeypot, hidden from users, visible to bots */}
       <div aria-hidden className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
         <label htmlFor="website">Leave this empty</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
@@ -352,7 +352,7 @@ export function ContactForm() {
           <p className="eyebrow">/ project brief</p>
           <p className="mt-2 text-[0.9rem] text-slate">
             Optional, but the more you share the faster we can scope it. Pick what
-            fits — or choose &ldquo;Other&rdquo; to tell us in your own words.
+            fits, or choose &ldquo;Other&rdquo; to tell us in your own words.
           </p>
         </div>
 
@@ -414,7 +414,7 @@ export function ContactForm() {
             name="inspiration"
             type="text"
             className={fieldBase}
-            placeholder="Optional — links or names of sites you admire"
+            placeholder="Optional, links or names of sites you admire"
           />
         </Field>
 
@@ -425,7 +425,7 @@ export function ContactForm() {
             name="message"
             rows={5}
             className={fieldBase}
-            placeholder="Tell us what you have in mind — pages, must-haves, anything specific. Where are you now, and what does done look like?"
+            placeholder="Tell us what you have in mind, pages, must-haves, anything specific. Where are you now, and what does done look like?"
           />
         </Field>
 

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "TrustCode System — Software you can stake your business on";
+export const alt = "TrustCode System, Software you can stake your business on";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -71,7 +71,7 @@ export default async function OgImage() {
             Software you can stake your business on.
           </span>
           <span style={{ fontSize: 26, color: "#5B6472", maxWidth: 900 }}>
-            Product engineering · Cloud · AI · Security — 15+ live products.
+            Product engineering · Cloud · AI · Security · 15+ live products.
           </span>
         </div>
 

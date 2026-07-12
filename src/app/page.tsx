@@ -41,7 +41,7 @@ export default function HomePage() {
             <Reveal delay={0.1}>
               <p className="lead mt-6 max-w-xl">
                 TrustCode System is a four-engineer team shipping web platforms,
-                cloud systems, AI features, and security — 15+ live products
+                cloud systems, AI features, and security with 15+ live products
                 across fintech, edtech, e-commerce and beyond.
               </p>
             </Reveal>
@@ -134,7 +134,7 @@ export default function HomePage() {
       <Section>
         <SectionHeading
           eyebrow="services"
-          title="One team, full coverage — from the pixel to the server to the security layer."
+          title="One team, full coverage: from the pixel to the server to the security layer."
           link={{ href: "/services", label: "All services" }}
         />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -146,7 +146,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Featured work — team portfolio preview */}
+      {/* Featured work, team portfolio preview */}
       <Section className="border-y border-grid bg-surface">
         <SectionHeading
           eyebrow="featured work"
@@ -169,12 +169,12 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Why TrustCode — 4 pillars */}
+      {/* Why TrustCode, 4 pillars */}
       <Section>
         <SectionHeading
           eyebrow="why trustcode"
           title="Four engineers. Four standards. One bar: production-ready."
-          intro="Each founder owns a discipline — and brings shipped proof, not a résumé line."
+          intro="Each founder owns a discipline and brings shipped proof, not a résumé line."
         />
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
           {team.map((f, i) => (
