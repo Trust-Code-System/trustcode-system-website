@@ -1,11 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
-  getFeaturedByOwner,
   getFeaturedProjects,
   getMoreWork,
   homepagePreviewSlugs,
   projects,
-  type ProjectOwnerId,
 } from "@/content/portfolio";
 
 const LEGACY_SLUGS = [
@@ -24,25 +22,23 @@ const LEGACY_SLUGS = [
 ] as const;
 
 describe("portfolio data integrity", () => {
-  it("has exactly 12 featured projects", () => {
-    expect(getFeaturedProjects()).toHaveLength(12);
+  it("keeps the 11 interface-led products in the featured section", () => {
+    expect(getFeaturedProjects()).toHaveLength(11);
   });
 
-  it("keeps internal balance of 3 featured projects per discipline owner", () => {
-    const owners: ProjectOwnerId[] = [
-      "abass",
-      "abdulhaleem",
-      "olamilekan",
-      "bashir",
-    ];
-    for (const id of owners) {
-      expect(getFeaturedByOwner(id)).toHaveLength(3);
-    }
+  it("keeps technical showcases out of the featured product section", () => {
+    expect(
+      getFeaturedProjects().every(
+        (project) =>
+          project.live !== null &&
+          ["product-screenshot", "branded"].includes(project.visualType)
+      )
+    ).toBe(true);
   });
 
-  it("uses unique featured orders 1–12", () => {
+  it("uses unique featured orders 1–11", () => {
     const orders = getFeaturedProjects().map((p) => p.featuredOrder);
-    expect(orders).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    expect(orders).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   });
 
   it("orders the top three featured projects as Atlas, Helping Tribe, 9th Luxe", () => {
@@ -53,13 +49,13 @@ describe("portfolio data integrity", () => {
     ]);
   });
 
-  it("keeps The Thesis Desk once under More Work", () => {
+  it("keeps The Thesis Desk once under featured product work", () => {
     const featured = getFeaturedProjects().filter(
       (p) => p.slug === "the-thesis-desk"
     );
     const more = getMoreWork().filter((p) => p.slug === "the-thesis-desk");
-    expect(featured).toHaveLength(0);
-    expect(more).toHaveLength(1);
+    expect(featured).toHaveLength(1);
+    expect(more).toHaveLength(0);
     expect(projects.filter((p) => p.slug === "the-thesis-desk")).toHaveLength(
       1
     );
@@ -97,31 +93,31 @@ describe("portfolio data integrity", () => {
     }
   });
 
-  it("keeps non-featured legacy projects in More Work", () => {
+  it("keeps backend, cloud, and security showcases in technical work", () => {
     const more = new Set(getMoreWork().map((p) => p.slug));
-    expect(more.has("airtimevault")).toBe(true);
-    expect(more.has("the-thesis-desk")).toBe(true);
-    expect(more.has("wearables-atelier")).toBe(true);
-    expect(more.has("petrobrain")).toBe(true);
-    expect(more.has("aureo")).toBe(true);
-    expect(more.has("studycoach")).toBe(true);
+    expect(more.has("event-photo-platform")).toBe(true);
+    expect(more.has("debt-tracker-api")).toBe(true);
+    expect(more.has("multi-carrier-shipping")).toBe(true);
+    expect(more.has("serverless-youtube-pipeline")).toBe(true);
+    expect(more.has("home-detection-lab")).toBe(true);
+    expect(more.has("jojos-hospital-kql")).toBe(true);
+    expect(more.has("network-security-segmentation-lab")).toBe(true);
     expect(more.has("soc-detection-lab")).toBe(true);
   });
 
-  it("orders featured projects in the established sequence", () => {
+  it("orders interface-led products before technical showcases", () => {
     expect(getFeaturedProjects().map((p) => p.slug)).toEqual([
       "atlas-hr",
       "helping-tribe-academy",
       "9th-luxe",
-      "debt-tracker-api",
-      "serverless-youtube-pipeline",
-      "multi-carrier-shipping",
-      "home-detection-lab",
-      "jojos-hospital-kql",
-      "network-security-segmentation-lab",
       "clabed-autos",
       "sln-engineering",
-      "event-photo-platform",
+      "airtimevault",
+      "the-thesis-desk",
+      "wearables-atelier",
+      "petrobrain",
+      "aureo",
+      "studycoach",
     ]);
   });
 
@@ -152,11 +148,17 @@ describe("portfolio data integrity", () => {
     }
   });
 
-  it("keeps a balanced homepage preview set", () => {
+  it("keeps an interface-led homepage preview set", () => {
     const preview = homepagePreviewSlugs.map(
       (s) => projects.find((p) => p.slug === s)!
     );
     expect(preview).toHaveLength(4);
-    expect(new Set(preview.map((p) => p.ownerId)).size).toBe(4);
+    expect(
+      preview.every(
+        (project) =>
+          project.live !== null &&
+          ["product-screenshot", "branded"].includes(project.visualType)
+      )
+    ).toBe(true);
   });
 });

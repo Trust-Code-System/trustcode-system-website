@@ -127,16 +127,16 @@ export function WorkGrid() {
       ) : isDefault ? (
         <div className="mt-12 space-y-16">
           <section aria-labelledby="featured-work-heading">
-            <p className="eyebrow">featured work</p>
+            <p className="eyebrow">product work</p>
             <h2
               id="featured-work-heading"
               className="display-h2 mt-2 text-[clamp(1.5rem,3vw,2rem)]"
             >
-              Featured work
+              Products designed for real users
             </h2>
             <p className="mt-2 max-w-2xl text-[0.95rem] text-slate">
-              Selected products, platforms, cloud architectures, and security
-              projects delivered by TrustCode System.
+              Live products and polished digital experiences with thoughtful
+              interfaces, clear user journeys, and production-ready delivery.
             </p>
             <ProjectGrid items={featured} />
           </section>
@@ -145,16 +145,16 @@ export function WorkGrid() {
             aria-labelledby="more-work-heading"
             className="border-t border-grid pt-14"
           >
-            <p className="eyebrow">more from trustcode</p>
+            <p className="eyebrow">technical work</p>
             <h2
               id="more-work-heading"
               className="display-h2 mt-2 text-[clamp(1.5rem,3vw,2rem)]"
             >
-              More work from TrustCode
+              Engineering &amp; technical work
             </h2>
             <p className="mt-2 max-w-2xl text-[0.95rem] text-slate">
-              Additional live products, experiments, and technical showcases
-              from across the TrustCode portfolio.
+              Backend systems, cloud and serverless architectures, security
+              investigations, and practical engineering labs.
             </p>
             <ProjectGrid items={moreWork} />
           </section>
