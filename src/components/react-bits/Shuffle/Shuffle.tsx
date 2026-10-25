@@ -143,7 +143,7 @@ const Shuffle: React.FC<ShuffleProps> = ({
       const rolls = Math.max(1, Math.floor(shuffleTimes));
       const blurred = mode === 'blur' || (mode === 'slide' && motionBlur);
       const local = triggerOnHover && hoverRadius > 0;
-      const uid = Math.random().toString(36).slice(2, 9);
+      const uid = crypto.randomUUID();
       const running = new Set<gsap.core.Timeline>();
       const pointer = { x: 0, y: 0, lastX: 0, lastY: 0, seen: false };
       let cells: ShuffleCell[] = [];

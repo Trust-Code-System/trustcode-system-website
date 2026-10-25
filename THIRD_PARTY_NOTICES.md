@@ -6,4 +6,10 @@ Upstream source is vendored under src/components/react-bits. A TypeScript checki
 
 ## Fonts
 
-Manrope and JetBrains Mono are bundled from the official Google Fonts repository. Their SIL Open Font License notices are included in `src/app/fonts/`. Fonts are self-hosted and do not require requests to a font service at runtime or build time.
+Manrope and JetBrains Mono are bundled from the official Google Fonts repository. Their SIL Open Font License notices are included in `src/app/fonts/`. Main-site fonts are self-hosted and do not require requests to a font service at runtime or build time. Optional upstream lab effects can load their own font resources.
+
+## Integration patches
+
+- CircularGallery classifies font stylesheets with a parsed hostname/path instead of a hostname substring.
+- Galaxy inserts shader feature defines explicitly after the version directive instead of using a replacement operation that resembles incomplete escaping.
+- Shuffle uses `crypto.randomUUID()` for SVG filter IDs. Its non-security animation randomness is unchanged.

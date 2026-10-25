@@ -281,7 +281,10 @@ const start = (gl: WebGL2RenderingContext, palette: boolean, repel: boolean, war
   const fragment = gl.createShader(gl.FRAGMENT_SHADER);
   if (!program || !vertex || !fragment) return null;
   gl.shaderSource(vertex, VERTEX);
-  gl.shaderSource(fragment, FRAGMENT.replace('\n', `\n${defines}`));
+  // Insert feature defines after the GLSL version directive; this is not text escaping.
+  const versionEnd = FRAGMENT.indexOf('\n') + 1;
+  const fragmentSource = FRAGMENT.slice(0, versionEnd) + defines + FRAGMENT.slice(versionEnd);
+  gl.shaderSource(fragment, fragmentSource);
   gl.compileShader(vertex);
   gl.compileShader(fragment);
   gl.attachShader(program, vertex);

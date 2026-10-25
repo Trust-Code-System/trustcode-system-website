@@ -1,0 +1,20 @@
+{
+  "testedAt": "2026-10-25T20:17:28.746Z",
+  "environment": "Edge; final optimized local build on port 3001",
+  "checks": [
+    {
+      "name": "Galaxy",
+      "result": "WebGL starfield visibly rendered after shader insertion change"
+    },
+    {
+      "name": "CircularGallery",
+      "result": "WebGL gallery visibly rendered with TrustCode portfolio images after hostname parsing change"
+    },
+    {
+      "name": "Shuffle",
+      "result": "Animated text mounted after SVG filter UUID change"
+    }
+  ],
+  "browserErrors": [],
+  "scope": "Targeted rechecks of the three patched upstream components, following the passing 218-component sweep."
+}

@@ -305,7 +305,9 @@ async function resolveFont(font: string, fontUrl?: string): Promise<string> {
   const url = fontUrl || (font === DEFAULT_FONT ? DEFAULT_FONT_URL : null);
   if (!url) return font;
   try {
-    const isStylesheet = url.includes('fonts.googleapis.com') || /\.css(\?.*)?$/i.test(url);
+    const fontLocation = new URL(url, document.baseURI);
+    const isStylesheet =
+      fontLocation.hostname === 'fonts.googleapis.com' || fontLocation.pathname.toLowerCase().endsWith('.css');
     const family = isStylesheet ? await loadFontFromStylesheet(url) : await loadFontFromFile(url);
     const sizeMatch = font.match(/^\s*(.*?\d+px)/);
     return `${sizeMatch ? sizeMatch[1].trim() : 'bold 30px'} "${family}"`;
