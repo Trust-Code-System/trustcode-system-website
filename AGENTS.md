@@ -29,10 +29,13 @@ is context for any AI/dev session so the basics never need re-asking.
 - **WhatsApp Business:** +234 913 406 2773 (wa.me/2349134062773)
 
 ## Tech stack
-- **Next.js 15** (App Router) · **React 18** · **TypeScript 5** · **Tailwind 3**
+- **Next.js 15** (App Router) · **React 19** · **TypeScript 5** · **Tailwind 3**
 - **framer-motion** (animation), **zod** (validation), **@vercel/analytics** +
   **@vercel/speed-insights** (telemetry)
-- Package manager: **pnpm**. Font: JetBrains Mono (next/font).
+- Package manager: **pnpm**. Fonts: Manrope and JetBrains Mono (self-hosted via next/font).
+- React Bits source is in `src/components/react-bits`; application adapters and the
+  218-component interaction lab are in `src/components/experience` and `src/components/lab`.
+  See `docs/REDESIGN.md` and `docs/REACT_BITS_COVERAGE.md` for the redesign and coverage.
 
 ## Project structure
 - `src/app/` — routes (App Router): `/`, `/about`, `/services`, `/work`,

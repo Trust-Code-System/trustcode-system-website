@@ -16,7 +16,7 @@ export default function WorkPage() {
     <>
       <PageHero
         eyebrow="featured work"
-        title="Engineering work delivered by one multidisciplinary team."
+        title="Different challenges. The same attention to detail."
         intro="Explore selected products, cloud systems, cybersecurity projects and digital platforms designed and delivered by TrustCode."
       />
       <Section>

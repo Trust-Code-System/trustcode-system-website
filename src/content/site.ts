@@ -8,7 +8,7 @@ export const site = {
   whatsapp:
     "https://wa.me/2349134062773?text=Hi%20TrustCode%20System%2C%20I%27d%20like%20to%20discuss%20a%20project.",
   logo: "/trustcode-systems-logo.png",
-  locations: ["Lagos, Nigeria", "London, United Kingdom"],
+  locations: ["Lagos, Nigeria"],
   thesis:
     "TrustCode System builds software you can stake your business on. Full-stack product engineering, cloud infrastructure, AI integration, and security. Delivered by a team that has shipped 15+ live products across fintech, edtech, e-commerce, HR tech, and Web3.",
   description:

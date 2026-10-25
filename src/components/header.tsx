@@ -1,93 +1,115 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { nav } from "@/content/site";
+import { useEffect, useRef, useState } from "react";
 import { Logo } from "./logo";
-import { ThemeToggle } from "./theme-toggle";
-import { Close, Menu } from "./icons";
-import { cn } from "@/lib/utils";
-
+import PillNav from "./react-bits/PillNav/PillNav";
+import Magnet from "./react-bits/Magnet/Magnet";
+import SquishSwitch from "./react-bits/SquishSwitch/SquishSwitch";
+import { useExperienceMotion } from "./experience/motion-preferences";
+const links = [
+  { label: "Work", href: "/work" },
+  { label: "Expertise", href: "/services" },
+  { label: "Studio", href: "/about" },
+  { label: "Process", href: "/process" },
+  { label: "Lab", href: "/lab" },
+];
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
+  const { enabled, toggle } = useExperienceMotion();
+  const menuButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
+    const key = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuButton.current?.focus();
+      }
     };
-  }, [open]);
-
+    window.addEventListener("keydown", key);
+    return () => window.removeEventListener("keydown", key);
+  }, []);
   return (
-    <header className="sticky top-0 z-50 border-b border-grid bg-paper/85 backdrop-blur-md">
-      <div className="container-x flex h-16 items-center justify-between gap-4">
-        <Link href="/" aria-label="TrustCode System, home">
+    <header className="experience-header">
+      <div className="header-inner">
+        <Link
+          href="/"
+          aria-label="TrustCode System home"
+          className="brand-home"
+        >
           <Logo />
         </Link>
-
-        <nav
-          aria-label="Primary"
-          className="hidden items-center gap-1 lg:flex"
-        >
-          {nav.map((item) => {
-            const active =
-              pathname === item.href || pathname.startsWith(item.href + "/");
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "rounded-md px-3 py-2 text-[0.9rem] font-medium transition-colors",
-                  active ? "text-blueprint" : "text-slate hover:text-ink"
-                )}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <Link href="/contact" className="btn-primary hidden sm:inline-flex">
-            Start a project
-          </Link>
+        <div className="desktop-nav">
+          <PillNav
+            items={links}
+            activeHref={pathname}
+            linkComponent={Link}
+            surface="none"
+            itemStyle="plain"
+            hoverEffect="fill"
+            highlightColor="#b8d0ff"
+            highlightTextColor="#0a1224"
+            textColor="#c2c7d2"
+            collapse="never"
+            intro={false}
+            ariaLabel="Primary navigation"
+          />
+        </div>
+        <div className="header-actions">
+          <SquishSwitch
+            checked={enabled}
+            onChange={toggle}
+            width={40}
+            height={23}
+            ariaLabel="Motion effects"
+            label="Motion"
+            trackColor="#20304a"
+            trackOnColor="#b8d0ff"
+            thumbOnColor="#15213a"
+            className="header-motion-control"
+          />
+          <Magnet disabled={!enabled} magnetStrength={4} maxOffset={5}>
+            <Link className="header-cta" href="/contact">
+              Let’s talk <span aria-hidden>↗</span>
+            </Link>
+          </Magnet>
           <button
-            type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-[10px] border border-grid bg-surface text-ink lg:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
+            ref={menuButton}
+            className="mobile-menu-toggle"
+            onClick={() => setOpen(!open)}
             aria-expanded={open}
-            onClick={() => setOpen((o) => !o)}
+            aria-controls="mobile-navigation"
+            aria-label={open ? "Close menu" : "Open menu"}
           >
-            {open ? <Close className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {open ? "×" : "☰"}
           </button>
         </div>
       </div>
-
       {open && (
-        <div className="border-t border-grid bg-paper lg:hidden">
-          <nav aria-label="Mobile" className="container-x flex flex-col py-3">
-            {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="border-b border-grid py-3 text-base font-medium text-ink last:border-0"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/contact" className="btn-primary mt-3">
-              Start a project
+        <nav
+          id="mobile-navigation"
+          className="mobile-navigation"
+          aria-label="Mobile navigation"
+        >
+          {links.map((l, i) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              aria-current={pathname === l.href ? "page" : undefined}
+            >
+              <span>0{i + 1}</span>
+              {l.label}
+              <span aria-hidden>↗</span>
             </Link>
-          </nav>
-        </div>
+          ))}
+          <Link href="/insights">
+            <span>06</span>Insights<span aria-hidden>↗</span>
+          </Link>
+          <Link href="/contact">
+            <span>07</span>Start a project<span aria-hidden>↗</span>
+          </Link>
+        </nav>
       )}
     </header>
   );

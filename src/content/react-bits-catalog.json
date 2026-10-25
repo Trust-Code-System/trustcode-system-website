@@ -1,0 +1,2273 @@
+[
+  {
+    "name": "AccordionGallery",
+    "title": "AccordionGallery",
+    "description": "Panels expand on hover or focus, revealing parallax imagery and captions.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["AccordionGallery.css", "AccordionGallery.tsx"],
+    "slug": "accordion-gallery",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "AcidSquares",
+    "title": "AcidSquares",
+    "description": "A rolling field of glossy squares that ripples under two drifting colored lights.",
+    "dependencies": [],
+    "files": ["AcidSquares.css", "AcidSquares.tsx"],
+    "slug": "acid-squares",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "AeroShards",
+    "title": "AeroShards",
+    "description": "Silk ribbons of thick glass shards streaming on layered depths among survey markers, catching light along their edges.",
+    "dependencies": ["vgpu@^0.3.1"],
+    "files": ["AeroShards.css", "AeroShards.tsx"],
+    "slug": "aero-shards",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "AnimatedContent",
+    "title": "AnimatedContent",
+    "description": "Wrapper that reveals its content on scroll with slides, blur, 3D tilts, soft wipes and staggered children.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["AnimatedContent.tsx"],
+    "slug": "animated-content",
+    "category": "Animation",
+    "usedIn": "Home section entrances"
+  },
+  {
+    "name": "AnimatedList",
+    "title": "AnimatedList",
+    "description": "A scrolling list whose rows spring into view, with a gliding selection and arrow keys.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["AnimatedList.css", "AnimatedList.tsx"],
+    "slug": "animated-list",
+    "category": "Components",
+    "usedIn": "Service expertise explorer"
+  },
+  {
+    "name": "Antigravity",
+    "title": "Antigravity",
+    "description": "A field of particles that lifts into a glowing ring around the cursor and bursts outward on click.",
+    "dependencies": [],
+    "files": ["Antigravity.css", "Antigravity.tsx"],
+    "slug": "antigravity",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ASCIIText",
+    "title": "ASCIIText",
+    "description": "Waving ASCII text that tilts toward the pointer, scrambles on hover and ripples on click.",
+    "dependencies": [],
+    "files": ["ASCIIText.tsx"],
+    "slug": "ascii-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Aurora",
+    "title": "Aurora",
+    "description": "A soft, calm aurora that flows across the top of the page and drifts toward the cursor.",
+    "dependencies": [],
+    "files": ["Aurora.css", "Aurora.tsx"],
+    "slug": "aurora",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Balatro",
+    "title": "Balatro",
+    "description": "The swirling Balatro paint shader, with crisp pixels, a cursor that stirs the paint and click whirlpools.",
+    "dependencies": [],
+    "files": ["Balatro.css", "Balatro.tsx"],
+    "slug": "balatro",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Ballpit",
+    "title": "Ballpit",
+    "description": "A soft-lit pit of physics balls you can shove with the cursor, grab, throw and blast apart.",
+    "dependencies": [],
+    "files": ["Ballpit.tsx"],
+    "slug": "ballpit",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Beams",
+    "title": "Beams",
+    "description": "Glossy ribbons that ripple in the dark and catch the light, which follows your cursor.",
+    "dependencies": [],
+    "files": ["Beams.css", "Beams.tsx"],
+    "slug": "beams",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "BellToggle",
+    "title": "BellToggle",
+    "description": "Pill toggle where a press rings the bell, crossfades the label and unfurls the pill.",
+    "dependencies": [
+      "motion@^12.23.12",
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["BellToggle.css", "BellToggle.tsx"],
+    "slug": "bell-toggle",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "BlobCursor",
+    "title": "BlobCursor",
+    "description": "Liquid metal blob cursor that stretches, sloshes and bursts into droplets, in chrome, jelly, pearl or ink.",
+    "dependencies": ["three@^0.180.0"],
+    "files": ["BlobCursor.css", "BlobCursor.tsx"],
+    "slug": "blob-cursor",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "BlurText",
+    "title": "BlurText",
+    "description": "Text starts blurred then crisply resolves for a soft-focus reveal effect.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["BlurText.tsx"],
+    "slug": "blur-text",
+    "category": "Text",
+    "usedIn": "Page introductions"
+  },
+  {
+    "name": "BorderGlow",
+    "title": "BorderGlow",
+    "description": "Glowing mesh-gradient border that follows cursor direction and intensifies near edges.",
+    "dependencies": [],
+    "files": ["BorderGlow.css", "BorderGlow.tsx"],
+    "slug": "border-glow",
+    "category": "Components",
+    "usedIn": "Lab invitation"
+  },
+  {
+    "name": "BounceCards",
+    "title": "BounceCards",
+    "description": "A fan of photo cards that bounce in, then spread apart and straighten the one you hover.",
+    "dependencies": [],
+    "files": ["BounceCards.css", "BounceCards.tsx"],
+    "slug": "bounce-cards",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "BranchedMenu",
+    "title": "BranchedMenu",
+    "description": "Collapsible menu that branches each section from a trunk and traces a line to your pick.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["BranchedMenu.css", "BranchedMenu.tsx"],
+    "slug": "branched-menu",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "BubbleMenu",
+    "title": "BubbleMenu",
+    "description": "Floating circular expanding menu with staggered item reveal.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["BubbleMenu.css", "BubbleMenu.tsx"],
+    "slug": "bubble-menu",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CallChip",
+    "title": "CallChip",
+    "description": "Tool-call chip whose fill wipes across as a live timer ticks, ending green or shaking red.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["CallChip.css", "CallChip.tsx"],
+    "slug": "call-chip",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CardNav",
+    "title": "CardNav",
+    "description": "A navigation bar that springs open into a row of cards, each with its own links.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["CardNav.css", "CardNav.tsx"],
+    "slug": "card-nav",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CardSwap",
+    "title": "CardSwap",
+    "description": "A 3D stack of cards that sends the front card to the back on a timer, or when you fling it.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["CardSwap.css", "CardSwap.tsx"],
+    "slug": "card-swap",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Carousel",
+    "title": "Carousel",
+    "description": "Swipeable cards for feature tours, stories and galleries, with five transitions and an autoplay timer.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["Carousel.css", "Carousel.tsx"],
+    "slug": "carousel",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ChromaGrid",
+    "title": "ChromaGrid",
+    "description": "A grid of grayscale photo cards where a spotlight follows the cursor and brings back color.",
+    "dependencies": [],
+    "files": ["ChromaGrid.css", "ChromaGrid.tsx"],
+    "slug": "chroma-grid",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CircularCarousel",
+    "title": "CircularCarousel",
+    "description": "A 3D ring of images with bendable cards, momentum drag, snapping and click to focus.",
+    "dependencies": [],
+    "files": ["CircularCarousel.css", "CircularCarousel.tsx"],
+    "slug": "circular-carousel",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CircularGallery",
+    "title": "CircularGallery",
+    "description": "A curved image gallery you can drag, scroll or tab through, with cards that open to the full image.",
+    "dependencies": [],
+    "files": ["CircularGallery.css", "CircularGallery.tsx"],
+    "slug": "circular-gallery",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CircularText",
+    "title": "CircularText",
+    "description": "Layouts characters around a circle with optional rotation animation.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["CircularText.css", "CircularText.tsx"],
+    "slug": "circular-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ClickSpark",
+    "title": "ClickSpark",
+    "description": "Bursts of sparks at every click, as dashes, comets, dots or stars, that can spill around buttons.",
+    "dependencies": [],
+    "files": ["ClickSpark.tsx"],
+    "slug": "click-spark",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CodeSlots",
+    "title": "CodeSlots",
+    "description": "One-time code input whose digits spring into their slots, with paste and SMS autofill.",
+    "dependencies": [
+      "motion@^12.23.12",
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["CodeSlots.css", "CodeSlots.tsx"],
+    "slug": "code-slots",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ColorBends",
+    "title": "ColorBends",
+    "description": "Vibrant color bends with smooth flowing animation.",
+    "dependencies": ["three@^0.180.0"],
+    "files": ["ColorBends.css", "ColorBends.tsx"],
+    "slug": "color-bends",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CometDial",
+    "title": "CometDial",
+    "description": "Tick-ring dial you flick by angle, with a comet that streaks behind the lit head.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["CometDial.css", "CometDial.tsx"],
+    "slug": "comet-dial",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Counter",
+    "title": "Counter",
+    "description": "An odometer-style number whose digits roll to every new value, with currency, separators and locales.",
+    "dependencies": [],
+    "files": ["Counter.css", "Counter.tsx"],
+    "slug": "counter",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CountUp",
+    "title": "CountUp",
+    "description": "Animated number counter supporting formatting and decimals.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["CountUp.tsx"],
+    "slug": "count-up",
+    "category": "Text",
+    "usedIn": "Portfolio and response statistics"
+  },
+  {
+    "name": "Crosshair",
+    "title": "Crosshair",
+    "description": "Crosshair cursor with live coordinates that locks onto links and buttons and measures them.",
+    "dependencies": [],
+    "files": ["Crosshair.tsx"],
+    "slug": "crosshair",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CRTWarp",
+    "title": "CRTWarp",
+    "description": "A blocky plasma glowing on a curved CRT, with real scanlines, a phosphor mask, afterglow and a power-on intro.",
+    "dependencies": [],
+    "files": ["CRTWarp.css", "CRTWarp.tsx"],
+    "slug": "crt-warp",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CrystalizedBall",
+    "title": "CrystalizedBall",
+    "description": "A glass ball with a crackling electric rim and glowing dust that swirls with the cursor.",
+    "dependencies": ["ogl@^1.0.11"],
+    "files": ["CrystalizedBall.css", "CrystalizedBall.tsx"],
+    "slug": "crystalized-ball",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Cubes",
+    "title": "Cubes",
+    "description": "A grid of outlined 3D cubes that turn to face the cursor, spin when swept and ripple on click.",
+    "dependencies": [],
+    "files": ["Cubes.css", "Cubes.tsx"],
+    "slug": "cubes",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CursorGrid",
+    "title": "CursorGrid",
+    "description": "A crisp grid whose cells light up and fade behind the cursor, with grid styles, tiles and click pulses.",
+    "dependencies": [],
+    "files": ["CursorGrid.css", "CursorGrid.tsx"],
+    "slug": "cursor-grid",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CurvedInput",
+    "title": "CurvedInput",
+    "description": "Arc-bent input bar with text, caret and submit button all following the curve.",
+    "dependencies": [],
+    "files": ["CurvedInput.css", "CurvedInput.tsx"],
+    "slug": "curved-input",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "CurvedLoop",
+    "title": "CurvedLoop",
+    "description": "Flowing looping text path along a customizable curve with drag interaction.",
+    "dependencies": [],
+    "files": ["CurvedLoop.css", "CurvedLoop.tsx"],
+    "slug": "curved-loop",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "DarkVeil",
+    "title": "DarkVeil",
+    "description": "A silky veil of light that drifts in the dark and bends around the cursor.",
+    "dependencies": [],
+    "files": ["DarkVeil.css", "DarkVeil.tsx"],
+    "slug": "dark-veil",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "DecayCard",
+    "title": "DecayCard",
+    "description": "An image card that tears and melts as the pointer moves, then pulls itself back together.",
+    "dependencies": [],
+    "files": ["DecayCard.css", "DecayCard.tsx"],
+    "slug": "decay-card",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "DecryptedText",
+    "title": "DecryptedText",
+    "description": "Hacker-style decryption cycling random glyphs until resolving to real text.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["DecryptedText.tsx"],
+    "slug": "decrypted-text",
+    "category": "Text",
+    "usedIn": "Hero introduction"
+  },
+  {
+    "name": "DepthCarousel",
+    "title": "DepthCarousel",
+    "description": "Cards recede into depth on a 3D rail, with drag, keyboard and auto-advance.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["DepthCarousel.css", "DepthCarousel.tsx"],
+    "slug": "depth-carousel",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "DepthText",
+    "title": "DepthText",
+    "description": "Layered extruded type with parallax that shifts against the pointer.",
+    "dependencies": [],
+    "files": ["DepthText.css", "DepthText.tsx"],
+    "slug": "depth-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Dither",
+    "title": "Dither",
+    "description": "Retro dithered waves with Bayer, halftone, line and noise patterns, palettes and cursor trails.",
+    "dependencies": [],
+    "files": ["Dither.css", "Dither.tsx"],
+    "slug": "dither",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "DitherVeil",
+    "title": "DitherVeil",
+    "description": "A 1-bit dithered photo the cursor burns through to full colour, knitting back cell by cell.",
+    "dependencies": ["ogl@^1.0.11"],
+    "files": ["DitherVeil.css", "DitherVeil.tsx"],
+    "slug": "dither-veil",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Dock",
+    "title": "Dock",
+    "description": "macOS style dock with smooth magnification, launch bounce, badges and context menus.",
+    "dependencies": ["react-dom@^19.0.0"],
+    "files": ["Dock.css", "Dock.tsx"],
+    "slug": "dock",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "DodgeField",
+    "title": "DodgeField",
+    "description": "Wrapper that makes any child dodge the pointer until it relents and glides home.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["DodgeField.css", "DodgeField.tsx"],
+    "slug": "dodge-field",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "DomeGallery",
+    "title": "DomeGallery",
+    "description": "Immersive 3D dome gallery projecting images on a hemispheric surface.",
+    "dependencies": ["@use-gesture/react@^10.2.27"],
+    "files": ["DomeGallery.css", "DomeGallery.tsx"],
+    "slug": "dome-gallery",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "DotField",
+    "title": "DotField",
+    "description": "A gradient dot field seen through a lens that follows the cursor, magnifying, pinching or swirling the dots.",
+    "dependencies": [],
+    "files": ["DotField.css", "DotField.tsx"],
+    "slug": "dot-field",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "DotGrid",
+    "title": "DotGrid",
+    "description": "A springy dot grid that the cursor flicks and drags through like jelly, with click shockwaves.",
+    "dependencies": [],
+    "files": ["DotGrid.css", "DotGrid.tsx"],
+    "slug": "dot-grid",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "DriftWall",
+    "title": "DriftWall",
+    "description": "An endless perspective wall of tiles drifting past, lifting on hover.",
+    "dependencies": [],
+    "files": ["DriftWall.css", "DriftWall.tsx"],
+    "slug": "drift-wall",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "EchoText",
+    "title": "EchoText",
+    "description": "Ghosted copies trail behind the text and settle into a single word.",
+    "dependencies": [],
+    "files": ["EchoText.css", "EchoText.tsx"],
+    "slug": "echo-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ElasticMesh",
+    "title": "ElasticMesh",
+    "description": "Turns text or any logo into a puffy inflated shape you can press, poke and stretch like jelly.",
+    "dependencies": [],
+    "files": ["ElasticMesh.css", "ElasticMesh.tsx"],
+    "slug": "elastic-mesh",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ElasticSlider",
+    "title": "ElasticSlider",
+    "description": "A slider that grows under your cursor and stretches like rubber when pulled past either end, then springs back.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["ElasticSlider.css", "ElasticSlider.tsx"],
+    "slug": "elastic-slider",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ElectricBorder",
+    "title": "ElectricBorder",
+    "description": "Wraps any element in crackling strands of current that surge near the cursor and leap off in sparks.",
+    "dependencies": [],
+    "files": ["ElectricBorder.css", "ElectricBorder.tsx"],
+    "slug": "electric-border",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ElectricLogo",
+    "title": "ElectricLogo",
+    "description": "Turns any logo into a living lightning outline, with arcs that leap off its edges.",
+    "dependencies": ["ogl@^1.0.11"],
+    "files": ["ElectricLogo.css", "ElectricLogo.tsx"],
+    "slug": "electric-logo",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "EvilEye",
+    "title": "EvilEye",
+    "description": "Procedural evil eye shader with animated iris, slit pupil, and fiery outer glow.",
+    "dependencies": ["ogl@^1.0.11"],
+    "files": ["EvilEye.css", "EvilEye.tsx"],
+    "slug": "evil-eye",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FadeContent",
+    "title": "FadeContent",
+    "description": "Wrapper that fades content in on scroll, plain or out of focus, from washed-out gray, or through grain, mist and pixel blocks.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["FadeContent.tsx"],
+    "slug": "fade-content",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FallingText",
+    "title": "FallingText",
+    "description": "Text that breaks apart and tumbles into a pile you can drag, throw and swipe, then flies back into place.",
+    "dependencies": ["matter-js@^0.20.0"],
+    "files": ["FallingText.css", "FallingText.tsx"],
+    "slug": "falling-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FaultyTerminal",
+    "title": "FaultyTerminal",
+    "description": "A flickering CRT terminal of glowing glyphs, with phosphor trails under the cursor and glitches on click.",
+    "dependencies": [],
+    "files": ["FaultyTerminal.css", "FaultyTerminal.tsx"],
+    "slug": "faulty-terminal",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Ferrofluid",
+    "title": "Ferrofluid",
+    "description": "A glossy sea of magnetic fluid where swells of spikes roll in and the cursor raises a crown.",
+    "dependencies": [],
+    "files": ["Ferrofluid.css", "Ferrofluid.tsx"],
+    "slug": "ferrofluid",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FlexCarousel",
+    "title": "FlexCarousel",
+    "description": "An infinite image row that flows through invisible liquid glass at its edges.",
+    "dependencies": ["ogl@^1.0.11"],
+    "files": ["FlexCarousel.css", "FlexCarousel.tsx"],
+    "slug": "flex-carousel",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FlipCard",
+    "title": "FlipCard",
+    "description": "Two-faced card that flips in 3D on a click, drag or flick and settles on a spring.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["FlipCard.css", "FlipCard.tsx"],
+    "slug": "flip-card",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FloatingLines",
+    "title": "FloatingLines",
+    "description": "Ribbons of fine glowing lines that drift in waves, part around the cursor and curl when clicked.",
+    "dependencies": [],
+    "files": ["FloatingLines.css", "FloatingLines.tsx"],
+    "slug": "floating-lines",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FlowingMenu",
+    "title": "FlowingMenu",
+    "description": "A full-height menu with a liquid band that glides between rows and reveals a scrolling marquee of each item.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["FlowingMenu.css", "FlowingMenu.tsx"],
+    "slug": "flowing-menu",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FluidGlass",
+    "title": "FluidGlass",
+    "description": "A 3D glass object that refracts your headline, image or video, follows the cursor and melts between shapes.",
+    "dependencies": [],
+    "files": ["FluidGlass.css", "FluidGlass.tsx"],
+    "slug": "fluid-glass",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FluxLines",
+    "title": "FluxLines",
+    "description": "Glowing flux lines tracing a churning magnetic fluid. The cursor magnet reveals and curls them.",
+    "dependencies": [],
+    "files": ["FluxLines.css", "FluxLines.tsx"],
+    "slug": "flux-lines",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FlyingButton",
+    "title": "FlyingButton",
+    "description": "Button that fires its thrusters on hover, lifts off on a WebGL smoke plume and lands back in its own cloud.",
+    "dependencies": [],
+    "files": ["FlyingButton.css", "FlyingButton.tsx"],
+    "slug": "flying-button",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FlyingPosters",
+    "title": "FlyingPosters",
+    "description": "3D posters that twist and flip as you scroll or drag through an endless column.",
+    "dependencies": [],
+    "files": ["FlyingPosters.css", "FlyingPosters.tsx"],
+    "slug": "flying-posters",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Folder",
+    "title": "Folder",
+    "description": "Folder that drops its flap open or swings open like a book, with pages you can pick.",
+    "dependencies": [],
+    "files": ["Folder.css", "Folder.tsx"],
+    "slug": "folder",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FolderFloat",
+    "title": "FolderFloat",
+    "description": "Folder whose notes spring out into a floating cloud when it opens on hover or press.",
+    "dependencies": ["matter-js@^0.20.0"],
+    "files": ["FolderFloat.css", "FolderFloat.tsx"],
+    "slug": "folder-float",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FoldText",
+    "title": "FoldText",
+    "description": "Lines unfold into place like creased paper opening flat.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["FoldText.css", "FoldText.tsx"],
+    "slug": "fold-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FuseButton",
+    "title": "FuseButton",
+    "description": "Action button whose done state carries an undo on a burning fuse.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["FuseButton.css", "FuseButton.tsx"],
+    "slug": "fuse-button",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "FuzzyText",
+    "title": "FuzzyText",
+    "description": "Vibrating fuzzy text with controllable hover intensity.",
+    "dependencies": [],
+    "files": ["FuzzyText.tsx"],
+    "slug": "fuzzy-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Galaxy",
+    "title": "Galaxy",
+    "description": "Endless flight through a twinkling starfield with warp jumps, cursor repulsion and star palettes.",
+    "dependencies": [],
+    "files": ["Galaxy.css", "Galaxy.tsx"],
+    "slug": "galaxy",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GhostCursor",
+    "title": "GhostCursor",
+    "description": "A ghost of glowing smoke that floats after the cursor and curls away as it rises.",
+    "dependencies": [],
+    "files": ["GhostCursor.css", "GhostCursor.tsx"],
+    "slug": "ghost-cursor",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GhostFibers",
+    "title": "GhostFibers",
+    "description": "Layered ribbons of fine glowing fibers that twist, fold and drift through soft depth of field.",
+    "dependencies": [],
+    "files": ["GhostFibers.css", "GhostFibers.tsx"],
+    "slug": "ghost-fibers",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GlareHover",
+    "title": "GlareHover",
+    "description": "A glossy light streak that sweeps across any element in the direction the cursor moves.",
+    "dependencies": [],
+    "files": ["GlareHover.css", "GlareHover.tsx"],
+    "slug": "glare-hover",
+    "category": "Animation",
+    "usedIn": "Team portraits"
+  },
+  {
+    "name": "GlassIcons",
+    "title": "GlassIcons",
+    "description": "Liquid glass icons that bend the color behind them, for app grids, docks and social links.",
+    "dependencies": [],
+    "files": ["GlassIcons.css", "GlassIcons.tsx"],
+    "slug": "glass-icons",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GlassSurface",
+    "title": "GlassSurface",
+    "description": "Apple-style liquid glass that bends what is behind it, in a rounded panel or any logo shape.",
+    "dependencies": [],
+    "files": ["GlassSurface.css", "GlassSurface.tsx"],
+    "slug": "glass-surface",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GlideSelect",
+    "title": "GlideSelect",
+    "description": "Select chip whose menu pops from its corner and whose highlight glides between rows.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["GlideSelect.css", "GlideSelect.tsx"],
+    "slug": "glide-select",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GlitchText",
+    "title": "GlitchText",
+    "description": "RGB split and distortion glitch effect with jitter effects.",
+    "dependencies": [],
+    "files": ["GlitchText.css", "GlitchText.tsx"],
+    "slug": "glitch-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GlowCursor",
+    "title": "GlowCursor",
+    "description": "Light that pours from the cursor, drifts softly through the air and cools as it fades.",
+    "dependencies": [],
+    "files": ["GlowCursor.css", "GlowCursor.tsx"],
+    "slug": "glow-cursor",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GooeyNav",
+    "title": "GooeyNav",
+    "description": "A navigation bar whose active pill breaks into goo that flows over to the item you pick.",
+    "dependencies": [],
+    "files": ["GooeyNav.css", "GooeyNav.tsx"],
+    "slug": "gooey-nav",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GradientASCII",
+    "title": "GradientASCII",
+    "description": "Soft gradient glows drawn in ASCII characters that scramble under the cursor.",
+    "dependencies": [],
+    "files": ["GradientASCII.css", "GradientASCII.tsx"],
+    "slug": "gradient-ascii",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GradientBlinds",
+    "title": "GradientBlinds",
+    "description": "Satin gradient blinds lit by a spotlight that follows the cursor, swaying and turning toward the light.",
+    "dependencies": [],
+    "files": ["GradientBlinds.css", "GradientBlinds.tsx"],
+    "slug": "gradient-blinds",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GradientText",
+    "title": "GradientText",
+    "description": "Living gradients inside your text: a sliding sweep, a drifting mesh or a swinging conic fan.",
+    "dependencies": [],
+    "files": ["GradientText.css", "GradientText.tsx"],
+    "slug": "gradient-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GradientWaves",
+    "title": "GradientWaves",
+    "description": "Lit satin waves rolling in from a hazy horizon, with a light that follows the cursor and swells on click.",
+    "dependencies": [],
+    "files": ["GradientWaves.css", "GradientWaves.tsx"],
+    "slug": "gradient-waves",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GradualBlur",
+    "title": "GradualBlur",
+    "description": "Progressive edge blur for headers, footers, captions and carousels, with an optional fade to color that hides at the ends of a scroll.",
+    "dependencies": [],
+    "files": ["GradualBlur.css", "GradualBlur.tsx"],
+    "slug": "gradual-blur",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Grainient",
+    "title": "Grainient",
+    "description": "Flowing grainy gradients you can stir with the cursor.",
+    "dependencies": [],
+    "files": ["Grainient.css", "Grainient.tsx"],
+    "slug": "grainient",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GridDistortion",
+    "title": "GridDistortion",
+    "description": "Image background that breaks into a grid of blocks under the cursor and settles back into place.",
+    "dependencies": [],
+    "files": ["GridDistortion.css", "GridDistortion.tsx"],
+    "slug": "grid-distortion",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GridMotion",
+    "title": "GridMotion",
+    "description": "A tilted wall of drifting tiles that slides with the pointer and lights up where it rests.",
+    "dependencies": [],
+    "files": ["GridMotion.css", "GridMotion.tsx"],
+    "slug": "grid-motion",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "GridScan",
+    "title": "GridScan",
+    "description": "A 3D grid room swept by a scanning light that follows your view.",
+    "dependencies": [],
+    "files": ["GridScan.css", "GridScan.tsx"],
+    "slug": "grid-scan",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "HalftoneReveal",
+    "title": "HalftoneReveal",
+    "description": "A halftone print of an image whose dots swell into the real photo under the cursor.",
+    "dependencies": [],
+    "files": ["HalftoneReveal.css", "HalftoneReveal.tsx"],
+    "slug": "halftone-reveal",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "HoldButton",
+    "title": "HoldButton",
+    "description": "Hold-to-confirm button whose liquid fill rises while pressed and snaps back if you let go.",
+    "dependencies": [],
+    "files": ["HoldButton.css", "HoldButton.tsx"],
+    "slug": "hold-button",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "HoloCard",
+    "title": "HoloCard",
+    "description": "Collectible trading card with a real holographic foil and glitter that sparkles as it tilts.",
+    "dependencies": [],
+    "files": ["HoloCard.css", "HoloCard.tsx"],
+    "slug": "holo-card",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Hyperspeed",
+    "title": "Hyperspeed",
+    "description": "Night highway of glowing light trails on a winding road that warps into hyperspace while you hold.",
+    "dependencies": ["three@^0.180.0"],
+    "files": ["Hyperspeed.css", "Hyperspeed.tsx"],
+    "slug": "hyperspeed",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ImageTrail",
+    "title": "ImageTrail",
+    "description": "Cursor-based image trail with several built-in variants.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["ImageTrail.css", "ImageTrail.tsx"],
+    "slug": "image-trail",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "InfiniteMenu",
+    "title": "InfiniteMenu",
+    "description": "A draggable sphere of image tiles that snaps the nearest one forward and shows its title.",
+    "dependencies": [],
+    "files": ["InfiniteMenu.css", "InfiniteMenu.tsx"],
+    "slug": "infinite-menu",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "InfiniteSpiral",
+    "title": "InfiniteSpiral",
+    "description": "An endlessly looping 3D helix of images with adjustable motion, depth and spacing.",
+    "dependencies": [],
+    "files": ["InfiniteSpiral.css", "InfiniteSpiral.tsx"],
+    "slug": "infinite-spiral",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Iridescence",
+    "title": "Iridescence",
+    "description": "Liquid iridescent surface with shifting folds that you can stir with the cursor.",
+    "dependencies": [],
+    "files": ["Iridescence.css", "Iridescence.tsx"],
+    "slug": "iridescence",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "JellyRadio",
+    "title": "JellyRadio",
+    "description": "Radio group of chips where the chosen one swells and barges its neighbours outward.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["JellyRadio.css", "JellyRadio.tsx"],
+    "slug": "jelly-radio",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Lanyard",
+    "title": "Lanyard",
+    "description": "Swinging 3D badge on a stretchy woven band that you can drag, throw or click to flip.",
+    "dependencies": ["three@^0.180.0"],
+    "files": ["Lanyard.css", "Lanyard.tsx"],
+    "slug": "lanyard",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "LaserFlow",
+    "title": "LaserFlow",
+    "description": "A beam of light that splashes onto your content and pours over its corners.",
+    "dependencies": [],
+    "files": ["LaserFlow.css", "LaserFlow.tsx"],
+    "slug": "laser-flow",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "LatticeLoader",
+    "title": "LatticeLoader",
+    "description": "Agent status row with a lattice of cells that brighten in a wave beside a live stopwatch.",
+    "dependencies": [],
+    "files": ["LatticeLoader.css", "LatticeLoader.tsx"],
+    "slug": "lattice-loader",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "LetterGlitch",
+    "title": "LetterGlitch",
+    "description": "A calm field of letters that flicker, scramble and glitch in color, stirred by the cursor and torn by clicks.",
+    "dependencies": [],
+    "files": ["LetterGlitch.css", "LetterGlitch.tsx"],
+    "slug": "letter-glitch",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Lightfall",
+    "title": "Lightfall",
+    "description": "Streaks of light falling down a curved tunnel, bending around the cursor and stretching into warp trails on hold.",
+    "dependencies": [],
+    "files": ["Lightfall.css", "Lightfall.tsx"],
+    "slug": "lightfall",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Lightning",
+    "title": "Lightning",
+    "description": "Crackling, branching lightning that bends toward the cursor and strikes wherever you click.",
+    "dependencies": [],
+    "files": ["Lightning.css", "Lightning.tsx"],
+    "slug": "lightning",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "LightPillar",
+    "title": "LightPillar",
+    "description": "A swirling pillar of light that ignites on load, leans toward the cursor and surges on click.",
+    "dependencies": [],
+    "files": ["LightPillar.css", "LightPillar.tsx"],
+    "slug": "light-pillar",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "LightRays",
+    "title": "LightRays",
+    "description": "Volumetric light rays from any edge, with source glow and haze. The cursor steers the beam and casts a shadow.",
+    "dependencies": [],
+    "files": ["LightRays.css", "LightRays.tsx"],
+    "slug": "light-rays",
+    "category": "Backgrounds",
+    "usedIn": "Home hero"
+  },
+  {
+    "name": "LightTunnel",
+    "title": "LightTunnel",
+    "description": "A swirling fibre-optic tunnel where comets of light race into depth, steered by the cursor.",
+    "dependencies": [],
+    "files": ["LightTunnel.css", "LightTunnel.tsx"],
+    "slug": "light-tunnel",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "LineSidebar",
+    "title": "LineSidebar",
+    "description": "Static list navigation with a cursor-proximity effect that shifts and highlights nearby items.",
+    "dependencies": [],
+    "files": ["LineSidebar.css", "LineSidebar.tsx"],
+    "slug": "line-sidebar",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "LineWaves",
+    "title": "LineWaves",
+    "description": "Fine lines that flow in silky waves while a band of light drifts through them.",
+    "dependencies": [],
+    "files": ["LineWaves.css", "LineWaves.tsx"],
+    "slug": "line-waves",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "LiquidChrome",
+    "title": "LiquidChrome",
+    "description": "Soft ribbons of liquid chrome that swirl through a dark pool, ripple under the cursor and catch the light as it moves.",
+    "dependencies": [],
+    "files": ["LiquidChrome.css", "LiquidChrome.tsx"],
+    "slug": "liquid-chrome",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "LiquidEther",
+    "title": "LiquidEther",
+    "description": "A glowing liquid that swirls under the cursor, colored by how fast it flows.",
+    "dependencies": [],
+    "files": ["LiquidEther.css", "LiquidEther.tsx"],
+    "slug": "liquid-ether",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "LogoLoop",
+    "title": "LogoLoop",
+    "description": "Continuously looping marquee of brand or tech logos with seamless repeat and hover pause.",
+    "dependencies": [],
+    "files": ["LogoLoop.css", "LogoLoop.tsx"],
+    "slug": "logo-loop",
+    "category": "Animation",
+    "usedIn": "Disciplines strip"
+  },
+  {
+    "name": "MagicBento",
+    "title": "MagicBento",
+    "description": "A bento grid of feature cards with live artwork, edge light that follows the cursor and a click wave.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["MagicBento.css", "MagicBento.tsx"],
+    "slug": "magic-bento",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "MagicRings",
+    "title": "MagicRings",
+    "description": "Glowing rings that pulse outward in a wave, swell toward the cursor and flare on click.",
+    "dependencies": [],
+    "files": ["MagicRings.css", "MagicRings.tsx"],
+    "slug": "magic-rings",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Magnet",
+    "title": "Magnet",
+    "description": "Elements magnetically ease toward the cursor then settle back with spring physics.",
+    "dependencies": [],
+    "files": ["Magnet.tsx"],
+    "slug": "magnet",
+    "category": "Animation",
+    "usedIn": "Navigation and calls to action"
+  },
+  {
+    "name": "MagnetLines",
+    "title": "MagnetLines",
+    "description": "A field of magnetic lines that swing toward the cursor, ripple outward and spin with every click.",
+    "dependencies": [],
+    "files": ["MagnetLines.css", "MagnetLines.tsx"],
+    "slug": "magnet-lines",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "MaskedHeading",
+    "title": "MaskedHeading",
+    "description": "A headline with a drifting colour mesh or image showing through, revealed word by word.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["MaskedHeading.css", "MaskedHeading.tsx"],
+    "slug": "masked-heading",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Masonry",
+    "title": "Masonry",
+    "description": "A masonry gallery that springs into place, reflows as it resizes and opens images in a lightbox.",
+    "dependencies": [
+      "react-dom@^19.0.0",
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["Masonry.css", "Masonry.tsx"],
+    "slug": "masonry",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "MetaBalls",
+    "title": "MetaBalls",
+    "description": "Liquid metaballs that merge, stretch and pinch apart, with a cursor blob that pushes through them.",
+    "dependencies": [],
+    "files": ["MetaBalls.css", "MetaBalls.tsx"],
+    "slug": "meta-balls",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "MetallicPaint",
+    "title": "MetallicPaint",
+    "description": "Liquid chrome that flows over your logo or text, adapted from Paper's Liquid Metal shader.",
+    "dependencies": [],
+    "files": ["MetallicPaint.css", "MetallicPaint.tsx"],
+    "slug": "metallic-paint",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "MicroSlats",
+    "title": "MicroSlats",
+    "description": "A wall of tiny slats that becomes a rolling sea in perspective, with glinting crests.",
+    "dependencies": ["ogl@^1.0.11"],
+    "files": ["MicroSlats.css", "MicroSlats.tsx"],
+    "slug": "micro-slats",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ModelViewer",
+    "title": "ModelViewer",
+    "description": "A product-style 3D model viewer that frames itself and floats over a soft shadow.",
+    "dependencies": [
+      "@react-three/fiber@^9.3.0",
+      "@react-three/drei@^10.7.4",
+      "three@^0.180.0"
+    ],
+    "files": ["ModelViewer.tsx"],
+    "slug": "model-viewer",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "MoltenMetal",
+    "title": "MoltenMetal",
+    "description": "Swirling caustic filaments with white-hot cores that heat up under the cursor and flare on click.",
+    "dependencies": [],
+    "files": ["MoltenMetal.css", "MoltenMetal.tsx"],
+    "slug": "molten-metal",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "MorphSlider",
+    "title": "MorphSlider",
+    "description": "WebGL slider that melts between images with a displacement transition.",
+    "dependencies": ["ogl@^1.0.11", "gsap@^3.13.0"],
+    "files": ["MorphSlider.css", "MorphSlider.tsx"],
+    "slug": "morph-slider",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Noise",
+    "title": "Noise",
+    "description": "Film grain overlay for photos and pages, from fine 35mm grain to dust, paper and TV static.",
+    "dependencies": [],
+    "files": ["Noise.css", "Noise.tsx"],
+    "slug": "noise",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "OptionWheel",
+    "title": "OptionWheel",
+    "description": "Curved option picker that spins with scroll, drag or arrow keys, tilting items away.",
+    "dependencies": [],
+    "files": ["OptionWheel.css", "OptionWheel.tsx"],
+    "slug": "option-wheel",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Orb",
+    "title": "Orb",
+    "description": "A glowing ring of swirling color that breathes, trails an orbiting light and reaches toward the cursor.",
+    "dependencies": [],
+    "files": ["Orb.css", "Orb.tsx"],
+    "slug": "orb",
+    "category": "Backgrounds",
+    "usedIn": "Delivery process"
+  },
+  {
+    "name": "OrbitImages",
+    "title": "OrbitImages",
+    "description": "SVG Path customizable orbiting images effect",
+    "dependencies": [],
+    "files": ["OrbitImages.css", "OrbitImages.tsx"],
+    "slug": "orbit-images",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PaperCrumple",
+    "title": "PaperCrumple",
+    "description": "An image that crumples into a textured 3D sheet while you hold and drag it.",
+    "dependencies": ["three@^0.180.0"],
+    "files": ["PaperCrumple.css", "PaperCrumple.tsx"],
+    "slug": "paper-crumple",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Particles",
+    "title": "Particles",
+    "description": "A drifting 3D field of particles with glow, twinkle, constellation lines and cursor interaction.",
+    "dependencies": [],
+    "files": ["Particles.css", "Particles.tsx"],
+    "slug": "particles",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ParticleText",
+    "title": "ParticleText",
+    "description": "Text assembles from drifting particles that scatter and reform on demand.",
+    "dependencies": [],
+    "files": ["ParticleText.css", "ParticleText.tsx"],
+    "slug": "particle-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PatternWaves",
+    "title": "PatternWaves",
+    "description": "A lit halftone surface of dots, lines or glyphs that moves like draped silk.",
+    "dependencies": ["ogl@^1.0.11"],
+    "files": ["PatternWaves.css", "PatternWaves.tsx"],
+    "slug": "pattern-waves",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PeekRating",
+    "title": "PeekRating",
+    "description": "Star rating that lifts a wave of stars up to the pointer, then commits with a pop on click.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["PeekRating.css", "PeekRating.tsx"],
+    "slug": "peek-rating",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PillNav",
+    "title": "PillNav",
+    "description": "A pill navigation bar where a fill rises through each link as its label rolls over, with a sliding active dot.",
+    "dependencies": [],
+    "files": ["PillNav.css", "PillNav.tsx"],
+    "slug": "pill-nav",
+    "category": "Components",
+    "usedIn": "Global navigation"
+  },
+  {
+    "name": "PixelBlast",
+    "title": "PixelBlast",
+    "description": "Dithered pixel clouds that drift, shimmer and light up under the cursor, with ripples, shapes and a perspective floor.",
+    "dependencies": [],
+    "files": ["PixelBlast.css", "PixelBlast.tsx"],
+    "slug": "pixel-blast",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PixelCard",
+    "title": "PixelCard",
+    "description": "A card that fills with twinkling pixels on hover, rippling out from the center or the cursor.",
+    "dependencies": [],
+    "files": ["PixelCard.css", "PixelCard.tsx"],
+    "slug": "pixel-card",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PixelSnow",
+    "title": "PixelSnow",
+    "description": "Pixel-art snowflakes drifting down in layers of depth, brushed aside by the cursor.",
+    "dependencies": [],
+    "files": ["PixelSnow.css", "PixelSnow.tsx"],
+    "slug": "pixel-snow",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PixelSwap",
+    "title": "PixelSwap",
+    "description": "New content builds in pixel by pixel in a springy wave that starts wherever the cursor enters.",
+    "dependencies": [],
+    "files": ["PixelSwap.css", "PixelSwap.tsx"],
+    "slug": "pixel-swap",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PixelTrail",
+    "title": "PixelTrail",
+    "description": "Glossy pixels melt into a fluid goo trail behind the cursor, with color shifts and drips.",
+    "dependencies": [],
+    "files": ["PixelTrail.css", "PixelTrail.tsx"],
+    "slug": "pixel-trail",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PixelTransition",
+    "title": "PixelTransition",
+    "description": "Retro pixel dissolve that covers a card in solid pixels, swaps the content underneath and clears again.",
+    "dependencies": [],
+    "files": ["PixelTransition.css", "PixelTransition.tsx"],
+    "slug": "pixel-transition",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Plasma",
+    "title": "Plasma",
+    "description": "Folds of satin light twisting slowly through the dark, turning to follow the cursor.",
+    "dependencies": [],
+    "files": ["Plasma.css", "Plasma.tsx"],
+    "slug": "plasma",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PlasmaWave",
+    "title": "PlasmaWave",
+    "description": "Two ribbons of plasma curling through each other, with soft glow and white-hot cores.",
+    "dependencies": [],
+    "files": ["PlasmaWave.css", "PlasmaWave.tsx"],
+    "slug": "plasma-wave",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Prism",
+    "title": "Prism",
+    "description": "Rotating prism of glowing spectral light with configurable shape, colors and motion.",
+    "dependencies": [],
+    "files": ["Prism.css", "Prism.tsx"],
+    "slug": "prism",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PrismaticBurst",
+    "title": "PrismaticBurst",
+    "description": "A burst of prismatic light rays that leans toward the cursor and sends a wave of light outward on click.",
+    "dependencies": [],
+    "files": ["PrismaticBurst.css", "PrismaticBurst.tsx"],
+    "slug": "prismatic-burst",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ProfileCard",
+    "title": "ProfileCard",
+    "description": "A framed profile card that tilts toward the cursor, with holographic foil shining through a tiled pattern.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["ProfileCard.css", "ProfileCard.tsx"],
+    "slug": "profile-card",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PromptBar",
+    "title": "PromptBar",
+    "description": "Chat composer with @ sources, / commands, a model picker, dictation and attachments.",
+    "dependencies": [
+      "motion@^12.23.12",
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["PromptBar.css", "PromptBar.tsx"],
+    "slug": "prompt-bar",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "PulseHeart",
+    "title": "PulseHeart",
+    "description": "Like button that contracts to a dot, flips colour and pulses back as the count ticks over.",
+    "dependencies": ["@hugeicons/core-free-icons@^4.3.3"],
+    "files": ["PulseHeart.css", "PulseHeart.tsx"],
+    "slug": "pulse-heart",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Radar",
+    "title": "Radar",
+    "description": "A radar scope whose sweep leaves a phosphor afterglow and picks up moving contacts.",
+    "dependencies": [],
+    "files": ["Radar.css", "Radar.tsx"],
+    "slug": "radar",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "RefineFrame",
+    "title": "RefineFrame",
+    "description": "Media frame that steps an image through generation stages without any layout shift.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["RefineFrame.css", "RefineFrame.tsx"],
+    "slug": "refine-frame",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ReflectiveCard",
+    "title": "ReflectiveCard",
+    "description": "A metal ID card that reflects your camera or a looping video and catches the light as it tilts.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["ReflectiveCard.css", "ReflectiveCard.tsx"],
+    "slug": "reflective-card",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Ribbons",
+    "title": "Ribbons",
+    "description": "Springy ribbons that trail the cursor, in lens, comet or even shapes with an optional wave.",
+    "dependencies": [],
+    "files": ["Ribbons.css", "Ribbons.tsx"],
+    "slug": "ribbons",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "RippleDistortion",
+    "title": "RippleDistortion",
+    "description": "Pointer-driven water displacement that warps content and leaves a decaying wake.",
+    "dependencies": ["ogl@^1.0.11"],
+    "files": ["RippleDistortion.css", "RippleDistortion.tsx"],
+    "slug": "ripple-distortion",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "RippleGrid",
+    "title": "RippleGrid",
+    "description": "A crisp grid that ripples like water, bending and lighting up as waves pass through it.",
+    "dependencies": [],
+    "files": ["RippleGrid.css", "RippleGrid.tsx"],
+    "slug": "ripple-grid",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "RotatingText",
+    "title": "RotatingText",
+    "description": "Cycles through multiple phrases with 3D rotate / flip transitions.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["RotatingText.css", "RotatingText.tsx"],
+    "slug": "rotating-text",
+    "category": "Text",
+    "usedIn": "Lab invitation"
+  },
+  {
+    "name": "RubberSegment",
+    "title": "RubberSegment",
+    "description": "Segmented control whose rubber thumb stretches across the gap and squashes into place.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["RubberSegment.css", "RubberSegment.tsx"],
+    "slug": "rubber-segment",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Scanner",
+    "title": "Scanner",
+    "description": "Glowing interference lines swept by a scan beam, with a CRT finish, cursor lensing and click pings.",
+    "dependencies": [],
+    "files": ["Scanner.css", "Scanner.tsx"],
+    "slug": "scanner",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ScrambledText",
+    "title": "ScrambledText",
+    "description": "Detects cursor position and applies a distortion effect to text.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["ScrambledText.css", "ScrambledText.tsx"],
+    "slug": "scrambled-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ScrollExpand",
+    "title": "ScrollExpand",
+    "description": "A rounded media frame that grows to full bleed as it scrolls through the viewport.",
+    "dependencies": [],
+    "files": ["ScrollExpand.css", "ScrollExpand.tsx"],
+    "slug": "scroll-expand",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ScrollFloat",
+    "title": "ScrollFloat",
+    "description": "Text gently floats / parallax shifts on scroll.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["ScrollFloat.css", "ScrollFloat.tsx"],
+    "slug": "scroll-float",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ScrollReveal",
+    "title": "ScrollReveal",
+    "description": "Text gently unblurs and reveals on scroll.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["ScrollReveal.css", "ScrollReveal.tsx"],
+    "slug": "scroll-reveal",
+    "category": "Text",
+    "usedIn": "Studio manifesto"
+  },
+  {
+    "name": "ScrollStack",
+    "title": "ScrollStack",
+    "description": "Cards pin and stack as you scroll, settling back into a dimmed deck with smooth, jitter-free motion.",
+    "dependencies": [],
+    "files": ["ScrollStack.css", "ScrollStack.tsx"],
+    "slug": "scroll-stack",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ScrollVelocity",
+    "title": "ScrollVelocity",
+    "description": "Text marquee animatio - speed and distortion scale with user's scroll velocity.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["ScrollVelocity.css", "ScrollVelocity.tsx"],
+    "slug": "scroll-velocity",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ScrubField",
+    "title": "ScrubField",
+    "description": "Number chip you drag to scrub, with rubber-band limits and click to type.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["ScrubField.css", "ScrubField.tsx"],
+    "slug": "scrub-field",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ShapeBlur",
+    "title": "ShapeBlur",
+    "description": "A crisp logo or shape that drifts out of focus under the pointer like a camera lens.",
+    "dependencies": [],
+    "files": ["ShapeBlur.css", "ShapeBlur.tsx"],
+    "slug": "shape-blur",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ShapeGrid",
+    "title": "ShapeGrid",
+    "description": "A drifting grid of shapes that lights up under the cursor, with perspective tilt and rainbow trails.",
+    "dependencies": [],
+    "files": ["ShapeGrid.css", "ShapeGrid.tsx"],
+    "slug": "shape-grid",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ShapeWaves",
+    "title": "ShapeWaves",
+    "description": "A field of triangles, circles and squares that brighten and grow along rolling waves.",
+    "dependencies": ["vgpu@^0.3.1"],
+    "files": ["ShapeWaves.css", "ShapeWaves.tsx"],
+    "slug": "shape-waves",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ShinyText",
+    "title": "ShinyText",
+    "description": "A sheen of light that sweeps across text, from soft bands to chrome-like reflections.",
+    "dependencies": [],
+    "files": ["ShinyText.css", "ShinyText.tsx"],
+    "slug": "shiny-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Shredder",
+    "title": "Shredder",
+    "description": "A list with a paper shredder at the bottom that cuts dragged rows into curling strips.",
+    "dependencies": ["react-dom@^19.0.0"],
+    "files": ["Shredder.css", "Shredder.tsx"],
+    "slug": "shredder",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Shuffle",
+    "title": "Shuffle",
+    "description": "Animated text reveal where characters shuffle before settling.",
+    "dependencies": ["gsap@^3.13.0", "@gsap/react@^2.1.2"],
+    "files": ["Shuffle.css", "Shuffle.tsx"],
+    "slug": "shuffle",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SideRays",
+    "title": "SideRays",
+    "description": "Shafts of light that fan in from a corner or side, shimmer slowly and lean toward the cursor.",
+    "dependencies": [],
+    "files": ["SideRays.css", "SideRays.tsx"],
+    "slug": "side-rays",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Silk",
+    "title": "Silk",
+    "description": "Flowing satin folds with glossy highlights that turn toward the cursor and ripple on click.",
+    "dependencies": [],
+    "files": ["Silk.css", "Silk.tsx"],
+    "slug": "silk",
+    "category": "Backgrounds",
+    "usedIn": "Closing call to action"
+  },
+  {
+    "name": "SlicedWaves",
+    "title": "SlicedWaves",
+    "description": "Waves of colored light sliced into glowing bars, seen in depth with a focus that follows the cursor.",
+    "dependencies": [],
+    "files": ["SlicedWaves.css", "SlicedWaves.tsx"],
+    "slug": "sliced-waves",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SlideCommit",
+    "title": "SlideCommit",
+    "description": "Slide-to-confirm handle that spins while your action runs and unfurls into a done pill.",
+    "dependencies": [
+      "motion@^12.23.12",
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["SlideCommit.css", "SlideCommit.tsx"],
+    "slug": "slide-commit",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SlingButton",
+    "title": "SlingButton",
+    "description": "Send button you pull back like a slingshot and release to fire.",
+    "dependencies": [
+      "motion@^12.23.12",
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["SlingButton.css", "SlingButton.tsx"],
+    "slug": "sling-button",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SloshGauge",
+    "title": "SloshGauge",
+    "description": "Tank gauge whose liquid chases the value, tilts as it moves and splashes when it fills.",
+    "dependencies": [],
+    "files": ["SloshGauge.css", "SloshGauge.tsx"],
+    "slug": "slosh-gauge",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SoftAurora",
+    "title": "SoftAurora",
+    "description": "Soft aurora borealis shader with 3D Perlin noise and cosine gradient palettes.",
+    "dependencies": [],
+    "files": ["SoftAurora.css", "SoftAurora.tsx"],
+    "slug": "soft-aurora",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SpecularButton",
+    "title": "SpecularButton",
+    "description": "Glass button whose edge catches the light, with a highlight that glides toward the cursor.",
+    "dependencies": [],
+    "files": ["SpecularButton.css", "SpecularButton.tsx"],
+    "slug": "specular-button",
+    "category": "Components",
+    "usedIn": "Project brief navigation and submission"
+  },
+  {
+    "name": "SplashCursor",
+    "title": "SplashCursor",
+    "description": "A fluid simulation that trails the cursor in swirling ink and bursts into a splash on click.",
+    "dependencies": [],
+    "files": ["SplashCursor.css", "SplashCursor.tsx"],
+    "slug": "splash-cursor",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SplitFlapText",
+    "title": "SplitFlapText",
+    "description": "Mechanical split-flap departure board that clacks through to each new phrase.",
+    "dependencies": [],
+    "files": ["SplitFlapText.css", "SplitFlapText.tsx"],
+    "slug": "split-flap-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SplitText",
+    "title": "SplitText",
+    "description": "Splits text into characters / words for staggered entrance animation.",
+    "dependencies": ["gsap@^3.13.0", "@gsap/react@^2.1.2"],
+    "files": ["SplitText.tsx"],
+    "slug": "split-text",
+    "category": "Text",
+    "usedIn": "Page and section headings"
+  },
+  {
+    "name": "SpotlightCard",
+    "title": "SpotlightCard",
+    "description": "Card lit by a soft spotlight that follows the pointer, catches its edge and reaches nearby cards.",
+    "dependencies": [],
+    "files": ["SpotlightCard.css", "SpotlightCard.tsx"],
+    "slug": "spotlight-card",
+    "category": "Components",
+    "usedIn": "Service cards"
+  },
+  {
+    "name": "SpringCheck",
+    "title": "SpringCheck",
+    "description": "Checkbox row where one spring fills the box, draws the tick and strikes through the label.",
+    "dependencies": ["motion@^12.23.12", "@hugeicons/core-free-icons@^4.3.3"],
+    "files": ["SpringCheck.css", "SpringCheck.tsx"],
+    "slug": "spring-check",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SquishSwitch",
+    "title": "SquishSwitch",
+    "description": "Switch whose thumb stretches with speed and squashes against the end when you flick it.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["SquishSwitch.css", "SquishSwitch.tsx"],
+    "slug": "squish-switch",
+    "category": "Micro",
+    "usedIn": "Global motion preference"
+  },
+  {
+    "name": "Stack",
+    "title": "Stack",
+    "description": "Pile of cards you can drag, flick or click through, with thrown cards tucking underneath.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["Stack.css", "Stack.tsx"],
+    "slug": "stack",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "StaggeredMenu",
+    "title": "StaggeredMenu",
+    "description": "Menu with staggered item animations and smooth transitions on open/close.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["StaggeredMenu.css", "StaggeredMenu.tsx"],
+    "slug": "staggered-menu",
+    "category": "Components",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "StarBorder",
+    "title": "StarBorder",
+    "description": "A twinkling star that travels the exact outline of any button, pill or card, trailing light and stardust.",
+    "dependencies": [],
+    "files": ["StarBorder.css", "StarBorder.tsx"],
+    "slug": "star-border",
+    "category": "Animation",
+    "usedIn": "Lab call to action"
+  },
+  {
+    "name": "StatusMark",
+    "title": "StatusMark",
+    "description": "Agent task status glyph that morphs from an idle ring to a progress arc, then a check.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["StatusMark.css", "StatusMark.tsx"],
+    "slug": "status-mark",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Stepper",
+    "title": "Stepper",
+    "description": "A multi-step flow with a gliding step indicator, spring transitions and horizontal or vertical layouts.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["Stepper.css", "Stepper.tsx"],
+    "slug": "stepper",
+    "category": "Components",
+    "usedIn": "Three-stage project brief"
+  },
+  {
+    "name": "StickerPeel",
+    "title": "StickerPeel",
+    "description": "A die-cut sticker you can peel at any edge, drag, throw and swing, in gloss, matte or holographic finishes.",
+    "dependencies": [],
+    "files": ["StickerPeel.css", "StickerPeel.tsx"],
+    "slug": "sticker-peel",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Strands",
+    "title": "Strands",
+    "description": "Spectral strands that twist inside a frosted glass orb and swell into a smooth bulge where they come together, like the new Siri.",
+    "dependencies": [],
+    "files": ["Strands.css", "Strands.tsx"],
+    "slug": "strands",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "StrokeText",
+    "title": "StrokeText",
+    "description": "Outlined letterforms draw themselves on, then flood with fill.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["StrokeText.css", "StrokeText.tsx"],
+    "slug": "stroke-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SwarmCursor",
+    "title": "SwarmCursor",
+    "description": "A liquid swarm of particles that flows after the cursor, curls into eddies and pours around hovered buttons.",
+    "dependencies": [],
+    "files": ["SwarmCursor.css", "SwarmCursor.tsx"],
+    "slug": "swarm-cursor",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SwipeRow",
+    "title": "SwipeRow",
+    "description": "List row that swipes open to reveal actions and deletes on a full swipe.",
+    "dependencies": [
+      "motion@^12.23.12",
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["SwipeRow.css", "SwipeRow.tsx"],
+    "slug": "swipe-row",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "SwipeToast",
+    "title": "SwipeToast",
+    "description": "Toast that swipes down to dismiss and burns a thin fuse for its remaining time.",
+    "dependencies": [
+      "motion@^12.23.12",
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["SwipeToast.css", "SwipeToast.tsx"],
+    "slug": "swipe-toast",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "TargetCursor",
+    "title": "TargetCursor",
+    "description": "A reticle cursor whose corner brackets snap around targets, matching their shape.",
+    "dependencies": ["react-dom@^19.0.0"],
+    "files": ["TargetCursor.css", "TargetCursor.tsx"],
+    "slug": "target-cursor",
+    "category": "Animation",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "TearTicket",
+    "title": "TearTicket",
+    "description": "Ticket whose perforated stub tears off by hand, fibre by fibre, and drops away.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["TearTicket.css", "TearTicket.tsx"],
+    "slug": "tear-ticket",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "TechText",
+    "title": "TechText",
+    "description": "A wordmark whose letters turn into dashed vector paths under the cursor.",
+    "dependencies": [],
+    "files": ["TechText.css", "TechText.tsx"],
+    "slug": "tech-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "TextCursor",
+    "title": "TextCursor",
+    "description": "Text or emoji that trails your cursor as stamped copies, a following chain or a ribbon of letters.",
+    "dependencies": [],
+    "files": ["TextCursor.css", "TextCursor.tsx"],
+    "slug": "text-cursor",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "TextLoop",
+    "title": "TextLoop",
+    "description": "A seamless text marquee that flows along curved SVG paths.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["TextLoop.css", "TextLoop.tsx"],
+    "slug": "text-loop",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "TextPressure",
+    "title": "TextPressure",
+    "description": "Characters scale / warp interactively based on pointer pressure zone.",
+    "dependencies": [],
+    "files": ["TextPressure.tsx"],
+    "slug": "text-pressure",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "TextType",
+    "title": "TextType",
+    "description": "Typewriter effect with blinking cursor and adjustable typing cadence.",
+    "dependencies": ["gsap@^3.13.0"],
+    "files": ["TextType.css", "TextType.tsx"],
+    "slug": "text-type",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "ThoughtLine",
+    "title": "ThoughtLine",
+    "description": "Reasoning trace header with a live clock that folds its steps into one line when done.",
+    "dependencies": [
+      "motion@^12.23.12",
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["ThoughtLine.css", "ThoughtLine.tsx"],
+    "slug": "thought-line",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Threads",
+    "title": "Threads",
+    "description": "Flowing threads that fray apart and part around the cursor, from fine silk to contour lines.",
+    "dependencies": [],
+    "files": ["Threads.css", "Threads.tsx"],
+    "slug": "threads",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "TiltedCard",
+    "title": "TiltedCard",
+    "description": "A 3D card that tilts toward the cursor, with glare, a soft shadow, floating layers and a flip side.",
+    "dependencies": [],
+    "files": ["TiltedCard.css", "TiltedCard.tsx"],
+    "slug": "tilted-card",
+    "category": "Components",
+    "usedIn": "Featured project previews"
+  },
+  {
+    "name": "Topography",
+    "title": "Topography",
+    "description": "A 3D landscape drawn in glowing contour lines that rises under the cursor, with light pulses on click.",
+    "dependencies": [],
+    "files": ["Topography.css", "Topography.tsx"],
+    "slug": "topography",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "TrueFocus",
+    "title": "TrueFocus",
+    "description": "Applies dynamic blur / clarity based over a series of words in order.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["TrueFocus.css", "TrueFocus.tsx"],
+    "slug": "true-focus",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "VariableProximity",
+    "title": "VariableProximity",
+    "description": "Letter styling changes continuously with pointer distance mapping.",
+    "dependencies": [],
+    "files": ["VariableProximity.css", "VariableProximity.tsx"],
+    "slug": "variable-proximity",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "VoicePill",
+    "title": "VoicePill",
+    "description": "Mic button that swells into a capsule of live equalizer bars and a timer while recording.",
+    "dependencies": [
+      "@hugeicons/react@^1.1.10",
+      "@hugeicons/core-free-icons@^4.3.3"
+    ],
+    "files": ["VoicePill.css", "VoicePill.tsx"],
+    "slug": "voice-pill",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "WakeSlider",
+    "title": "WakeSlider",
+    "description": "Thumbless range slider of thin bars where drag speed raises a wake behind the handle.",
+    "dependencies": ["motion@^12.23.12"],
+    "files": ["WakeSlider.css", "WakeSlider.tsx"],
+    "slug": "wake-slider",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "WarmTooltip",
+    "title": "WarmTooltip",
+    "description": "Tooltip group where the first label waits, then its siblings open instantly while warm.",
+    "dependencies": ["react-dom@^19.0.0", "motion@^12.23.12"],
+    "files": ["WarmTooltip.css", "WarmTooltip.tsx"],
+    "slug": "warm-tooltip",
+    "category": "Micro",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "WarpText",
+    "title": "WarpText",
+    "description": "WebGL warp that bends and refracts the text around the pointer.",
+    "dependencies": ["ogl@^1.0.11"],
+    "files": ["WarpText.css", "WarpText.tsx"],
+    "slug": "warp-text",
+    "category": "Text",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "Waves",
+    "title": "Waves",
+    "description": "Dense flowing lines that sway like silk, bend around the cursor and spring back into place.",
+    "dependencies": [],
+    "files": ["Waves.css", "Waves.tsx"],
+    "slug": "waves",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  },
+  {
+    "name": "WebThreads",
+    "title": "WebThreads",
+    "description": "Glowing threads woven through luminous pinch points that light up under the cursor and carry light on click.",
+    "dependencies": [],
+    "files": ["WebThreads.css", "WebThreads.tsx"],
+    "slug": "web-threads",
+    "category": "Backgrounds",
+    "usedIn": "Interaction lab"
+  }
+]

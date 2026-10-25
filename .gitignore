@@ -27,3 +27,5 @@ next-env.d.ts.bak
 
 # Ignore local IDE/AI instruction files.
 /.github/instructions/
+.next-dev/
+.next-review/
