@@ -54,21 +54,21 @@ edits are one-file changes:
 | `values.ts` | Origin story + values |
 | `insights.ts` | Blog/insight cards |
 
-## Design system — "The Engineering Ledger"
+## Design system
 
-Defined in [`globals.css`](src/app/globals.css) and
-[`tailwind.config.ts`](tailwind.config.ts). Palette: `--ink`, `--paper`,
-`--blueprint`, `--verified` (live/success only), `--slate`, `--grid`. Section
-eyebrows use the `/ label` file-path motif. The hero's **Deploy Log**
-([`deploy-log.tsx`](src/components/deploy-log.tsx)) is the signature element.
+Defined in `globals.css`, `experience.css`, `refinement.css` and
+`tailwind.config.ts`. The dark studio experience combines a layered dot/slat
+hero, a six-panel curtain entrance, selected React Bits interactions and an
+original TrustCode companion. See [the design notes](docs/REDESIGN.md).
 
 Dark mode is class-based with an inline no-flash init script in the root layout.
 
 ## Screenshots
 
-Portfolio cards render a branded, deterministic placeholder thumbnail. To use
-real screenshots, drop `public/work/<slug>.png` and swap
-[`project-thumb.tsx`](src/components/project-thumb.tsx) for `next/image`.
+The previous project selection and its screenshots are unpublished. Add future
+projects to `src/content/portfolio.ts` with explicit `coverImage` paths; the
+thumbnail component already supports Next Image. The current work area is
+reserved for the new selection.
 
 ## Contact form
 

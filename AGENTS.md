@@ -16,8 +16,7 @@ is context for any AI/dev session so the basics never need re-asking.
 - **Name:** TrustCode System Limited (short: "TrustCode System")
 - **Tagline:** "Software you can stake your business on."
 - **What they do:** full-stack product engineering, cloud/DevOps, AI integration,
-  cybersecurity/SOC, IT support, training. 15+ live products across fintech,
-  edtech, e-commerce, HR tech, and Web3.
+  cybersecurity/SOC, IT support, training. The project selection is currently unpublished.
 - **Locations:** Lagos, Nigeria · London, UK · remote worldwide.
 - **Team (4 co-founders):**
   - **Abass Ibrahim** — Full-Stack Delivery & Design Lead (Lagos). Primary
@@ -33,9 +32,8 @@ is context for any AI/dev session so the basics never need re-asking.
 - **framer-motion** (animation), **zod** (validation), **@vercel/analytics** +
   **@vercel/speed-insights** (telemetry)
 - Package manager: **pnpm**. Fonts: Manrope and JetBrains Mono (self-hosted via next/font).
-- React Bits source is in `src/components/react-bits`; application adapters and the
-  218-component interaction lab are in `src/components/experience` and `src/components/lab`.
-  See `docs/REDESIGN.md` and `docs/REACT_BITS_COVERAGE.md` for the redesign and coverage.
+- Selected React Bits source is in `src/components/react-bits`; application adapters are
+  in `src/components/experience`. The lab has been removed. See `docs/REDESIGN.md`.
 
 ## Project structure
 - `src/app/` — routes (App Router): `/`, `/about`, `/services`, `/work`,
@@ -45,25 +43,22 @@ is context for any AI/dev session so the basics never need re-asking.
 - `src/components/` — UI components (header, footer, project-card, project-thumb,
   contact-form, select, etc.).
 - `src/content/` — **all site copy/data as typed TS**: `site.ts` (name, domain,
-  email, whatsapp, locations), `portfolio.ts` (projects + the `SHOTS` set in
-  `project-thumb.tsx` controls which have real screenshots), `team.ts`,
+  email, whatsapp, locations), `portfolio.ts` (currently empty; use explicit coverImage paths for future projects), `team.ts`,
   `services.ts`, `process.ts`, `insights.ts`, `values.ts`. Edit content here,
   not in JSX.
 - `src/lib/` — `contact-schema.ts` (zod schema + project-brief option lists),
   `seo.ts`, `utils.ts`.
 - `public/` — assets. Logo: `public/trustcode-systems-logo.png`. Icon:
-  `public/icon.svg`. Team photos: `public/team/`. Project screenshots:
-  `public/work/<slug>.png`. Business cards: `business-cards/`.
+  `public/icon.svg`. Team photos: `public/team/`. Future project covers should use explicit content paths. Business cards: `business-cards/`.
 - `scripts/` — generators (`make_cards.py`, `make_whatsapp_assets.ps1`); output
   to `output/` (gitignored-style scratch).
 
 ## Commands
 - `pnpm dev` — local dev server
-- `pnpm build` — production build (the real CI gate; **always run before
-  committing** since there is no ESLint config wired up)
-- `pnpm typecheck` — `tsc --noEmit`
-- There is **no working `pnpm lint`** (next lint prompts interactively / not
-  configured). Rely on `pnpm typecheck` + `pnpm build`.
+- `pnpm build` — production build; always run before committing.
+- `pnpm typecheck` — application TypeScript.
+- `pnpm lint` — ESLint.
+- `pnpm test` — Vitest API/content checks.
 
 ## Repo & deployment
 - **GitHub:** `Trust-Code-System/trustcode-system-website` (remote `origin`;

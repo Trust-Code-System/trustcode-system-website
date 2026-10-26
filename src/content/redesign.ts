@@ -17,9 +17,6 @@ export const redesign = {
   serviceTitle: "The whole system. Beautifully connected.",
   processTitle: "From what if, to what’s next.",
   teamTitle: "Different disciplines. Shared standards.",
-  labTitle: "A little curiosity. A lot of possibility.",
-  labIntro:
-    "An open playground of motion, materials and interaction. Explore the details that make a digital experience feel alive.",
   ctaTitle: "Make your next move a remarkable one.",
   ctaIntro:
     "Bring the challenge. We’ll bring the people, the process and the engineering to move it forward.",

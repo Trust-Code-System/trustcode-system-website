@@ -19,6 +19,6 @@ export const values = [
 
 export const originStory = [
   "TrustCode System started when product, cloud, security and full-stack specialists who met through Nigeria's tech ecosystem (with hubs in Lagos and London) shared one belief: trust is earned in production, not in pitch decks.",
-  "Between us we've shipped 15+ live products across fintech, edtech, e-commerce, HR tech, Web3, and oil & gas IT. We've built the dashboards, the cloud stacks, the payment pipelines, and the detection labs, and then kept them running.",
+  "We bring together product engineering, design, cloud and security experience. We build the platforms, cloud stacks and integrations, and stay involved beyond launch.",
   "We started TrustCode to do that work under one roof: a team a client can stake their business on, where the person who designs your interface, the one who architects your cloud, and the one who hardens your security all answer to the same standard: production-ready.",
 ];

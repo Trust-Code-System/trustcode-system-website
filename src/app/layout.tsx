@@ -4,11 +4,12 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import "./experience.css";
-import "./lab.css";
+import "./refinement.css";
+import { SiteCurtain } from "@/components/experience/site-curtain";
 import { MotionPreferences } from "@/components/experience/motion-preferences";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { WhatsAppFab } from "@/components/whatsapp-fab";
+
 import { ChatWidget } from "@/components/assistant/chat-widget";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { JsonLd } from "@/components/json-ld";
@@ -107,11 +108,12 @@ export default function RootLayout({
               />
             </filter>
           </svg>
+          <SiteCurtain />
           <ScrollProgress />
           <Header />
           <main id="main">{children}</main>
           <Footer />
-          <WhatsAppFab />
+
           <ChatWidget />
           <Analytics />
           <SpeedInsights />

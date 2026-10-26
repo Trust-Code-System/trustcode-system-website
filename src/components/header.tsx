@@ -12,14 +12,46 @@ const links = [
   { label: "Expertise", href: "/services" },
   { label: "Studio", href: "/about" },
   { label: "Process", href: "/process" },
-  { label: "Lab", href: "/lab" },
+  { label: "Insights", href: "/insights" },
 ];
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const { enabled, toggle } = useExperienceMotion();
   const menuButton = useRef<HTMLButtonElement>(null);
   useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    let previous = window.scrollY;
+    let accumulated = 0;
+    let scheduled = false;
+    const update = () => {
+      const current = window.scrollY;
+      const delta = current - previous;
+      if (current < 80 || open) {
+        setHidden(false);
+        accumulated = 0;
+      } else if (Math.abs(delta) > 1) {
+        accumulated =
+          Math.sign(delta) === Math.sign(accumulated)
+            ? accumulated + delta
+            : delta;
+        if (accumulated > 16) setHidden(true);
+        if (accumulated < -10) setHidden(false);
+      }
+      previous = current;
+      scheduled = false;
+    };
+    const scroll = () => {
+      if (!scheduled) {
+        scheduled = true;
+        requestAnimationFrame(update);
+      }
+    };
+    window.addEventListener("scroll", scroll, { passive: true });
+    return () => window.removeEventListener("scroll", scroll);
+  }, [open]);
+  useEffect(() => setHidden(false), [pathname, open]);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -31,7 +63,10 @@ export function Header() {
     return () => window.removeEventListener("keydown", key);
   }, []);
   return (
-    <header className="experience-header">
+    <header
+      className={`experience-header ${hidden && !open ? "header-away" : ""}`}
+      onFocusCapture={() => setHidden(false)}
+    >
       <div className="header-inner">
         <Link
           href="/"
@@ -103,11 +138,8 @@ export function Header() {
               <span aria-hidden>↗</span>
             </Link>
           ))}
-          <Link href="/insights">
-            <span>06</span>Insights<span aria-hidden>↗</span>
-          </Link>
           <Link href="/contact">
-            <span>07</span>Start a project<span aria-hidden>↗</span>
+            <span>06</span>Start a project<span aria-hidden>↗</span>
           </Link>
         </nav>
       )}

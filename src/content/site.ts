@@ -10,9 +10,9 @@ export const site = {
   logo: "/trustcode-systems-logo.png",
   locations: ["Lagos, Nigeria"],
   thesis:
-    "TrustCode System builds software you can stake your business on. Full-stack product engineering, cloud infrastructure, AI integration, and security. Delivered by a team that has shipped 15+ live products across fintech, edtech, e-commerce, HR tech, and Web3.",
+    "TrustCode System builds software you can stake your business on. Full-stack product engineering, cloud infrastructure, AI integration, and security. From discovery to ongoing support.",
   description:
-    "TrustCode System is a product engineering team building dependable software, cloud systems and digital experiences, with 15+ live products across fintech, edtech, e-commerce and beyond.",
+    "TrustCode System is a product engineering team building dependable software, cloud systems and digital experiences.",
   responsePromise: "We reply within 24 hours.",
 } as const;
 
@@ -38,7 +38,7 @@ export const nav = [
 ] as const;
 
 export const stats = [
-  { value: "15+", label: "live products" },
+  { value: "One team", label: "connected expertise" },
   { value: "6+", label: "industries served" },
   { value: "NG · UK", label: "Lagos & London, remote worldwide" },
   { value: "24h", label: "typical reply window" },

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ReplayEntrance } from "./experience/site-curtain";
 import { Logo } from "./logo";
 import { site, social } from "@/content/site";
 const footerLinks = [
@@ -14,7 +15,6 @@ const footerLinks = [
   {
     title: "DISCOVER",
     items: [
-      ["Interaction lab", "/lab"],
       ["Insights", "/insights"],
       ["Project planner", "/estimate"],
       ["Start a project", "/contact"],
@@ -70,6 +70,7 @@ export function Footer() {
             © {new Date().getFullYear()} TRUSTCODE SYSTEM LIMITED · RC 9713661
           </span>
           <span>THOUGHTFULLY DESIGNED. DEPENDABLY ENGINEERED.</span>
+          <ReplayEntrance />
           <a href="#main">BACK TO TOP ↑</a>
         </div>
       </div>

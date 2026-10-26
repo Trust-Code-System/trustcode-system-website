@@ -4,16 +4,10 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { redesign, serviceVisuals } from "@/content/redesign";
 import { services } from "@/content/services";
-import {
-  projects,
-  homepagePreviewSlugs,
-  PROOF_LABELS,
-} from "@/content/portfolio";
 import { team } from "@/content/team";
 import { steps } from "@/content/process";
 import {
   Enter,
-  LightRays,
   Magnet,
   MotionTitle,
   Orb,
@@ -21,21 +15,15 @@ import {
   SoftText,
   SpotlightCard,
 } from "./bits";
+import { HeroAtmosphere } from "./hero-atmosphere";
+import { PortfolioSpace } from "./portfolio-space";
 import { useExperienceMotion } from "./motion-preferences";
 import CountUp from "../react-bits/CountUp/CountUp";
 import DecryptedText from "../react-bits/DecryptedText/DecryptedText";
-import RotatingText from "../react-bits/RotatingText/RotatingText";
 import LogoLoop from "../react-bits/LogoLoop/LogoLoop";
-import StarBorder from "../react-bits/StarBorder/StarBorder";
-import TiltedCard from "../react-bits/TiltedCard/TiltedCard";
-import BorderGlow from "../react-bits/BorderGlow/BorderGlow";
 import ScrollReveal from "../react-bits/ScrollReveal/ScrollReveal";
 import GlareHover from "../react-bits/GlareHover/GlareHover";
-import { ProjectThumb } from "../project-thumb";
-const featured = homepagePreviewSlugs
-  .map((s) => projects.find((p) => p.slug === s))
-  .filter(Boolean) as typeof projects;
-function Ambient({ kind }: { kind: "rays" | "orb" | "silk" }) {
+function Ambient({ kind }: { kind: "orb" | "silk" }) {
   const { enabled } = useExperienceMotion();
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -50,16 +38,7 @@ function Ambient({ kind }: { kind: "rays" | "orb" | "silk" }) {
     <div ref={ref} aria-hidden className={`ambient ambient-${kind}`}>
       {enabled &&
         visible &&
-        (kind === "rays" ? (
-          <LightRays
-            raysOrigin="top-center"
-            raysColor="#7ba7ff"
-            intensity={1.1}
-            rayLength={1.5}
-            lightSpread={0.75}
-            maxDevicePixelRatio={1.3}
-          />
-        ) : kind === "orb" ? (
+        (kind === "orb" ? (
           <Orb
             hue={210}
             hoverIntensity={0.35}
@@ -79,7 +58,7 @@ export function HomeExperience() {
   return (
     <div className="home-experience">
       <section className="hero-stage">
-        <Ambient kind="rays" />
+        <HeroAtmosphere />
         <div className="hero-noise" aria-hidden />
         <div className="hero-orbit" aria-hidden>
           <i />
@@ -187,10 +166,8 @@ export function HomeExperience() {
         </div>
         <div className="new-stats">
           <div>
-            <strong>
-              {enabled ? <CountUp to={15} suffix="+" duration={1.6} /> : "15+"}
-            </strong>
-            <span>Products in the portfolio</span>
+            <strong>One team</strong>
+            <span>Connected expertise</span>
           </div>
           <div>
             <strong>
@@ -210,81 +187,7 @@ export function HomeExperience() {
           </div>
         </div>
       </section>
-      <section id="selected-work" className="work-section">
-        <div className="experience-container">
-          <div className="section-index">
-            <span>02 / SELECTED WORK</span>
-            <Link href="/work">THE FULL PORTFOLIO ↗</Link>
-          </div>
-          <div className="section-title-row">
-            <MotionTitle text={redesign.workTitle} className="experience-h2" />
-            <p>
-              Real challenges. Considered solutions.
-              <br />
-              Take a closer look at the work.
-            </p>
-          </div>
-          <div className="featured-grid">
-            {featured.slice(0, 4).map((p, i) => (
-              <Enter key={p.slug} delay={(i % 2) * 0.08}>
-                <article className={`featured-project project-color-${i}`}>
-                  <Link
-                    href={`/work/${p.slug}`}
-                    className="project-visual-link"
-                    aria-label={`Explore ${p.title} case study`}
-                  >
-                    <TiltedCard
-                      containerWidth="100%"
-                      containerHeight="100%"
-                      imageWidth="100%"
-                      imageHeight="100%"
-                      rotateAmplitude={enabled ? 4 : 0}
-                      scaleOnHover={1.015}
-                      showTooltip={false}
-                      glare={0.1}
-                    >
-                      <div className="project-browser">
-                        <div className="browser-bar">
-                          <span>● ● ●</span>
-                          <span>{p.title}</span>
-                          <span>↗</span>
-                        </div>
-                        <ProjectThumb project={p} />
-                      </div>
-                    </TiltedCard>
-                    <span className="project-open" aria-hidden>
-                      ↗
-                    </span>
-                  </Link>
-                  <div className="project-details">
-                    <div>
-                      <span className="project-number">
-                        0{i + 1} / {p.sector}
-                      </span>
-                      <h3>
-                        <Link href={`/work/${p.slug}`}>{p.title}</Link>
-                      </h3>
-                      <p>{p.tagline}</p>
-                    </div>
-                    <span className="proof-tag">
-                      {PROOF_LABELS[p.proofType]}
-                    </span>
-                  </div>
-                </article>
-              </Enter>
-            ))}
-          </div>
-          <div className="work-footer">
-            <span>
-              Product, infrastructure and security projects, with clear evidence
-              for each.
-            </span>
-            <Link href="/work" className="text-action">
-              Discover all work <span aria-hidden>↗</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PortfolioSpace />
       <section className="expertise-section experience-container">
         <div className="section-index">
           <span>03 / CONNECTED EXPERTISE</span>
@@ -450,62 +353,6 @@ export function HomeExperience() {
               </Link>
             </Enter>
           ))}
-        </div>
-      </section>
-      <section className="lab-invitation">
-        <div className="experience-container lab-invitation-grid">
-          <div>
-            <div className="section-index">
-              <span>06 / THE INTERACTION LAB</span>
-            </div>
-            <MotionTitle text={redesign.labTitle} className="experience-h2" />
-            <p className="section-copy">{redesign.labIntro}</p>
-            <StarBorder
-              as={Link}
-              href="/lab"
-              color="#a1c4ff"
-              backgroundColor="#101a2b"
-              className="lab-link"
-            >
-              Enter the lab <span aria-hidden>↗</span>
-            </StarBorder>
-          </div>
-          <Link
-            href="/lab"
-            className="lab-object"
-            aria-label="Explore the interaction lab"
-          >
-            <BorderGlow
-              borderRadius={24}
-              backgroundColor="#0b1220"
-              colors={["#215df4", "#72b5ff", "#afe4ff"]}
-              glowColor="215 90 75"
-              className="lab-object-border"
-            >
-              <div className="lab-object-inner">
-                <div className="lab-topline">
-                  <span>TRUSTCODE / EXPERIMENTAL</span>
-                  <span>↗</span>
-                </div>
-                <div className="kinetic-type">
-                  {enabled ? (
-                    <RotatingText
-                      texts={["Explore.", "Interact.", "Imagine."]}
-                      rotationInterval={2800}
-                      effect="blur"
-                      splitBy="words"
-                    />
-                  ) : (
-                    "Explore."
-                  )}
-                </div>
-                <div className="lab-bottomline">
-                  <span>218 COMPONENTS</span>
-                  <span>ENDLESS POSSIBILITIES</span>
-                </div>
-              </div>
-            </BorderGlow>
-          </Link>
         </div>
       </section>
       <section className="closing-experience">

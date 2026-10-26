@@ -8,17 +8,9 @@ import Magnet from "@/components/react-bits/Magnet/Magnet";
 import SpotlightCard from "@/components/react-bits/SpotlightCard/SpotlightCard";
 import AnimatedContent from "@/components/react-bits/AnimatedContent/AnimatedContent";
 export { Magnet, SpotlightCard };
-export const LightRays = dynamic(
-  () => import("@/components/react-bits/LightRays/LightRays"),
-  { ssr: false },
-);
 export const Orb = dynamic(() => import("@/components/react-bits/Orb/Orb"), {
   ssr: false,
 });
-export const Particles = dynamic(
-  () => import("@/components/react-bits/Particles/Particles"),
-  { ssr: false },
-);
 export const Silk = dynamic(() => import("@/components/react-bits/Silk/Silk"), {
   ssr: false,
 });

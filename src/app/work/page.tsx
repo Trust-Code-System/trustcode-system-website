@@ -1,28 +1,20 @@
 import { PageHero } from "@/components/page-hero";
-import { Section } from "@/components/section";
-import { WorkGrid } from "@/components/work-grid";
-import { CtaBand } from "@/components/cta-band";
+import { PortfolioSpace } from "@/components/experience/portfolio-space";
 import { pageMeta } from "@/lib/seo";
-
 export const metadata = pageMeta({
-  title: "Engineering Projects",
-  description:
-    "Explore selected products, cloud systems, cybersecurity projects and digital platforms designed and delivered by TrustCode.",
+  title: "Selected work",
+  description: "A new selection of TrustCode projects is being prepared.",
   path: "/work",
 });
-
 export default function WorkPage() {
   return (
     <>
       <PageHero
-        eyebrow="featured work"
-        title="Different challenges. The same attention to detail."
-        intro="Explore selected products, cloud systems, cybersecurity projects and digital platforms designed and delivered by TrustCode."
+        eyebrow="selected work"
+        title="The next chapter is taking shape."
+        intro="A new selection of projects will live here. Thoughtfully selected. Clearly presented."
       />
-      <Section>
-        <WorkGrid />
-      </Section>
-      <CtaBand />
+      <PortfolioSpace standalone />
     </>
   );
 }

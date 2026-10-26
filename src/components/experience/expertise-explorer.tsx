@@ -81,7 +81,7 @@ export function ExpertiseExplorer() {
             Let’s talk about it ↗
           </Link>
           <Link href={service.proof.href} className="text-action">
-            See the work ↗
+            Discuss the approach ↗
           </Link>
         </div>
       </SpotlightCard>
