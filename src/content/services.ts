@@ -28,7 +28,7 @@ export const services: Service[] = [
     ],
     timeline: "2–10 weeks",
     ctaLabel: "Discuss a Web Project",
-    proof: { label: "Helping Tribe Academy", href: "/work/helping-tribe-academy" },
+    proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "ecommerce-development",
@@ -46,7 +46,7 @@ export const services: Service[] = [
     ],
     timeline: "3–8 weeks",
     ctaLabel: "Discuss an E-Commerce Project",
-    proof: { label: "Wearables Atelier", href: "/work/wearables-atelier" },
+    proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "cloud-devops",
@@ -64,7 +64,7 @@ export const services: Service[] = [
     ],
     timeline: "2–8 weeks",
     ctaLabel: "Discuss Cloud & DevOps",
-    proof: { label: "Serverless YouTube Sync Pipeline", href: "/work/serverless-youtube-pipeline" },
+    proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "ai-integration",
@@ -82,7 +82,7 @@ export const services: Service[] = [
     ],
     timeline: "2–6 weeks",
     ctaLabel: "Discuss an AI Project",
-    proof: { label: "StudyCoach", href: "/work/studycoach" },
+    proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "cybersecurity-soc",
@@ -100,7 +100,7 @@ export const services: Service[] = [
     ],
     timeline: "1–4 weeks",
     ctaLabel: "Discuss a Security Project",
-    proof: { label: "SOC Detection Lab & KQL Playbook", href: "/work/soc-detection-lab" },
+    proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "it-support-managed",
@@ -118,7 +118,7 @@ export const services: Service[] = [
     ],
     timeline: "Ongoing retainer",
     ctaLabel: "Discuss IT Support",
-    proof: { label: "SLN Engineering Ltd", href: "/work/sln-engineering" },
+    proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "training-mentorship",
@@ -136,7 +136,7 @@ export const services: Service[] = [
     ],
     timeline: "Per cohort",
     ctaLabel: "Discuss Training",
-    proof: { label: "The Thesis Desk community", href: "/work/the-thesis-desk" },
+    proof: { label: "Discuss your project", href: "/contact" },
   },
 ];
 

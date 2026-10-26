@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2021",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -13,18 +17,31 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [{ "name": "next" }],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
   "include": [
+    "*.config.mjs",
+    "*.config.ts",
+    ".next-dev/types/**/*.ts",
+    ".next/types/**/*.ts",
     "next-env.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "*.config.ts",
-    "*.config.mjs",
-    ".next/types/**/*.ts"
+    ".next-review/types/**/*.ts"
   ],
-  "exclude": ["node_modules", ".next", "tmp", "output"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    "tmp",
+    "output"
+  ]
 }

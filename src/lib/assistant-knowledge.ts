@@ -6,10 +6,7 @@ import { steps, communication } from "@/content/process";
 import { faqs } from "@/content/faq";
 import { values, originStory } from "@/content/values";
 import { industries } from "@/content/industries";
-import {
-  projectTypes,
-  estimatorFeatures,
-} from "@/content/estimator";
+import { projectTypes, estimatorFeatures } from "@/content/estimator";
 import { articles } from "@/content/articles";
 import {
   serviceOptions,
@@ -67,19 +64,21 @@ CONDUCT
 - When a visitor has described a project to you, offer to open the contact form and pre-fill it for them from what they told you (see GUIDED CONTACT FORM below). This is one of your best moves for a warm lead.
 - If someone asks for a human, is upset, or raises a billing, legal, or security incident matter: acknowledge it, then hand off to WhatsApp or ${site.email} right away. Never bluff on sensitive matters.
 - You cannot send emails, book meetings, process payments, or access customer accounts. You inform and guide only, and you say so plainly when asked.
-- Point people to real pages when useful: /services, /work (featured projects plus more work; live products, GitHub, and case studies as labelled), /about, /process, /insights, /estimate (project scoper / start a project), /contact.
+- Point people to real pages when useful: /services, /work (selected project websites and storefront previews), /about, /process, /insights, /estimate (project scoper / start a project), /contact.
 - Present TrustCode as one multidisciplinary engineering team. Do not emphasise headcount or "four engineers".`;
 
 function serviceLines(): string {
   return services
     .map(
       (s) =>
-        `- ${s.title}, ${s.short} Includes: ${s.includes.join("; ")}. Typical timeline: ${s.timeline}. CTA: ${s.ctaLabel}. Proof: ${s.proof.label} (${site.url}${s.proof.href}).`
+        `- ${s.title}, ${s.short} Includes: ${s.includes.join("; ")}. Typical timeline: ${s.timeline}. CTA: ${s.ctaLabel}. Proof: ${s.proof.label} (${site.url}${s.proof.href}).`,
     )
     .join("\n");
 }
 
 function projectLines(): string {
+  if (!projects.length)
+    return "The portfolio is being updated. No projects are currently published. Do not name or invent past projects, outcomes or clients. Offer to discuss the visitor’s needs instead.";
   return projects
     .map((p) => {
       const live = p.live
@@ -99,7 +98,7 @@ function teamLines(): string {
   return team
     .map(
       (f) =>
-        `- ${f.name}, ${f.role} (${f.location}). ${f.oneLiner} ${f.bio.join(" ")} Highlights: ${f.highlights.join("; ")}. Credentials: ${f.credentials.join("; ")}. Stack: ${f.stack.join(", ")}. Profiles: ${f.links.map((l) => `${l.label} ${l.href}`).join(" · ")}.`
+        `- ${f.name}, ${f.role} (${f.location}). ${f.oneLiner} ${f.bio.join(" ")} Highlights: ${f.highlights.join("; ")}. Credentials: ${f.credentials.join("; ")}. Stack: ${f.stack.join(", ")}. Profiles: ${f.links.map((l) => `${l.label} ${l.href}`).join(" · ")}.`,
     )
     .join("\n");
 }
@@ -108,10 +107,12 @@ function processLines(): string {
   const stepText = steps
     .map(
       (s) =>
-        `${s.n} ${s.title} (${s.duration}), ${s.what} Deliverable: ${s.deliverable}`
+        `${s.n} ${s.title} (${s.duration}), ${s.what} Deliverable: ${s.deliverable}`,
     )
     .join("\n");
-  const commText = communication.map((c) => `- ${c.title}: ${c.body}`).join("\n");
+  const commText = communication
+    .map((c) => `- ${c.title}: ${c.body}`)
+    .join("\n");
   return `${stepText}\n\nHow we communicate during a build:\n${commText}`;
 }
 
@@ -123,7 +124,7 @@ function estimatorLines(): string {
   const types = projectTypes
     .map(
       (t) =>
-        `- ${t.label}: ${t.blurb} Typical delivery ${t.weeks[0]} to ${t.weeks[1]} weeks.`
+        `- ${t.label}: ${t.blurb} Typical delivery ${t.weeks[0]} to ${t.weeks[1]} weeks.`,
     )
     .join("\n");
   const features = estimatorFeatures.map((f) => `- ${f.label}`).join("\n");
@@ -134,7 +135,7 @@ function industryLines(): string {
   return industries
     .map(
       (ind) =>
-        `- ${ind.name}: ${ind.headline} ${ind.intro} We deliver: ${ind.deliver.join("; ")}. Page: ${site.url}/industries/${ind.slug}`
+        `- ${ind.name}: ${ind.headline} ${ind.intro} We deliver: ${ind.deliver.join("; ")}. Page: ${site.url}/industries/${ind.slug}`,
     )
     .join("\n");
 }
@@ -143,7 +144,7 @@ function insightLines(): string {
   return articles
     .map(
       (a) =>
-        `- "${a.title}" (${a.tag}, ${a.readingTime}), ${a.dek} Read at ${site.url}/insights/${a.slug}`
+        `- "${a.title}" (${a.tag}, ${a.readingTime}), ${a.dek} Read at ${site.url}/insights/${a.slug}`,
     )
     .join("\n");
 }
@@ -219,7 +220,7 @@ ${estimatorLines()}
 INDUSTRIES WE SPECIALIZE IN
 ${industryLines()}
 
-PORTFOLIO (15+ products shipped; the highlights below are on the site, most are live and clickable)
+PORTFOLIO (user-selected projects; describe only recorded features, and preserve website/preview distinctions)
 ${projectLines()}
 
 THE TEAM (co-founders; present the company as TrustCode, one multidisciplinary team)

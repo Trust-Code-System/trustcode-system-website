@@ -3,9 +3,9 @@ import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
 import { CtaBand } from "@/components/cta-band";
 import { FaqSection } from "@/components/faq";
-import { Reveal } from "@/components/reveal";
-import { serviceIcons, ArrowRight, ArrowUpRight, Check } from "@/components/icons";
-import { services, engagementModels } from "@/content/services";
+import { ExpertiseExplorer } from "@/components/experience/expertise-explorer";
+import { ArrowRight } from "@/components/icons";
+import { engagementModels } from "@/content/services";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -20,78 +20,12 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="services"
-        title="One engineering team, built for complex digital products."
+        title="One partner. Every layer of your digital world."
         intro="Software, cloud and security expertise working as one team. Every service links to live work you can inspect, and every engagement starts with a consultation and a tailored proposal."
       />
 
       <Section>
-        <div className="grid gap-6">
-          {services.map((service, i) => {
-            const Icon =
-              serviceIcons[service.icon as keyof typeof serviceIcons];
-            return (
-              <Reveal key={service.slug} delay={(i % 3) * 0.04} as="div">
-                <div
-                  id={service.slug}
-                  className="card grid scroll-mt-24 gap-6 p-7 md:grid-cols-12 md:p-9"
-                >
-                  <div className="md:col-span-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-[10px] border border-grid bg-paper text-blueprint">
-                      {Icon && <Icon className="h-6 w-6" />}
-                    </div>
-                    <h2 className="display-h3 mt-4 text-[1.4rem]">
-                      {service.title}
-                    </h2>
-                    <p className="mt-3 text-[0.95rem] leading-relaxed text-slate">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  <div className="md:col-span-4">
-                    <p className="eyebrow mb-3">/ what&apos;s included</p>
-                    <ul className="space-y-2.5">
-                      {service.includes.map((inc) => (
-                        <li
-                          key={inc}
-                          className="flex items-start gap-2.5 text-[0.92rem] text-ink"
-                        >
-                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-verified" />
-                          {inc}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="flex flex-col gap-4 md:col-span-4">
-                    <div>
-                      <p className="eyebrow mb-2">/ typical timeline</p>
-                      <p className="font-mono text-[0.95rem] text-ink">
-                        {service.timeline}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="eyebrow mb-2">/ proof</p>
-                      <Link
-                        href={service.proof.href}
-                        className="inline-flex items-center gap-1.5 text-[0.9rem] font-medium text-ink hover:text-blueprint"
-                      >
-                        {service.proof.label}
-                        <ArrowUpRight className="h-3.5 w-3.5" />
-                      </Link>
-                    </div>
-                    <Link
-                      href={`/contact?service=${service.slug}`}
-                      className="btn-primary mt-auto w-full sm:w-auto"
-                    >
-                      {service.ctaLabel}
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
+        <ExpertiseExplorer />
       </Section>
 
       <Section className="border-y border-grid bg-surface">

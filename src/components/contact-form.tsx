@@ -22,6 +22,8 @@ import {
 import { ArrowRight, Check } from "./icons";
 import { Select } from "./select";
 import { cn } from "@/lib/utils";
+import Stepper, { Step } from "./react-bits/Stepper/Stepper";
+import SpecularButton from "./react-bits/SpecularButton/SpecularButton";
 
 const budgetSelectOptions = budgetOptions.map((b) => ({ value: b, label: b }));
 
@@ -41,10 +43,11 @@ export function ContactForm() {
   const [formError, setFormError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [prefilled, setPrefilled] = useState(false);
+  const [briefStep, setBriefStep] = useState(1);
 
   // Select defaults (keyed remount lets a post-mount prefill take effect).
   const [serviceDefault, setServiceDefault] = useState(
-    presetValid ? preset : ""
+    presetValid ? preset : "",
   );
   const [budgetDefault, setBudgetDefault] = useState("");
 
@@ -84,8 +87,8 @@ export function ContactForm() {
       if (Array.isArray(est.features)) {
         setFeatures(
           est.features.filter((f) =>
-            (featureOptions as readonly string[]).includes(f)
-          )
+            (featureOptions as readonly string[]).includes(f),
+          ),
         );
       }
       if (
@@ -158,8 +161,9 @@ export function ContactForm() {
     setPrefilled(true);
     // Bring the form into view under the sticky header.
     setTimeout(
-      () => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
-      50
+      () =>
+        formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      50,
     );
   }, []);
 
@@ -173,8 +177,38 @@ export function ContactForm() {
     return selected === OTHER ? other.trim() : selected;
   }
 
+  function goStep(nextStep: number) {
+    if (nextStep > 1 && formRef.current) {
+      const data = Object.fromEntries(new FormData(formRef.current));
+      const result = contactSchema
+        .pick({ name: true, email: true, service: true })
+        .safeParse(data);
+      if (!result.success) {
+        const errors: Record<string, string> = {};
+        for (const [key, values] of Object.entries(
+          result.error.flatten().fieldErrors,
+        )) {
+          if (values?.[0]) errors[key] = values[0];
+        }
+        setFieldErrors(errors);
+        setBriefStep(1);
+        requestAnimationFrame(() =>
+          document.getElementById(Object.keys(errors)[0])?.focus(),
+        );
+        return;
+      }
+    }
+    setFieldErrors({});
+    setBriefStep(nextStep);
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (briefStep < 3) {
+      goStep(briefStep + 1);
+      return;
+    }
     setStatus("submitting");
     setFormError(null);
     setFieldErrors({});
@@ -214,6 +248,7 @@ export function ContactForm() {
         if (v && v[0]) next[k] = v[0];
       }
       setFieldErrors(next);
+      if (next.name || next.email || next.service) setBriefStep(1);
       setStatus("error");
       setFormError("Please check the highlighted fields.");
       return;
@@ -230,7 +265,7 @@ export function ContactForm() {
         if (json.fields) {
           const next: Record<string, string> = {};
           for (const [k, v] of Object.entries(
-            json.fields as Record<string, string[]>
+            json.fields as Record<string, string[]>,
           )) {
             if (v && v[0]) next[k] = v[0];
           }
@@ -269,7 +304,8 @@ export function ContactForm() {
         <h2 className="display-h3 text-[1.4rem]">Brief received</h2>
         <p className="lead">
           Thanks, that gives us a clear picture. Expect a reply within 24 hours,
-          and if it&apos;s a build, a tailored proposal once we have reviewed the brief.
+          and if it&apos;s a build, a tailored proposal once we have reviewed
+          the brief.
         </p>
         <button
           type="button"
@@ -283,11 +319,51 @@ export function ContactForm() {
   }
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} noValidate className="card p-7 sm:p-8">
+    <form
+      ref={formRef}
+      onSubmit={onSubmit}
+      noValidate
+      className="card project-brief-form p-7 sm:p-8"
+    >
+      <Stepper
+        step={briefStep}
+        onStepChange={goStep}
+        showFooter={false}
+        frame={false}
+        width="100%"
+        className="contact-stepper"
+        accentColor="#b8d0ff"
+      >
+        <Step title="About you">
+          <p className="brief-step-intro">
+            A good collaboration starts with a hello.
+          </p>
+        </Step>
+        <Step title="Your vision">
+          <p className="brief-step-intro">
+            A few details help us see the bigger picture. This step is optional.
+          </p>
+        </Step>
+        <Step title="The details">
+          <p className="brief-step-intro">
+            Tell us what a successful project looks like. Review your answers
+            before sending.
+          </p>
+        </Step>
+      </Stepper>
       {/* Honeypot, hidden from users, visible to bots */}
-      <div aria-hidden className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute left-[-9999px] h-0 w-0 overflow-hidden"
+      >
         <label htmlFor="website">Leave this empty</label>
-        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
 
       {prefilled && (
@@ -309,144 +385,216 @@ export function ContactForm() {
       )}
 
       <div className="grid gap-5">
-        <Field label="Name" name="name" error={fieldErrors.name} required>
-          <input id="name" name="name" type="text" autoComplete="name" className={fieldBase} placeholder="Your name" />
-        </Field>
-
-        <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Email" name="email" error={fieldErrors.email} required>
-            <input id="email" name="email" type="email" autoComplete="email" className={fieldBase} placeholder="you@company.com" />
+        <div hidden={briefStep !== 1} className="brief-step-fields">
+          <Field label="Name" name="name" error={fieldErrors.name} required>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              className={fieldBase}
+              placeholder="Your name"
+            />
           </Field>
-          <Field label="Company" name="company" error={fieldErrors.company}>
-            <input id="company" name="company" type="text" autoComplete="organization" className={fieldBase} placeholder="Optional" />
-          </Field>
-        </div>
 
-        <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Service" name="service" error={fieldErrors.service} required>
-            <Select
-              key={`service-${serviceDefault}`}
-              id="service"
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field
+              label="Email"
+              name="email"
+              error={fieldErrors.email}
+              required
+            >
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                className={fieldBase}
+                placeholder="you@company.com"
+              />
+            </Field>
+            <Field label="Company" name="company" error={fieldErrors.company}>
+              <input
+                id="company"
+                name="company"
+                type="text"
+                autoComplete="organization"
+                className={fieldBase}
+                placeholder="Optional"
+              />
+            </Field>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field
+              label="Service"
               name="service"
-              options={serviceOptions}
-              defaultValue={serviceDefault}
-              placeholder="Choose a service"
-              aria-invalid={Boolean(fieldErrors.service)}
-            />
-          </Field>
-          <Field label="Your budget range (optional)" name="budget" error={fieldErrors.budget}>
-            <Select
-              key={`budget-${budgetDefault}`}
-              id="budget"
+              error={fieldErrors.service}
+              required
+            >
+              <Select
+                key={`service-${serviceDefault}`}
+                id="service"
+                name="service"
+                options={serviceOptions}
+                defaultValue={serviceDefault}
+                placeholder="Choose a service"
+                aria-invalid={Boolean(fieldErrors.service)}
+              />
+            </Field>
+            <Field
+              label="Your budget range (optional)"
               name="budget"
-              options={budgetSelectOptions}
-              defaultValue={budgetDefault}
-              placeholder="Prefer not to say"
-              aria-invalid={Boolean(fieldErrors.budget)}
+              error={fieldErrors.budget}
+            >
+              <Select
+                key={`budget-${budgetDefault}`}
+                id="budget"
+                name="budget"
+                options={budgetSelectOptions}
+                defaultValue={budgetDefault}
+                placeholder="Prefer not to say"
+                aria-invalid={Boolean(fieldErrors.budget)}
+              />
+            </Field>
+          </div>
+        </div>
+        <div hidden={briefStep !== 2} className="brief-step-fields">
+          {/* ---- Project brief ---- */}
+          <div className="mt-2 border-t border-grid pt-6">
+            <p className="eyebrow">/ project brief</p>
+            <p className="mt-2 text-[0.9rem] text-slate">
+              Optional, but the more you share the faster we can scope it. Pick
+              what fits, or choose &ldquo;Other&rdquo; to tell us in your own
+              words.
+            </p>
+          </div>
+
+          <ChipGroup
+            label="What kind of site or product?"
+            options={siteTypeOptions}
+            value={siteType}
+            onChange={setSiteType}
+            otherValue={siteTypeOther}
+            onOtherChange={setSiteTypeOther}
+          />
+
+          <ChipGroup
+            label="What's the main goal?"
+            options={goalOptions}
+            value={goal}
+            onChange={setGoal}
+            otherValue={goalOther}
+            onOtherChange={setGoalOther}
+          />
+
+          <ChipGroup
+            label="Where are you starting from?"
+            options={startingPointOptions}
+            value={startingPoint}
+            onChange={setStartingPoint}
+          />
+
+          <ChipGroup
+            label="Design direction"
+            options={designVibeOptions}
+            value={designVibe}
+            onChange={setDesignVibe}
+          />
+
+          <ChipMultiGroup
+            label="Features you'll likely need"
+            options={featureOptions}
+            values={features}
+            onToggle={(v) =>
+              setFeatures((cur) =>
+                cur.includes(v) ? cur.filter((x) => x !== v) : [...cur, v],
+              )
+            }
+            otherValue={featureOther}
+            onOtherChange={setFeatureOther}
+          />
+
+          <ChipGroup
+            label="Timeline"
+            options={timelineOptions}
+            value={timeline}
+            onChange={setTimeline}
+          />
+        </div>
+        <div hidden={briefStep !== 3} className="brief-step-fields">
+          <Field
+            label="Sites or brands you like (inspiration)"
+            name="inspiration"
+            error={fieldErrors.inspiration}
+          >
+            <input
+              id="inspiration"
+              name="inspiration"
+              type="text"
+              className={fieldBase}
+              placeholder="Optional, links or names of sites you admire"
             />
           </Field>
-        </div>
 
-        {/* ---- Project brief ---- */}
-        <div className="mt-2 border-t border-grid pt-6">
-          <p className="eyebrow">/ project brief</p>
-          <p className="mt-2 text-[0.9rem] text-slate">
-            Optional, but the more you share the faster we can scope it. Pick what
-            fits, or choose &ldquo;Other&rdquo; to tell us in your own words.
-          </p>
-        </div>
-
-        <ChipGroup
-          label="What kind of site or product?"
-          options={siteTypeOptions}
-          value={siteType}
-          onChange={setSiteType}
-          otherValue={siteTypeOther}
-          onOtherChange={setSiteTypeOther}
-        />
-
-        <ChipGroup
-          label="What's the main goal?"
-          options={goalOptions}
-          value={goal}
-          onChange={setGoal}
-          otherValue={goalOther}
-          onOtherChange={setGoalOther}
-        />
-
-        <ChipGroup
-          label="Where are you starting from?"
-          options={startingPointOptions}
-          value={startingPoint}
-          onChange={setStartingPoint}
-        />
-
-        <ChipGroup
-          label="Design direction"
-          options={designVibeOptions}
-          value={designVibe}
-          onChange={setDesignVibe}
-        />
-
-        <ChipMultiGroup
-          label="Features you'll likely need"
-          options={featureOptions}
-          values={features}
-          onToggle={(v) =>
-            setFeatures((cur) =>
-              cur.includes(v) ? cur.filter((x) => x !== v) : [...cur, v]
-            )
-          }
-          otherValue={featureOther}
-          onOtherChange={setFeatureOther}
-        />
-
-        <ChipGroup
-          label="Timeline"
-          options={timelineOptions}
-          value={timeline}
-          onChange={setTimeline}
-        />
-
-        <Field label="Sites or brands you like (inspiration)" name="inspiration" error={fieldErrors.inspiration}>
-          <input
-            id="inspiration"
-            name="inspiration"
-            type="text"
-            className={fieldBase}
-            placeholder="Optional, links or names of sites you admire"
-          />
-        </Field>
-
-        <Field label="Anything else / details" name="message" error={fieldErrors.message} required>
-          <textarea
-            ref={messageRef}
-            id="message"
+          <Field
+            label="Anything else / details"
             name="message"
-            rows={5}
-            className={fieldBase}
-            placeholder="Tell us what you have in mind, pages, must-haves, anything specific. Where are you now, and what does done look like?"
-          />
-        </Field>
+            error={fieldErrors.message}
+            required
+          >
+            <textarea
+              ref={messageRef}
+              id="message"
+              name="message"
+              rows={5}
+              className={fieldBase}
+              placeholder="Tell us what you have in mind, pages, must-haves, anything specific. Where are you now, and what does done look like?"
+            />
+          </Field>
 
-        {formError && (
-          <p role="alert" className="text-[0.85rem] text-red-500">
-            {formError}
+          {formError && (
+            <p role="alert" className="text-[0.85rem] text-red-500">
+              {formError}
+            </p>
+          )}
+
+          <SpecularButton
+            type="submit"
+            disabled={status === "submitting"}
+            className="btn-primary w-full justify-center disabled:opacity-60 sm:w-auto"
+          >
+            {status === "submitting" ? "Sending…" : "Send brief"}
+            {status !== "submitting" && <ArrowRight className="h-4 w-4" />}
+          </SpecularButton>
+          <p className="text-[0.78rem] text-slate">
+            By sending this you agree we may reply by email. We don&apos;t share
+            your details.
           </p>
-        )}
-
-        <button
-          type="submit"
-          disabled={status === "submitting"}
-          className="btn-primary w-full justify-center disabled:opacity-60 sm:w-auto"
-        >
-          {status === "submitting" ? "Sending…" : "Send brief"}
-          {status !== "submitting" && <ArrowRight className="h-4 w-4" />}
-        </button>
-        <p className="text-[0.78rem] text-slate">
-          By sending this you agree we may reply by email. We don&apos;t share
-          your details.
-        </p>
+        </div>
+        <div className="brief-step-controls">
+          {briefStep > 1 ? (
+            <button
+              type="button"
+              className="text-action"
+              onClick={() => goStep(briefStep - 1)}
+            >
+              ← Back
+            </button>
+          ) : (
+            <span className="brief-required">* Required details</span>
+          )}
+          {briefStep < 3 && (
+            <SpecularButton
+              type="button"
+              className="brief-next"
+              onClick={() => goStep(briefStep + 1)}
+            >
+              {briefStep === 2 ? "Continue to details" : "Continue"}{" "}
+              <span aria-hidden>↗</span>
+            </SpecularButton>
+          )}
+        </div>
       </div>
     </form>
   );
@@ -456,8 +604,8 @@ function chipClass(active: boolean) {
   return cn(
     "rounded-full border px-3.5 py-1.5 text-[0.85rem] transition-colors",
     active
-      ? "border-blueprint bg-blueprint text-white"
-      : "border-grid bg-paper text-ink hover:border-blueprint"
+      ? "border-blueprint bg-blueprint text-paper"
+      : "border-grid bg-paper text-ink hover:border-blueprint",
   );
 }
 

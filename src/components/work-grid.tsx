@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { ProjectCard } from "./project-card";
 import {
   CATEGORY_FILTERS,
@@ -33,8 +33,8 @@ function FilterChip({
       className={cn(
         "rounded-full border px-4 py-2 font-mono text-[0.78rem] uppercase tracking-wider transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blueprint",
         selected
-          ? "border-blueprint bg-blueprint text-white"
-          : "border-grid bg-surface text-slate hover:border-blueprint hover:text-ink"
+          ? "border-blueprint bg-blueprint text-paper"
+          : "border-grid bg-surface text-slate hover:border-blueprint hover:text-ink",
       )}
     >
       {children}
@@ -44,7 +44,7 @@ function FilterChip({
 
 function ProjectGrid({ items }: { items: Project[] }) {
   return (
-    <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="mt-8 grid gap-7 sm:grid-cols-2">
       {items.map((p, i) => (
         <div
           key={p.slug}
@@ -64,23 +64,45 @@ function byCategory(list: Project[], category: CategoryFilter) {
 }
 
 export function WorkGrid() {
+  const [query, setQuery] = useState("");
+  const matches = (p: Project) =>
+    !query.trim() ||
+    [p.title, p.tagline, p.sector, ...p.categories, ...p.stack]
+      .join(" ")
+      .toLowerCase()
+      .includes(query.trim().toLowerCase());
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("All");
 
-  const featured = useMemo(
-    () => byCategory(getFeaturedProjects(), categoryFilter),
-    [categoryFilter]
+  const featured = byCategory(getFeaturedProjects(), categoryFilter).filter(
+    matches,
   );
-  const moreWork = useMemo(
-    () => byCategory(getMoreWork(), categoryFilter),
-    [categoryFilter]
-  );
+  const moreWork = byCategory(getMoreWork(), categoryFilter).filter(matches);
 
-  const isDefault = categoryFilter === "All";
+  const isDefault = categoryFilter === "All" && !query.trim();
   const visibleCount = featured.length + moreWork.length;
   const filteredAll = [...featured, ...moreWork];
 
   return (
-    <div>
+    <div className="work-grid-new">
+      <label className="work-search">
+        <span aria-hidden>⌕</span>
+        <span className="sr-only">Search projects</span>
+        <input
+          aria-label="Search projects"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Find a project, industry or technology…"
+        />
+        {query && (
+          <button
+            type="button"
+            aria-label="Clear project search"
+            onClick={() => setQuery("")}
+          >
+            ×
+          </button>
+        )}
+      </label>
       <div className="space-y-5">
         <div>
           <p className="mb-2 font-mono text-[0.72rem] uppercase tracking-wider text-slate">
@@ -115,11 +137,16 @@ export function WorkGrid() {
           role="status"
         >
           <p className="display-h3 text-[1.25rem]">No projects match</p>
-          <p className="mt-2 text-slate">Try another category filter.</p>
+          <p className="mt-2 text-slate">
+            Try another search or category filter.
+          </p>
           <button
             type="button"
             className="btn-secondary mt-6"
-            onClick={() => setCategoryFilter("All")}
+            onClick={() => {
+              setCategoryFilter("All");
+              setQuery("");
+            }}
           >
             Clear filters
           </button>

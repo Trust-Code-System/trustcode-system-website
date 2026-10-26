@@ -13,12 +13,15 @@ const eslintConfig = [
   {
     ignores: [
       ".next/**",
+      ".next-dev/**",
+      ".next-review/**",
       "build/**",
       "node_modules/**",
       "next-env.d.ts",
       "out/**",
       "output/**",
       "tmp/**",
+      "src/components/react-bits/**",
     ],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),

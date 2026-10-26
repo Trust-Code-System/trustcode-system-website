@@ -1,28 +1,20 @@
 import { PageHero } from "@/components/page-hero";
-import { Section } from "@/components/section";
-import { WorkGrid } from "@/components/work-grid";
-import { CtaBand } from "@/components/cta-band";
+import { ProjectShowcase } from "@/components/experience/project-showcase";
 import { pageMeta } from "@/lib/seo";
-
 export const metadata = pageMeta({
-  title: "Engineering Projects",
-  description:
-    "Explore selected products, cloud systems, cybersecurity projects and digital platforms designed and delivered by TrustCode.",
+  title: "Selected work",
+  description: "Explore Sekibat, NELO Woman and Wearables by Ashabi.",
   path: "/work",
 });
-
 export default function WorkPage() {
   return (
     <>
       <PageHero
-        eyebrow="featured work"
-        title="Engineering work delivered by one multidisciplinary team."
-        intro="Explore selected products, cloud systems, cybersecurity projects and digital platforms designed and delivered by TrustCode."
+        eyebrow="selected work"
+        title="Digital work, out in the world."
+        intro="Property, fashion and commerce. Three distinct digital experiences to explore."
       />
-      <Section>
-        <WorkGrid />
-      </Section>
-      <CtaBand />
+      <ProjectShowcase standalone />
     </>
   );
 }

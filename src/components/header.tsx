@@ -1,94 +1,171 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { nav } from "@/content/site";
 import { Logo } from "./logo";
-import { ThemeToggle } from "./theme-toggle";
-import { Close, Menu } from "./icons";
-import { cn } from "@/lib/utils";
-
+import dynamic from "next/dynamic";
+import CardNav from "./react-bits/CardNav/CardNav";
+import { StarLink, CardNavAnchor } from "./star-link";
+import Magnet from "./react-bits/Magnet/Magnet";
+import SquishSwitch from "./react-bits/SquishSwitch/SquishSwitch";
+import { useExperienceMotion } from "./experience/motion-preferences";
+import {
+  navigationLinks as links,
+  navigationCards as cards,
+} from "@/content/navigation";
+const GooeyNav = dynamic(() => import("./react-bits/GooeyNav/GooeyNav"), {
+  ssr: false,
+});
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
+  const [desktop, setDesktop] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { enabled, toggle } = useExperienceMotion();
+  useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    let previous = window.scrollY;
+    let accumulated = 0;
+    let frame = 0;
+    const update = () => {
+      const current = window.scrollY;
+      const delta = current - previous;
+      if (current < 80 || open) {
+        setHidden(false);
+        accumulated = 0;
+      } else if (Math.abs(delta) > 1) {
+        accumulated =
+          Math.sign(delta) === Math.sign(accumulated)
+            ? accumulated + delta
+            : delta;
+        if (accumulated > 16) setHidden(true);
+        if (accumulated < -10) setHidden(false);
+      }
+      previous = current;
+      frame = 0;
+    };
+    const scroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", scroll, { passive: true });
     return () => {
-      document.body.style.overflow = "";
+      window.removeEventListener("scroll", scroll);
+      cancelAnimationFrame(frame);
     };
   }, [open]);
-
+  useEffect(() => setHidden(false), [pathname, open]);
+  useEffect(() => {
+    const media = matchMedia("(min-width: 961px)");
+    const resize = () => {
+      setDesktop(media.matches);
+      if (media.matches) setOpen(false);
+    };
+    resize();
+    media.addEventListener("change", resize);
+    return () => media.removeEventListener("change", resize);
+  }, []);
+  const motionControl = (mobile = false) => (
+    <SquishSwitch
+      checked={enabled}
+      onChange={toggle}
+      width={40}
+      height={23}
+      ariaLabel="Motion effects"
+      label={mobile ? undefined : "Motion"}
+      trackColor="#20304a"
+      trackOnColor="#b8d0ff"
+      thumbOnColor="#15213a"
+      className="header-motion-control"
+    />
+  );
+  const activeIndex = links.findIndex((link) =>
+    link.href === "/" ? pathname === "/" : pathname.startsWith(link.href),
+  );
   return (
-    <header className="sticky top-0 z-50 border-b border-grid bg-paper/85 backdrop-blur-md">
-      <div className="container-x flex h-16 items-center justify-between gap-4">
-        <Link href="/" aria-label="TrustCode System, home">
+    <header
+      className={`experience-header ${hidden && !open ? "header-away" : ""}`}
+      onFocusCapture={() => setHidden(false)}
+    >
+      <div className="header-inner desktop-header-inner">
+        <Link
+          href="/"
+          aria-label="TrustCode System home"
+          className="brand-home"
+        >
           <Logo />
         </Link>
-
-        <nav
-          aria-label="Primary"
-          className="hidden items-center gap-1 lg:flex"
-        >
-          {nav.map((item) => {
-            const active =
-              pathname === item.href || pathname.startsWith(item.href + "/");
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "rounded-md px-3 py-2 text-[0.9rem] font-medium transition-colors",
-                  active ? "text-blueprint" : "text-slate hover:text-ink"
-                )}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <Link href="/contact" className="btn-primary hidden sm:inline-flex">
-            Start a project
-          </Link>
-          <button
-            type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-[10px] border border-grid bg-surface text-ink lg:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((o) => !o)}
-          >
-            {open ? <Close className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+        <div className="desktop-nav">
+          {desktop ? (
+            <GooeyNav
+              items={links}
+              activeIndex={activeIndex}
+              linkComponent={CardNavAnchor}
+              ariaLabel="Primary navigation"
+              theme="dark"
+              color="#b8d0ff"
+              activeTextColor="#10213a"
+              size="sm"
+              frame={false}
+              animationTime={480}
+              particleCount={10}
+              timeVariance={80}
+              spread={28}
+              gooeyness={0.55}
+              wobble={0.22}
+              motionEnabled={enabled}
+              hoverEffect={enabled}
+            />
+          ) : (
+            <nav aria-label="Primary navigation" className="desktop-nav-static">
+              {links.map((link, i) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={i === activeIndex ? "page" : undefined}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          )}
+        </div>
+        <div className="header-actions">
+          {motionControl()}
+          <Magnet disabled={!enabled} maxOffset={5}>
+            <StarLink className="header-cta" href="/contact">
+              Let’s talk <span aria-hidden>↗</span>
+            </StarLink>
+          </Magnet>
         </div>
       </div>
-
-      {open && (
-        <div className="border-t border-grid bg-paper lg:hidden">
-          <nav aria-label="Mobile" className="container-x flex flex-col py-3">
-            {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="border-b border-grid py-3 text-base font-medium text-ink last:border-0"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/contact" className="btn-primary mt-3">
-              Start a project
-            </Link>
-          </nav>
-        </div>
-      )}
+      <div className="mobile-card-shell">
+        <CardNav
+          logo="/trustcode-system-logo-dark.png"
+          logoAlt="TrustCode System home"
+          logoHref="/"
+          items={cards}
+          cta={{ label: "Let’s talk about your project ↗", href: "/contact" }}
+          theme="dark"
+          surface="solid"
+          openOn="click"
+          cardEffect="rise"
+          stagger={0.09}
+          bounce={0.03}
+          speed={0.85}
+          cardHeight={130}
+          accentColor="#b8d0ff"
+          menuLabel={false}
+          ctaInContent
+          intro={false}
+          open={open}
+          onOpenChange={setOpen}
+          linkComponent={CardNavAnchor}
+          ariaLabel="Mobile navigation"
+          motionEnabled={enabled}
+          className="trustcode-card-nav"
+        />
+        <div className="mobile-card-motion">{motionControl(true)}</div>
+      </div>
     </header>
   );
 }

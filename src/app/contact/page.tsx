@@ -20,7 +20,7 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="contact"
-        title="Let's scope your project properly."
+        title="Tell us what’s next."
         intro="Share your objectives, required features and timeline. Our team will review the project and provide a tailored proposal. No jargon, no obligation."
       />
 

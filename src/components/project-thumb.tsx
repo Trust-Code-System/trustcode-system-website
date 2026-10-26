@@ -3,23 +3,8 @@ import type { Project } from "@/content/portfolio";
 import { PROOF_LABELS } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
 
-const SCREENSHOT_SLUGS = new Set([
-  "the-thesis-desk",
-  "helping-tribe-academy",
-  "atlas-hr",
-  "airtimevault",
-  "wearables-atelier",
-  "petrobrain",
-  "aureo",
-  "studycoach",
-  "sln-engineering",
-  "9th-luxe",
-]);
-
 function resolveCover(project: Project): string | null {
-  if (project.coverImage) return project.coverImage;
-  if (SCREENSHOT_SLUGS.has(project.slug)) return `/work/${project.slug}.png`;
-  return null;
+  return project.coverImage || null;
 }
 
 export function ProjectThumb({
@@ -44,7 +29,7 @@ export function ProjectThumb({
     <div
       className={cn(
         "relative aspect-[16/10] w-full overflow-hidden rounded-t-card border-b border-grid bg-paper",
-        className
+        className,
       )}
     >
       {shot ? (
@@ -90,7 +75,7 @@ export function ProjectThumb({
             "truncate font-mono text-[0.65rem]",
             shot
               ? "rounded bg-paper/85 px-1.5 py-0.5 text-slate backdrop-blur-sm"
-              : "text-slate"
+              : "text-slate",
           )}
         >
           {host}
@@ -100,7 +85,7 @@ export function ProjectThumb({
       <span
         className={cn(
           "absolute bottom-3 right-4 inline-flex items-center gap-1.5 rounded bg-paper/90 px-1.5 py-0.5 font-mono text-[0.65rem] uppercase tracking-wide backdrop-blur-sm",
-          isLive ? "text-verified" : "text-slate"
+          isLive ? "text-verified" : "text-slate",
         )}
       >
         {isLive && (
