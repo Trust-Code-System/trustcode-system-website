@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import "./experience.css";
 import "./refinement.css";
+import "./navigation-chat.css";
 import { SiteCurtain } from "@/components/experience/site-curtain";
 import { MotionPreferences } from "@/components/experience/motion-preferences";
 import { Header } from "@/components/header";

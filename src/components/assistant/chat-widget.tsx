@@ -14,6 +14,9 @@ import {
 } from "@/lib/contact-prefill";
 import { TrustCodePet } from "./trustcode-pet";
 import { MarkdownLite } from "./markdown-lite";
+import ThoughtLine from "../react-bits/ThoughtLine/ThoughtLine";
+import SlingButton from "../react-bits/SlingButton/SlingButton";
+import { useExperienceMotion } from "../experience/motion-preferences";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -99,6 +102,15 @@ export function ChatWidget() {
   const router = useRouter();
   const launcherRef = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const restoreFocus = useRef(true);
+  const { enabled } = useExperienceMotion();
+  const [requestId, setRequestId] = useState(0);
+  const [requestStartedAt, setRequestStartedAt] = useState(0);
+  const [requestElapsed, setRequestElapsed] = useState<number | undefined>();
+  const [requestPhase, setRequestPhase] = useState<
+    "idle" | "waiting" | "receiving" | "complete" | "error"
+  >("idle");
 
   useEffect(() => {
     setMessages(loadMessages());
@@ -153,8 +165,9 @@ export function ChatWidget() {
 
   useEffect(() => {
     if (open) {
+      restoreFocus.current = true;
       inputRef.current?.focus();
-    } else if (wasOpen.current) {
+    } else if (wasOpen.current && restoreFocus.current) {
       launcherRef.current?.focus();
     }
     wasOpen.current = open;
@@ -165,8 +178,23 @@ export function ChatWidget() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
+    const outside = (event: PointerEvent) => {
+      const target = event.target;
+      if (
+        !(target instanceof Node) ||
+        panelRef.current?.contains(target) ||
+        launcherRef.current?.contains(target)
+      )
+        return;
+      restoreFocus.current = false;
+      setOpen(false);
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", outside, true);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", outside, true);
+    };
   }, [open]);
 
   const send = useCallback(
@@ -181,6 +209,11 @@ export function ChatWidget() {
       setMessages([...history, { role: "assistant", content: "" }]);
       setInput("");
       setStreaming(true);
+      const startedAt = performance.now();
+      setRequestStartedAt(startedAt);
+      setRequestElapsed(undefined);
+      setRequestId((value) => value + 1);
+      setRequestPhase("waiting");
 
       const setReply = (content: string) =>
         setMessages([...history, { role: "assistant", content }]);
@@ -193,6 +226,8 @@ export function ChatWidget() {
       let finished = false;
       let lastHaptic = 0;
       let pendingPrefill: unknown | null = null;
+      let failed = false;
+      let receiving = false;
       const canVibrate =
         typeof navigator !== "undefined" &&
         typeof navigator.vibrate === "function";
@@ -218,7 +253,9 @@ export function ChatWidget() {
         }
         if (finished && shown >= target.length) {
           stopTypewriter();
+          setRequestElapsed((performance.now() - startedAt) / 1000);
           setStreaming(false);
+          setRequestPhase(failed ? "error" : "complete");
           // Once the visible confirmation has finished typing, open the form.
           if (pendingPrefill) {
             const p = pendingPrefill;
@@ -245,7 +282,9 @@ export function ChatWidget() {
             // non-JSON error body: keep the generic fallback
           }
           setReply(msg);
+          setRequestElapsed((performance.now() - startedAt) / 1000);
           setStreaming(false);
+          setRequestPhase("error");
           return;
         }
 
@@ -258,12 +297,18 @@ export function ChatWidget() {
           acc += decoder.decode(value, { stream: true });
           // Reveal only the visible part; the hidden prefill block never types.
           target = visibleText(acc);
+          if (target && !receiving) {
+            receiving = true;
+            setRequestPhase("receiving");
+          }
         }
         acc += decoder.decode();
+        failed = !visibleText(acc);
         target = visibleText(acc) || FALLBACK_ERROR;
         pendingPrefill = extractPrefill(acc);
         finished = true;
       } catch {
+        failed = true;
         target = target || FALLBACK_ERROR;
         finished = true;
       }
@@ -297,13 +342,14 @@ export function ChatWidget() {
       <AnimatePresence>
         {open && (
           <motion.div
+            ref={panelRef}
             id="trustcode-chat-panel"
             role="dialog"
             aria-label="TrustCode companion chat"
-            initial={{ opacity: 0, y: 16, scale: 0.97 }}
+            initial={enabled ? { opacity: 0, y: 16, scale: 0.97 } : false}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.97 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            transition={{ duration: enabled ? 0.2 : 0, ease: "easeOut" }}
             className="trustcode-chat-panel"
           >
             {/* Header */}
@@ -350,19 +396,59 @@ export function ChatWidget() {
               </Bubble>
 
               {messages.map((m, i) => (
-                <Bubble key={i} role={m.role}>
-                  {m.role === "assistant" ? (
-                    m.content ? (
-                      <MarkdownLite text={visibleText(m.content)} />
-                    ) : (
-                      <TypingDots />
-                    )
-                  ) : (
-                    <p className="whitespace-pre-wrap text-[0.875rem] leading-relaxed">
-                      {m.content}
-                    </p>
+                <div key={i} className="companion-turn">
+                  {m.role === "assistant" &&
+                    i === messages.length - 1 &&
+                    requestId > 0 && (
+                      <ThoughtLine
+                        key={requestId}
+                        working={streaming}
+                        startedAt={requestStartedAt}
+                        elapsed={requestElapsed}
+                        label={
+                          requestPhase === "receiving"
+                            ? "Receiving reply"
+                            : "Waiting for reply"
+                        }
+                        doneLabel={
+                          requestPhase === "error"
+                            ? "Reply unavailable after"
+                            : "Reply ready in"
+                        }
+                        steps={
+                          requestPhase === "error"
+                            ? []
+                            : [
+                                "Request sent",
+                                requestPhase === "waiting"
+                                  ? "Waiting for a reply"
+                                  : requestPhase === "complete"
+                                    ? "Reply received"
+                                    : "Receiving reply",
+                              ]
+                        }
+                        fontSize={11}
+                        color="#92aacb"
+                        glyphColor="#b8d0ff"
+                        breathDepth={enabled ? 0.3 : 0}
+                        shimmer={enabled}
+                        settleDuration={enabled ? 250 : 0}
+                        settleBlur={0}
+                        className="companion-thought-line"
+                      />
+                    )}
+                  {(m.content || m.role === "user") && (
+                    <Bubble role={m.role}>
+                      {m.role === "assistant" ? (
+                        <MarkdownLite text={visibleText(m.content)} />
+                      ) : (
+                        <p className="whitespace-pre-wrap text-[0.875rem] leading-relaxed">
+                          {m.content}
+                        </p>
+                      )}
+                    </Bubble>
                   )}
-                </Bubble>
+                </div>
               ))}
 
               {!hasConversation && (
@@ -411,24 +497,25 @@ export function ChatWidget() {
                     el.style.height = `${Math.min(el.scrollHeight, 112)}px`;
                   }}
                 />
-                <button
-                  type="submit"
+                <SlingButton
+                  onSend={() => send(input)}
                   disabled={streaming || !input.trim()}
-                  aria-label="Send message"
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blueprint text-white transition-opacity disabled:opacity-40"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="h-[18px] w-[18px]"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-                  </svg>
-                </button>
+                  ariaLabel="Send message"
+                  size={44}
+                  padColor="#b8d0ff"
+                  iconColor="#10203a"
+                  accentColor="#d6e6ff"
+                  wellColor="#17273c"
+                  bandColor="#6b8dbd"
+                  armAt={24}
+                  maxPull={58}
+                  flight={48}
+                  particles={enabled ? 6 : 0}
+                  spread={28}
+                  recoil={0.12}
+                  motionEnabled={enabled}
+                  className="companion-sling"
+                />
               </div>
               <p className="mt-1.5 text-center text-[0.65rem] text-slate">
                 AI companion · Prefer the team?{" "}
@@ -469,22 +556,5 @@ function Bubble({
         {children}
       </div>
     </div>
-  );
-}
-
-function TypingDots() {
-  return (
-    <span
-      className="flex items-center gap-1 py-1"
-      aria-label="Assistant is typing"
-    >
-      {[0, 1, 2].map((i) => (
-        <span
-          key={i}
-          className="h-1.5 w-1.5 rounded-full bg-slate animate-pulse-dot"
-          style={{ animationDelay: `${i * 0.2}s` }}
-        />
-      ))}
-    </span>
   );
 }
