@@ -19,11 +19,6 @@
   opacity: 0;
   pointer-events: none;
 }
-.experience-header:focus-within {
-  transform: none;
-  opacity: 1;
-  pointer-events: auto;
-}
 .hero-stage {
   background: #080e18;
 }

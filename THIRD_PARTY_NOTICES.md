@@ -1,6 +1,6 @@
 # React Bits
 
-28 selected TypeScript/CSS components from the official React Bits registry, retrieved 25–26 October 2026. Source: https://github.com/DavidHDev/react-bits. MIT + Commons Clause license: see REACT_BITS_LICENSE.md. Original author credits retained. Components are integrated into the TrustCode website.
+27 selected TypeScript/CSS components from the official React Bits registry, retrieved 25–26 October 2026. Source: https://github.com/DavidHDev/react-bits. MIT + Commons Clause license: see REACT_BITS_LICENSE.md. Original author credits retained. Components are integrated into the TrustCode website.
 
 Upstream source is vendored under src/components/react-bits. A TypeScript checking suppression isolates upstream files from application compiler differences; application adapters remain type checked. MicroSlats is capped at device pixel ratio 1 to reduce the layered hero's rendering cost.
 
@@ -10,7 +10,11 @@ Additional integration patches: FoldText supports an entrance delay; LineSidebar
 
 Stepper supports persistent form panels without duplicate input IDs, inert outgoing panels, complete motion-off states and visible compact labels. The contact form animates full panels while preserving its existing validation, prefill and delivery handler.
 
-Lanyard is capped at device pixel ratio 1 and reports its first ready photo frame so its application adapter can retain a static image until rendering succeeds. It is imported only for visible, motion-enabled team badges; hidden or offscreen scenes unmount. StarBorder uses Next Link through a typed adapter and static links when motion is disabled. LogoLoop displays self-hosted SVG technology marks.
+StarBorder uses Next Link through a typed adapter and static links when motion is disabled. LogoLoop displays self-hosted SVG technology marks. Lanyard and Three.js have been removed.
+
+## Companion artwork
+
+The user-supplied robot reference was adapted using the built-in image generation editor, with the supplied TrustCode logo as the chest-symbol reference and a transparent background. The final asset is self-hosted at public/assistant/trustcode-robot.webp. It replaces the previous SVG mascot.
 
 ## Technology marks
 

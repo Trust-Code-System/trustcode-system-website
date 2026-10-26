@@ -100,54 +100,31 @@
 .trustcode-card-nav .card-nav__cta--wide {
   width: 100%;
 }
-.team-lanyard {
+.team-portrait {
   position: relative;
-  height: 370px;
+  aspect-ratio: 4 / 5;
   width: 100%;
   margin: 0;
   overflow: hidden;
   border: 1px solid #2a3b5355;
-  border-radius: 16px;
-  background:
-    radial-gradient(ellipse at 50% 35%, #1c355d66, transparent 65%), #0b1421;
+  border-radius: 14px;
+  background: #0b1421;
 }
-.lanyard-photo-fallback {
-  position: absolute;
-  inset: 44px 28px 35px;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: opacity 0.3s ease;
-}
-.lanyard-photo-fallback > span {
+.team-portrait > span {
   display: grid;
   place-items: center;
   height: 100%;
   color: #c7daf8;
 }
-.lanyard-ready .lanyard-photo-fallback {
-  opacity: 0;
-}
-.trustcode-lanyard-scene {
-  position: absolute !important;
-  inset: 0;
-  z-index: 1;
-}
-.trustcode-lanyard-scene canvas {
+.trustcode-pet .pet-character {
   display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: center 65%;
 }
-.team-lanyard figcaption {
-  position: absolute;
-  bottom: 12px;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  pointer-events: none;
-  text-align: center;
-  font:
-    8px var(--font-mono),
-    monospace;
-  letter-spacing: 0.03em;
-  color: #849bbd;
+.pet-thinking .pet-character {
+  animation-duration: 1.8s;
 }
 .team-portrait-card h3 a:hover {
   color: #b8d0ff;
@@ -179,15 +156,7 @@
   .team-experience {
     grid-template-columns: 1fr;
   }
-  .team-lanyard {
-    height: 390px;
-  }
   .project-showcase-grid .card > div:last-child {
     padding: 23px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .lanyard-photo-fallback {
-    transition: none;
   }
 }

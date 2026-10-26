@@ -1,4 +1,4 @@
-import { TeamLanyard } from "@/components/experience/team-lanyard";
+import { TeamPortrait } from "@/components/experience/team-portrait";
 import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
 import { CtaBand } from "@/components/cta-band";
@@ -59,7 +59,7 @@ export default function AboutPage() {
                 className="card grid scroll-mt-24 gap-8 p-7 md:grid-cols-12 md:p-9"
               >
                 <div className="md:col-span-4">
-                  <TeamLanyard person={f} />
+                  <TeamPortrait person={f} />
                   <div className="mt-4 flex flex-wrap gap-2">
                     {f.links.map((l) => (
                       <a

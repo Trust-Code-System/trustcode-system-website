@@ -28,7 +28,11 @@ export function Header() {
     let accumulated = 0;
     let frame = 0;
     const update = () => {
-      const current = window.scrollY;
+      const maximum = Math.max(
+        0,
+        document.documentElement.scrollHeight - window.innerHeight,
+      );
+      const current = Math.max(0, Math.min(window.scrollY, maximum));
       const delta = current - previous;
       if (current < 80 || open) {
         setHidden(false);
@@ -84,7 +88,14 @@ export function Header() {
   return (
     <header
       className={`experience-header ${hidden && !open ? "header-away" : ""}`}
-      onFocusCapture={() => setHidden(false)}
+      onFocusCapture={(event) => {
+        if (
+          event.target instanceof HTMLElement &&
+          event.target.matches(":focus-visible")
+        ) {
+          setHidden(false);
+        }
+      }}
     >
       <div className="header-inner desktop-header-inner">
         <Link
