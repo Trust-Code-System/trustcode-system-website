@@ -16,6 +16,7 @@ A dark, typography-led engineering studio website using the original TrustCode l
 - Companion: original TrustCode robot avatar with idle, wave and thinking states, connected to the existing streaming assistant and project-brief handoff.
 - Chat: outside taps dismiss the panel without consuming the underlying action. Thought Line reflects waiting, receiving, completion and failure states. Sling Button sends by tap, Enter or an armed pull-and-release gesture; short pulls cancel. Closing chat preserves its draft and ongoing request.
 - Dropdowns and FAQ/service/process panels share soft 450–550 ms transitions; mobile Card Nav has a slower spring. Reduced motion uses immediate states. Footer groups use Line Sidebar with semantic links. The open AI panel uses an Electric Border, which is unmounted when motion is off or chat closes.
+- Contact uses the React Bits Stepper for the complete About you, Your vision and The details panels, with a moving active tile, completed ticks, soft panel transitions and persistent inputs. Inactive panels are hidden and inert; dropdowns can extend beyond the panel. Validation, assistant/scoper prefill and the existing delivery handler are preserved. Motion-off changes panels immediately.
 - No lab route or floating WhatsApp launcher. Static contact links remain available.
 
 ## Implementation

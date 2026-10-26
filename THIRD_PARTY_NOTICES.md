@@ -8,6 +8,8 @@ Integration patches: GooeyNav supports Next Link, an unselected route, an access
 
 Additional integration patches: FoldText supports an entrance delay; LineSidebar supports semantic Next Link destinations and an accessible navigation label; ElectricBorder is capped at device pixel ratio 1.
 
+Stepper supports persistent form panels without duplicate input IDs, inert outgoing panels, complete motion-off states and visible compact labels. The contact form animates full panels while preserving its existing validation, prefill and delivery handler.
+
 Lanyard is capped at device pixel ratio 1 and reports its first ready photo frame so its application adapter can retain a static image until rendering succeeds. It is imported only for visible, motion-enabled team badges; hidden or offscreen scenes unmount. StarBorder uses Next Link through a typed adapter and static links when motion is disabled. LogoLoop displays self-hosted SVG technology marks.
 
 ## Technology marks
