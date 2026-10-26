@@ -148,9 +148,9 @@ export function Header() {
           surface="solid"
           openOn="click"
           cardEffect="rise"
-          stagger={0.07}
-          bounce={0.06}
-          speed={1.15}
+          stagger={0.09}
+          bounce={0.03}
+          speed={0.85}
           cardHeight={130}
           accentColor="#b8d0ff"
           menuLabel={false}

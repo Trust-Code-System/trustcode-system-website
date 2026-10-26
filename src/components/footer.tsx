@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { FooterLineList } from "./footer-line-list";
 import { ReplayEntrance } from "./experience/site-curtain";
 import { Logo } from "./logo";
 import { site, social } from "@/content/site";
@@ -47,17 +47,7 @@ export function Footer() {
             {footerLinks.map((g) => (
               <div key={g.title}>
                 <h3>{g.title}</h3>
-                {g.items.map(([label, href]) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    {...(href.startsWith("https")
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                  >
-                    {label}
-                  </Link>
-                ))}
+                <FooterLineList items={g.items} label={g.title} />
               </div>
             ))}
           </div>

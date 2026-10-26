@@ -6,7 +6,7 @@ Verified on 26 October 2026:
 
 - Application TypeScript and ESLint pass.
 - Vitest: 9 tests pass (contact API validation/delivery mocks and the unpublished portfolio contract).
-- Optimized production build passes: 23 generated pages. Home first-load JavaScript is 248 kB; this is a build measurement, not a field-performance score.
+- Optimized production build passes: 23 generated pages. Build measurements are recorded in the delivery review.
 - Edge desktop, 390 px and 320 px: no horizontal overflow; navigation and companion layout inspected.
 - Desktop hero mounts three canvas layers; phones mount one. Hero canvases are removed offscreen and with motion disabled. OS reduced motion skips the curtain and animated hero.
 - Header hides when scrolling down and returns upward. Mobile menu opens and dismisses with Escape.
@@ -17,5 +17,7 @@ Verified on 26 October 2026:
 - Locally intercepted chat responses verify Thought Line waiting, receiving, completion/collapse and failure states. Sling Button tap and Enter submit; an armed pull submits exactly one request, while a short pull cancels. These are UI network mocks, not live model replies.
 - Optimized-build timer check: reopening a pending request showed 18.7 seconds after initially showing 0.2 seconds; completed duration remained 19.5 seconds across another close/reopen. Motion-off and OS reduced motion both leave all three phone navigation cards visible and usable.
 - Optimized local HTTP checks: main/work/services/contact return 200; removed lab routes and sampled old project URLs return 404. Sitemap has no lab or project detail URLs.
+
+Latest polish checks: the hero eyebrow is absent, three Fold Text lines render, and desktop navigation center measures 630.996 px against a 631 px page center. The 320 px headline and footer have no horizontal overflow. Three footer Line Sidebar groups retain real links. Electric Border mounts only while motion-enabled chat is open. Contact Service selection works by ArrowDown/Enter; FAQ, service and process panels expand. Motion-off renders the static headline and no electric border.
 
 The assistant's backend was preserved; no live model response was requested during this UI verification. Preview access remains subject to Vercel deployment protection. Browser checks are representative, not an exhaustive GPU/device benchmark.

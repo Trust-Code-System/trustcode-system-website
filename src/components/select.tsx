@@ -1,13 +1,9 @@
 "use client";
 
-import {
-  useEffect,
-  useId,
-  useRef,
-  useState,
-  type KeyboardEvent,
-} from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import { Check, ChevronDown } from "./icons";
+import { motion } from "framer-motion";
+import { useExperienceMotion } from "./experience/motion-preferences";
 
 export type SelectOption = { value: string; label: string };
 
@@ -36,12 +32,13 @@ export function Select({
   "aria-describedby": ariaDescribedby,
 }: SelectProps) {
   const [open, setOpen] = useState(false);
+  const { enabled } = useExperienceMotion();
   const [value, setValue] = useState(defaultValue);
   const [active, setActive] = useState(() =>
     Math.max(
       0,
-      options.findIndex((o) => o.value === defaultValue)
-    )
+      options.findIndex((o) => o.value === defaultValue),
+    ),
   );
 
   const rootRef = useRef<HTMLDivElement>(null);
@@ -116,6 +113,7 @@ export function Select({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={listId}
+        aria-activedescendant={open ? `${listId}-${active}` : undefined}
         aria-invalid={ariaInvalid}
         aria-describedby={ariaDescribedby}
         onClick={() => setOpen((o) => !o)}
@@ -132,43 +130,56 @@ export function Select({
         />
       </button>
 
-      {open && (
-        <ul
-          ref={listRef}
-          id={listId}
-          role="listbox"
-          aria-activedescendant={`${listId}-${active}`}
-          className="absolute z-20 mt-2 max-h-64 w-full overflow-auto rounded-[10px] border border-grid bg-surface p-1 shadow-lg shadow-black/10"
-        >
-          {options.map((o, i) => {
-            const isSelected = o.value === value;
-            const isActive = i === active;
-            return (
-              <li
-                key={o.value}
-                id={`${listId}-${i}`}
-                role="option"
-                aria-selected={isSelected}
-                onMouseEnter={() => setActive(i)}
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  choose(i);
-                }}
-                className={`flex cursor-pointer items-center justify-between gap-2 rounded-md px-3 py-2 text-[0.92rem] ${
-                  isActive
-                    ? "bg-blueprint/10 text-ink"
-                    : "text-ink/90"
-                }`}
-              >
-                <span>{o.label}</span>
-                {isSelected && (
-                  <Check className="h-4 w-4 shrink-0 text-blueprint" />
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <motion.ul
+        ref={listRef}
+        id={listId}
+        role="listbox"
+        aria-hidden={!open}
+        inert={!open}
+        initial={false}
+        animate={open ? "open" : "closed"}
+        variants={{
+          open: { opacity: 1, y: 0, scale: 1, visibility: "visible" },
+          closed: {
+            opacity: 0,
+            y: 8,
+            scale: 0.985,
+            transitionEnd: { visibility: "hidden" },
+          },
+        }}
+        transition={{ duration: enabled ? 0.48 : 0, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          pointerEvents: open ? "auto" : "none",
+          transformOrigin: "top center",
+        }}
+        className="absolute z-20 mt-2 max-h-64 w-full overflow-auto rounded-[10px] border border-grid bg-surface p-1 shadow-lg shadow-black/10"
+      >
+        {options.map((o, i) => {
+          const isSelected = o.value === value;
+          const isActive = i === active;
+          return (
+            <li
+              key={o.value}
+              id={`${listId}-${i}`}
+              role="option"
+              aria-selected={isSelected}
+              onMouseEnter={() => setActive(i)}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                choose(i);
+              }}
+              className={`flex cursor-pointer items-center justify-between gap-2 rounded-md px-3 py-2 text-[0.92rem] ${
+                isActive ? "bg-blueprint/10 text-ink" : "text-ink/90"
+              }`}
+            >
+              <span>{o.label}</span>
+              {isSelected && (
+                <Check className="h-4 w-4 shrink-0 text-blueprint" />
+              )}
+            </li>
+          );
+        })}
+      </motion.ul>
     </div>
   );
 }

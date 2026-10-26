@@ -3,6 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import dynamic from "next/dynamic";
+const ElectricBorder = dynamic(
+  () => import("../react-bits/ElectricBorder/ElectricBorder"),
+  { ssr: false },
+);
 import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
 import {
@@ -352,6 +357,25 @@ export function ChatWidget() {
             transition={{ duration: enabled ? 0.2 : 0, ease: "easeOut" }}
             className="trustcode-chat-panel"
           >
+            {enabled && (
+              <ElectricBorder
+                className="companion-electric"
+                color="#a4caff"
+                glowColor="#507dd4"
+                speed={0.3}
+                chaos={0.25}
+                spread={0.35}
+                thickness={1.2}
+                strands={2}
+                glow={0.45}
+                intensity={1.1}
+                arcs={0}
+                flicker={0}
+                borderRadius={18}
+                interactive={false}
+                intro={false}
+              />
+            )}
             {/* Header */}
             <div className="trustcode-chat-header">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/15 ring-1 ring-inset ring-white/20">
@@ -432,7 +456,7 @@ export function ChatWidget() {
                         glyphColor="#b8d0ff"
                         breathDepth={enabled ? 0.3 : 0}
                         shimmer={enabled}
-                        settleDuration={enabled ? 250 : 0}
+                        settleDuration={enabled ? 500 : 0}
                         settleBlur={0}
                         className="companion-thought-line"
                       />

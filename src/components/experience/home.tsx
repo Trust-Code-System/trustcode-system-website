@@ -19,7 +19,8 @@ import { HeroAtmosphere } from "./hero-atmosphere";
 import { PortfolioSpace } from "./portfolio-space";
 import { useExperienceMotion } from "./motion-preferences";
 import CountUp from "../react-bits/CountUp/CountUp";
-import DecryptedText from "../react-bits/DecryptedText/DecryptedText";
+import FoldText from "../react-bits/FoldText/FoldText";
+import { SoftDisclosure } from "../soft-disclosure";
 import LogoLoop from "../react-bits/LogoLoop/LogoLoop";
 import ScrollReveal from "../react-bits/ScrollReveal/ScrollReveal";
 import GlareHover from "../react-bits/GlareHover/GlareHover";
@@ -67,25 +68,31 @@ export function HomeExperience() {
           <span className="orbit-core">↗</span>
         </div>
         <div className="experience-container hero-content">
-          <div className="hero-kicker">
-            <span className="status-dot" />
+          <h1 className="hero-heading">
             {enabled ? (
-              <DecryptedText
-                text={redesign.eyebrow}
-                animateOn="view"
-                speed={25}
-                maxIterations={7}
+              <FoldText
+                text={"Software you can\nstake your\nbusiness on."}
+                splitBy="line"
+                hinge="top"
+                foldStyle="paper"
+                duration={1.15}
+                delay={0.35}
+                stagger={0.14}
+                foldAngle={85}
+                fontSize="inherit"
+                fontWeight="inherit"
+                creaseShading={0.3}
+                className="hero-fold"
               />
             ) : (
-              redesign.eyebrow
+              <>
+                <span>Software you can</span>
+                <span>stake your</span>
+                <span className="hero-heading-last">
+                  business on<span className="blue-period">.</span>
+                </span>
+              </>
             )}
-          </div>
-          <h1 className="hero-heading">
-            <span>Software you can</span>
-            <span>stake your</span>
-            <span className="hero-heading-last">
-              business on<span className="blue-period">.</span>
-            </span>
           </h1>
           <div className="hero-bottom">
             <SoftText className="hero-intro" text={redesign.intro} />
@@ -235,18 +242,20 @@ export function HomeExperience() {
                 What’s included{" "}
                 <span aria-hidden>{serviceOpen === i ? "−" : "+"}</span>
               </button>
-              {serviceOpen === i && (
-                <div className="service-expanded" id={`service-details-${i}`}>
-                  <ul>
-                    {s.includes.map((x) => (
-                      <li key={x}>{x}</li>
-                    ))}
-                  </ul>
-                  <Link href={`/contact?service=${s.slug}`}>
-                    Discuss this service ↗
-                  </Link>
-                </div>
-              )}
+              <SoftDisclosure
+                open={serviceOpen === i}
+                id={`service-details-${i}`}
+                className="service-expanded"
+              >
+                <ul>
+                  {s.includes.map((x) => (
+                    <li key={x}>{x}</li>
+                  ))}
+                </ul>
+                <Link href={`/contact?service=${s.slug}`}>
+                  Discuss this service ↗
+                </Link>
+              </SoftDisclosure>
             </SpotlightCard>
           ))}
         </div>
@@ -291,12 +300,15 @@ export function HomeExperience() {
                       <span aria-hidden>{activeStep === i ? "−" : "+"}</span>
                     </button>
                   </h3>
-                  <div id={`process-panel-${i}`} hidden={activeStep !== i}>
+                  <SoftDisclosure
+                    id={`process-panel-${i}`}
+                    open={activeStep === i}
+                  >
                     <p>{s.summary}</p>
                     <div className="step-progress" aria-hidden>
                       <span />
                     </div>
-                  </div>
+                  </SoftDisclosure>
                 </div>
               ))}
             </div>
