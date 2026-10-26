@@ -19,6 +19,9 @@
 .home-experience .hero-content {
   padding-top: 50px;
 }
+.home-experience .hero-stage {
+  min-height: 0;
+}
 .hero-heading .hero-fold {
   display: block;
   font-size: inherit;
