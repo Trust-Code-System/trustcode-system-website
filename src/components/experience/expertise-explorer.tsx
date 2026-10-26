@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { StarLink } from "../star-link";
 import { services } from "@/content/services";
 import { serviceVisuals } from "@/content/redesign";
 import AnimatedList from "../react-bits/AnimatedList/AnimatedList";
@@ -74,12 +75,12 @@ export function ExpertiseExplorer() {
           ))}
         </ul>
         <div className="expertise-detail-actions">
-          <Link
+          <StarLink
             href={`/contact?service=${service.slug}`}
             className="button-solid"
           >
             Let’s talk about it ↗
-          </Link>
+          </StarLink>
           <Link href={service.proof.href} className="text-action">
             Discuss the approach ↗
           </Link>

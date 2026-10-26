@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { redesign, serviceVisuals } from "@/content/redesign";
 import { services } from "@/content/services";
@@ -16,14 +15,15 @@ import {
   SpotlightCard,
 } from "./bits";
 import { HeroAtmosphere } from "./hero-atmosphere";
-import { PortfolioSpace } from "./portfolio-space";
+import { ProjectShowcase } from "./project-showcase";
+import { TeamLanyard } from "./team-lanyard";
+import { TechnologyLoop } from "./technology-loop";
+import { StarLink } from "../star-link";
 import { useExperienceMotion } from "./motion-preferences";
 import CountUp from "../react-bits/CountUp/CountUp";
 import FoldText from "../react-bits/FoldText/FoldText";
 import { SoftDisclosure } from "../soft-disclosure";
-import LogoLoop from "../react-bits/LogoLoop/LogoLoop";
 import ScrollReveal from "../react-bits/ScrollReveal/ScrollReveal";
-import GlareHover from "../react-bits/GlareHover/GlareHover";
 function Ambient({ kind }: { kind: "orb" | "silk" }) {
   const { enabled } = useExperienceMotion();
   const ref = useRef<HTMLDivElement>(null);
@@ -98,9 +98,9 @@ export function HomeExperience() {
             <SoftText className="hero-intro" text={redesign.intro} />
             <div className="hero-links">
               <Magnet disabled={!enabled} maxOffset={7}>
-                <Link className="button-solid" href="/contact">
+                <StarLink className="button-solid" href="/contact">
                   Build something great <span aria-hidden>↗</span>
-                </Link>
+                </StarLink>
               </Magnet>
               <Link className="text-action" href="#selected-work">
                 Explore our work <span aria-hidden>↓</span>
@@ -122,25 +122,7 @@ export function HomeExperience() {
           </div>
         </div>
       </section>
-      <section className="capability-loop" aria-label="Our disciplines">
-        <LogoLoop
-          logos={redesign.disciplines.map((text, i) => ({
-            node: (
-              <span className="discipline-word">
-                <span aria-hidden>{["✳", "⌘", "◈", "↗", "✦", "◇"][i]}</span>
-                {text}
-              </span>
-            ),
-            title: text,
-          }))}
-          speed={enabled ? 35 : 0}
-          logoHeight={22}
-          gap={72}
-          fadeOut
-          fadeOutColor="var(--paper)"
-          pauseOnHover
-        />
-      </section>
+      <TechnologyLoop />
       <section className="experience-container manifesto-section" id="intro">
         <div className="section-index">
           <span>01 / THE TRUSTCODE STANDARD</span>
@@ -194,7 +176,7 @@ export function HomeExperience() {
           </div>
         </div>
       </section>
-      <PortfolioSpace />
+      <ProjectShowcase />
       <section className="expertise-section experience-container">
         <div className="section-index">
           <span>03 / CONNECTED EXPERTISE</span>
@@ -330,39 +312,18 @@ export function HomeExperience() {
         <div className="team-experience">
           {team.map((person, i) => (
             <Enter key={person.slug} delay={i * 0.06}>
-              <Link
-                className="team-portrait-card"
-                href={`/about#${person.slug}`}
-              >
-                <GlareHover
-                  width="100%"
-                  height="auto"
-                  background="transparent"
-                  borderColor="transparent"
-                  glareOpacity={enabled ? 0.15 : 0}
-                  className="team-glare"
-                >
-                  <div className="team-photo">
-                    {person.image && (
-                      <Image
-                        src={person.image}
-                        alt={person.name}
-                        fill
-                        sizes="(max-width:640px) 80vw,25vw"
-                        className="object-cover object-top"
-                      />
-                    )}
-                    <span className="portrait-arrow" aria-hidden>
-                      ↗
-                    </span>
-                  </div>
-                </GlareHover>
+              <article className="team-portrait-card">
+                <TeamLanyard person={person} />
                 <span className="person-index">
                   0{i + 1} / {person.flag}
                 </span>
-                <h3>{person.name.split(" ").slice(0, 2).join(" ")}</h3>
+                <h3>
+                  <Link href={`/about#${person.slug}`}>
+                    {person.name.split(" ").slice(0, 2).join(" ")}
+                  </Link>
+                </h3>
                 <p>{person.role}</p>
-              </Link>
+              </article>
             </Enter>
           ))}
         </div>
@@ -374,9 +335,9 @@ export function HomeExperience() {
           <MotionTitle text={redesign.ctaTitle} className="closing-title" />
           <p className="section-copy">{redesign.ctaIntro}</p>
           <Magnet disabled={!enabled} maxOffset={8}>
-            <Link href="/contact" className="button-solid">
+            <StarLink href="/contact" className="button-solid">
               Let’s build it together <span aria-hidden>↗</span>
-            </Link>
+            </StarLink>
           </Magnet>
         </div>
       </section>

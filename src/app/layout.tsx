@@ -7,6 +7,7 @@ import "./experience.css";
 import "./refinement.css";
 import "./navigation-chat.css";
 import "./finishing.css";
+import "./release.css";
 import { SiteCurtain } from "@/components/experience/site-curtain";
 import { MotionPreferences } from "@/components/experience/motion-preferences";
 import { Header } from "@/components/header";

@@ -65,10 +65,11 @@ Dark mode is class-based with an inline no-flash init script in the root layout.
 
 ## Screenshots
 
-The previous project selection and its screenshots are unpublished. Add future
-projects to `src/content/portfolio.ts` with explicit `coverImage` paths; the
-thumbnail component already supports Next Image. The current work area is
-reserved for the new selection.
+The current selection is Sekibat Nig Limited, NELO Woman and Wearables by
+Ashabi. Their homepage captures are self-hosted in `public/work/` and referenced
+by explicit `coverImage` paths in `src/content/portfolio.ts`. NELO is labelled
+as a storefront preview. Copy describes inspected interfaces without claiming
+sales results or unverified technology stacks. The earlier collection stays removed.
 
 ## Contact form
 

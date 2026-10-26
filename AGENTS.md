@@ -16,7 +16,8 @@ is context for any AI/dev session so the basics never need re-asking.
 - **Name:** TrustCode System Limited (short: "TrustCode System")
 - **Tagline:** "Software you can stake your business on."
 - **What they do:** full-stack product engineering, cloud/DevOps, AI integration,
-  cybersecurity/SOC, IT support, training. The project selection is currently unpublished.
+  cybersecurity/SOC, IT support, training. The selected projects are Sekibat Nig Limited,
+  NELO Woman (storefront preview) and Wearables by Ashabi.
 - **Locations:** Lagos, Nigeria · London, UK · remote worldwide.
 - **Team (4 co-founders):**
   - **Abass Ibrahim** — Full-Stack Delivery & Design Lead (Lagos). Primary
@@ -43,7 +44,7 @@ is context for any AI/dev session so the basics never need re-asking.
 - `src/components/` — UI components (header, footer, project-card, project-thumb,
   contact-form, select, etc.).
 - `src/content/` — **all site copy/data as typed TS**: `site.ts` (name, domain,
-  email, whatsapp, locations), `portfolio.ts` (currently empty; use explicit coverImage paths for future projects), `team.ts`,
+  email, whatsapp, locations), `portfolio.ts` (three selected projects; use explicit coverImage paths), `team.ts`,
   `services.ts`, `process.ts`, `insights.ts`, `values.ts`. Edit content here,
   not in JSX.
 - `src/lib/` — `contact-schema.ts` (zod schema + project-brief option lists),

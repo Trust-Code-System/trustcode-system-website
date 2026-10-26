@@ -42,7 +42,7 @@ export default async function CaseStudyPage({
   const sourceLabel =
     project.sourceCtaLabel ??
     proofCtaLabel(
-      project.proofType === "architecture" ? "architecture" : "github"
+      project.proofType === "architecture" ? "architecture" : "github",
     );
 
   return (
@@ -59,9 +59,7 @@ export default async function CaseStudyPage({
           <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="badge">
-                  {PROOF_LABELS[project.proofType]}
-                </span>
+                <span className="badge">{PROOF_LABELS[project.proofType]}</span>
                 <span className="badge">{project.sector}</span>
                 {project.categories.map((c) => (
                   <span key={c} className="badge">
@@ -121,7 +119,7 @@ export default async function CaseStudyPage({
           <div className="lg:col-span-7">
             <Reveal>
               <div className="mb-10">
-                <p className="eyebrow">/ the problem</p>
+                <p className="eyebrow">/ the brief</p>
                 <p className="mt-4 text-[1.05rem] leading-relaxed text-ink">
                   {project.problem}
                 </p>
@@ -155,7 +153,7 @@ export default async function CaseStudyPage({
             </Reveal>
             <Reveal>
               <div className="card bg-surface p-7">
-                <p className="eyebrow">/ the outcome</p>
+                <p className="eyebrow">/ the experience</p>
                 <p className="mt-3 font-display text-[1.4rem] font-semibold leading-snug tracking-tight">
                   {project.outcome}
                 </p>
@@ -188,15 +186,18 @@ export default async function CaseStudyPage({
 
           <aside className="lg:col-span-5">
             <div className="card sticky top-24 p-7">
-              <p className="eyebrow mb-3">/ tech stack</p>
-              <div className="flex flex-wrap gap-2">
-                {project.stack.map((t) => (
-                  <span key={t} className="badge">
-                    {t}
-                  </span>
-                ))}
-              </div>
-
+              {project.stack.length > 0 && (
+                <>
+                  <p className="eyebrow mb-3">/ tech stack</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map((t) => (
+                      <span key={t} className="badge">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              )}
               <p className="eyebrow mb-3 mt-7">/ delivered by</p>
               <p className="text-[0.92rem] text-ink">
                 TrustCode System engineering team
@@ -210,7 +211,7 @@ export default async function CaseStudyPage({
 
               {project.live && (
                 <>
-                  <p className="eyebrow mb-3 mt-7">/ live url</p>
+                  <p className="eyebrow mb-3 mt-7">/ project url</p>
                   <a
                     href={project.live}
                     target="_blank"

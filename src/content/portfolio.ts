@@ -1,6 +1,7 @@
 import { team } from "./team";
 
 export type Category =
+  | "Web Platforms"
   | "Fintech"
   | "EdTech"
   | "E-Commerce"
@@ -14,6 +15,8 @@ export type Category =
 export type ProjectOwnerId = "abass" | "abdulhaleem" | "olamilekan" | "bashir";
 
 export type ProjectProofType =
+  | "website"
+  | "preview"
   | "live"
   | "live-client"
   | "github"
@@ -46,7 +49,7 @@ export type Project = {
   stack: string[];
   team: string[];
   live: string | null;
-  ownerId: ProjectOwnerId;
+  ownerId?: ProjectOwnerId;
   proofType: ProjectProofType;
   visualType: ProjectVisualType;
   featured: boolean;
@@ -138,6 +141,8 @@ export function getPortfolioOwner(id: ProjectOwnerId): PortfolioOwner {
 }
 
 export const PROOF_LABELS: Record<ProjectProofType, string> = {
+  website: "Website",
+  preview: "Storefront preview",
   live: "Live product",
   "live-client": "Live client product",
   github: "GitHub",
@@ -152,6 +157,7 @@ export const PROOF_LABELS: Record<ProjectProofType, string> = {
 
 export const CATEGORY_FILTERS: (Category | "All")[] = [
   "All",
+  "Web Platforms",
   "Fintech",
   "EdTech",
   "E-Commerce",
@@ -166,10 +172,90 @@ export const CATEGORY_FILTERS: (Category | "All")[] = [
 /** @deprecated use CATEGORY_FILTERS, kept for any residual imports */
 export const categories = CATEGORY_FILTERS;
 
-// Intentionally empty while the new project selection is being prepared.
-export const projects: Project[] = [];
-export const homepagePreviewSlugs: string[] = [];
-export const featuredSlugs: string[] = [];
+// Project selection supplied by the user; copy describes visible interfaces, not unverified results.
+export const projects: Project[] = [
+  {
+    slug: "sekibat",
+    title: "Sekibat Nig Limited",
+    sector: "Property & real estate",
+    categories: ["Web Platforms"],
+    tagline:
+      "A property website connecting homes, land and real-estate services.",
+    problem:
+      "Bring property listings, development services and enquiries together in one clear public destination.",
+    built: [
+      "Property listing and detail pages",
+      "Property-type browsing",
+      "Development, sales and management service pages",
+      "Contact and enquiry entry points",
+    ],
+    outcome:
+      "Visitors can explore the property portfolio, understand the services and start an enquiry.",
+    stack: [],
+    team: ["TrustCode System"],
+    live: "https://www.sekibat-nig-limited.com/",
+    proofType: "website",
+    visualType: "product-screenshot",
+    featured: true,
+    featuredOrder: 1,
+    coverImage: "/work/sekibat.png",
+  },
+  {
+    slug: "nelo-woman",
+    title: "NELO Woman",
+    sector: "Fashion & atelier",
+    categories: ["E-Commerce"],
+    tagline:
+      "A campaign-led fashion storefront with regional shopping and atelier journeys.",
+    problem:
+      "Connect a fashion collection, the atelier and measurement-profile entry points in a coherent digital experience.",
+    built: [
+      "Campaign-led collection presentation",
+      "Nigeria and international region entry points",
+      "Shop, collection and product routes",
+      "Atelier, fitting and measurement-profile entry points",
+    ],
+    outcome:
+      "The supplied storefront preview brings the collection, the house and client-care journeys into one interface.",
+    stack: [],
+    team: ["TrustCode System"],
+    live: "https://nelo-frontend.vercel.app/ng",
+    proofType: "preview",
+    visualType: "product-screenshot",
+    featured: true,
+    featuredOrder: 2,
+    coverImage: "/work/nelo-woman.png",
+    liveCtaLabel: "Explore preview",
+  },
+  {
+    slug: "wearables-by-ashabi",
+    title: "Wearables by Ashabi",
+    sector: "Fashion & jewellery",
+    categories: ["E-Commerce"],
+    tagline:
+      "An editorial storefront for Nigerian occasionwear and statement jewellery.",
+    problem:
+      "Present clothing and jewellery through a distinctive campaign, with clear routes into the collection and customer care.",
+    built: [
+      "Clothing and jewellery collection routes",
+      "Campaign and brand-story presentation",
+      "Search, wishlist and shopping-bag interfaces",
+      "Currency display and customer-care navigation",
+    ],
+    outcome:
+      "A public storefront brings the Ashabi visual identity, collection categories and shopping entry points together.",
+    stack: [],
+    team: ["TrustCode System"],
+    live: "https://wearablesbyashabi.store/",
+    proofType: "website",
+    visualType: "product-screenshot",
+    featured: true,
+    featuredOrder: 3,
+    coverImage: "/work/wearables-by-ashabi.png",
+  },
+];
+export const homepagePreviewSlugs = projects.map((project) => project.slug);
+export const featuredSlugs = [...homepagePreviewSlugs];
 
 export function getFeaturedProjects(): Project[] {
   return projects
@@ -199,6 +285,10 @@ export function getProjectBySlug(slug: string): Project | undefined {
 
 export function proofCtaLabel(proof: ProjectProofType): string {
   switch (proof) {
+    case "website":
+      return "Visit website";
+    case "preview":
+      return "Explore preview";
     case "live":
     case "live-client":
       return "View live product";

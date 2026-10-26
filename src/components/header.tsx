@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Logo } from "./logo";
 import dynamic from "next/dynamic";
 import CardNav from "./react-bits/CardNav/CardNav";
+import { StarLink, CardNavAnchor } from "./star-link";
 import Magnet from "./react-bits/Magnet/Magnet";
 import SquishSwitch from "./react-bits/SquishSwitch/SquishSwitch";
 import { useExperienceMotion } from "./experience/motion-preferences";
@@ -98,7 +99,7 @@ export function Header() {
             <GooeyNav
               items={links}
               activeIndex={activeIndex}
-              linkComponent={Link}
+              linkComponent={CardNavAnchor}
               ariaLabel="Primary navigation"
               theme="dark"
               color="#b8d0ff"
@@ -131,9 +132,9 @@ export function Header() {
         <div className="header-actions">
           {motionControl()}
           <Magnet disabled={!enabled} maxOffset={5}>
-            <Link className="header-cta" href="/contact">
+            <StarLink className="header-cta" href="/contact">
               Let’s talk <span aria-hidden>↗</span>
-            </Link>
+            </StarLink>
           </Magnet>
         </div>
       </div>
@@ -158,7 +159,7 @@ export function Header() {
           intro={false}
           open={open}
           onOpenChange={setOpen}
-          linkComponent={Link}
+          linkComponent={CardNavAnchor}
           ariaLabel="Mobile navigation"
           motionEnabled={enabled}
           className="trustcode-card-nav"
