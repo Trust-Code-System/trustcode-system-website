@@ -1,0 +1,69 @@
+.contact-stepper {
+  margin-bottom: 0;
+}
+.contact-stepper .stepper__track {
+  gap: 4px;
+  padding: 5px;
+  border: 1px solid #ffffff08;
+  border-radius: 13px;
+}
+.contact-stepper .stepper__segment {
+  flex: 1 1 0;
+  height: 44px;
+  gap: 7px;
+  padding: 0 8px;
+}
+.contact-stepper .stepper__badge {
+  width: 19px;
+  height: 19px;
+  font-size: 10px;
+}
+.contact-stepper .stepper__title {
+  font-size: 12px;
+}
+.contact-stepper .stepper__body {
+  padding-top: 22px;
+}
+.contact-stepper .stepper__viewport {
+  overflow: visible;
+}
+.contact-stepper .stepper__pane--leaving {
+  max-height: 100%;
+  overflow: hidden;
+}
+.contact-stepper .brief-step-intro {
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+.contact-stepper .stepper__pane[hidden] {
+  display: none;
+}
+.contact-stepper .stepper__pane:focus-visible {
+  outline: 1px solid #b8d0ff66;
+  outline-offset: -1px;
+  border-radius: 12px;
+}
+.contact-stepper[data-motion="off"] * {
+  transition: none !important;
+}
+.brief-step-controls button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+@media (max-width: 600px) {
+  .contact-stepper .stepper__segment {
+    flex-direction: column;
+    height: 58px;
+    gap: 6px;
+    padding: 6px 2px;
+  }
+  .contact-stepper .stepper__title {
+    font-size: 10px;
+  }
+  .contact-stepper .stepper__text {
+    text-align: center;
+  }
+  .contact-stepper .brief-step-intro {
+    font-size: 13px;
+  }
+}

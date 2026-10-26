@@ -38,6 +38,8 @@ interface StepIndicatorProps {
 interface StepperProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'className' | 'style'> {
   children?: ReactNode;
   step?: number;
+  keepMounted?: boolean;
+  motionEnabled?: boolean;
   initialStep?: number;
   onStepChange?: (step: number) => void;
   onFinalStepCompleted?: () => void;
@@ -146,12 +148,12 @@ const ease = () =>
     ? SPRING
     : 'cubic-bezier(0.34, 1.4, 0.64, 1)';
 
-function Check() {
+function Check({ motionEnabled = true }: { motionEnabled?: boolean }) {
   const ref = useRef<HTMLSpanElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     const path = ref.current?.querySelector('path');
-    if (!path || typeof path.animate !== 'function') return;
+    if (!motionEnabled || !path || typeof path.animate !== 'function') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     path.style.strokeDasharray = '24';
     path.animate([{ strokeDashoffset: 24 }, { strokeDashoffset: 0 }], {
@@ -174,6 +176,8 @@ export function Step({ children }: StepProps) {
 export default function Stepper({
   children,
   step,
+  keepMounted = false,
+  motionEnabled = true,
   initialStep = 1,
   onStepChange = () => {},
   onFinalStepCompleted = () => {},
@@ -299,14 +303,14 @@ export default function Stepper({
     const leaving = leavingRef.current;
     const id = view.id;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const mode = transition === 'none' ? 'none' : reduced ? 'fade' : transition;
+    const mode = !motionEnabled || transition === 'none' || reduced ? 'none' : transition;
     const finish = () => setView(state => (state.id === id ? { ...state, previous: null } : state));
     if (leaving && pane && leaving.contains(document.activeElement)) pane.focus({ preventScroll: true });
+    for (const element of [viewport, pane, leaving]) element?.getAnimations().forEach(animation => animation.cancel());
     if (!viewport || typeof viewport.animate !== 'function' || mode === 'none') {
       finish();
       return;
     }
-    for (const element of [viewport, pane, leaving]) element?.getAnimations().forEach(animation => animation.cancel());
     const from = heightRef.current;
     const to = viewport.offsetHeight;
     const spring = ease();
@@ -342,7 +346,7 @@ export default function Stepper({
       );
       exit.onfinish = finish;
     } else finish();
-  }, [view.id]);
+  }, [view.id, motionEnabled, transition]);
 
   useIsomorphicLayoutEffect(() => {
     const track = trackRef.current;
@@ -360,12 +364,12 @@ export default function Stepper({
       glider.style.height = `${segment.offsetHeight}px`;
       glider.style.opacity = completed ? '0' : '1';
     };
-    place(placedRef.current && !window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    place(motionEnabled && placedRef.current && !window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     placedRef.current = true;
     const observer = new ResizeObserver(() => place(false));
     observer.observe(track);
     return () => observer.disconnect();
-  }, [current, total, completed, kind, labelled, vertical, compact, tight]);
+  }, [current, total, completed, kind, labelled, vertical, compact, tight, motionEnabled]);
 
   const paneContent = (number: number) => (number > total ? (completedContent ?? null) : steps[number - 1]);
   const accentVars: Record<string, string> = accentColor
@@ -375,7 +379,7 @@ export default function Stepper({
   const badge = (entry: ReactElement<StepProps>, number: number, status: 'complete' | 'active' | 'upcoming') => (
     <span className="stepper__badge" data-status={status}>
       {status === 'complete' ? (
-        <Check />
+        <Check motionEnabled={motionEnabled} />
       ) : entry.props.icon ? (
         <span className="stepper__glyph">{entry.props.icon}</span>
       ) : (
@@ -442,7 +446,7 @@ export default function Stepper({
           const number = index + 1;
           const status = completed || number < current ? 'complete' : number === current ? 'active' : 'upcoming';
           const title = entry.props.title;
-          const text = title && !(tight && !rail) && (
+          const text = title && !(tight && !rail && !keepMounted) && (
             <span className="stepper__text">
               <span
                 ref={element => {
@@ -503,6 +507,7 @@ export default function Stepper({
         .replace(/\s+/g, ' ')
         .trim()}
       data-completed={completed ? '' : undefined}
+      data-motion={motionEnabled ? 'on' : 'off'}
       style={
         {
           ...(THEMES[theme] ?? THEMES.dark),
@@ -516,7 +521,26 @@ export default function Stepper({
     >
       <div className={`stepper__header stepper__header--${kind} ${stepContainerClassName}`.trim()}>{header()}</div>
       <div className="stepper__body">
-        <div ref={viewportRef} className={`stepper__viewport ${contentClassName}`.trim()} aria-live="polite">
+        <div ref={viewportRef} className={`stepper__viewport ${contentClassName}`.trim()} aria-live={keepMounted ? undefined : 'polite'}>
+          {keepMounted ? steps.map((entry, index) => {
+            const number = index + 1;
+            const active = number === view.step;
+            const leaving = number === view.previous;
+            return (
+              <div
+                key={number}
+                ref={active ? paneRef : leaving ? leavingRef : undefined}
+                className={`stepper__pane${leaving ? ' stepper__pane--leaving' : ''}`}
+                hidden={!active && !leaving}
+                inert={!active ? true : undefined}
+                aria-hidden={!active ? true : undefined}
+                role="group"
+                aria-label={`Step ${number}: ${entry.props.title || number}`}
+                data-step-active={active ? '' : undefined}
+                tabIndex={-1}
+              >{entry}</div>
+            );
+          }) : <>
           {view.previous !== null && (
             <div key={view.id - 1} ref={leavingRef} className="stepper__pane stepper__pane--leaving" aria-hidden="true">
               {paneContent(view.previous)}
@@ -525,6 +549,7 @@ export default function Stepper({
           <div key={view.id} ref={paneRef} className="stepper__pane" tabIndex={-1}>
             {paneContent(view.step)}
           </div>
+          </>}
         </div>
         {showFooter && (
           <div

@@ -29,3 +29,7 @@ The assistant's backend was preserved; no live model response was requested duri
 - Desktop Lanyards render all four team photos. Dragging visibly moves and tilts the badge, and a click flips it. The reverse contains the full TrustCode wordmark. Scenes are limited to visible badges and capped at DPR 1, with disposal on unmount. Phone layout uses one column, pan-y scrolling and static image fallbacks.
 - Star Border is present on enquiry links, including the phone menu CTA. The 320 px Card Nav CTA routes to Contact without horizontal overflow.
 - The supplied Wearables by Ashabi site displayed a collection-unavailable notice during inspection. Its storefront appearance and navigation were inspected; inventory, checkout and purchase completion were not verified. No external project forms were submitted.
+
+## Contact Stepper
+
+The React Bits Stepper owns all three complete contact panels. Required-field errors prevent advancing and focus the first invalid input. Panel transitions retain name, email, company, selected service, project chips and message; each input ID appears once. A 320 px check keeps all three labels visible without horizontal overflow. A local intercepted submission confirms the complete payload includes values from hidden panels. Mocked failure preserves answers for retry; mocked success shows Brief received, and Send another message resets to a blank first step. No real enquiry was sent.
