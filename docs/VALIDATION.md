@@ -26,10 +26,17 @@ The assistant's backend was preserved; no live model response was requested duri
 
 - Real homepage captures and exact supplied external URLs are present for Sekibat Nig Limited, NELO Woman and Wearables by Ashabi. NELO is labelled Storefront preview. No project-specific technology stack or individual attribution is inferred.
 - The technology Logo Loop exposes 17 named marks, self-hosted as SVGs; hover pause and the static motion-off state are provided by the source component and site preference.
-- Desktop Lanyards render all four team photos. Dragging visibly moves and tilts the badge, and a click flips it. The reverse contains the full TrustCode wordmark. Scenes are limited to visible badges and capped at DPR 1, with disposal on unmount. Phone layout uses one column, pan-y scrolling and static image fallbacks.
+- Home and Studio use static team portraits. The previously tested Lanyard presentation has been removed, along with its renderer and Three.js dependency.
 - Star Border is present on enquiry links, including the phone menu CTA. The 320 px Card Nav CTA routes to Contact without horizontal overflow.
 - The supplied Wearables by Ashabi site displayed a collection-unavailable notice during inspection. Its storefront appearance and navigation were inspected; inventory, checkout and purchase completion were not verified. No external project forms were submitted.
 
 ## Contact Stepper
 
 The React Bits Stepper owns all three complete contact panels. Required-field errors prevent advancing and focus the first invalid input. Panel transitions retain name, email, company, selected service, project chips and message; each input ID appears once. A 320 px check keeps all three labels visible without horizontal overflow. A local intercepted submission confirms the complete payload includes values from hidden panels. Mocked failure preserves answers for retry; mocked success shows Brief received, and Send another message resets to a blank first step. No real enquiry was sent.
+
+## Portraits, header and mascot correction
+
+- Production build, TypeScript, lint and all 9 tests pass. Home and Studio render four static portraits, with no Lanyard elements or scenes.
+- Insights: clicking the header navigation link left focus inside the header. After scrolling to y=1000, the fixed header had `header-away` and its bottom was above the viewport. At the actual page bottom (y=2394), its opacity remained zero. Keyboard Tab revealed it and focused Motion effects. Further downward scrolling hid it even while focus stayed inside; upward scrolling revealed it.
+- Phone: an open Card Nav stayed visible while scrolling. After Escape closed it, another downward scroll hid the header despite the menu button retaining focus.
+- The new transparent robot loads in the launcher and chat, with no broken avatar images. Chat fits at 390 px and 320 px without horizontal overflow; its 320 px panel is 286 px wide. Outside-tap dismissal is preserved. No model request or enquiry was sent.

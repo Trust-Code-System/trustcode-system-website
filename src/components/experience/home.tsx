@@ -16,7 +16,7 @@ import {
 } from "./bits";
 import { HeroAtmosphere } from "./hero-atmosphere";
 import { ProjectShowcase } from "./project-showcase";
-import { TeamLanyard } from "./team-lanyard";
+import { TeamPortrait } from "./team-portrait";
 import { TechnologyLoop } from "./technology-loop";
 import { StarLink } from "../star-link";
 import { useExperienceMotion } from "./motion-preferences";
@@ -313,7 +313,7 @@ export function HomeExperience() {
           {team.map((person, i) => (
             <Enter key={person.slug} delay={i * 0.06}>
               <article className="team-portrait-card">
-                <TeamLanyard person={person} />
+                <TeamPortrait person={person} />
                 <span className="person-index">
                   0{i + 1} / {person.flag}
                 </span>
