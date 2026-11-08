@@ -46,6 +46,7 @@ interface AnimatedListProps {
   enableArrowNavigation?: boolean;
   loop?: boolean;
   animation?: Animation | 'none';
+  motionEnabled?: boolean;
   animateOnce?: boolean;
   stagger?: number;
   showGradients?: boolean;
@@ -162,6 +163,7 @@ const AnimatedList = ({
   enableArrowNavigation = true,
   loop = false,
   animation = 'pop',
+  motionEnabled = true,
   animateOnce = false,
   stagger = 0.05,
   showGradients = true,
@@ -197,6 +199,7 @@ const AnimatedList = ({
     enableArrowNavigation,
     loop,
     animation,
+    motionEnabled,
     animateOnce,
     stagger,
     showGradients,
@@ -213,7 +216,7 @@ const AnimatedList = ({
     const ring = ringRef.current;
     if (!root || !viewport || !track || !indicator || !ring) return;
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduced = () => !settingsRef.current.motionEnabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const springEase = CSS.supports?.('transition-timing-function', 'linear(0, 1)')
       ? SPRING
       : 'cubic-bezier(0.34, 1.4, 0.64, 1)';
@@ -231,7 +234,7 @@ const AnimatedList = ({
     const mode = (): Animation | 'none' => {
       const chosen = settingsRef.current.animation;
       if (chosen === 'none' || !HIDDEN[chosen]) return 'none';
-      return reduced ? 'fade' : chosen;
+      return reduced() ? 'none' : chosen;
     };
 
     const apply = (element: HTMLElement, state: State) => {
@@ -292,7 +295,9 @@ const AnimatedList = ({
       indicator.style.opacity = '1';
       motion.ty = item.offsetTop;
       motion.th = item.offsetHeight;
-      if (snap || reduced || !motion.ready) {
+      if (snap || reduced() || !motion.ready) {
+        cancelAnimationFrame(raf);
+        raf = 0;
         motion.y = motion.ty;
         motion.h = motion.th;
         motion.vy = motion.vh = 0;
@@ -368,7 +373,7 @@ const AnimatedList = ({
           apply(item, current === 'none' ? 'in' : (item.dataset.state as State | undefined) || 'below');
         if (changed) apply(ring, (itemRefs.current[s.selected]?.dataset.state as State | undefined) || 'in');
         void root.offsetHeight;
-        for (const element of elements) element.style.transition = transition;
+        for (const element of elements) element.style.transition = reduced() ? 'none' : transition;
       }
       measure();
       reveal(restyle.length > 0);
@@ -484,7 +489,8 @@ const AnimatedList = ({
 
   useIsomorphicLayoutEffect(() => {
     engineRef.current?.sync();
-  }, [items, animation]);
+    engineRef.current?.place(!motionEnabled);
+  }, [items, animation, motionEnabled]);
 
   useEffect(() => {
     const engine = engineRef.current;
@@ -502,11 +508,11 @@ const AnimatedList = ({
     const room = Math.max(0, (viewport.clientHeight - item.offsetHeight) / 2);
     const margin = Math.min(showGradients ? Math.max(12, fadeSize) : 12, room);
     if (top < viewport.scrollTop + margin) {
-      viewport.scrollTo({ top: Math.max(0, top - margin), behavior: 'smooth' });
+      viewport.scrollTo({ top: Math.max(0, top - margin), behavior: motionEnabled ? 'smooth' : 'auto' });
     } else if (bottom > viewport.scrollTop + viewport.clientHeight - margin) {
-      viewport.scrollTo({ top: bottom - viewport.clientHeight + margin, behavior: 'smooth' });
+      viewport.scrollTo({ top: bottom - viewport.clientHeight + margin, behavior: motionEnabled ? 'smooth' : 'auto' });
     }
-  }, [selected, fadeSize, showGradients]);
+  }, [selected, fadeSize, showGradients, motionEnabled]);
 
   useEffect(() => {
     engineRef.current?.updateFades();

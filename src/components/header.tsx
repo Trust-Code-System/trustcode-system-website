@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "./logo";
 import dynamic from "next/dynamic";
+import { useReducedMotion } from "framer-motion";
 import CardNav from "./react-bits/CardNav/CardNav";
 import { StarLink, CardNavAnchor } from "./star-link";
 import Magnet from "./react-bits/Magnet/Magnet";
@@ -15,13 +16,31 @@ import {
 } from "@/content/navigation";
 const GooeyNav = dynamic(() => import("./react-bits/GooeyNav/GooeyNav"), {
   ssr: false,
+  loading: () => <StaticNavigation />,
 });
+function StaticNavigation() {
+  const pathname = usePathname();
+  return (
+    <nav aria-label="Primary navigation" className="desktop-nav-static">
+      {links.map((link) => (
+        <Link
+          key={link.href}
+          href={link.href}
+          aria-current={pathname.startsWith(link.href) ? "page" : undefined}
+        >
+          {link.label}
+        </Link>
+      ))}
+    </nav>
+  );
+}
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [desktop, setDesktop] = useState(false);
   const [hidden, setHidden] = useState(false);
   const { enabled, toggle } = useExperienceMotion();
+  const reduced = useReducedMotion();
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     let previous = window.scrollY;
@@ -127,17 +146,7 @@ export function Header() {
               hoverEffect={enabled}
             />
           ) : (
-            <nav aria-label="Primary navigation" className="desktop-nav-static">
-              {links.map((link, i) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={i === activeIndex ? "page" : undefined}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
+            <StaticNavigation />
           )}
         </div>
         <div className="header-actions">
@@ -172,7 +181,7 @@ export function Header() {
           onOpenChange={setOpen}
           linkComponent={CardNavAnchor}
           ariaLabel="Mobile navigation"
-          motionEnabled={enabled}
+          motionEnabled={!reduced}
           className="trustcode-card-nav"
         />
         <div className="mobile-card-motion">{motionControl(true)}</div>
