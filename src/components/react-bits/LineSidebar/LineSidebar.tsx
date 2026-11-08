@@ -27,6 +27,7 @@ export interface LineSidebarProps {
   itemGap?: number;
   fontSize?: number;
   smoothing?: number;
+  motionEnabled?: boolean;
   defaultActive?: number | null;
   onItemClick?: (index: number, label: string) => void;
   className?: string;
@@ -73,6 +74,7 @@ const LineSidebar = ({
   itemGap = 20,
   fontSize = 1.1,
   smoothing = 100,
+  motionEnabled = true,
   defaultActive = null,
   onItemClick,
   className = ''
@@ -118,12 +120,13 @@ const LineSidebar = ({
   }, []);
 
   const startLoop = useCallback(() => {
+    if (!motionEnabled) return;
     if (rafRef.current != null) {
       cancelAnimationFrame(rafRef.current);
     }
     lastRef.current = performance.now();
     rafRef.current = requestAnimationFrame(runFrame);
-  }, [runFrame]);
+  }, [motionEnabled, runFrame]);
 
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<HTMLUListElement>) => {
@@ -152,15 +155,24 @@ const LineSidebar = ({
 
   const handleClick = useCallback(
     (index: number, label: string) => {
-      setActiveIndex(index);
+      if (motionEnabled) setActiveIndex(index);
       onItemClick?.(index, label);
     },
-    [onItemClick]
+    [motionEnabled, onItemClick]
   );
 
   useEffect(() => {
+    if (!motionEnabled) {
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+      targetsRef.current = [];
+      currentRef.current = [];
+      setActiveIndex(null);
+      itemRefs.current.forEach(el => el?.style.setProperty('--effect', '0'));
+      return;
+    }
     startLoop();
-  }, [activeIndex, startLoop]);
+  }, [activeIndex, motionEnabled, startLoop]);
 
   useEffect(
     () => () => {
@@ -188,7 +200,7 @@ const LineSidebar = ({
         } as CSSProperties
       }
     >
-      <ul ref={listRef} className="line-sidebar__list" onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave}>
+      <ul ref={listRef} className="line-sidebar__list" onPointerMove={motionEnabled ? handlePointerMove : undefined} onPointerLeave={motionEnabled ? handlePointerLeave : undefined}>
         {items.map((label, index) => (
           <li
             key={`${label}-${index}`}

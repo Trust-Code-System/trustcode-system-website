@@ -59,7 +59,23 @@ export const viewport: Viewport = {
 };
 
 // The redesigned studio experience uses a consistent dark palette.
-const themeInit = `(function(){document.documentElement.classList.add('dark');})();`;
+// Resolve visual preferences before the first paint, before React hydrates.
+const themeInit = `(function(){
+  var root=document.documentElement;
+  root.classList.add('dark');
+  var motion=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seen=false;
+  try {
+    motion=motion&&localStorage.getItem('trustcode-motion')!=='off';
+    seen=sessionStorage.getItem('trustcode-entrance-v2')==='seen';
+  } catch(e) {}
+  root.dataset.motion=motion?'on':'off';
+  root.dataset.entrance=motion&&!seen?'pending':'skip';
+  // Leave the page usable if startup scripts fail to load.
+  if(root.dataset.entrance==='pending') window.setTimeout(function(){
+    if(root.dataset.entrance==='pending'&&!document.querySelector('.site-curtain[data-phase="opening"]')) root.dataset.entrance='skip';
+  },8000);
+})();`;
 
 export default function RootLayout({
   children,

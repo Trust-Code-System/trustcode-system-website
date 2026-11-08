@@ -206,8 +206,25 @@
   z-index: 120;
   overflow: hidden;
   perspective: 1000px;
-  pointer-events: none;
-  animation: curtain-away 1.66s both;
+  pointer-events: auto;
+  animation: curtain-away var(--entrance-duration) both;
+}
+.site-curtain[data-phase="holding"] {
+  background: #080e18;
+}
+.site-curtain,
+.site-curtain *,
+.curtain-skip {
+  animation-play-state: paused !important;
+}
+.site-curtain[data-phase="opening"],
+.site-curtain[data-phase="opening"] *,
+.curtain-skip[data-phase="opening"] {
+  animation-play-state: running !important;
+}
+[data-entrance="skip"] .site-curtain,
+[data-entrance="skip"] .curtain-skip {
+  display: none !important;
 }
 .curtain-blades {
   position: absolute;
@@ -222,8 +239,8 @@
   background: linear-gradient(140deg, #14253e, #080e18 65%);
   border-right: 1px solid #7bafff16;
   transform-origin: 50% 0;
-  animation: curtain-blade-up 0.9s cubic-bezier(0.76, 0, 0.19, 1) both;
-  animation-delay: calc(0.45s + var(--blade-index) * 0.035s);
+  animation: curtain-blade-up 1.1s cubic-bezier(0.76, 0, 0.19, 1) both;
+  animation-delay: calc(0.9s + var(--blade-index) * 0.04s);
   will-change: transform;
 }
 .curtain-blade:nth-child(even) {
@@ -244,7 +261,7 @@
   font-weight: 550;
   letter-spacing: -0.075em;
   color: #e0ecff;
-  animation: curtain-type-out 0.55s cubic-bezier(0.5, 0, 0.2, 1) 0.42s both;
+  animation: curtain-type-out 0.7s cubic-bezier(0.5, 0, 0.2, 1) 0.8s both;
   white-space: nowrap;
 }
 .curtain-word-top {
@@ -266,7 +283,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  animation: curtain-identity-out 0.3s 0.45s both;
+  animation: curtain-identity-out 0.4s 0.85s both;
 }
 .curtain-identity img {
   width: 160px;
@@ -287,7 +304,7 @@
   width: 1px;
   background: #b7dcff;
   transform-origin: 50% 0;
-  animation: curtain-seam 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: curtain-seam 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
 }
 .curtain-flash {
   position: absolute;
@@ -298,7 +315,7 @@
     #80b8ff22 50%,
     transparent 65%
   );
-  animation: curtain-sweep 1.15s 0.2s both;
+  animation: curtain-sweep 1.45s 0.6s both;
 }
 .curtain-skip {
   position: fixed;
@@ -314,7 +331,7 @@
   border-radius: 4px;
   background: #0d1929;
   min-height: 44px;
-  animation: curtain-skip-away 1.6s both;
+  animation: curtain-skip-away var(--entrance-duration) both;
 }
 .curtain-skip:focus-visible {
   outline: 2px solid white;

@@ -23,6 +23,7 @@ export function FooterLineList({
       showMarker
       markerLength={25}
       markerGap={10}
+      motionEnabled={enabled}
       maxShift={enabled ? 9 : 0}
       proximityRadius={85}
       smoothing={enabled ? 280 : 0}
