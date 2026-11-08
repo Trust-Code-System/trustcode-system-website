@@ -244,7 +244,7 @@ export default async function CaseStudyPage({
       </Section>
 
       <section className="border-t border-grid bg-surface">
-        <div className="container-x flex flex-col items-start justify-between gap-4 py-10 sm:flex-row sm:items-center">
+        <div className="case-study-next container-x flex flex-col items-start justify-between gap-4 py-10 sm:flex-row sm:items-center">
           <div>
             <p className="eyebrow">/ next case study</p>
             <Link

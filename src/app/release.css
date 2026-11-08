@@ -132,6 +132,34 @@
 .team-experience {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+.expertise-anchor {
+  min-width: 0;
+  scroll-margin-top: 110px;
+}
+@media (min-width: 640px) {
+  .case-study-next {
+    padding-right: 116px;
+  }
+}
+/* Pausing decorative motion keeps hover colour and focus feedback available. */
+[data-motion="off"] .card-hover:hover,
+[data-motion="off"] .work-grid-new .work-item .card:hover,
+[data-motion="off"] .expertise-card:hover .service-art > span {
+  transform: none;
+}
+[data-motion="off"] .btn-primary::after {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-hover:hover,
+  .work-grid-new .work-item .card:hover,
+  .expertise-card:hover .service-art > span {
+    transform: none;
+  }
+  .btn-primary::after {
+    display: none;
+  }
+}
 @media (max-width: 1100px) {
   .project-showcase-grid {
     gap: 16px;

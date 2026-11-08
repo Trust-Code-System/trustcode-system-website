@@ -8,6 +8,8 @@ Integration patches: GooeyNav supports Next Link, an unselected route, an access
 
 Additional integration patches: FoldText supports an entrance delay; LineSidebar supports semantic Next Link destinations and an accessible navigation label; ElectricBorder is capped at device pixel ratio 1.
 
+AnimatedList also follows the site's motion preference for item entrances, selection-marker movement and keyboard scrolling. Functional CardNav opening remains softly paced with the site toggle off, while respecting the operating system's reduced-motion preference.
+
 Stepper supports persistent form panels without duplicate input IDs, inert outgoing panels, complete motion-off states and visible compact labels. The contact form animates full panels while preserving its existing validation, prefill and delivery handler.
 
 StarBorder uses Next Link through a typed adapter and static links when motion is disabled. LogoLoop displays self-hosted SVG technology marks. Lanyard and Three.js have been removed.

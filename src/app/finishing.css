@@ -132,7 +132,6 @@
     transition: none;
   }
 }
-[data-motion="off"] .soft-faq-trigger svg,
 [data-motion="off"] .companion-thought-line .thought-line__step {
   transition: none;
 }

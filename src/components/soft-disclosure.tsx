@@ -1,7 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useId, useState, type ReactNode } from "react";
-import { useExperienceMotion } from "./experience/motion-preferences";
 import { ChevronDown } from "./icons";
 export function SoftDisclosure({
   open,
@@ -14,7 +13,8 @@ export function SoftDisclosure({
   children: ReactNode;
   className?: string;
 }) {
-  const { enabled } = useExperienceMotion();
+  // The site toggle pauses decorative effects; controls retain their soft pacing.
+  const reduced = useReducedMotion();
   return (
     <motion.div
       id={id}
@@ -24,8 +24,8 @@ export function SoftDisclosure({
       initial={false}
       animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
       transition={{
-        height: { duration: enabled ? 0.55 : 0, ease: [0.22, 1, 0.36, 1] },
-        opacity: { duration: enabled ? 0.45 : 0, ease: "easeOut" },
+        height: { duration: reduced ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] },
+        opacity: { duration: reduced ? 0.15 : 0.45, ease: "easeOut" },
       }}
       style={{ overflow: "hidden", pointerEvents: open ? "auto" : "none" }}
     >
