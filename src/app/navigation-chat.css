@@ -110,7 +110,9 @@
   .mobile-card-shell {
     display: block;
     position: relative;
-    margin: 10px 12px 12px;
+    width: calc(100% - 24px);
+    max-width: 800px;
+    margin: 10px auto 12px;
     height: 60px;
   }
   .trustcode-card-nav {
