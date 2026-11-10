@@ -59,7 +59,7 @@ export default async function CaseStudyPage({
           <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="badge">{PROOF_LABELS[project.proofType]}</span>
+                {project.proofType !== "preview" && <span className="badge">{PROOF_LABELS[project.proofType]}</span>}
                 <span className="badge">{project.sector}</span>
                 {project.categories.map((c) => (
                   <span key={c} className="badge">
@@ -102,8 +102,8 @@ export default async function CaseStudyPage({
                     {PROOF_LABELS[project.proofType]}
                   </span>
                 )}
-                <Link href="/contact" className="btn-secondary">
-                  Start something like this
+                <Link href={project.categories.includes("E-Commerce") ? "/estimate?type=online-store" : "/estimate?type=business-website"} className="btn-secondary">
+                  Start a project
                 </Link>
               </div>
             </div>
@@ -219,7 +219,7 @@ export default async function CaseStudyPage({
                     className="inline-flex items-center gap-1.5 break-all font-mono text-[0.82rem] text-blueprint hover:underline"
                   >
                     <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-verified" />
-                    {project.live.replace(/^https?:\/\//, "")}
+                    {project.proofType === "preview" ? "View project" : project.live.replace(/^https?:\/\//, "")}
                   </a>
                 </>
               )}
@@ -255,8 +255,8 @@ export default async function CaseStudyPage({
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
-          <Link href="/contact" className="btn-primary">
-            Start something like this
+          <Link href={project.categories.includes("E-Commerce") ? "/estimate?type=online-store" : "/estimate?type=business-website"} className="btn-primary">
+            Start a project
           </Link>
         </div>
       </section>

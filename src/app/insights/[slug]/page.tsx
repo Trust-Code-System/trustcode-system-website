@@ -112,7 +112,7 @@ export default async function ArticlePage({
               Building something this applies to?
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn-primary">
+              <Link href="/estimate" className="btn-primary">
                 Start a project
                 <ArrowRight className="h-4 w-4" />
               </Link>

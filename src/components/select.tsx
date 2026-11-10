@@ -20,6 +20,7 @@ type SelectProps = {
   name: string;
   options: readonly SelectOption[];
   defaultValue?: string;
+  onValueChange?: (value: string) => void;
   placeholder?: string;
   "aria-invalid"?: boolean;
   "aria-describedby"?: string;
@@ -35,6 +36,7 @@ export function Select({
   name,
   options,
   defaultValue = "",
+  onValueChange,
   placeholder = "Select…",
   "aria-invalid": ariaInvalid,
   "aria-describedby": ariaDescribedby,
@@ -65,6 +67,7 @@ export function Select({
   const selected = options.find((o) => o.value === value);
 
   useEffect(() => setMounted(true), []);
+  useEffect(() => setValue(defaultValue), [defaultValue]);
 
   useLayoutEffect(() => {
     if (!open) return;
@@ -138,6 +141,7 @@ export function Select({
     const opt = options[i];
     if (!opt) return;
     setValue(opt.value);
+    onValueChange?.(opt.value);
     setActive(i);
     setOpen(false);
   }

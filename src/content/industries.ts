@@ -19,12 +19,12 @@ export const industries: Industry[] = [
   {
     slug: "fintech",
     name: "Fintech",
-    seoTitle: "Fintech Software Development - Lagos, London & Remote",
+    seoTitle: "Fintech Software Development - Lagos, Nigeria & Worldwide",
     seoDescription:
-      "TrustCode System builds fintech products, wallets, payments, KYC flows, and trading platforms, with security and compliance thinking built in from day one. Based in Lagos and London.",
+      "TrustCode System builds fintech products, wallets, payments, KYC flows, and trading platforms, with security and compliance thinking built in from day one. Based in Lagos, Nigeria. Working remotely worldwide.",
     headline: "Fintech products people trust with their money.",
     intro:
-      "Wallets, payment flows, KYC, fraud monitoring, and trading dashboards. We've shipped them, live, in the Nigerian market. Fintech is where our security discipline and product engineering meet.",
+      "Give customers a clear way to move money and manage their accounts. We bring product design, payment integration and security review together around your requirements.",
     painPoints: [
       {
         title: "Trust is the product",
@@ -51,9 +51,9 @@ export const industries: Industry[] = [
   {
     slug: "edtech",
     name: "EdTech",
-    seoTitle: "EdTech Platform Development - Lagos, London & Remote",
+    seoTitle: "EdTech Platform Development - Lagos, Nigeria & Worldwide",
     seoDescription:
-      "TrustCode System builds education platforms, school management systems, role-based portals, AI study tools, that work on real-world connections. Based in Lagos and London.",
+      "TrustCode System builds education platforms, school management systems, role-based portals, AI study tools, that work on real-world connections. Based in Lagos, Nigeria. Working remotely worldwide.",
     headline: "Education platforms that work in the real world.",
     intro:
       "School management systems, role-based portals for students and staff, AI study tools: built to run on everyday devices and everyday connections, not just office wifi.",
@@ -64,7 +64,7 @@ export const industries: Industry[] = [
       },
       {
         title: "Many roles, one platform",
-        body: "Students, facilitators, and admins need different views of the same data, with real access control between them. Role-based portals are a core pattern we've shipped to production.",
+        body: "Students, teachers and administrators need different views of the same information. We design access around what each person needs to see and do.",
       },
       {
         title: "Low bandwidth is the default",
@@ -83,12 +83,12 @@ export const industries: Industry[] = [
   {
     slug: "ecommerce",
     name: "E-commerce",
-    seoTitle: "E-commerce Development - Lagos, London & Remote",
+    seoTitle: "E-commerce Development - Lagos, Nigeria & Worldwide",
     seoDescription:
-      "TrustCode System builds e-commerce storefronts with carts, checkout, custom orders, wholesale flows, and Paystack/Stripe payments, editorial design that converts. Lagos & London.",
+      "TrustCode System builds e-commerce storefronts with carts, checkout, custom orders, wholesale flows, and Paystack/Stripe payments, editorial design that converts. Based in Lagos, Nigeria. Working remotely worldwide.",
     headline: "Storefronts that carry the brand, and close the sale.",
     intro:
-      "Editorial product pages, carts that persist, checkouts that don't leak sales, and payment integration that reconciles. We've built retail, custom-order, and wholesale flows for real merchants.",
+      "Make it easy for customers to browse your collection, keep a shopping bag and pay online. We shape the store around your brand, products and order process.",
     painPoints: [
       {
         title: "Generic templates flatten premium brands",
@@ -100,7 +100,7 @@ export const industries: Industry[] = [
       },
       {
         title: "WhatsApp-only sales don't scale",
-        body: "Answering the same product questions in chat all day caps your growth. A real platform lets customers self-serve, we've measured the difference for clients.",
+        body: "Answering the same product questions in chat all day takes time. Give customers clear product information and a way to place orders for themselves.",
       },
     ],
     deliver: [
@@ -115,12 +115,12 @@ export const industries: Industry[] = [
   {
     slug: "ai",
     name: "AI & Automation",
-    seoTitle: "AI Integration & Automation Development - Lagos, London & Remote",
+    seoTitle: "AI Integration & Automation Development - Lagos, Nigeria & Worldwide",
     seoDescription:
-      "TrustCode System integrates AI where it creates measurable value, copilots, LLM features, compliance sandboxes, and automation. Production AI, not demos. Lagos & London.",
-    headline: "AI that ships to production, not to a demo day.",
+      "TrustCode System builds useful AI assistants, document search and business automation around your requirements. Based in Lagos, Nigeria. Working remotely worldwide.",
+    headline: "Useful AI that fits the way your team works.",
     intro:
-      "LLM features, copilots, and automation, integrated where they create measurable value. We've shipped AI compliance sandboxes, study tools, and domain copilots that cite their sources.",
+      "Help your team find information, answer routine questions and spend less time on repeatable tasks. We scope useful AI integrations with clear limits and review before release.",
     painPoints: [
       {
         title: "Demos are easy; production is not",
@@ -147,12 +147,12 @@ export const industries: Industry[] = [
   {
     slug: "security",
     name: "Security",
-    seoTitle: "Cybersecurity & SOC Services - Lagos, London & Remote",
+    seoTitle: "Cybersecurity & SOC Services - Lagos, Nigeria & Worldwide",
     seoDescription:
-      "TrustCode System provides security monitoring, threat hunting, phishing-readiness, and MITRE-mapped detection, led by an ISC2-certified SOC analyst. Lagos & London.",
+      "TrustCode System provides security monitoring, threat hunting, phishing-readiness, and MITRE-mapped detection, led by an ISC2-certified SOC analyst. Based in Lagos, Nigeria. Working remotely worldwide.",
     headline: "Security rigor for businesses that can't afford surprises.",
     intro:
-      "SIEM monitoring, threat hunting, phishing-readiness, and incident response playbooks, led by an ISC2-certified SOC analyst and mapped to MITRE ATT&CK. The same rigor protects everything we build.",
+      "Understand the risks to your systems and customer data. We help you close security gaps, prepare your team for suspicious messages and plan a clear response to incidents.",
     painPoints: [
       {
         title: "You can't defend what you can't see",

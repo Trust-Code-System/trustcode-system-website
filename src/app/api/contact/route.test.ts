@@ -5,8 +5,8 @@ const basePayload = {
   email: "ada@example.com",
   company: "Analytical Engines Ltd",
   service: "ai-integration",
-  budget: "Mid-range",
-  siteType: "AI-powered tool",
+  budget: "₦1.5m–₦5m",
+  siteType: "Custom AI tool or automation",
   goal: "Get leads & inquiries",
   startingPoint: "Brand new - starting fresh",
   designVibe: "Clean & minimal",
@@ -83,8 +83,10 @@ describe("POST /api/contact", () => {
       to: ["hello@example.com"],
       reply_to: basePayload.email,
     });
-    expect(sentBody.subject).toContain("AI Integration & Automation");
+    expect(sentBody.subject).toContain("Build · AI tools & automation");
     expect(sentBody.text).toContain(basePayload.message);
+    expect(sentBody.text).toContain(basePayload.budget);
+    expect(sentBody.text).toContain(basePayload.siteType);
   });
 
   it("rejects invalid JSON", async () => {

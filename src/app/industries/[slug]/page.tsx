@@ -1,3 +1,4 @@
+import { BookingLink } from "@/components/booking-link";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
@@ -54,13 +55,11 @@ export default async function IndustryPage({
         intro={industry.intro}
       >
         <div className="flex flex-wrap items-center gap-3">
-          <Link href="/contact" className="btn-primary">
-            Start a Project
+          <Link href="/estimate" className="btn-primary">
+            Start a project
             <ArrowRight className="h-4 w-4" />
           </Link>
-          <Link href="/estimate" className="btn-secondary">
-            Request a Consultation
-          </Link>
+          <BookingLink className="btn-secondary" />
         </div>
       </PageHero>
 

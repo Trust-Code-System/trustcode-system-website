@@ -1,3 +1,4 @@
+import { plannerHref } from "@/content/project-types";
 import Link from "next/link";
 import type { Service } from "@/content/services";
 import { serviceIcons, ArrowRight } from "./icons";
@@ -28,7 +29,7 @@ export function ServiceCard({ service }: { service: Service }) {
           <ArrowUpRight className="h-3.5 w-3.5" />
         </Link>
         <Link
-          href={`/contact?service=${service.slug}`}
+          href={plannerHref(service.slug)}
           className="inline-flex items-center gap-1.5 text-[0.85rem] font-medium text-blueprint"
         >
           {service.ctaLabel}

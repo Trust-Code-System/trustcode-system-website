@@ -14,11 +14,14 @@ export function ProjectThumb({
   project: Project;
   className?: string;
 }) {
-  const host = project.live
-    ? project.live.replace(/^https?:\/\//, "").replace(/\/$/, "")
-    : project.sourceUrl
-      ? "github · source"
-      : "case study";
+  const host =
+    project.proofType === "preview"
+      ? project.title
+      : project.live
+        ? project.live.replace(/^https?:\/\//, "").replace(/\/$/, "")
+        : project.sourceUrl
+          ? "github · source"
+          : "case study";
   const shot = resolveCover(project);
   const isSvg = shot?.endsWith(".svg");
   const proof = PROOF_LABELS[project.proofType];
@@ -82,17 +85,19 @@ export function ProjectThumb({
         </span>
       </div>
 
-      <span
-        className={cn(
-          "absolute bottom-3 right-4 inline-flex items-center gap-1.5 rounded bg-paper/90 px-1.5 py-0.5 font-mono text-[0.65rem] uppercase tracking-wide backdrop-blur-sm",
-          isLive ? "text-verified" : "text-slate",
-        )}
-      >
-        {isLive && (
-          <span className="h-1.5 w-1.5 rounded-full bg-verified animate-pulse-dot" />
-        )}
-        {proof}
-      </span>
+      {project.proofType !== "preview" && (
+        <span
+          className={cn(
+            "absolute bottom-3 right-4 inline-flex items-center gap-1.5 rounded bg-paper/90 px-1.5 py-0.5 font-mono text-[0.65rem] uppercase tracking-wide backdrop-blur-sm",
+            isLive ? "text-verified" : "text-slate",
+          )}
+        >
+          {isLive && (
+            <span className="h-1.5 w-1.5 rounded-full bg-verified animate-pulse-dot" />
+          )}
+          {proof}
+        </span>
+      )}
     </div>
   );
 }

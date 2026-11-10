@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { faqs } from "@/content/faq";
 import { Section } from "./section";
 import { SoftFaqItem } from "./soft-disclosure";
@@ -36,6 +37,7 @@ export function FaqSection({
       <h2 className="display-h2 mt-4 max-w-2xl">
         The things everyone asks before starting.
       </h2>
+      <p className="mt-4"><Link href="/services#pricing" className="text-action">See starting prices ↗</Link></p>
       <div className="mt-10 grid gap-3 lg:grid-cols-2 lg:items-start">
         {faqs.map((f) => (
           <SoftFaqItem key={f.q} question={f.q} answer={f.a} />

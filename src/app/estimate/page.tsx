@@ -1,10 +1,11 @@
+import { Suspense } from "react";
 import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
 import { Estimator } from "@/components/estimator";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
-  title: "Start a Project",
+  title: "Start a project",
   description:
     "Share your objectives, required features and timeline. TrustCode will review your brief and provide a tailored proposal.",
   path: "/estimate",
@@ -19,7 +20,7 @@ export default function EstimatePage() {
         intro="Every project is different. Tell us what you are building, and we will recommend the right scope, delivery approach and next steps."
       />
       <Section>
-        <Estimator />
+        <Suspense fallback={<p>Loading project planner…</p>}><Estimator /></Suspense>
       </Section>
     </>
   );

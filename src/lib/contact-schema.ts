@@ -1,36 +1,28 @@
+import { projectTypes } from "@/content/estimator";
 import { z } from "zod";
 
 export const serviceOptions = [
-  { value: "product-web-engineering", label: "Product & Web Engineering" },
-  { value: "ecommerce-development", label: "E-Commerce Development" },
-  { value: "cloud-devops", label: "Cloud & DevOps Engineering" },
-  { value: "ai-integration", label: "AI Integration & Automation" },
-  { value: "cybersecurity-soc", label: "Cybersecurity & SOC Services" },
-  { value: "it-support-managed", label: "IT Support & Managed Services" },
-  { value: "training-mentorship", label: "Training & Technical Mentorship" },
+  {
+    value: "product-web-engineering",
+    label: "Build · Business websites & apps",
+  },
+  { value: "ecommerce-development", label: "Build · Online stores" },
+  { value: "cloud-devops", label: "Run · Hosting & cloud operations" },
+  { value: "ai-integration", label: "Build · AI tools & automation" },
+  { value: "cybersecurity-soc", label: "Protect · Security & data protection" },
+  { value: "it-support-managed", label: "Run · Maintenance & support" },
+  { value: "training-mentorship", label: "Training & mentorship" },
   { value: "not-sure", label: "Not sure yet, help me scope it" },
 ] as const;
 
-export const budgetOptions = [
-  "Prefer not to say",
-  "Exploring / not set yet",
-  "Modest",
-  "Mid-range",
-  "Significant",
-  "Retainer / ongoing",
-] as const;
+export { budgetOptions } from "./budgets";
 
 // --- Project brief (all optional) ---------------------------------------
 
 export const siteTypeOptions = [
-  "Business / landing site",
-  "E-commerce store",
-  "Web app / SaaS",
-  "Booking / service platform",
-  "Portfolio / personal",
-  "AI-powered tool",
+  ...projectTypes.map((type) => type.label),
   "Not sure yet",
-] as const;
+];
 
 export const goalOptions = [
   "Get leads & inquiries",

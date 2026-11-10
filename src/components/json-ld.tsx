@@ -21,7 +21,6 @@ export function JsonLd() {
       ...(socialLinks.length ? { sameAs: socialLinks } : {}),
       address: [
         { "@type": "PostalAddress", addressLocality: "Lagos", addressCountry: "NG" },
-        { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
       ],
       contactPoint: {
         "@type": "ContactPoint",

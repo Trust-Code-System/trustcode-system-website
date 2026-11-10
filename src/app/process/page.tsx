@@ -89,7 +89,7 @@ export default function ProcessPage() {
           ))}
         </div>
         <div className="mt-8">
-          <Link href="/contact" className="btn-primary">
+          <Link href="/estimate" className="btn-primary">
             Start a project
             <ArrowRight className="h-4 w-4" />
           </Link>

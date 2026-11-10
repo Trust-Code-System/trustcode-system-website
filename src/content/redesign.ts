@@ -14,7 +14,7 @@ export const redesign = {
   manifesto:
     "Great software should feel effortless. Underneath, every detail should earn your trust.",
   workTitle: "Built to work. Made to matter.",
-  serviceTitle: "The whole system. Beautifully connected.",
+  serviceTitle: "Build. Run. Protect.",
   processTitle: "From what if, to what’s next.",
   teamTitle: "Different disciplines. Shared standards.",
   ctaTitle: "Make your next move a remarkable one.",

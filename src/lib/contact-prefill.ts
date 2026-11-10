@@ -1,7 +1,6 @@
 import { z } from "zod";
 import {
   serviceOptions,
-  budgetOptions,
   siteTypeOptions,
   goalOptions,
   startingPointOptions,
@@ -44,6 +43,9 @@ export const prefillSchema = z
 
 export type ContactPrefill = z.infer<typeof prefillSchema>;
 
+import { normalizeBudget } from "./budgets";
+import { legacyProjectLabels } from "@/content/project-types";
+
 const OTHER = "Other";
 
 /** Compare dash- and case-insensitively so "1-3 months" matches "1–3 months". */
@@ -53,7 +55,7 @@ function norm(s: string): string {
 
 function matchOption(
   value: string | undefined,
-  options: readonly string[]
+  options: readonly string[],
 ): string | null {
   if (!value) return null;
   const target = norm(value);
@@ -90,12 +92,19 @@ export function normalizePrefill(p: ContactPrefill): NormalizedPrefill {
   // Service: accept the slug value or the visible label.
   let service = "";
   if (p.service) {
-    const byValue = serviceOptions.find((o) => norm(o.value) === norm(p.service!));
-    const byLabel = serviceOptions.find((o) => norm(o.label) === norm(p.service!));
+    const byValue = serviceOptions.find(
+      (o) => norm(o.value) === norm(p.service!),
+    );
+    const byLabel = serviceOptions.find(
+      (o) => norm(o.label) === norm(p.service!),
+    );
     service = byValue?.value ?? byLabel?.value ?? "";
   }
 
-  const siteMatch = matchOption(p.siteType, siteTypeOptions);
+  const siteMatch = matchOption(
+    legacyProjectLabels[p.siteType ?? ""] ?? p.siteType,
+    siteTypeOptions,
+  );
   const goalMatch = matchOption(p.goal, goalOptions);
 
   const features: string[] = [];
@@ -116,11 +125,11 @@ export function normalizePrefill(p: ContactPrefill): NormalizedPrefill {
       message: p.message?.trim() ?? "",
     },
     service,
-    budget: matchOption(p.budget, budgetOptions) ?? "",
+    budget: normalizeBudget(p.budget),
     siteType: siteMatch ?? (p.siteType ? OTHER : ""),
-    siteTypeOther: siteMatch ? "" : p.siteType?.trim() ?? "",
+    siteTypeOther: siteMatch ? "" : (p.siteType?.trim() ?? ""),
     goal: goalMatch ?? (p.goal ? OTHER : ""),
-    goalOther: goalMatch ? "" : p.goal?.trim() ?? "",
+    goalOther: goalMatch ? "" : (p.goal?.trim() ?? ""),
     startingPoint: matchOption(p.startingPoint, startingPointOptions) ?? "",
     designVibe: matchOption(p.designVibe, designVibeOptions) ?? "",
     timeline: matchOption(p.timeline, timelineOptions) ?? "",
