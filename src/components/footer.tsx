@@ -2,6 +2,7 @@ import { FooterLineList } from "./footer-line-list";
 import { ReplayEntrance } from "./experience/site-curtain";
 import { Logo } from "./logo";
 import { site, social } from "@/content/site";
+import { AnalyticsSettingsButton } from "./google-analytics";
 const footerLinks = [
   {
     title: "EXPLORE",
@@ -18,6 +19,7 @@ const footerLinks = [
       ["Insights", "/insights"],
       ["Pricing", "/services#pricing"],
       ["Start a project", "/estimate"],
+      ["Privacy", "/privacy"],
     ],
   },
   {
@@ -61,6 +63,7 @@ export function Footer() {
           </span>
           <span>THOUGHTFULLY DESIGNED. DEPENDABLY ENGINEERED.</span>
           <ReplayEntrance />
+          <AnalyticsSettingsButton />
           <a href="#main">BACK TO TOP ↑</a>
         </div>
       </div>
