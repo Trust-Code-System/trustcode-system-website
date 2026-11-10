@@ -142,7 +142,7 @@ export function getPortfolioOwner(id: ProjectOwnerId): PortfolioOwner {
 
 export const PROOF_LABELS: Record<ProjectProofType, string> = {
   website: "Website",
-  preview: "Storefront preview",
+  preview: "Project",
   live: "Live product",
   "live-client": "Live client product",
   github: "GitHub",
@@ -216,7 +216,7 @@ export const projects: Project[] = [
       "Atelier, fitting and measurement-profile entry points",
     ],
     outcome:
-      "The supplied storefront preview brings the collection, the house and client-care journeys into one interface.",
+      "The storefront interface brings the collection, the house and client-care journeys into one interface.",
     stack: [],
     team: ["TrustCode System"],
     live: "https://nelo-frontend.vercel.app/ng",
@@ -225,7 +225,7 @@ export const projects: Project[] = [
     featured: true,
     featuredOrder: 2,
     coverImage: "/work/nelo-woman.png",
-    liveCtaLabel: "Explore preview",
+    liveCtaLabel: "View project",
   },
   {
     slug: "wearables-by-ashabi",
@@ -288,7 +288,7 @@ export function proofCtaLabel(proof: ProjectProofType): string {
     case "website":
       return "Visit website";
     case "preview":
-      return "Explore preview";
+      return "View project";
     case "live":
     case "live-client":
       return "View live product";

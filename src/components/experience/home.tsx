@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { redesign, serviceVisuals } from "@/content/redesign";
-import { services } from "@/content/services";
+import { redesign } from "@/content/redesign";
+import { serviceGroups } from "@/content/services";
 import { team } from "@/content/team";
 import { steps } from "@/content/process";
 import {
@@ -20,7 +20,11 @@ import { TeamPortrait } from "./team-portrait";
 import { TechnologyLoop } from "./technology-loop";
 import { StarLink } from "../star-link";
 import { useExperienceMotion } from "./motion-preferences";
-import CountUp from "../react-bits/CountUp/CountUp";
+import { priceFor, formatFrom, commercialTerms } from "@/lib/pricing";
+import { stats, site } from "@/content/site";
+import { ProjectTypeCards } from "../project-type-cards";
+import { FaqSection } from "../faq";
+import { BookingLink } from "../booking-link";
 import FoldText from "../react-bits/FoldText/FoldText";
 import { SoftDisclosure } from "../soft-disclosure";
 import ScrollReveal from "../react-bits/ScrollReveal/ScrollReveal";
@@ -53,7 +57,19 @@ function Ambient({ kind }: { kind: "orb" | "silk" }) {
   );
 }
 export function HomeExperience() {
-  const { enabled } = useExperienceMotion();
+  const { enabled, ready } = useExperienceMotion();
+  const [entranceDone, setEntranceDone] = useState(false);
+  useEffect(() => {
+    const root = document.documentElement;
+    const update = () => setEntranceDone(root.dataset.entrance !== "pending");
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(root, {
+      attributes: true,
+      attributeFilter: ["data-entrance"],
+    });
+    return () => observer.disconnect();
+  }, []);
   const [activeStep, setActiveStep] = useState(0);
   const [serviceOpen, setServiceOpen] = useState<number | null>(null);
   return (
@@ -68,8 +84,13 @@ export function HomeExperience() {
           <span className="orbit-core">↗</span>
         </div>
         <div className="experience-container hero-content">
-          <h1 className="hero-heading">
-            {enabled ? (
+          <h1
+            className="hero-heading"
+            data-hero-ready={
+              ready && (!enabled || entranceDone) ? "true" : undefined
+            }
+          >
+            {enabled && entranceDone ? (
               <FoldText
                 text={"Software you can\nstake your\nbusiness on."}
                 splitBy="line"
@@ -98,10 +119,11 @@ export function HomeExperience() {
             <SoftText className="hero-intro" text={redesign.intro} />
             <div className="hero-links">
               <Magnet disabled={!enabled} maxOffset={7}>
-                <StarLink className="button-solid" href="/contact">
-                  Build something great <span aria-hidden>↗</span>
+                <StarLink className="button-solid" href="/estimate">
+                  Start a project <span aria-hidden>↗</span>
                 </StarLink>
               </Magnet>
+              <BookingLink />
               <Link className="text-action" href="#selected-work">
                 Explore our work <span aria-hidden>↓</span>
               </Link>
@@ -109,9 +131,7 @@ export function HomeExperience() {
           </div>
           <div className="hero-footnote">
             <span>STRATEGY → DESIGN → ENGINEERING</span>
-            <span className="hero-location">
-              LAGOS, NIGERIA · WORKING WORLDWIDE
-            </span>
+            <span className="hero-location">{site.locationStatement}</span>
             <a
               href="#intro"
               aria-label="Scroll to discover"
@@ -121,6 +141,40 @@ export function HomeExperience() {
             </a>
           </div>
         </div>
+      </section>
+      <section
+        className="experience-container py-12"
+        aria-labelledby="home-start-title"
+      >
+        <ul className="grid gap-4 text-[0.9rem] leading-relaxed text-ink sm:grid-cols-2 lg:grid-cols-4">
+          <li>You own the code and accounts.</li>
+          <li>Payments follow agreed milestones.</li>
+          <li>A demo every week during the build.</li>
+          <li>Clear written scope and staging visibility.</li>
+        </ul>
+        <p className="mb-10 mt-4 text-[0.78rem] leading-relaxed text-slate">
+          Scope, payment terms and handover are agreed in your written proposal.
+        </p>
+        <h2 id="home-start-title" className="experience-h2">
+          What are you building?
+        </h2>
+        <p className="section-copy">
+          Choose a starting point. We’ll help you shape the brief.
+        </p>
+        <ProjectTypeCards />
+        <div className="card mt-6 flex flex-wrap items-center justify-between gap-4 p-5 text-[0.9rem]">
+          <p>
+            Websites {formatFrom(priceFor("landing-page")!.ngn!, true)} · Online
+            stores {formatFrom(priceFor("online-store")!.ngn!, true)} · Web apps{" "}
+            {formatFrom(priceFor("app-platform")!.ngn!, true)}
+          </p>
+          <Link className="text-action" href="/services#pricing">
+            See all prices ↗
+          </Link>
+        </div>
+        <p className="mt-3 text-[0.78rem] leading-relaxed text-slate">
+          {commercialTerms.disclaimer}
+        </p>
       </section>
       <TechnologyLoop />
       <section className="experience-container manifesto-section" id="intro">
@@ -154,26 +208,12 @@ export function HomeExperience() {
           </div>
         </div>
         <div className="new-stats">
-          <div>
-            <strong>One team</strong>
-            <span>Connected expertise</span>
-          </div>
-          <div>
-            <strong>
-              {enabled ? <CountUp to={6} suffix="+" duration={1.5} /> : "6+"}
-            </strong>
-            <span>Industries explored</span>
-          </div>
-          <div>
-            <strong>End to end</strong>
-            <span>From discovery to ongoing support</span>
-          </div>
-          <div>
-            <strong>
-              {enabled ? <CountUp to={24} suffix="h" duration={1.6} /> : "24h"}
-            </strong>
-            <span>Typical response window</span>
-          </div>
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </div>
+          ))}
         </div>
       </section>
       <ProjectShowcase />
@@ -189,31 +229,30 @@ export function HomeExperience() {
           </Link>
         </div>
         <div className="expertise-grid">
-          {services.map((s, i) => (
+          {serviceGroups.map((s, i) => (
             <SpotlightCard
-              key={s.slug}
+              key={s.id}
               className={`expertise-card expertise-${i}`}
               spotlightColor="rgba(90,140,255,.22)"
               borderGlow={0.6}
             >
               <div className="service-card-top">
                 <span>0{i + 1}</span>
-                <span className="service-code">{serviceVisuals[i].label}</span>
+                <span className="service-code">{s.title.toUpperCase()}</span>
               </div>
               <div
                 className={`service-art art-${i}`}
-                style={
-                  { "--art-color": serviceVisuals[i].color } as CSSProperties
-                }
+                style={{ "--art-color": s.color } as CSSProperties}
                 aria-hidden
               >
-                <span>{serviceVisuals[i].glyph}</span>
+                <span>{s.glyph}</span>
                 <i />
                 <i />
                 <i />
               </div>
               <h3>{s.title}</h3>
-              <p>{s.short}</p>
+              <p className="service-problem">{s.problem}</p>
+              <p>{s.outcome}</p>
               <button
                 className="service-disclosure"
                 type="button"
@@ -234,9 +273,7 @@ export function HomeExperience() {
                     <li key={x}>{x}</li>
                   ))}
                 </ul>
-                <Link href={`/contact?service=${s.slug}`}>
-                  Discuss this service ↗
-                </Link>
+                <Link href={`/services#${s.id}`}>Explore this service ↗</Link>
               </SoftDisclosure>
             </SpotlightCard>
           ))}
@@ -318,9 +355,7 @@ export function HomeExperience() {
                   0{i + 1} / {person.flag}
                 </span>
                 <h3>
-                  <Link href={`/about#${person.slug}`}>
-                    {person.name.split(" ").slice(0, 2).join(" ")}
-                  </Link>
+                  <Link href={`/about#${person.slug}`}>{person.name}</Link>
                 </h3>
                 <p>{person.role}</p>
               </article>
@@ -328,6 +363,7 @@ export function HomeExperience() {
           ))}
         </div>
       </section>
+      <FaqSection />
       <section className="closing-experience">
         <Ambient kind="silk" />
         <div className="experience-container relative">
@@ -335,10 +371,11 @@ export function HomeExperience() {
           <MotionTitle text={redesign.ctaTitle} className="closing-title" />
           <p className="section-copy">{redesign.ctaIntro}</p>
           <Magnet disabled={!enabled} maxOffset={8}>
-            <StarLink href="/contact" className="button-solid">
-              Let’s build it together <span aria-hidden>↗</span>
+            <StarLink href="/estimate" className="button-solid">
+              Start a project <span aria-hidden>↗</span>
             </StarLink>
           </Magnet>
+          <BookingLink className="button-solid mt-4" />
         </div>
       </section>
     </div>

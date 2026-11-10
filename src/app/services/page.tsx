@@ -1,3 +1,5 @@
+import { BookingLink } from "@/components/booking-link";
+import { PricingSection } from "@/components/pricing";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
@@ -11,7 +13,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Services",
   description:
-    "Product & web engineering, e-commerce, cloud & DevOps, AI integration, cybersecurity, IT support, and training. Software, cloud and security expertise working as one team.",
+    "Build business websites, online stores and apps. Run hosting and maintenance. Protect your systems and customer data. Based in Lagos, Nigeria. Working remotely worldwide.",
   path: "/services",
 });
 
@@ -21,7 +23,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="services"
         title="One partner. Every layer of your digital world."
-        intro="Software, cloud and security expertise working as one team. Every service links to live work you can inspect, and every engagement starts with a consultation and a tailored proposal."
+        intro="Software, cloud and security expertise working as one team. Build a useful digital presence, keep it running and protect your systems and customer data. Each engagement starts with a clear brief and written proposal."
       />
 
       <Section>
@@ -44,16 +46,15 @@ export default function ServicesPage() {
           ))}
         </div>
         <div className="mt-8 flex flex-wrap items-center gap-3">
-          <Link href="/contact" className="btn-primary">
-            Start a Project
+          <Link href="/estimate" className="btn-primary">
+            Start a project
             <ArrowRight className="h-4 w-4" />
           </Link>
-          <Link href="/estimate" className="btn-secondary">
-            Request a Consultation
-          </Link>
+          <BookingLink className="btn-secondary" />
         </div>
       </Section>
 
+      <PricingSection />
       <FaqSection />
 
       <CtaBand />

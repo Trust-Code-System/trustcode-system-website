@@ -39,7 +39,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [desktop, setDesktop] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const { enabled, toggle } = useExperienceMotion();
+  const { enabled, ready, toggle } = useExperienceMotion();
   const reduced = useReducedMotion();
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -98,7 +98,7 @@ export function Header() {
       trackColor="#20304a"
       trackOnColor="#b8d0ff"
       thumbOnColor="#15213a"
-      className="header-motion-control"
+      className={`header-motion-control ${ready ? "" : "motion-control-pending"}`}
     />
   );
   const activeIndex = links.findIndex((link) =>
@@ -152,8 +152,8 @@ export function Header() {
         <div className="header-actions">
           {motionControl()}
           <Magnet disabled={!enabled} maxOffset={5}>
-            <StarLink className="header-cta" href="/contact">
-              Let’s talk <span aria-hidden>↗</span>
+            <StarLink className="header-cta" href="/estimate">
+              Start a project <span aria-hidden>↗</span>
             </StarLink>
           </Magnet>
         </div>
@@ -164,7 +164,7 @@ export function Header() {
           logoAlt="TrustCode System home"
           logoHref="/"
           items={cards}
-          cta={{ label: "Let’s talk about your project ↗", href: "/contact" }}
+          cta={{ label: "Start a project ↗", href: "/estimate" }}
           theme="dark"
           surface="solid"
           openOn="click"

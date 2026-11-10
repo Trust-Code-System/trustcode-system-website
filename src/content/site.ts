@@ -1,3 +1,6 @@
+import { getFeaturedProjects } from "./portfolio";
+import { team } from "./team";
+
 export const site = {
   name: "TrustCode System Limited",
   shortName: "TrustCode System",
@@ -9,10 +12,12 @@ export const site = {
     "https://wa.me/2349134062773?text=Hi%20TrustCode%20System%2C%20I%27d%20like%20to%20discuss%20a%20project.",
   logo: "/trustcode-systems-logo.png",
   locations: ["Lagos, Nigeria"],
+  locationStatement: "Based in Lagos, Nigeria. Working remotely worldwide.",
+  foundingYear: 2026,
   thesis:
     "TrustCode System builds software you can stake your business on. Full-stack product engineering, cloud infrastructure, AI integration, and security. From discovery to ongoing support.",
   description:
-    "TrustCode System is a product engineering team building dependable software, cloud systems and digital experiences.",
+    "TrustCode System builds websites, online stores and apps, keeps systems running and protects customer data. Based in Lagos, Nigeria. Working remotely worldwide.",
   responsePromise: "We reply within 24 hours.",
 } as const;
 
@@ -38,8 +43,8 @@ export const nav = [
 ] as const;
 
 export const stats = [
-  { value: "One team", label: "connected expertise" },
-  { value: "6+", label: "industries served" },
-  { value: "NG · UK", label: "Lagos & London, remote worldwide" },
-  { value: "24h", label: "typical reply window" },
+  { value: String(getFeaturedProjects().length), label: "Featured projects" },
+  { value: String(team.length), label: "Documented co-founders" },
+  { value: String(site.foundingYear), label: "Founded" },
+  { value: "24h", label: "Reply window" },
 ] as const;

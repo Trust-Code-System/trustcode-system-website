@@ -1,3 +1,4 @@
+import { BookingLink } from "@/components/booking-link";
 import Link from "next/link";
 import { Aurora } from "./aurora";
 import { ArrowRight } from "./icons";
@@ -16,13 +17,11 @@ export function CtaBand() {
             review the project and provide a tailored proposal.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link href="/contact" className="btn-primary">
-              Start a Project
+            <Link href="/estimate" className="btn-primary">
+              Start a project
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/estimate" className="btn-secondary">
-              Request a Consultation
-            </Link>
+            <BookingLink className="btn-secondary" />
           </div>
           <Link
             href="/work"

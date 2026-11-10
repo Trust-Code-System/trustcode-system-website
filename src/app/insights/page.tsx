@@ -11,7 +11,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Insights",
   description:
-    "Notes on shipping software in Lagos and London, fintech, edtech, AWS, AI, and security. Writing from the TrustCode team.",
+    "Notes on shipping software in Lagos, Nigeria, fintech, edtech, AWS, AI, and security. Writing from the TrustCode team.",
   path: "/insights",
 });
 

@@ -15,11 +15,11 @@ export const services: Service[] = [
   {
     slug: "product-web-engineering",
     icon: "layout",
-    title: "Product & Web Engineering",
+    title: "Business websites & apps",
     short:
-      "Custom websites, web apps, and SaaS platforms in Next.js/TypeScript: from landing page to multi-role platform.",
+      "Make your business easy to find and use online. Get a website or app shaped around your customers and daily work.",
     description:
-      "We build custom websites, web apps, and SaaS platforms in Next.js and TypeScript. From a single landing page to a multi-role platform with auth, dashboards, and admin panels: designed, built, and shipped to production.",
+      "Make your business easy to find and use online. Get a website or app shaped around your customers and daily work.",
     includes: [
       "Next.js / TypeScript architecture",
       "Authentication & role-based access",
@@ -27,17 +27,17 @@ export const services: Service[] = [
       "Component systems & design-to-code",
     ],
     timeline: "2–10 weeks",
-    ctaLabel: "Discuss a Web Project",
+    ctaLabel: "Start a project",
     proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "ecommerce-development",
     icon: "cart",
-    title: "E-Commerce Development",
+    title: "Online stores",
     short:
-      "Storefronts with carts, wishlists, custom-order flows, wholesale support, and Paystack/Stripe payments.",
+      "Give customers a clear way to browse, buy and pay online, with orders your team can manage.",
     description:
-      "Storefronts that sell: carts, wishlists, custom-order flows, wholesale support, and payment integration with Paystack or Stripe. Editorial, fast, and built to convert.",
+      "Give customers a clear way to browse, buy and pay online, with orders your team can manage.",
     includes: [
       "Cart, wishlist & checkout",
       "Custom-order & wholesale flows",
@@ -45,17 +45,17 @@ export const services: Service[] = [
       "Inventory & order management",
     ],
     timeline: "3–8 weeks",
-    ctaLabel: "Discuss an E-Commerce Project",
+    ctaLabel: "Start a project",
     proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "cloud-devops",
     icon: "cloud",
-    title: "Cloud & DevOps Engineering",
+    title: "Hosting & cloud operations",
     short:
-      "AWS-native architecture (CDK, Lambda, Fargate, EventBridge), CI/CD, IaC, caching, and cost optimization.",
+      "Make releases easier and keep hosting costs and performance visible, with infrastructure your team can maintain.",
     description:
-      "AWS-native architecture built with CDK, Lambda, Fargate, and EventBridge, plus CI/CD, infrastructure-as-code, caching layers, payment pipelines, and cost optimization. Infrastructure you can reason about and trust.",
+      "Make releases easier and keep hosting costs and performance visible, with infrastructure your team can maintain.",
     includes: [
       "AWS CDK infrastructure-as-code",
       "CI/CD pipelines (GitHub Actions)",
@@ -63,17 +63,17 @@ export const services: Service[] = [
       "Cost & performance optimization",
     ],
     timeline: "2–8 weeks",
-    ctaLabel: "Discuss Cloud & DevOps",
+    ctaLabel: "Start a project",
     proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "ai-integration",
     icon: "spark",
-    title: "AI Integration & Automation",
+    title: "AI tools & automation",
     short:
-      "Custom AI assistants, automation workflows, knowledge systems, document intelligence and business integrations designed around your organisation's requirements.",
+      "Spend less time on repetitive work. Add helpful assistants, document search and connected workflows where they solve a real problem.",
     description:
-      "LLM-powered features, AI agents built on MCP, study/HR/compliance copilots, chatbots, and automation bots. We integrate AI where it creates measurable value, not where it makes a demo.",
+      "Spend less time on repetitive work. Add helpful assistants, document search and connected workflows where they solve a real problem.",
     includes: [
       "LLM features (OpenAI, LangChain)",
       "AI agents & MCP tooling",
@@ -81,17 +81,17 @@ export const services: Service[] = [
       "Automation & DOM agents",
     ],
     timeline: "2–6 weeks",
-    ctaLabel: "Discuss an AI Project",
+    ctaLabel: "Start a project",
     proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "cybersecurity-soc",
     icon: "shield",
-    title: "Cybersecurity & SOC Services",
+    title: "Security & data protection",
     short:
-      "Security monitoring (Sentinel/Splunk), threat hunting, phishing-readiness, IR playbooks, MITRE-mapped reporting.",
+      "Understand the risks to your systems and customer data, strengthen your defences and prepare for incidents.",
     description:
-      "Security monitoring setup with Sentinel or Splunk, threat hunting, phishing-readiness assessments, incident response playbooks, firewall configuration, and MITRE ATT&CK-mapped reporting, led by an ISC2-certified SOC analyst.",
+      "Understand the risks to your systems and customer data, strengthen your defences and prepare for incidents.",
     includes: [
       "SIEM setup (Sentinel / Splunk)",
       "Threat hunting & detections",
@@ -99,17 +99,17 @@ export const services: Service[] = [
       "Incident response playbooks",
     ],
     timeline: "1–4 weeks",
-    ctaLabel: "Discuss a Security Project",
+    ctaLabel: "Start a project",
     proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "it-support-managed",
     icon: "wrench",
-    title: "IT Support & Managed Services",
+    title: "Maintenance & support",
     short:
-      "Ongoing maintenance, uptime monitoring, user/access management, and retainer support.",
+      "Keep your business moving with ongoing maintenance, monitoring and help when your team needs it.",
     description:
-      "Ongoing maintenance, uptime monitoring, user and access management, hardware-network troubleshooting, and retainer support, backed by daily enterprise IT operations experience in oil & gas.",
+      "Keep your business moving with ongoing maintenance, monitoring and help when your team needs it.",
     includes: [
       "Uptime & monitoring",
       "User & access management",
@@ -117,17 +117,17 @@ export const services: Service[] = [
       "Retainer support",
     ],
     timeline: "Ongoing retainer",
-    ctaLabel: "Discuss IT Support",
+    ctaLabel: "Start a project",
     proof: { label: "Discuss your project", href: "/contact" },
   },
   {
     slug: "training-mentorship",
     icon: "book",
-    title: "Training & Technical Mentorship",
+    title: "Training & mentorship",
     short:
-      "Corporate and individual training in web development, Web3 fundamentals, and security awareness.",
+      "Help your team build practical skills in web development and security awareness, with training shaped around their needs.",
     description:
-      "Corporate and individual training in web development, Web3 fundamentals, and security awareness. Our team has mentored students at Aptech and runs a 500+ member learning community.",
+      "Help your team build practical skills in web development and security awareness, with training shaped around their needs.",
     includes: [
       "Web development training",
       "Web3 fundamentals",
@@ -135,7 +135,7 @@ export const services: Service[] = [
       "Team & individual mentorship",
     ],
     timeline: "Per cohort",
-    ctaLabel: "Discuss Training",
+    ctaLabel: "Start a project",
     proof: { label: "Discuss your project", href: "/contact" },
   },
 ];
@@ -157,3 +157,55 @@ export const engagementModels = [
       "Embed one or more of our engineers into your team for a defined period. Best for scaling delivery fast.",
   },
 ];
+
+export const serviceGroups = [
+  {
+    id: "build",
+    title: "Build",
+    problem: "Want customers to find and buy from you online?",
+    outcome:
+      "Get a business website, online store or app that makes the next step clear. Add useful AI tools where they save time.",
+    slugs: [
+      "product-web-engineering",
+      "ecommerce-development",
+      "ai-integration",
+    ],
+    includes: [
+      "Business websites and online stores",
+      "Apps and customer platforms",
+      "Useful AI integrations",
+    ],
+    glyph: "⌘",
+    color: "#8bafff",
+  },
+  {
+    id: "run",
+    title: "Run",
+    problem: "Need your technology to keep working after launch?",
+    outcome:
+      "Keep your website and systems maintained, your hosting organised and your team supported as the business grows.",
+    slugs: ["cloud-devops", "it-support-managed"],
+    includes: [
+      "Hosting and cloud operations",
+      "Maintenance and monitoring",
+      "Ongoing technical support",
+    ],
+    glyph: "∞",
+    color: "#cfedaf",
+  },
+  {
+    id: "protect",
+    title: "Protect",
+    problem: "Worried about your systems and customer data?",
+    outcome:
+      "Find security gaps, strengthen access and prepare a clear response when something goes wrong.",
+    slugs: ["cybersecurity-soc"],
+    includes: [
+      "Security reviews and practical fixes",
+      "Access and data protection",
+      "Monitoring and incident preparation",
+    ],
+    glyph: "◇",
+    color: "#92e3d0",
+  },
+] as const;

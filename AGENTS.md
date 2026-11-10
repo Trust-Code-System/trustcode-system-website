@@ -17,8 +17,8 @@ is context for any AI/dev session so the basics never need re-asking.
 - **Tagline:** "Software you can stake your business on."
 - **What they do:** full-stack product engineering, cloud/DevOps, AI integration,
   cybersecurity/SOC, IT support, training. The selected projects are Sekibat Nig Limited,
-  NELO Woman (storefront preview) and Wearables by Ashabi.
-- **Locations:** Lagos, Nigeria · London, UK · remote worldwide.
+  NELO Woman (storefront interface) and Wearables by Ashabi.
+- **Locations:** Based in Lagos, Nigeria. Working remotely worldwide. Personal team biographies may name other locations; these are not company offices.
 - **Team (4 co-founders):**
   - **Abass Ibrahim** — Full-Stack Delivery & Design Lead (Lagos). Primary
     owner/operator of this repo and the accounts.
@@ -68,8 +68,7 @@ is context for any AI/dev session so the basics never need re-asking.
   `tcs` remote) but is **not** the deploy source; don't push there expecting a
   deploy.
 - **Default/production branch:** `main`. Vercel auto-deploys on push to `main`.
-- `main` has branch protection (PR + "validate" status check required) but the
-  owner pushes directly with bypass. Commits made in this repo are co-authored
+- `main` has branch protection (PR + "validate" status check required) and one approving review. Bypass authorization is per PR; do not assume a standing override. Commits made in this repo are co-authored
   per the harness footer.
 - **DNS** for `trustcodesystem.tech` is managed in **Vercel** (nameservers
   `ns1/ns2.vercel-dns.com`). The domain is **not** registered at Namecheap.

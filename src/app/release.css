@@ -188,3 +188,12 @@
     padding: 23px;
   }
 }
+
+/* Reserve the switch footprint until its first hydrated preference is ready. */
+.motion-control-pending { visibility: hidden; }
+.team-portrait-card h3 { overflow-wrap: anywhere; }
+.home-experience .expertise-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+.home-experience .expertise-card { grid-column: auto; }
+@media(max-width: 960px) { .home-experience .expertise-grid { grid-template-columns: 1fr; } }
+
+[data-motion="on"] .hero-heading:not([data-hero-ready="true"]) { visibility: hidden; }

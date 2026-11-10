@@ -16,8 +16,8 @@ const footerLinks = [
     title: "DISCOVER",
     items: [
       ["Insights", "/insights"],
-      ["Project planner", "/estimate"],
-      ["Start a project", "/contact"],
+      ["Pricing", "/services#pricing"],
+      ["Start a project", "/estimate"],
     ],
   },
   {
@@ -40,7 +40,7 @@ export function Footer() {
             <p>
               Software you can stake your business on.
               <br />
-              Based in Lagos. Building for the world.
+              {site.locationStatement}
             </p>
           </div>
           <div className="footer-links">

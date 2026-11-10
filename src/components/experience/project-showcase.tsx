@@ -28,8 +28,8 @@ export function ProjectShowcase({
         </div>
         <div className="portfolio-space-footer">
           <span>Explore each website and its interface.</span>
-          <StarLink href="/contact" variant="quiet">
-            Let’s talk about your project ↗
+          <StarLink href="/estimate" variant="quiet">
+            Start a project ↗
           </StarLink>
         </div>
       </div>

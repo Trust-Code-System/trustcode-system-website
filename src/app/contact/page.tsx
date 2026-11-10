@@ -5,6 +5,7 @@ import { Section } from "@/components/section";
 import { ContactForm } from "@/components/contact-form";
 import { FaqSection } from "@/components/faq";
 import { ArrowRight, ArrowUpRight, WhatsApp } from "@/components/icons";
+import { BookingLink } from "@/components/booking-link";
 import { site } from "@/content/site";
 import { pageMeta } from "@/lib/seo";
 
@@ -43,11 +44,10 @@ export default function ContactPage() {
                   className="inline-flex w-full items-center justify-center gap-2 rounded-[10px] bg-[#25D366] px-4 py-3 text-[0.95rem] font-semibold text-white transition-colors hover:bg-[#1da851]"
                 >
                   <WhatsApp className="h-5 w-5" />
-                  Talk to Our Team
+                  Message us on WhatsApp
                 </a>
                 <p className="mt-3 text-[0.82rem] text-slate">
-                  Fastest way to reach us, we usually reply in minutes during
-                  business hours.
+                  {site.responsePromise}
                 </p>
 
                 <p className="mt-5 eyebrow mb-2">/ email us</p>
@@ -62,18 +62,8 @@ export default function ContactPage() {
 
               <div className="card p-7">
                 <p className="eyebrow mb-3">/ locations</p>
-                <ul className="space-y-1.5 text-[0.95rem] text-ink">
-                  {site.locations.map((l) => (
-                    <li key={l} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-blueprint" />
-                      {l}
-                    </li>
-                  ))}
-                  <li className="flex items-center gap-2 text-slate">
-                    <span className="h-1.5 w-1.5 rounded-full bg-grid" />
-                    Remote, worldwide
-                  </li>
-                </ul>
+                <p className="text-[0.95rem] text-ink">{site.locationStatement}</p>
+
               </div>
 
               <div className="card p-7">
@@ -86,19 +76,19 @@ export default function ContactPage() {
                   href="/estimate"
                   className="mt-4 inline-flex items-center gap-1.5 text-[0.95rem] font-medium text-blueprint hover:underline"
                 >
-                  Request a Consultation
+                  Start a project
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
 
+              <BookingLink />
               <div className="card bg-surface p-7">
                 <p className="eyebrow mb-3">/ response time</p>
                 <p className="font-display text-[1.3rem] font-semibold leading-snug tracking-tight">
-                  We reply within 24 hours.
+                  {site.responsePromise}
                 </p>
                 <p className="mt-2 text-[0.9rem] text-slate">
-                  Prefer to talk? Ask for a call in your message and we&apos;ll
-                  send a booking link.
+                  Prefer to talk? Mention a call in your message and we’ll arrange a time with you.
                 </p>
               </div>
             </div>

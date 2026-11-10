@@ -89,7 +89,7 @@ export default async function OgImage() {
             ● LIVE
           </span>
           <span style={{ fontSize: 22, color: "#5B6472" }}>
-            Lagos · London · Remote worldwide
+            Lagos, Nigeria · Remote worldwide
           </span>
         </div>
       </div>

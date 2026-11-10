@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import {
   contactSchema,
   serviceOptions,
-  budgetOptions,
   siteTypeOptions,
   goalOptions,
   startingPointOptions,
@@ -27,7 +26,12 @@ import "./contact-stepper.css";
 import Stepper, { Step } from "./react-bits/Stepper/Stepper";
 import SpecularButton from "./react-bits/SpecularButton/SpecularButton";
 
-const budgetSelectOptions = budgetOptions.map((b) => ({ value: b, label: b }));
+import Link from "next/link";
+import { projectTypes } from "@/content/estimator";
+import { priceFor, itemPrice, commercialTerms } from "@/lib/pricing";
+import { BudgetPicker } from "./budget-picker";
+import { legacyProjectLabels } from "@/content/project-types";
+const CONTACT_DRAFT = "tc-contact-draft-v1";
 
 const OTHER = "Other";
 
@@ -47,6 +51,8 @@ export function ContactForm() {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [prefilled, setPrefilled] = useState(false);
   const [briefStep, setBriefStep] = useState(1);
+  const [draftReady, setDraftReady] = useState(false);
+  const [draftRevision, setDraftRevision] = useState(0);
 
   // Select defaults (keyed remount lets a post-mount prefill take effect).
   const [serviceDefault, setServiceDefault] = useState(
@@ -69,44 +75,111 @@ export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
-  // Prefill from the /estimate wizard, if the visitor arrived from there.
   useEffect(() => {
+    const apply = (raw: unknown) => {
+      const parsed = prefillSchema.safeParse(raw);
+      if (!parsed.success) return;
+      const n = normalizePrefill(parsed.data);
+      for (const [key, value] of Object.entries(n.text)) {
+        const input = formRef.current?.elements.namedItem(key);
+        if (
+          value &&
+          (input instanceof HTMLInputElement ||
+            input instanceof HTMLTextAreaElement)
+        )
+          input.value = value;
+      }
+      if (n.service) setServiceDefault(n.service);
+      if (n.budget) setBudgetDefault(n.budget);
+      setSiteType(n.siteType);
+      setSiteTypeOther(n.siteTypeOther);
+      setGoal(n.goal);
+      setGoalOther(n.goalOther);
+      setStartingPoint(n.startingPoint);
+      setDesignVibe(n.designVibe);
+      setTimeline(n.timeline);
+      setFeatures(n.features);
+      setFeatureOther(n.featureOther);
+    };
     try {
-      const raw = sessionStorage.getItem("tcs-estimate");
-      if (!raw) return;
-      sessionStorage.removeItem("tcs-estimate");
-      const est = JSON.parse(raw) as {
-        siteType?: string;
-        features?: string[];
-        timeline?: string;
-        summary?: string;
-      };
-      if (
-        est.siteType &&
-        (siteTypeOptions as readonly string[]).includes(est.siteType)
-      ) {
-        setSiteType(est.siteType);
+      apply(JSON.parse(sessionStorage.getItem(CONTACT_DRAFT) ?? "null"));
+    } catch {
+      /* Optional draft. */
+    }
+    try {
+      const fragment = window.location.hash.startsWith("#brief=")
+        ? decodeURIComponent(window.location.hash.slice(7))
+        : null;
+      let legacy: string | null = null;
+      try {
+        legacy = sessionStorage.getItem("tcs-estimate");
+      } catch {
+        /* Fragment works independently of storage. */
       }
-      if (Array.isArray(est.features)) {
-        setFeatures(
-          est.features.filter((f) =>
-            (featureOptions as readonly string[]).includes(f),
-          ),
-        );
-      }
-      if (
-        est.timeline &&
-        (timelineOptions as readonly string[]).includes(est.timeline)
-      ) {
-        setTimeline(est.timeline);
-      }
-      if (est.summary && messageRef.current && !messageRef.current.value) {
-        messageRef.current.value = est.summary;
+      const raw = fragment ?? legacy;
+      if (raw) {
+        const data = JSON.parse(raw);
+        apply({
+          ...data,
+          siteType: legacyProjectLabels[data.siteType] ?? data.siteType,
+          message: data.message ?? data.summary,
+        });
+        if (fragment)
+          window.history.replaceState(
+            null,
+            "",
+            window.location.pathname + window.location.search,
+          );
+        if (legacy) sessionStorage.removeItem("tcs-estimate");
       }
     } catch {
-      // malformed storage, start with a blank form
+      /* Ignore malformed or unavailable storage. */
     }
+    setDraftReady(true);
   }, []);
+
+  useEffect(() => {
+    if (!draftReady || status === "success") return;
+    const data = new FormData(formRef.current!);
+    const draft = {
+      name: data.get("name"),
+      email: data.get("email"),
+      company: data.get("company"),
+      inspiration: data.get("inspiration"),
+      message: data.get("message"),
+      service: serviceDefault,
+      budget: budgetDefault,
+      siteType: siteType === OTHER ? siteTypeOther : siteType,
+      goal: goal === OTHER ? goalOther : goal,
+      startingPoint,
+      designVibe,
+      timeline,
+      features: [
+        ...features.filter((item) => item !== OTHER),
+        ...(features.includes(OTHER) && featureOther ? [featureOther] : []),
+      ],
+    };
+    try {
+      sessionStorage.setItem(CONTACT_DRAFT, JSON.stringify(draft));
+    } catch {
+      /* Form still works without storage. */
+    }
+  }, [
+    draftReady,
+    draftRevision,
+    status,
+    serviceDefault,
+    budgetDefault,
+    siteType,
+    siteTypeOther,
+    goal,
+    goalOther,
+    startingPoint,
+    designVibe,
+    timeline,
+    features,
+    featureOther,
+  ]);
 
   // Prefill from the AI assistant. It fills what the visitor told it and
   // leaves the rest blank; the visitor reviews and submits themselves.
@@ -161,6 +234,7 @@ export function ContactForm() {
     if (n.features.length) setFeatures(n.features);
     if (n.featureOther) setFeatureOther(n.featureOther);
 
+    setDraftRevision((revision) => revision + 1);
     setPrefilled(true);
     // Bring the form into view under the sticky header.
     setTimeout(
@@ -282,12 +356,19 @@ export function ContactForm() {
             if (v && v[0]) next[k] = v[0];
           }
           setFieldErrors(next);
+          if (next.name || next.email || next.service) setBriefStep(1);
         }
         setStatus("error");
         setFormError(json.error ?? "Something went wrong. Please try again.");
         return;
       }
       setStatus("success");
+      try {
+        sessionStorage.removeItem(CONTACT_DRAFT);
+        sessionStorage.removeItem("tc-planner-draft-v1");
+      } catch {
+        /* Optional storage. */
+      }
       setBriefStep(1);
       form.reset();
       setPrefilled(false);
@@ -335,7 +416,9 @@ export function ContactForm() {
     <form
       ref={formRef}
       onSubmit={onSubmit}
+      onInput={() => setDraftRevision((revision) => revision + 1)}
       noValidate
+      aria-label="Project enquiry form"
       className="card project-brief-form p-7 sm:p-8"
     >
       {/* Honeypot, hidden from users, visible to bots */}
@@ -371,6 +454,38 @@ export function ContactForm() {
         </div>
       )}
 
+      <div className="mb-6 rounded-[10px] border border-grid bg-surface p-5">
+        <h2 className="font-semibold">Starting price guide</h2>
+        {(() => {
+          const type = projectTypes.find((item) => item.label === siteType);
+          const selectedPrice = type ? priceFor(type.id) : null;
+          return (
+            <div className="mt-3 grid gap-2 text-[0.9rem]">
+              {(selectedPrice
+                ? [selectedPrice]
+                : [
+                    priceFor("landing-page")!,
+                    priceFor("online-store")!,
+                    priceFor("app-platform")!,
+                  ]
+              ).map((item) => (
+                <p key={item.id}>
+                  {item.title}: <strong>{itemPrice(item)}</strong>
+                </p>
+              ))}
+            </div>
+          );
+        })()}
+        <p className="mt-4 text-[0.78rem] leading-relaxed text-slate">
+          {commercialTerms.disclaimer}
+        </p>
+        <Link
+          className="mt-3 inline-block text-[0.85rem] text-blueprint"
+          href="/services#pricing"
+        >
+          See all prices ↗
+        </Link>
+      </div>
       <div className="grid gap-5">
         <Stepper
           step={briefStep}
@@ -443,11 +558,11 @@ export function ContactForm() {
                   required
                 >
                   <Select
-                    key={`service-${serviceDefault}`}
                     id="service"
                     name="service"
                     options={serviceOptions}
                     defaultValue={serviceDefault}
+                    onValueChange={setServiceDefault}
                     placeholder="Choose a service"
                     aria-invalid={Boolean(fieldErrors.service)}
                   />
@@ -457,14 +572,10 @@ export function ContactForm() {
                   name="budget"
                   error={fieldErrors.budget}
                 >
-                  <Select
-                    key={`budget-${budgetDefault}`}
-                    id="budget"
-                    name="budget"
-                    options={budgetSelectOptions}
-                    defaultValue={budgetDefault}
-                    placeholder="Prefer not to say"
-                    aria-invalid={Boolean(fieldErrors.budget)}
+                  <BudgetPicker
+                    value={budgetDefault}
+                    onChange={setBudgetDefault}
+                    invalid={Boolean(fieldErrors.budget)}
                   />
                 </Field>
               </div>

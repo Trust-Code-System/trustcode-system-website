@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "web developer Lagos",
     "AWS consultant Nigeria",
     "cybersecurity services Lagos",
-    "Next.js agency UK",
+    "remote software development team",
     "software engineering Nigeria",
   ],
   authors: [{ name: site.name }],

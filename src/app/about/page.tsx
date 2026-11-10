@@ -12,7 +12,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "About & Team",
   description:
-    "Meet the TrustCode System team: product, cloud, security and full-stack expertise delivering production-ready software from Lagos and London.",
+    "Meet the TrustCode System team: product, cloud, security and full-stack expertise delivering production-ready software from Lagos, Nigeria, working remotely worldwide.",
   path: "/about",
 });
 

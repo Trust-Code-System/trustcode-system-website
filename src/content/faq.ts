@@ -1,17 +1,19 @@
+import { commercialTerms, priceFor, itemPrice } from "@/lib/pricing";
+
 export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [
   {
     q: "How do you price a website or platform?",
-    a: "Every project is different. Share your objectives, required features and timeline, and we will review the brief and provide a tailored proposal. There are no public package prices; you get scope, delivery approach and next steps shaped around what you are building.",
+    a: `See the starting prices on our Services page. For example, a business website is ${itemPrice(priceFor("business-website")!)}. ${commercialTerms.disclaimer}`,
   },
   {
     q: "How long will my project take?",
-    a: "A business or landing site typically takes 2–4 weeks, an e-commerce store 4–8 weeks, and a full platform 8–16 weeks. You get a written delivery plan up front, and you see progress on a real staging link from week one.",
+    a: `Typical starting timelines: landing page ${priceFor("landing-page")!.timeline}, business website ${priceFor("business-website")!.timeline}, starter online store ${priceFor("online-store")!.timeline}, and web app ${priceFor("app-platform")!.timeline}. Scope and feedback affect delivery. We agree a written plan and share progress on staging.`,
   },
   {
     q: "How do payments work?",
-    a: "Payments are split across agreed milestones set out in your written proposal, typically a deposit to start, then payments tied to visible progress. Terms are agreed in writing before work begins.",
+    a: `${commercialTerms.payment} Terms and scope are agreed in your written proposal before work begins.`,
   },
   {
     q: "Who owns the code and the accounts?",
@@ -23,11 +25,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do you work with clients outside Nigeria and the UK?",
-    a: "Yes. We're based in Lagos and London and work remotely worldwide. We schedule calls across time zones and can work with the payment arrangements that suit your organisation.",
+    a: "Yes. Based in Lagos, Nigeria. Working remotely worldwide. We schedule calls across time zones and can work with the payment arrangements that suit your organisation.",
   },
   {
     q: "What happens after launch?",
-    a: "We don't disappear. Every build includes a handover and support window, and most clients move to a monthly retainer covering monitoring, maintenance, and improvements. The same team that built it keeps it live.",
+    a: `${commercialTerms.support} We hand over your code and accounts. Optional monthly care plans cover ongoing maintenance and improvements; see the Services pricing section for starting prices.`,
   },
   {
     q: "Can you take over or fix an existing project?",

@@ -1,53 +1,40 @@
-// Project scoping data for the /estimate wizard. Collects project type,
-// features, and timeline so visitors can send a structured brief. No public
-// pricing. Labels must match the option lists in src/lib/contact-schema.ts
-// exactly, because the scoper hands its selections to the contact form.
-
+import { pricing } from "@/lib/pricing";
 export type ProjectType = {
+  id: string;
   label: string;
-  /** service slug used to preselect the contact form's Service field */
   service: string;
   blurb: string;
+  group: string;
   weeks: [number, number];
+  timeline: string;
 };
-
 export const projectTypes: ProjectType[] = [
+  ...pricing.map((item) => ({
+    id: item.id,
+    label: item.title,
+    service: item.service,
+    blurb: item.description,
+    group: item.pillar === "Build" ? item.group : "Something else",
+    weeks: item.weeks ?? ([0, 0] as [number, number]),
+    timeline: item.timeline,
+  })),
   {
-    label: "Business / landing site",
-    service: "product-web-engineering",
-    blurb: "Marketing site, services, contact. Built to convert.",
-    weeks: [2, 4],
+    id: "something-else",
+    label: "Something else / not sure yet",
+    service: "not-sure",
+    blurb: "Tell us the problem. We’ll help you find the right approach.",
+    group: "Something else",
+    weeks: [0, 0],
+    timeline: "Agreed after scoping",
   },
-  {
-    label: "Portfolio / personal",
-    service: "product-web-engineering",
-    blurb: "A sharp personal or portfolio site that loads fast.",
-    weeks: [1, 3],
-  },
-  {
-    label: "E-commerce store",
-    service: "ecommerce-development",
-    blurb: "Storefront, cart, checkout, Paystack/Stripe payments.",
-    weeks: [4, 8],
-  },
-  {
-    label: "Booking / service platform",
-    service: "product-web-engineering",
-    blurb: "Scheduling, service flows, and customer accounts.",
-    weeks: [6, 10],
-  },
-  {
-    label: "Web app / SaaS",
-    service: "product-web-engineering",
-    blurb: "Multi-role platform with auth, dashboards, and admin.",
-    weeks: [8, 16],
-  },
-  {
-    label: "AI-powered tool",
-    service: "ai-integration",
-    blurb: "LLM features, copilots, or automation with real value.",
-    weeks: [6, 12],
-  },
+];
+export const homepageProjectTypes = [
+  { id: "business-website", label: "Business website" },
+  { id: "online-store", label: "Online store" },
+  { id: "app-platform", label: "App or platform" },
+  { id: "booking-platform", label: "Booking platform" },
+  { id: "ai-tool", label: "AI tool or integration" },
+  { id: "something-else", label: "Something else" },
 ];
 
 export type EstimatorFeature = {

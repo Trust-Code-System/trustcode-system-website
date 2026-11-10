@@ -38,7 +38,7 @@ export function ProjectCard({ project }: { project: Project }) {
       </Link>
       <div className="flex flex-1 flex-col p-6">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="badge">{PROOF_LABELS[project.proofType]}</span>
+          {project.proofType !== "preview" && <span className="badge">{PROOF_LABELS[project.proofType]}</span>}
           <span className="badge">{project.sector}</span>
           {project.categories.slice(0, 2).map((c) => (
             <span key={c} className="badge">
