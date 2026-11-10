@@ -8,6 +8,8 @@ import "./refinement.css";
 import "./navigation-chat.css";
 import "./finishing.css";
 import "./release.css";
+import "./analytics.css";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { SiteCurtain } from "@/components/experience/site-curtain";
 import { MotionPreferences } from "@/components/experience/motion-preferences";
 import { Header } from "@/components/header";
@@ -136,6 +138,7 @@ export default function RootLayout({
           <ChatWidget />
           <Analytics />
           <SpeedInsights />
+          <GoogleAnalytics />
         </MotionPreferences>
       </body>
     </html>
