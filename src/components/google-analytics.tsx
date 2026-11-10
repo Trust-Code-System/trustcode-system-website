@@ -5,6 +5,7 @@ import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { analyticsCopy } from "@/content/privacy";
+import { prepareAnalytics } from "@/lib/analytics-bootstrap";
 import { analyticsUrl, CONSENT_KEY, GA_MEASUREMENT_ID, readAnalyticsChoice, type AnalyticsChoice } from "@/lib/analytics-consent";
 
 declare global {
@@ -28,6 +29,7 @@ export function GoogleAnalytics() {
   const [choice, setChoice] = useState<AnalyticsChoice | null>(null);
   const [visible, setVisible] = useState(false);
   const [ready, setReady] = useState(false);
+  const [configured, setConfigured] = useState(false);
   const [production, setProduction] = useState(false);
   const [storageBlocked, setStorageBlocked] = useState(false);
   const acceptButton = useRef<HTMLButtonElement>(null);
@@ -48,6 +50,12 @@ export function GoogleAnalytics() {
       window.removeEventListener("storage", sync);
     };
   }, []);
+
+  useEffect(() => {
+    if (choice !== "accepted" || !production) return;
+    prepareAnalytics(window, location.href, document.referrer);
+    setConfigured(true);
+  }, [choice, production]);
 
   useEffect(() => {
     if (!ready || choice !== "accepted") return;
@@ -103,21 +111,11 @@ export function GoogleAnalytics() {
   }
 
   return <>
-    {choice === "accepted" && production && <Script
+    {choice === "accepted" && production && configured && <Script
       id="trustcode-google-analytics"
       src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       strategy="afterInteractive"
-      onReady={() => {
-        window.dataLayer = window.dataLayer || [];
-        // Google's command queue expects an Arguments object, as in its snippet.
-        // eslint-disable-next-line prefer-rest-params
-        window.gtag = function () { window.dataLayer!.push(arguments); };
-        window.gtag("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
-        window.gtag("js", new Date());
-        window.gtag("set", { page_location: analyticsUrl(location.href), page_referrer: analyticsUrl(document.referrer) });
-        window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false });
-        setReady(true);
-      }}
+      onReady={() => setReady(true)}
     />}
     {visible && <section className="analytics-consent" aria-labelledby="analytics-consent-title">
       <div>
