@@ -11,11 +11,16 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
+    trustcodeAnalyticsSettingsRequested?: boolean;
   }
 }
 
 export function AnalyticsSettingsButton() {
-  return <button type="button" className="analytics-settings-button" onClick={() => window.dispatchEvent(new Event("trustcode:analytics-settings"))}>{analyticsCopy.settings}</button>;
+  return <button type="button" className="analytics-settings-button" onClick={() => {
+    // A footer can hydrate before the root controller's effect has mounted.
+    window.trustcodeAnalyticsSettingsRequested = true;
+    window.dispatchEvent(new Event("trustcode:analytics-settings"));
+  }}>{analyticsCopy.settings}</button>;
 }
 
 export function GoogleAnalytics() {
@@ -33,10 +38,11 @@ export function GoogleAnalytics() {
     setChoice(saved);
     setVisible(saved === null);
     setProduction(["trustcodesystem.tech", "www.trustcodesystem.tech"].includes(location.hostname));
-    const open = () => { setVisible(true); requestAnimationFrame(() => acceptButton.current?.focus()); };
+    const open = () => { window.trustcodeAnalyticsSettingsRequested = false; setVisible(true); requestAnimationFrame(() => acceptButton.current?.focus()); };
     const sync = (event: StorageEvent) => { if (event.key === CONSENT_KEY) location.reload(); };
     window.addEventListener("trustcode:analytics-settings", open);
     window.addEventListener("storage", sync);
+    if (window.trustcodeAnalyticsSettingsRequested) open();
     return () => {
       window.removeEventListener("trustcode:analytics-settings", open);
       window.removeEventListener("storage", sync);
