@@ -44,6 +44,19 @@ describe("completed enquiry analytics", () => {
     });
   });
 
+  it("preserves the sanitized submission page if navigation finishes before the response", () => {
+    const submissionPage = target.location.href;
+    target.location.href = "https://trustcodesystem.tech/work?message=private";
+    expect(recordAcceptedEnquiry(accepted, submissionPage)).toBe(true);
+    expect(target.gtag).toHaveBeenCalledWith("event", "generate_lead", {
+      lead_source: "website_enquiry",
+      page_location: "https://trustcodesystem.tech/contact",
+    });
+    choice = JSON.stringify({ choice: "declined", savedAt: Date.now() });
+    expect(recordAcceptedEnquiry(accepted, submissionPage)).toBe(false);
+    expect(target.gtag).toHaveBeenCalledTimes(1);
+  });
+
   it.each([
     undefined,
     null,

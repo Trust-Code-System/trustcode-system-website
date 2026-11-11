@@ -9,7 +9,10 @@ import {
  * The receipt is not form data. Event parameters are a fixed allowlist.
  * Check consent again when the response arrives, since it may have changed.
  */
-export function recordAcceptedEnquiry(receipt: unknown): boolean {
+export function recordAcceptedEnquiry(
+  receipt: unknown,
+  submissionPage?: string,
+): boolean {
   if (
     !receipt ||
     typeof receipt !== "object" ||
@@ -37,7 +40,7 @@ export function recordAcceptedEnquiry(receipt: unknown): boolean {
 
     window.gtag("event", "generate_lead", {
       lead_source: "website_enquiry",
-      page_location: analyticsUrl(window.location.href),
+      page_location: analyticsUrl(submissionPage ?? window.location.href),
     });
     return true;
   } catch {

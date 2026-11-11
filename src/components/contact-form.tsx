@@ -344,6 +344,7 @@ export function ContactForm() {
     }
 
     submissionInFlight.current = true;
+    const submissionPage = window.location.href;
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -366,7 +367,7 @@ export function ContactForm() {
         setFormError(json.error ?? "Something went wrong. Please try again.");
         return;
       }
-      recordAcceptedEnquiry(json);
+      recordAcceptedEnquiry(json, submissionPage);
       setStatus("success");
       try {
         sessionStorage.removeItem(CONTACT_DRAFT);
