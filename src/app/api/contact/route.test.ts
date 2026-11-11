@@ -36,7 +36,7 @@ function contactRequest(body: unknown, ip = "203.0.113.10") {
 
 function mockResend(status = 200, body = "{}") {
   const fetchMock = vi.fn<typeof fetch>(
-    async () => new Response(body, { status })
+    async () => new Response(body, { status }),
   );
   vi.stubGlobal("fetch", fetchMock);
   return fetchMock;
@@ -67,7 +67,7 @@ describe("POST /api/contact", () => {
     const json = await response.json();
 
     expect(response.status).toBe(200);
-    expect(json).toEqual({ ok: true });
+    expect(json).toEqual({ ok: true, leadAccepted: true });
     expect(fetchMock).toHaveBeenCalledTimes(1);
 
     const [, init] = fetchMock.mock.calls[0]!;
@@ -106,7 +106,7 @@ describe("POST /api/contact", () => {
     const fetchMock = mockResend();
 
     const response = await POST(
-      contactRequest({ ...basePayload, name: "A", email: "not-an-email" })
+      contactRequest({ ...basePayload, name: "A", email: "not-an-email" }),
     );
     const json = await response.json();
 
@@ -122,7 +122,7 @@ describe("POST /api/contact", () => {
     const fetchMock = mockResend();
 
     const response = await POST(
-      contactRequest({ ...basePayload, website: "https://spam.example" })
+      contactRequest({ ...basePayload, website: "https://spam.example" }),
     );
     const json = await response.json();
 
@@ -197,5 +197,27 @@ describe("POST /api/contact", () => {
       error: "We couldn't send your message. Please email us directly.",
     });
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not mark development-only logged enquiries as accepted leads", async () => {
+    delete process.env.RESEND_API_KEY;
+    vi.spyOn(console, "log").mockImplementation(() => undefined);
+    const POST = await loadPost();
+    const fetchMock = mockResend();
+    const response = await POST(contactRequest(basePayload));
+    expect(await response.json()).toEqual({ ok: true });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("does not mark a failed provider connection as an accepted lead", async () => {
+    const POST = await loadPost();
+    vi.spyOn(console, "error").mockImplementation(() => undefined);
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockRejectedValue(new Error("network unavailable")),
+    );
+    const response = await POST(contactRequest(basePayload));
+    expect(response.status).toBe(502);
+    expect((await response.json()).leadAccepted).toBeUndefined();
   });
 });

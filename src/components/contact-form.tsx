@@ -31,6 +31,7 @@ import { projectTypes } from "@/content/estimator";
 import { priceFor, itemPrice, commercialTerms } from "@/lib/pricing";
 import { BudgetPicker } from "./budget-picker";
 import { legacyProjectLabels } from "@/content/project-types";
+import { recordAcceptedEnquiry } from "@/lib/analytics-leads";
 const CONTACT_DRAFT = "tc-contact-draft-v1";
 
 const OTHER = "Other";
@@ -74,6 +75,7 @@ export function ContactForm() {
 
   const formRef = useRef<HTMLFormElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const submissionInFlight = useRef(false);
 
   useEffect(() => {
     const apply = (raw: unknown) => {
@@ -291,6 +293,7 @@ export function ContactForm() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submissionInFlight.current) return;
     if (briefStep < 3) {
       goStep(briefStep + 1);
       return;
@@ -340,6 +343,8 @@ export function ContactForm() {
       return;
     }
 
+    submissionInFlight.current = true;
+    const submissionPage = window.location.href;
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -362,6 +367,7 @@ export function ContactForm() {
         setFormError(json.error ?? "Something went wrong. Please try again.");
         return;
       }
+      recordAcceptedEnquiry(json, submissionPage);
       setStatus("success");
       try {
         sessionStorage.removeItem(CONTACT_DRAFT);
@@ -386,6 +392,8 @@ export function ContactForm() {
     } catch {
       setStatus("error");
       setFormError("Network error. Please try again or email us directly.");
+    } finally {
+      submissionInFlight.current = false;
     }
   }
 
