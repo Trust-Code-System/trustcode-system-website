@@ -57,7 +57,7 @@ export default async function ArticlePage({
       <header className="relative overflow-hidden border-b border-grid">
         <div aria-hidden className="grid-bg absolute inset-0" />
         <Aurora />
-        <div className="container-x relative py-16 sm:py-20">
+        <div className="container-x page-intro relative">
           <p className="eyebrow">
             / insights / {article.tag.toLowerCase()}
           </p>

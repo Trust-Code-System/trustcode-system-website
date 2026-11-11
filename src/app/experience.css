@@ -1,4 +1,15 @@
 /* TrustCode / Connected by design. Shared visual system for every route. */
+:root {
+  --page-intro-space: 2rem;
+}
+@media (min-width: 768px) {
+  :root {
+    --page-intro-space: 3rem;
+  }
+}
+.page-intro {
+  padding-block: var(--page-intro-space);
+}
 .lab-invitation {
   overflow: clip;
 }
@@ -1390,9 +1401,6 @@ a {
   background:
     radial-gradient(ellipse at 90% 10%, #1a2a4a, transparent 65%), #0b111c;
 }
-.page-hero-new .container-x {
-  padding-block: 90px !important;
-}
 .page-hero-new h1 {
   max-width: 1000px;
 }
@@ -1919,9 +1927,6 @@ body:has(.lab-fullscreen) .fixed {
   }
   .footer-bottom > span:nth-child(2) {
     display: none;
-  }
-  .page-hero-new .container-x {
-    padding-block: 55px !important;
   }
   .page-hero-new .hero-rule {
     font-size: 7px;

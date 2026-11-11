@@ -32,8 +32,9 @@
 }
 .analytics-consent button:focus-visible, .analytics-settings-button:focus-visible { outline: 2px solid #dcecff; outline-offset: 4px; }
 .analytics-settings-button { text-decoration: underline; text-underline-offset: 3px; min-height: 44px; }
-.privacy-notice { padding-block: 150px 100px; max-width: 900px; line-height: 1.8; }
+.privacy-notice { padding-block: var(--page-intro-space) 4rem; max-width: 900px; line-height: 1.8; }
 .privacy-notice > p { margin-top: 20px; }
+.privacy-notice > p:first-child { margin-top: 0; }
 .privacy-notice section { margin-top: 38px; }
 .privacy-notice h2 { margin-bottom: 14px; font-size: 24px; font-weight: 600; }
 .privacy-notice section p + p { margin-top: 18px; }
