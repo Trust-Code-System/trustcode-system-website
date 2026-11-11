@@ -1,4 +1,4 @@
-import { privacySections } from "@/content/privacy";
+import { privacyLastUpdated, privacySections } from "@/content/privacy";
 import { AnalyticsSettingsButton } from "@/components/google-analytics";
 import { pageMeta } from "@/lib/seo";
 
@@ -8,7 +8,7 @@ export default function PrivacyPage() {
   return <article className="experience-container privacy-notice">
     <p className="small-label">TRUSTCODE SYSTEM LIMITED</p>
     <h1 className="experience-h2">Website privacy</h1>
-    <p>Updated 10 November 2026</p>
+    <p>Updated {privacyLastUpdated}</p>
     {privacySections.map(section => <section key={section.title}>
       <h2>{section.title}</h2>
       {section.paragraphs.map(paragraph => <p key={paragraph.slice(0, 40)}>{paragraph}</p>)}

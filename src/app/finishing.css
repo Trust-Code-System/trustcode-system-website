@@ -17,7 +17,7 @@
   margin-top: 0;
 }
 .home-experience .hero-content {
-  padding-top: 50px;
+  padding-top: var(--page-intro-space);
 }
 .home-experience .hero-stage {
   min-height: 0;
@@ -112,9 +112,6 @@
   }
 }
 @media (max-width: 640px) {
-  .home-experience .hero-content {
-    padding-top: 40px;
-  }
   .footer-links {
     grid-template-columns: 1fr;
     gap: 32px;

@@ -15,7 +15,7 @@ export function PageHero({
 }) {
   return (
     <section className="page-hero-new relative overflow-hidden border-b border-grid">
-      <div className="container-x relative py-16 sm:py-20">
+      <div className="container-x page-intro relative">
         <Eyebrow>{eyebrow}</Eyebrow>
         <MotionTitle
           text={title}

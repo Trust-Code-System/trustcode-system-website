@@ -1,3 +1,5 @@
+export const privacyLastUpdated = "11 November 2026";
+
 export const analyticsCopy = {
   title: "Analytics cookies",
   description: "May we use Google Analytics cookies to understand visits and improve this website? You can decline and still use the whole site. Change your choice anytime in the footer.",

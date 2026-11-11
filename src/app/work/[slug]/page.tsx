@@ -49,7 +49,7 @@ export default async function CaseStudyPage({
     <>
       <section className="relative overflow-hidden border-b border-grid">
         <div aria-hidden className="grid-bg absolute inset-0" />
-        <div className="container-x relative py-12 sm:py-16">
+        <div className="container-x page-intro relative">
           <Link
             href="/work"
             className="inline-flex items-center gap-1.5 text-[0.85rem] text-slate hover:text-ink"
