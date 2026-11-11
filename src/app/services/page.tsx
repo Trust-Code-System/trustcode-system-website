@@ -1,5 +1,6 @@
 import { BookingLink } from "@/components/booking-link";
 import { PricingSection } from "@/components/pricing";
+import { ServicePageHub } from "@/components/service-pages";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
@@ -26,6 +27,7 @@ export default function ServicesPage() {
         intro="Software, cloud and security expertise working as one team. Build a useful digital presence, keep it running and protect your systems and customer data. Each engagement starts with a clear brief and written proposal."
       />
 
+      <ServicePageHub />
       <Section>
         <ExpertiseExplorer />
       </Section>

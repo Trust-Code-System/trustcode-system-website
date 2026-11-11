@@ -9,6 +9,7 @@ import "./navigation-chat.css";
 import "./finishing.css";
 import "./release.css";
 import "./analytics.css";
+import "./service-pages.css";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { SiteCurtain } from "@/components/experience/site-curtain";
 import { MotionPreferences } from "@/components/experience/motion-preferences";

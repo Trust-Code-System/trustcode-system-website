@@ -20,6 +20,7 @@ import {
   timelineOptions,
 } from "@/lib/contact-schema";
 import { sales } from "@/content/sales";
+import { servicePages } from "@/content/service-pages";
 import { PREFILL_OPEN, PREFILL_CLOSE } from "@/lib/contact-prefill";
 
 /**
@@ -216,6 +217,9 @@ Origin story: ${originStory.join(" ")}
 SERVICES (approved starting prices below; final scope and price follow a written proposal)
 ${serviceGroups.map((group) => `${group.title}: ${group.problem} ${group.outcome}`).join("\n")}
 ${serviceLines()}
+
+FOCUSED SERVICE PAGES
+${servicePages.map((page) => `${page.name}: ${site.url}/services/${page.slug}. ${page.hubSummary}`).join("\n")}
 
 ENGAGEMENT MODELS
 ${engagementModels.map((m) => `- ${m.title}: ${m.description}`).join("\n")}
