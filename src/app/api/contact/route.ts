@@ -167,6 +167,9 @@ export async function POST(req: Request) {
           { status: 502 }
         );
       }
+      // The provider accepted the send request. This is not proof of inbox
+      // delivery, lead qualification, a booking or a sale.
+      return NextResponse.json({ ok: true, leadAccepted: true });
     } catch (err) {
       console.error("Contact send failed:", err);
       return NextResponse.json(
