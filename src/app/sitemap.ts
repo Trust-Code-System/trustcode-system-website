@@ -3,6 +3,7 @@ import { site } from "@/content/site";
 import { projects } from "@/content/portfolio";
 import { industries } from "@/content/industries";
 import { articles } from "@/content/articles";
+import { servicePages } from "@/content/service-pages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -46,5 +47,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...work, ...industryPages, ...articlePages];
+  const focusedServices = servicePages.map((page) => ({
+    url: `${site.url}/services/${page.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...focusedServices, ...work, ...industryPages, ...articlePages];
 }

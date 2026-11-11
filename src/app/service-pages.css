@@ -1,0 +1,433 @@
+/* Focused service pages share the studio palette, typography and navigation. */
+.service-detail,
+.service-pages-hub {
+  --service-line: #29364a;
+  --service-muted: #b3bfd0;
+}
+.service-detail {
+  color: #e7edf6;
+}
+.service-detail a:focus-visible,
+.service-pages-hub a:focus-visible,
+.service-detail summary:focus-visible {
+  outline: 2px solid #a9ceff;
+  outline-offset: 5px;
+}
+.service-hero {
+  padding: 2rem 0 4rem;
+}
+.service-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.6rem;
+  margin-bottom: 1.5rem;
+  color: var(--service-muted);
+  font-size: 0.875rem;
+}
+.service-breadcrumb li + li::before {
+  content: "/";
+  margin-right: 0.6rem;
+  color: #65758d;
+}
+.service-breadcrumb a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+}
+.service-breadcrumb li[aria-current] {
+  display: flex;
+  align-items: center;
+}
+.service-hero-grid {
+  display: grid;
+  gap: 2.5rem;
+  align-items: start;
+}
+.service-heading {
+  margin-top: 1.2rem;
+  max-width: 17ch;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1.09;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+}
+.service-intro {
+  margin-top: 1.5rem;
+  max-width: 39rem;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--service-muted);
+}
+.service-hero-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+  margin: 1.5rem 0;
+}
+.service-hero-price strong {
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+.service-hero-price > span {
+  border-left: 1px solid var(--service-line);
+  padding-left: 1rem;
+  font-size: 0.875rem;
+  color: var(--service-muted);
+}
+.service-primary {
+  max-width: 100%;
+}
+.service-audience {
+  margin-top: 1.2rem;
+  max-width: 36rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--service-muted);
+}
+.service-hero-proof {
+  overflow: hidden;
+  border: 1px solid var(--service-line);
+  border-radius: 0.8rem;
+  background: #101722;
+}
+.service-proof-topline {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.9rem 1.2rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  color: #bdcde2;
+}
+.service-hero-image {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+.service-hero-proof figcaption {
+  padding: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+.service-hero-proof figcaption strong {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.service-hero-proof figcaption a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #b8d5ff;
+}
+.service-section-heading {
+  max-width: 46rem;
+  display: grid;
+  gap: 1rem;
+}
+.service-section-title {
+  font-size: clamp(1.8rem, 3.3vw, 2.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  text-wrap: balance;
+}
+.service-copy {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--service-muted);
+}
+.service-three-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+.service-three-grid h3,
+.service-preparation h3,
+.service-care-review h3 {
+  font-size: 1.15rem;
+  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.service-index {
+  display: block;
+  font:
+    0.875rem var(--font-mono),
+    monospace;
+  color: #96b8ea;
+  margin-bottom: 1.2rem;
+}
+.service-scope-grid,
+.service-faq-grid {
+  display: grid;
+  gap: 2rem;
+}
+.service-scope-list li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--service-line);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.service-scope-list li:first-child {
+  padding-top: 0;
+}
+.service-scope-list li > span {
+  color: #a9ceff;
+}
+.service-preparation {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-left: 2px solid #81aceb;
+  background: #101722;
+}
+.service-project-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.service-detail .service-project-grid .card {
+  min-width: 0;
+}
+.service-detail .service-project-grid a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+.service-detail .service-project-grid .card > a {
+  display: block;
+}
+.service-detail .service-project-grid .badge,
+.service-detail .service-project-grid a {
+  font-size: 0.875rem;
+}
+.service-detail .service-project-grid .font-mono {
+  font-size: 0.875rem;
+}
+.service-pricing-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.service-price-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid var(--service-line);
+  border-radius: 0.75rem;
+  background: #0d1420;
+  min-width: 0;
+}
+.service-price-primary {
+  border-color: #7196ca;
+  background: #102038;
+}
+.service-price-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.service-price {
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin: 1rem 0;
+  overflow-wrap: anywhere;
+}
+.service-price-card .service-copy {
+  flex: 1;
+}
+.service-price-timeline {
+  font-size: 0.875rem;
+  color: #c3cee0;
+  margin-top: 1.25rem;
+}
+.service-price-link {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--service-line);
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  min-height: 3rem;
+  font-size: 0.875rem;
+  color: #bad7ff;
+}
+.service-terms {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--service-muted);
+  max-width: 65rem;
+}
+.service-care-review {
+  margin-top: 2rem;
+  max-width: 50rem;
+}
+.service-process > li {
+  border-top: 1px solid var(--service-line);
+  padding-top: 1.5rem;
+}
+.service-care-panel {
+  border: 1px solid var(--service-line);
+  background: linear-gradient(140deg, #16253a, #0b1320);
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+}
+.service-care-panel h2 {
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  margin: 1rem 0;
+}
+.service-care-panel li {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--service-line);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.service-care-panel li > span {
+  font:
+    0.875rem var(--font-mono),
+    monospace;
+  color: #a9ceff;
+}
+.service-care-panel > .service-copy {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+}
+.service-faqs details {
+  border-top: 1px solid var(--service-line);
+}
+.service-faqs details:last-child {
+  border-bottom: 1px solid var(--service-line);
+}
+.service-faqs summary {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.5rem;
+  padding: 1rem 0.25rem;
+  list-style: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+.service-faqs summary::-webkit-details-marker {
+  display: none;
+}
+.service-faqs summary > span {
+  color: #a9ceff;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.service-faqs details[open] summary > span {
+  transform: rotate(45deg);
+}
+.service-faqs details > p {
+  padding: 0 0.25rem 1.5rem;
+}
+.service-closing {
+  background: radial-gradient(ellipse at top right, #172f50, #0a111d 65%);
+}
+.service-closing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.service-link-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.service-link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  min-width: 0;
+  border: 1px solid var(--service-line);
+  border-radius: 0.75rem;
+  background: #101722;
+  transition: border-color 0.2s ease;
+}
+.service-link-card:hover {
+  border-color: #90b4e7;
+}
+.service-link-name {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: #e7edf6;
+}
+.service-link-card .service-copy {
+  flex: 1;
+}
+.service-link-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.75rem;
+  font-size: 0.875rem;
+  color: #bad7ff;
+}
+@media (min-width: 48rem) {
+  .service-project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .service-single-project {
+    max-width: 48rem;
+    grid-template-columns: 1fr;
+  }
+  .service-three-grid,
+  .service-pricing-grid,
+  .service-link-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .service-detail .service-link-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .service-hero {
+    padding-bottom: 5rem;
+  }
+}
+@media (min-width: 64rem) {
+  .service-hero-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 3rem;
+  }
+  .service-scope-grid,
+  .service-faq-grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 5rem;
+  }
+  .service-care-panel {
+    padding: 2rem;
+  }
+  .service-price-card {
+    padding: 1.75rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-link-card {
+    transition: none;
+  }
+}
